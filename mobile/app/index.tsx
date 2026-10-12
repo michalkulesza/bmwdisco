@@ -1,24 +1,38 @@
-import { useCallback, useState } from 'react';
-import { Button, PlatformColor, Pressable, ScrollView, Share, Text, TextInput, View } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { Button, Pressable, ScrollView, Share, Text, TextInput, View } from 'react-native';
 import { Link } from 'expo-router';
 import { Mode } from '../src/session';
 import { profileLabel } from '../src/protocol/profiles';
 import PresetRunList from '../src/home-ui/PresetRunList';
 import SessionLog from '../src/home-ui/SessionLog';
+import { danger } from '../src/theme';
+import { forgetDevice, getRememberedDevice } from '../src/ble-device-store';
 import { CONNECTION_DEFAULTS as defaults, useVehicle } from '../src/vehicle-context';
 
 const colors = { text: '#F2F6FF', muted: '#9BAAC1', blue: '#79B6FF', card: '#121F33', border: '#24344D' };
 const card = { backgroundColor: colors.card, borderRadius: 22, borderCurve: 'continuous' as const, padding: 20, gap: 16, borderWidth: 1, borderColor: colors.border };
 const label = { color: colors.muted, fontSize: 12, fontWeight: '600' as const, letterSpacing: 1.6 };
+const modeLabels: Record<Mode, string> = { demo: 'Demo', enet: 'ENET', thor: 'THOR', icar: 'BLE' };
 const field = { color: colors.text, backgroundColor: '#0A1424', borderColor: colors.border, borderWidth: 1, borderRadius: 12, padding: 14, fontSize: 16, fontVariant: ['tabular-nums'] as ('tabular-nums')[] };
 
 export default function Home() {
   const { state, session, mode, setMode, endpoint, setEndpoint } = useVehicle();
   const [shareError, setShareError] = useState<string | null>(null);
+  const [rememberedName, setRememberedName] = useState<string | null>(null);
   const locked = state.connected || state.busy;
   const ready = state.connected && state.verified && !state.busy;
   const vehicleLabel = profileLabel(state.vehicle);
   const ecuName = state.vehicle?.ecu ?? 'ECU';
+
+  useEffect(() => {
+    if (mode !== 'icar' || state.busy) return;
+    void getRememberedDevice().then(device => setRememberedName(device ? device.name || 'Unnamed' : null));
+  }, [mode, state.busy, state.connected]);
+
+  const handleForgetDevice = useCallback(async () => {
+    await forgetDevice();
+    setRememberedName(null);
+  }, []);
 
   const handleExportLogs = useCallback(async () => {
     setShareError(null);
@@ -46,13 +60,18 @@ export default function Home() {
         </View>
       </View>
       <View accessibilityRole="radiogroup" style={{ flexDirection: 'row', gap: 6, backgroundColor: '#0A1424', padding: 5, borderRadius: 14 }}>
-        {(['demo', 'enet', 'thor'] as Mode[]).map(item => <Pressable key={item} accessibilityRole="radio" accessibilityState={{ checked: mode === item, disabled: locked }} disabled={locked} onPress={() => { setMode(item); setEndpoint(defaults[item]); }} style={({ pressed }) => ({ flex: 1, paddingVertical: 12, alignItems: 'center', borderRadius: 10, backgroundColor: mode === item ? '#264C7B' : 'transparent', opacity: pressed ? 0.65 : locked && mode !== item ? 0.45 : 1 })}>
-          <Text style={{ color: colors.text, fontSize: 14, fontWeight: '600' }}>{item === 'demo' ? 'Demo' : item.toUpperCase()}</Text>
+        {(['demo', 'enet', 'thor', 'icar'] as Mode[]).map(item => <Pressable key={item} accessibilityRole="radio" accessibilityState={{ checked: mode === item, disabled: locked }} disabled={locked} onPress={() => { setMode(item); setEndpoint(defaults[item]); }} style={({ pressed }) => ({ flex: 1, paddingVertical: 12, alignItems: 'center', borderRadius: 10, backgroundColor: mode === item ? '#264C7B' : 'transparent', opacity: pressed ? 0.65 : locked && mode !== item ? 0.45 : 1 })}>
+          <Text style={{ color: colors.text, fontSize: 14, fontWeight: '600' }}>{modeLabels[item]}</Text>
         </Pressable>)}
       </View>
       {mode === 'demo' ? <View style={{ backgroundColor: '#19334D', borderRadius: 12, padding: 14, gap: 5 }}>
         <Text style={{ color: '#A7D5FF', fontSize: 15, fontWeight: '700' }}>Simulated · no vehicle connected</Text>
         <Text style={{ color: '#A7BCD5', lineHeight: 20, fontSize: 13 }}>Explore the full test flow. Demo actions never communicate with a car.</Text>
+      </View> : mode === 'icar' ? <View style={{ gap: 8 }}>
+        <Text style={{ color: colors.muted, fontSize: 13, lineHeight: 19 }}>Pair nothing in iOS Settings — the app connects over Bluetooth LE to a Vgate iCar or generic BLE ELM327 adapter. Plug it into OBD, ignition on.</Text>
+        {rememberedName && <Pressable accessibilityRole="button" accessibilityLabel={`Forget ${rememberedName}`} disabled={locked} hitSlop={12} onPress={() => void handleForgetDevice()} style={{ opacity: locked ? 0.45 : 1 }}>
+          <Text style={{ color: colors.blue, fontSize: 13 }}>Forget {rememberedName}</Text>
+        </Pressable>}
       </View> : <View style={{ gap: 12 }}>
         <Text style={{ color: colors.muted, fontSize: 13, lineHeight: 19 }}>{mode === 'enet' ? 'Connect your ENET Ethernet adapter. This IP is a candidate; enter the vehicle IP if different.' : 'Join your THOR adapter’s Wi-Fi, then verify its host and TCP port.'}</Text>
         <View style={{ gap: 7 }}>
@@ -67,7 +86,7 @@ export default function Home() {
       <View style={{ backgroundColor: '#2566B4', borderRadius: 12, paddingVertical: 5, opacity: locked ? 0.45 : 1 }}>
         <Button title={state.busy && !state.connected ? 'Connecting…' : 'Connect & identify'} color="#FFFFFF" disabled={locked} onPress={() => void session.connect(mode, endpoint.host.trim(), Number(endpoint.port))} />
       </View>
-      <Button title="Disconnect" color={PlatformColor('systemRed')} disabled={!state.connected && !state.busy} onPress={() => void session.disconnect()} />
+      <Button title="Disconnect" color={danger} disabled={!state.connected && !state.busy} onPress={() => void session.disconnect()} />
       <View style={{ borderColor: colors.border, borderWidth: 1, borderRadius: 12, paddingVertical: 5 }}>
         <Button title={state.busy ? 'Stop & restore control' : 'Restore ECU control'} color="#FFCE96" disabled={!state.busy && !ready} onPress={() => void (state.busy ? session.stop() : session.restore())} />
       </View>

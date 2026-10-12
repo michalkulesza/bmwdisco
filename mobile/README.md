@@ -62,6 +62,7 @@ Use one adapter at a time. Park the vehicle, keep it stationary with ignition on
 | --- | --- | --- | --- |
 | ENET | Vehicle OBD → ENET cable → USB-C Ethernet adapter → iPhone | `169.254.250.250` | `6801` |
 | THOR | THOR in vehicle OBD; iPhone joined to the adapter's Wi-Fi | `192.168.4.1` | `23` |
+| BLE | Vgate iCar (or generic BLE ELM327) in vehicle OBD; ignition on | found by scan | none |
 
 These addresses and ports are **manual candidates**, not detected or hardware-verified endpoints. Confirm your adapter/vehicle's actual destination and edit the fields if different. There is no automatic discovery or subnet scanning.
 
@@ -69,7 +70,9 @@ For ENET, inspect the iPhone's Ethernet settings after connecting. An address as
 
 For THOR, join the adapter's actual SSID using its supplied credentials. A **No Internet Connection** indication is expected for an isolated adapter network; remain connected to it. The phone's Wi-Fi IP Address is the phone's address, while Host is the remote THOR adapter address. Use the Release build so Metro access is unnecessary.
 
-Allow BimmerDisco's **Local Network** prompt. If denied, enable it in Settings > Privacy & Security > Local Network and retry. `app.json` includes the local-network usage description. [Apple documents this permission](https://support.apple.com/102229).
+For **BLE**, pair nothing in iOS Settings: the app scans for and connects to the adapter over Bluetooth LE (`react-native-ble-plx`, needs the custom build) and drives it as an ELM327. Supported profiles are the Vgate iCar and generic `FFF0` and `FFE0` serial adapters; the chosen profile is logged. The first connect scans for about 4 seconds and shows a native action sheet of nearby adapters (strongest signal first); after a successful ELM327 handshake the adapter is remembered and reconnected directly next time. Use **Forget** under the BLE note to clear it. A device that does not answer `ATZ` with an `ELM` banner is rejected and not remembered. Allow the **Bluetooth** prompt on first connect. Local Network and Host/port are not used. This mode has not been tested on hardware; if an init command is rejected the error names it.
+
+Allow BimmerDisco's **Local Network** prompt (ENET and THOR only). If denied, enable it in Settings > Privacy & Security > Local Network and retry. `app.json` includes the local-network usage description. [Apple documents this permission](https://support.apple.com/102229).
 
 ## First car-side test
 

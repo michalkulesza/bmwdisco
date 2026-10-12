@@ -1,5 +1,5 @@
 import { DemoLink } from './demo-link';
-import { DiagnosticLink, LinkFactory, Mode, hex } from './link';
+import { ConnectionCancelledError, DiagnosticLink, LinkFactory, Mode, hex } from './link';
 import { DEFAULT_SESSION, EXTENDED_SESSION, IDENTIFY, PROFILES, VehicleProfile, isProfileIdentity } from './protocol/profiles';
 import { ElementId, LightingPreset, elementLabel, validatePreset } from './presets';
 export type { Mode } from './link';
@@ -12,6 +12,14 @@ export interface SessionState {
 
 const defaultFactory: LinkFactory = (mode, host, port, log, lost) => {
   if (mode === 'demo') return new DemoLink(log);
+  if (mode === 'icar') {
+    const { ElmBleLink } = require('./elm-ble-link') as typeof import('./elm-ble-link');
+    const { createPlxTransport } = require('./ble-plx-transport') as typeof import('./ble-plx-transport');
+    const { chooseDevice } = require('./ble-picker') as typeof import('./ble-picker');
+    const { getRememberedDevice, rememberDevice } = require('./ble-device-store') as typeof import('./ble-device-store');
+    return new ElmBleLink(log, lost, createPlxTransport(),
+      { chooseDevice, getRemembered: getRememberedDevice, remember: rememberDevice });
+  }
   // Loaded only for live connections; demo works without this native module.
   const { NativeLink } = require('./native-link') as typeof import('./native-link');
   return new NativeLink(mode, host, port, log, lost);
@@ -52,11 +60,12 @@ export class VehicleSession {
   connect(mode: Mode, host: string, port: number): Promise<void> {
     return this.run(async () => {
       if (this.state.connected) throw new Error('Disconnect before changing adapter');
-      if (mode !== 'demo' && (!/^\d{1,3}(\.\d{1,3}){3}$/.test(host) || host.split('.').some(n => Number(n) > 255)
+      if ((mode === 'enet' || mode === 'thor') && (!/^\d{1,3}(\.\d{1,3}){3}$/.test(host) || host.split('.').some(n => Number(n) > 255)
         || !Number.isInteger(port) || port < 1 || port > 65535)) throw new Error('Enter a valid IPv4 address and TCP port');
       this.link?.close();
+      const connectTarget = mode === 'demo' ? '(simulated)' : mode === 'icar' ? '(Bluetooth LE)' : `${host}:${port}`;
       this.update({ status: 'Connecting…', identity: null, verified: false, vehicle: null });
-      this.log(`Connect ${mode.toUpperCase()} ${mode === 'demo' ? '(simulated)' : `${host}:${port}`}`);
+      this.log(`Connect ${mode.toUpperCase()} ${connectTarget}`);
       this.link = this.factory(mode, host, port, this.log, this.lost);
       try {
         await this.link.open();
@@ -83,7 +92,9 @@ export class VehicleSession {
         this.update({ identity: firstIdentity, vehicle, verified: vehicle !== null,
           status: vehicle ? `${suffix}${vehicle.ecu} ${mode === 'demo' ? 'ready' : 'verified'}` : 'Controller mismatch — tests disabled' });
       } catch (error) {
-        this.link.close(); this.update({ connected: false, verified: false }); throw error;
+        this.link.close(); this.update({ connected: false, verified: false });
+        if (error instanceof ConnectionCancelledError) { this.log('Connection cancelled'); this.update({ status: 'Connection cancelled' }); return; }
+        throw error;
       }
     });
   }

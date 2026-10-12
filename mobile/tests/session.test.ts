@@ -59,6 +59,14 @@ test('invalid live endpoint never creates a socket', async () => {
   assert.match(session.state.error!, /valid IPv4/);
 });
 
+test('icar mode skips IPv4 validation and reaches the factory', async () => {
+  let requested = '';
+  const session = new VehicleSession(() => {}, mode => { requested = mode; throw new Error('stop'); });
+  await session.connect('icar', '', 0);
+  assert.equal(requested, 'icar');
+  assert.doesNotMatch(session.state.error!, /IPv4/);
+});
+
 test('F32 is selected at 0x40 without probing 0x72', async () => {
   const { session, addressed } = fixture();
   await session.connect('demo', '', 0);

@@ -1,9 +1,10 @@
 import { memo, useCallback, useState } from 'react';
-import { PlatformColor, Pressable, PressableStateCallbackType, Text, View } from 'react-native';
+import { Pressable, PressableStateCallbackType, Text, View } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { LightingPreset, presetSummary } from '../presets';
 import { loadPresets } from '../preset-files';
 import { useVehicle } from '../vehicle-context';
+import { success } from '../theme';
 
 const colors = { text: '#F2F6FF', muted: '#9BAAC1', error: '#FFB4AB', block: '#0A1424', border: '#24344D' };
 const block = { backgroundColor: colors.block, borderRadius: 20, padding: 18, gap: 12, borderWidth: 1, borderColor: colors.border };
@@ -26,7 +27,7 @@ const PresetRunList = () => {
 
   const getRunStyle = useCallback(({ pressed }: PressableStateCallbackType) => ({
     minHeight: 44, alignItems: 'center' as const, justifyContent: 'center' as const, borderRadius: 12, paddingVertical: 12,
-    backgroundColor: PlatformColor('systemGreen'), opacity: !ready ? 0.4 : pressed ? 0.65 : 1,
+    backgroundColor: success, opacity: !ready ? 0.4 : pressed ? 0.65 : 1,
   }), [ready]);
 
   if (loadError) return <Text selectable accessibilityRole="alert" style={{ color: colors.error, lineHeight: 21 }}>{loadError}</Text>;
