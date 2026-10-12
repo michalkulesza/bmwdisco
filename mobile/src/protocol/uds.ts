@@ -19,6 +19,8 @@ export function matchUdsResponse(request: Uint8Array, response: Uint8Array): Uds
         response[2] !== request[2] || response[3] !== request[3]) return unrelated;
     // Remaining bytes are a DID-specific status record, not a standardized
     // echo of channel/state. Serialize requests and discard timed-out sockets.
+  } else if (request[0] === 0x2e) {
+    if (request.length < 3 || response.length !== 3 || response[1] !== request[1] || response[2] !== request[2]) return unrelated;
   } else return unrelated;
   return { kind: 'positive' };
 }

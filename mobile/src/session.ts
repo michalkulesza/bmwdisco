@@ -1,7 +1,7 @@
 import { DemoLink } from './demo-link';
 import { DiagnosticLink, LinkFactory, Mode, hex } from './link';
 import { DEFAULT_SESSION, EXTENDED_SESSION, IDENTIFY, PROFILES, VehicleProfile, isProfileIdentity } from './protocol/profiles';
-import { ElementId, LIGHT_ELEMENTS, LightingPreset, validatePreset } from './presets';
+import { ElementId, LightingPreset, elementLabel, validatePreset } from './presets';
 export type { Mode } from './link';
 
 export interface SessionState {
@@ -105,31 +105,6 @@ export class VehicleSession {
     this.log('ECU acknowledged cleanup and default session');
     this.update({ status: 'ECU control restored' });
   }
-  pulse(side: 'left' | 'right'): Promise<void> {
-    return this.run(async () => {
-      const vehicle = this.state.vehicle;
-      if (!vehicle || !this.state.verified) throw new Error('Identify a supported vehicle before testing');
-      const light = LIGHT_ELEMENTS.find(element => element.side === side)!;
-      const command = vehicle.elements[light.id];
-      if (!command) throw new Error(`${light.label} is not supported on ${vehicle.chassis}`);
-      let failure: unknown;
-      try {
-        this.update({ status: `Testing front ${side} indicator…` });
-        await this.request(vehicle, EXTENDED_SESSION);
-        if (this.cancelled) return;
-        await this.request(vehicle, command(true));
-        if (!this.cancelled) await new Promise<void>(resolve => {
-          const timer = setTimeout(() => { this.wake = undefined; resolve(); }, 1000);
-          this.wake = () => { clearTimeout(timer); this.wake = undefined; resolve(); };
-        });
-        await this.request(vehicle, command(false));
-      } catch (error) { failure = error; }
-      finally {
-        try { await this.cleanup(vehicle); } catch (error) { failure = error; }
-        if (failure) throw failure;
-      }
-    });
-  }
   restore(): Promise<void> {
     return this.run(async () => {
       const vehicle = this.state.vehicle;
@@ -163,12 +138,12 @@ export class VehicleSession {
           } else {
             for (const id of step.elements) {
               if (this.cancelled) break;
-              const light = LIGHT_ELEMENTS.find(element => element.id === id)!;
+              const label = elementLabel(id);
               const command = vehicle.elements[id];
-              if (!command) { this.log(`${light.label}: skipped, unsupported on ${vehicle.chassis}`); continue; }
+              if (!command) { this.log(`${label}: skipped, unsupported on ${vehicle.chassis}`); continue; }
               touched.add(id); // Include commands with ambiguous or rejected replies in cleanup.
-              this.log(`${light.label}: ${step.state}`);
-              await this.request(vehicle, command(step.state === 'on'));
+              this.log(`${label}: ${step.state}`);
+              await this.request(vehicle, step.state === 'on' ? command.on : command.off);
               if (step.state === 'on') lights.add(id); else lights.delete(id);
               this.update({ presetProgress: { name: preset.name, index, total: preset.steps.length, lights: [...lights] } });
             }
@@ -180,7 +155,7 @@ export class VehicleSession {
         clearTimeout(deadline);
         this.update({ status: 'Restoring ECU control…' });
         for (const id of touched) {
-          try { await this.request(vehicle, vehicle.elements[id]!(false)); }
+          try { await this.request(vehicle, vehicle.elements[id]!.off); }
           catch (error) { failure ??= error; }
         }
         try { await this.cleanup(vehicle); } catch (error) { failure = error; }

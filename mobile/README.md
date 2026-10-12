@@ -2,7 +2,7 @@
 
 Expo SDK 57 / Expo Router prototype for a **2016 BMW F32** (FEM_20) and **BMW F10/F11** (FRM3, unverified on a car), intended for an **iPhone 15 Pro** with an ENET cable through USB-C Ethernet or a THOR Wi-Fi adapter. Native TCP uses `react-native-tcp-socket` 6.4.3.
 
-**No vehicle or adapter hardware has validated this implementation.** Protocol behavior comes from the repository's static artifact analysis. A successful demo or unit test does not establish vehicle compatibility. This prototype only identifies the FEM and offers one-second front left/right indicator tests; it has no flashing, coding, fault clearing, or arbitrary command entry. Lighting presets are limited to the two front indicators (see below).
+**No vehicle or adapter hardware has validated this implementation.** Protocol behavior comes from the repository's static artifact analysis. A successful demo or unit test does not establish vehicle compatibility. This prototype identifies the lighting ECU and plays user-built lighting presets (see below); it has no flashing, coding, fault clearing, or arbitrary command entry.
 
 ## Prepare the Mac
 
@@ -75,8 +75,8 @@ Allow BimmerDisco's **Local Network** prompt. If denied, enable it in Settings >
 
 1. Open the installed Release app, select ENET or THOR, and verify Host and TCP port.
 2. Tap **Connect & identify**. The app reads `22 F1 50` at `0x40` (F32 FEM_20, expects `0F16B0`), then at `0x72` (F10/F11 FRM3, expects `0F10D0`), and unlocks tests only on an exact match. The F10/F11 identity and commands come from static analysis alone (`analysis/f10-findings.md`); confirm them on the car. Presets are vehicle-agnostic: the detected vehicle translates each light block into its own commands. A mismatch stays locked. Do not substitute another identity to bypass the check.
-3. With the vehicle stationary and a clear view of its front indicators, tap **Front left** once. Wait for the one-second pulse and the restoration acknowledgement before trying **Front right**.
-4. Each test requests extended diagnostic session, drives the selected front indicator on for one second, requests off, then attempts return-control (`2F 45 01 00 FE`) and default session (`10 01`). The one-second interval begins after the on-request acknowledgement; network/ECU delays can affect observed duration.
+3. With the vehicle stationary and a clear view of its lights, open **Lighting presets** and run a short preset (for example: front left indicator on, 1000 ms delay, off). Wait for the restoration acknowledgement before running another.
+4. Each run requests extended diagnostic session, plays the blocks, sends off for every light it touched, then attempts the ECU's return-control (F32: `2F 45 01 00 FE`) and default session (`10 01`). Delays start after each command's acknowledgement; network/ECU delays affect observed timing.
 5. **Stop & restore control** cancels the wait and attempts cleanup after the current reply. **Restore ECU control** retries restoration while verified and connected. Backgrounding requests stop; keep the app open through cleanup. Lost connectivity or process termination can prevent restoration, so only an acknowledged cleanup confirms it.
 6. If identity, output behavior, or restoration is unexpected, stop testing and export the session log. If restoration is reported unconfirmed, do not assume the ECU accepted it; reconnect and identify before using the restore control. Finish with **Disconnect** after restoration succeeds.
 
@@ -84,9 +84,9 @@ Use **Export logs** to share the timestamped session trace through the iOS share
 
 ## Lighting presets
 
-A preset is a sequence of blocks for the two front indicators (`frontLeftIndicator`, `frontRightIndicator`): **set** blocks turn selected indicators on or off, and **wait** blocks pause for 50–2000 ms. Presets are saved on the device and managed from the presets screen.
+A preset is a sequence of blocks over generic light elements (indicators, front, fog, rear, interior; full list and per-car bytes in `analysis/light-elements.md`): **set** blocks turn the selected lights on or off, and **wait** blocks pause for 50–2000 ms. Presets are saved on the device and managed from the presets screen.
 
-- **Preview in Demo** runs a preset on the simulated connection; no vehicle commands are sent.
+- To try a preset without a car, choose **Demo** on the home screen, connect, then **Run on Demo connection**; no vehicle commands are sent.
 - **Run on car** is enabled only after the car is connected and identified. A preset runs once, then ECU control is restored. **Stop & restore control** cancels playback.
 - Limits: 200 blocks per preset, 60 seconds of total delay, 100 presets, and a 1 MB import file.
 

@@ -1,54 +1,53 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { VehicleSession } from '../src/session';
-import { CAS_IDENTITY, FEM_IDENTITY, FRM_IDENTITY, fixture } from './vehicle-fixture';
+import { LightingPreset } from '../src/presets';
+import { CAS_IDENTITY, FRM_IDENTITY, fixture } from './vehicle-fixture';
+
+const indicatorPreset = (id: 'frontLeftIndicator' | 'frontRightIndicator'): LightingPreset => ({
+  id: 'indicator',
+  name: 'Indicator',
+  steps: [
+    { type: 'set', elements: [id], state: 'on' },
+    { type: 'wait', durationMs: 50 },
+    { type: 'set', elements: [id], state: 'off' },
+  ],
+});
+
+const left = indicatorPreset('frontLeftIndicator');
+const right = indicatorPreset('frontRightIndicator');
 
 test('identity mismatch blocks actuation and restore', async () => {
   const { session, sent, addressed } = fixture({ identities: { 0x40: [0, 1, 2], 0x72: [3, 4, 5] } });
   await session.connect('demo', '', 0);
   assert.equal(session.state.verified, false);
   assert.equal(session.state.vehicle, null);
-  await session.pulse('left'); await session.restore();
+  await session.playPreset(left); await session.restore();
   assert.deepEqual(addressed, ['40:22 F1 50', '72:22 F1 50']);
   assert.deepEqual(sent, ['22 F1 50', '22 F1 50']);
 });
 
-test('one-second test restores ECU control in order', async () => {
-  const { session, sent } = fixture();
-  await session.connect('demo', '', 0); await session.pulse('right');
-  assert.deepEqual(sent, ['22 F1 50', '10 03', '2F 45 01 03 0E 01', '2F 45 01 03 0E 00', '2F 45 01 00 FE', '10 01']);
-  assert.equal(session.state.busy, false);
-  assert.equal(session.state.error, null);
-});
-
-test('rejected actuation still attempts both cleanup requests', async () => {
-  const { session, sent } = fixture({ reject: '2F 45 01 03 0D 01' });
-  await session.connect('demo', '', 0); await session.pulse('left');
-  assert.deepEqual(sent.slice(-2), ['2F 45 01 00 FE', '10 01']);
-  assert.match(session.state.error!, /rejected/);
-});
-
-test('cleanup failure disables subsequent tests but still attempts default session', async () => {
+test('cleanup failure disables subsequent runs but still attempts default session', async () => {
   const { session, sent } = fixture({ reject: '2F 45 01 00 FE' });
   await session.connect('demo', '', 0); await session.restore();
   assert.equal(session.state.verified, false);
   assert.deepEqual(sent.slice(-2), ['2F 45 01 00 FE', '10 01']);
-  const count = sent.length; await session.pulse('left'); assert.equal(sent.length, count);
+  const count = sent.length; await session.playPreset(left); assert.equal(sent.length, count);
 });
 
 test('stop during session entry prevents indicator-on and waits for restoration', async () => {
   const { session, sent } = fixture();
   await session.connect('demo', '', 0);
-  const pulse = session.pulse('left'); await session.stop(); await pulse;
+  const play = session.playPreset(left); await session.stop(); await play;
   assert.deepEqual(sent, ['22 F1 50', '10 03', '2F 45 01 00 FE', '10 01']);
   assert.equal(session.state.busy, false);
 });
 
-test('disconnect during a pulse restores before closing and ignores duplicate tests', async () => {
+test('disconnect during a run restores before closing and ignores duplicate runs', async () => {
   const { session, sent, isClosed } = fixture();
   await session.connect('demo', '', 0);
-  const pulse = session.pulse('left'); await session.pulse('right');
-  await session.disconnect(); await pulse;
+  const play = session.playPreset(left); await session.playPreset(right);
+  await session.disconnect(); await play;
   assert.equal(isClosed(), true); assert.equal(session.state.connected, false);
   assert.equal(sent.some(s => s.includes('0E')), false);
   assert.deepEqual(sent.slice(-2), ['2F 45 01 00 FE', '10 01']);
@@ -58,17 +57,6 @@ test('invalid live endpoint never creates a socket', async () => {
   const session = new VehicleSession(() => {}, () => { throw new Error('Factory must not run'); });
   await session.connect('enet', '999.1.1.1', 6801);
   assert.match(session.state.error!, /valid IPv4/);
-});
-
-test('stop interrupts the pulse wait and sends off before return-control', async () => {
-  const { session, sent } = fixture();
-  await session.connect('demo', '', 0);
-  const pulse = session.pulse('left');
-  await new Promise(resolve => setTimeout(resolve, 10));
-  assert.equal(sent.at(-1), '2F 45 01 03 0D 01');
-  const started = Date.now(); await session.stop(); await pulse;
-  assert.ok(Date.now() - started < 500);
-  assert.deepEqual(sent.slice(-3), ['2F 45 01 03 0D 00', '2F 45 01 00 FE', '10 01']);
 });
 
 test('F32 is selected at 0x40 without probing 0x72', async () => {
@@ -100,19 +88,19 @@ test('negative reply at 0x40 does not stop probing 0x72', async () => {
   assert.equal(isClosed(), false);
 });
 
-test('F10 pulse uses FRM3 bytes at 0x72 and cleans up with off then default session', async () => {
+test('F10 run uses FRM3 bytes at 0x72 and cleans up with off then default session', async () => {
   const { session, addressed } = fixture({ identities: { 0x40: CAS_IDENTITY, 0x72: FRM_IDENTITY } });
   await session.connect('demo', '', 0);
   addressed.length = 0;
-  await session.pulse('right');
-  assert.deepEqual(addressed, ['72:10 03', '72:2F 01 1D 03 64', '72:2F 01 1D 03 00', '72:10 01']);
+  await session.playPreset(right);
+  assert.deepEqual(addressed, ['72:10 03', '72:2F 01 1D 03 64', '72:2F 01 1D 03 00', '72:2F 01 1D 03 00', '72:10 01']);
   assert.equal(session.state.error, null);
 });
 
 test('F10 rejected actuation still attempts the default session', async () => {
   const { session, sent } = fixture({ identities: { 0x72: FRM_IDENTITY }, reject: '2F 01 1C 03 64' });
-  await session.connect('demo', '', 0); await session.pulse('left');
-  assert.deepEqual(sent.slice(-2), ['2F 01 1C 03 64', '10 01']);
+  await session.connect('demo', '', 0); await session.playPreset(left);
+  assert.deepEqual(sent.slice(-3), ['2F 01 1C 03 64', '2F 01 1C 03 00', '10 01']);
   assert.match(session.state.error!, /rejected/);
 });
 
