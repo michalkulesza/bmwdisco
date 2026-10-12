@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { additiveChecksum, equalBytes, fromHex, hex } from '../src/protocol/bytes';
 import { encodeHsfzControl, encodeHsfzDiagnostic, HsfzParser, HSFZ_MAX_BODY } from '../src/protocol/hsfz';
 import { encodeThorDiagnostic, ThorParser, THOR_MAX_PAYLOAD } from '../src/protocol/thor';
-import { FEM_PROFILE, femDefaultSession, femExtendedSession, femIdentify, femIndicator,
-  femReturnControl, isFemIdentity } from '../src/protocol/fem';
+import { DEFAULT_SESSION, EXTENDED_SESSION, F10_PROFILE, F32_PROFILE, IDENTIFY, PROFILES,
+  isProfileIdentity, profileLabel } from '../src/protocol/profiles';
 import { matchUdsResponse } from '../src/protocol/uds';
 
 const bytes = fromHex;
@@ -20,27 +20,40 @@ test('hex helpers reject malformed text and preserve zero bytes', () => {
   assert.equal(additiveChecksum(bytes('FFFF02')), 0);
 });
 
-test('recovered FEM front indicator allowlist and exact identity gate', () => {
-  assert.equal(FEM_PROFILE.name, 'FEM_20');
-  assert.equal(FEM_PROFILE.destination, 0x40);
-  assert.equal(hex(FEM_PROFILE.identity), '0F 16 B0');
-  assert.equal(hex(femIdentify()), '22 F1 50');
-  assert.equal(hex(femExtendedSession()), '10 03');
-  assert.equal(hex(femDefaultSession()), '10 01');
-  assert.equal(hex(femReturnControl()), '2F 45 01 00 FE');
-  assert.deepEqual(femIndicator('left', true), leftOn);
-  assert.equal(hex(femIndicator('left', false)), '2F 45 01 03 0D 00');
-  assert.equal(hex(femIndicator('right', true)), '2F 45 01 03 0E 01');
-  assert.equal(hex(femIndicator('right', false)), '2F 45 01 03 0E 00');
-  assert.throws(() => femIndicator('rear' as 'left', true));
-  assert.throws(() => femIndicator('left', 1 as unknown as boolean));
-  assert.equal(isFemIdentity(bytes('62F1500F16B0')), true);
+test('vehicle profile byte tables', () => {
+  assert.deepEqual(PROFILES.map(profile => [profile.ecu, profile.address]), [['FEM_20', 0x40], ['FRM3', 0x72]]);
+  assert.equal(hex(IDENTIFY), '22 F1 50');
+  assert.equal(hex(EXTENDED_SESSION), '10 03');
+  assert.equal(hex(DEFAULT_SESSION), '10 01');
+  const table = (profile: typeof F32_PROFILE) => (['frontLeftIndicator', 'frontRightIndicator'] as const)
+    .flatMap(id => [true, false].map(on => hex(profile.elements[id]!(on))));
+  assert.deepEqual(table(F32_PROFILE), ['2F 45 01 03 0D 01', '2F 45 01 03 0D 00', '2F 45 01 03 0E 01', '2F 45 01 03 0E 00']);
+  assert.deepEqual(table(F10_PROFILE), ['2F 01 1C 03 64', '2F 01 1C 03 00', '2F 01 1D 03 64', '2F 01 1D 03 00']);
+  assert.deepEqual(F32_PROFILE.returnControl.map(hex), ['2F 45 01 00 FE']);
+  assert.deepEqual(F10_PROFILE.returnControl, []);
+  assert.deepEqual(F32_PROFILE.elements.frontLeftIndicator!(true), leftOn);
+});
+
+test('profile identity gate is exact and per profile', () => {
+  assert.equal(isProfileIdentity(F32_PROFILE, bytes('62F1500F16B0')), true);
+  assert.equal(isProfileIdentity(F10_PROFILE, bytes('62F1500F10D0')), true);
+  assert.equal(isProfileIdentity(F32_PROFILE, bytes('62F1500F10D0')), false);
+  assert.equal(isProfileIdentity(F10_PROFILE, bytes('62F1500F16B0')), false);
   for (const response of ['62F1500F16B1', '62F1500F16', '62F1510F16B0', '62F1500F16B000', '7F2231']) {
-    assert.equal(isFemIdentity(bytes(response)), false);
+    assert.equal(isProfileIdentity(F32_PROFILE, bytes(response)), false);
   }
-  const mutated = FEM_PROFILE.identity;
-  mutated[0] = 0;
-  assert.equal(hex(FEM_PROFILE.identity), '0F 16 B0');
+  assert.equal(profileLabel(null), 'BMW F32 / F10 / F11');
+  assert.equal(profileLabel(F10_PROFILE), 'BMW F10/F11 · FRM3');
+  assert.equal(profileLabel(F32_PROFILE), 'BMW F32 · FEM_20');
+});
+
+test('UDS matcher validates FRM3 two-byte-DID IOControl replies', () => {
+  const request = bytes('2F011C0364');
+  assert.deepEqual(matchUdsResponse(request, bytes('6F011C0364')), { kind: 'positive' });
+  assert.deepEqual(matchUdsResponse(request, bytes('6F011C03')), { kind: 'positive' });
+  assert.deepEqual(matchUdsResponse(request, bytes('6F011D0364')), { kind: 'unrelated' });
+  assert.deepEqual(matchUdsResponse(request, bytes('6F011C0264')), { kind: 'unrelated' });
+  assert.deepEqual(matchUdsResponse(request, bytes('7F2F31')), { kind: 'negative', code: 0x31 });
 });
 
 test('HSFZ encoder matches independent static packet fixture', () => {

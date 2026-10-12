@@ -1,8 +1,9 @@
 import { Stack } from 'expo-router/stack';
 import { StatusBar } from 'react-native';
+import { VehicleProvider } from '../src/vehicle-context';
 
 export default function RootLayout() {
-  return <>
+  return <VehicleProvider>
     <StatusBar barStyle="light-content" />
     <Stack screenOptions={{
       headerStyle: { backgroundColor: '#0B1322' },
@@ -10,7 +11,8 @@ export default function RootLayout() {
       headerShadowVisible: false,
       contentStyle: { backgroundColor: '#080F1C' },
     }}>
-      <Stack.Screen name="index" options={{ title: 'Bimlight', headerLargeTitle: true, headerLargeStyle: { backgroundColor: '#0B1322' } }} />
+      <Stack.Screen name="index" options={{ title: 'BimmerDisco', headerLargeTitle: true, headerLargeStyle: { backgroundColor: '#0B1322' } }} />
+      <Stack.Screen name="presets" options={{ title: 'Lighting presets' }} />
     </Stack>
-  </>;
+  </VehicleProvider>;
 }
