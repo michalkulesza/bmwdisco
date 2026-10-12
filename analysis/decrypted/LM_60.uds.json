@@ -1,0 +1,353 @@
+{
+  "sgbd": "LM_60",
+  "addr": "70",
+  "jobs": {
+    "IDENT": "1a80",
+    "FS_LESEN": "30783030303000",
+    "FS_LESEN_DETAIL": "30783030303000",
+    "FS_LOESCHEN": "14ffff",
+    "PRUEFSTEMPEL_LESEN": "221000",
+    "PRUEFSTEMPEL_SCHREIBEN": "2e1000000000",
+    "DIAGNOSE_AUFRECHT": "3e01",
+    "FS_SPERREN": "850101",
+    "IS_LESEN": "222000",
+    "IS_LESEN_DETAIL": "222000",
+    "IS_LOESCHEN": "310600",
+    "DIAGNOSE_MODE": "1081",
+    "SLEEP_MODE": "310500",
+    "SPEICHER_LESEN": "230000000110",
+    "SPEICHER_SCHREIBEN": "2c2000",
+    "ENERGIESPARMODE": "310c00",
+    "C_CI_LESEN": "1a9b",
+    "C_FG_LESEN": "1a90",
+    "C_FG_SCHREIBEN": "3b9000000000000000",
+    "C_FG_AUFTRAG": "3b9000000000000000",
+    "C_AEI_LESEN": "223fff",
+    "C_AEI_SCHREIBEN": "2e3fff0000",
+    "C_AEI_AUFTRAG": "2e3fff0000",
+    "C_C_LESEN": "223000",
+    "C_C_AUFTRAG": "223000",
+    "SERIENNUMMER_LESEN": "1a89",
+    "ZIF_LESEN": "222503",
+    "ZIF_BACKUP_LESEN": "222500",
+    "PHYSIKALISCHE_HW_NR_LESEN": "1a87",
+    "HARDWARE_REFERENZ_LESEN": "222502",
+    "DATEN_REFERENZ_LESEN": "222504",
+    "FLASH_ZEITEN_LESEN": "222501",
+    "FLASH_BLOCKLAENGE_LESEN": "222506",
+    "AUTHENTISIERUNG_ZUFALLSZAHL_LESEN": "310700",
+    "FLASH_PROGRAMMIER_STATUS_LESEN": "310a",
+    "FLASH_SIGNATUR_PRUEFEN": "310902",
+    "STEUERGERAETE_RESET": "1101",
+    "FLASH_LOESCHEN": "310200000006000000",
+    "FLASH_SCHREIBEN_ADRESSE": "340000000600000000",
+    "FLASH_SCHREIBEN_ENDE": "370000000600000000",
+    "AIF_LESEN": "230000000700",
+    "AIF_SCHREIBEN": "303030303000",
+    "PRUEFCODE_LESEN": "1a80",
+    "STATUS_BETR_H_LM": "300301",
+    "STEUERN_BETR_H_LM_LOESCHEN": "300307",
+    "STATUS_BETR_H_FUNKTIONEN": "300401",
+    "STEUERN_BETR_H_FUNKTION_LOESCHEN": "30050700",
+    "STEUERN_BETR_H_FUNKTIONEN_LOESCHEN": "300407",
+    "STATUS_BETR_H_AMPERE": "300a01",
+    "STEUERN_BETR_H_AMPERE": "300a07",
+    "STATUS_LAMPEN_DIGITAL": "1a9b",
+    "STEUERN_LAMPEN_DIGITAL": "1a9b",
+    "STATUS_DIMMWERT": "1a9b",
+    "STEUERN_DIMMWERT": "1a9b",
+    "STEUERN_LAMPEN_PWM": "1a9b",
+    "STEUERN_TEST_DIMMWERT_LEAR": "3001070000",
+    "CODIERDATEN_BLOCK_LESEN_LEAR": "220000",
+    "CODIERDATEN_BLOCK_SCHREIBEN_LEAR": "2e",
+    "NUR_CODIERDATEN_SCHREIBEN_LEAR": "2e300000000000000000000000000000000000",
+    "GERAETEDATEN_DEFAULT_SCHREIBEN_LEAR": "2e000100000000012061",
+    "SSECUHVN_SCHREIBEN": "3b930000",
+    "IDENT_SSECUSON": "1a94",
+    "IDENT_PARAM": "1a00",
+    "READ_VARIABLE_LEAR": "210000",
+    "READ_FVIN": "221010",
+    "WRITE_FVIN": "2e1010",
+    "FVIN_AUFTRAG": "2e1010",
+    "STATUS_DIGITAL_INPUTS": "300601",
+    "STATUS_ANALOG_INPUTS": "300701",
+    "STEUERN_ZUSATZ_OUTPUTS": "3008070000",
+    "STATUS_SZL_VERBUNDEN": "300701",
+    "STATUS_ZUSATZ_BLINKER": "3001071b72",
+    "C_FA_LESEN": "223f00",
+    "LWR_LESEN": "220000",
+    "STATUS_LWR_LESEN": "220000",
+    "STATUS_LAMPEN_DEFEKTE": "1a9b",
+    "READ_ENERGY_SAVING_MODE": "22100a",
+    "NUR_CODE_IN_EEPROM_SCHREIBEN_LEAR": "2e310000000000000000000000000000000000",
+    "AUTHENTISIERUNG_EINFACH_LEAR": "310701",
+    "STATUS_SENSE_LESEN": "1a9b",
+    "NUR_CODIERDATEN_LESEN_KOMPLETT_LEAR": "1a9b",
+    "NUR_CODE_IN_EEPROM_LESEN_LEAR": "1a9b",
+    "HERSTELLER_DATEN_SCHREIBEN_LEAR": "2e0004",
+    "HERSTELLER_DATEN_LESEN_LEAR": "220004",
+    "CBD_ZEICHN_INDEX_LESEN_LEAR": "1a9b",
+    "EEPROM_SCHREIBEN_LEAR": "2e300000000000000000000000000000000000",
+    "CKM_AUF_DEFAULT": "2e0005",
+    "CKM_SCHREIBEN": "2e0006000000",
+    "CKM_LESEN": "220006",
+    "CKM_AKTUELL_LESEN": "220007",
+    "STATUS_XENON_AL_EINSCHALTVERSUCHE": "300e01",
+    "STEUERN_XENON_AL_EINSCHALTVERSUCHE_LOESCHEN": "300e07",
+    "STATUS_LWR_POSITION": "300f01",
+    "STATUS_GANG_RUECKWAERTS": "301001",
+    "STATUS_FLC_ALC": "301101",
+    "STATUS_FAHRZEUGNEIGUNG": "301801",
+    "STATUS_FASTA_DATEN_LM": "300301",
+    "STEUERN_LAMPEN_ALLE_LEAR": "3001070000",
+    "FLASH_PROG_STATUS_SCHREIBEN_LEAR": "3b02",
+    "STEUERN_AL_EINSCHALTEN": "30120700",
+    "RESET_KURZSCHLUSS_SPERRE": "30130700",
+    "STATUS_LAMPEN_KURZSCHLUSS": "301401",
+    "STATUS_LAMPEN_KURZSCHLUSS_WIEDERHOL_COUNTER": "301501",
+    "STATUS_LAMPEN_KURZSCHLUSS_COUNTER": "301601",
+    "STATUS_LAMPEN_KURZSCHLUSS_COUNTER_MAX": "301701",
+    "READ_CAN_BUS_ERROR_LEAR": "2103",
+    "CLR_CAN_BUS_ERROR_LEAR": "3b03",
+    "READ_REGISTER_U435_LEAR": "210400",
+    "WRITE_REGISTER_U435_LEAR": "3b04000000",
+    "_CODIERDATEN_3000_LESEN_KOMPLETT_LEAR": "2230",
+    "_CODIERDATEN_3400_LESEN_KOMPLETT_LEAR": "2234",
+    "_CODIERDATEN_3100_LESEN_KOMPLETT_LESEN_LEAR": "220000",
+    "_CODIERDATEN_3000_SCHREIBEN_AUS_DATEI_LEAR": "2e300000000000000000000000000000000000",
+    "_CODIERDATEN_3400_SCHREIBEN_AUS_DATEI_LEAR": "2e340000000000000000000000000000000000",
+    "_CODIERDATEN_3100_SCHREIBEN_AUS_DATEI_LEAR": "2e310000000000000000000000000000000000",
+    "_CODIERDATEN_KOMPLETT_SCHREIBEN_LEAR": "2e300000000000000000000000000000000000",
+    "_READ_NOTLAUF_FALLBACK_COUNTER_LEAR": "2105",
+    "_CLR_NOTLAUF_FALLBACK_COUNTER_LEAR": "3b05",
+    "_CLR_RESET_COUNTER_LEAR": "3b06",
+    "READ_DIAG_RINGSPEICHER": "2107",
+    "_CLR_DIAG_RINGSPEICHER_LEAR": "3b07",
+    "STEUERN_LWR_TESTBETRIEB": "1a9b"
+  },
+  "fns": [],
+  "enums": {},
+  "lights": {
+    "function": "STEUERN_LAMPEN_DIGITAL",
+    "template": "30 01 07 00 00",
+    "channels": {
+      "AUSGANG_FL_LINKS": [],
+      "AUSGANG_FL_RECHTS": [
+        [
+          3,
+          "0x01"
+        ]
+      ],
+      "AUSGANG_AL_LINKS": [
+        [
+          3,
+          "0x02"
+        ]
+      ],
+      "AUSGANG_AL_RECHTS": [
+        [
+          3,
+          "0x03"
+        ]
+      ],
+      "AUSGANG_BEGRL_LINKS": [
+        [
+          3,
+          "0x04"
+        ]
+      ],
+      "AUSGANG_BEGRL_RECHTS": [
+        [
+          3,
+          "0x05"
+        ]
+      ],
+      "AUSGANG_NSW_LINKS": [
+        [
+          3,
+          "0x06"
+        ]
+      ],
+      "AUSGANG_NSW_RECHTS": [
+        [
+          3,
+          "0x07"
+        ]
+      ],
+      "AUSGANG_FRA_LINKS_VORN_1": [
+        [
+          3,
+          "0x08"
+        ]
+      ],
+      "AUSGANG_FRA_RECHTS_VORN_1": [
+        [
+          3,
+          "0x09"
+        ]
+      ],
+      "AUSGANG_FRA_LINKS_HINTEN": [
+        [
+          3,
+          "0x0a"
+        ]
+      ],
+      "AUSGANG_FRA_RECHTS_HINTEN": [
+        [
+          3,
+          "0x0b"
+        ]
+      ],
+      "AUSGANG_FRA_LINKS_VORN_2": [
+        [
+          3,
+          "0x0c"
+        ]
+      ],
+      "AUSGANG_FRA_RECHTS_VORN_2": [
+        [
+          3,
+          "0x0d"
+        ]
+      ],
+      "AUSGANG_BREMSLICHT_LINKS": [
+        [
+          3,
+          "0x0e"
+        ]
+      ],
+      "AUSGANG_BREMSLICHT_RECHTS": [
+        [
+          3,
+          "0x0f"
+        ]
+      ],
+      "AUSGANG_BREMSLICHT_MITTE": [
+        [
+          3,
+          "0x10"
+        ]
+      ],
+      "AUSGANG_SL_BL_LINKS": [
+        [
+          3,
+          "0x11"
+        ]
+      ],
+      "AUSGANG_SL_BL_RECHTS": [
+        [
+          3,
+          "0x12"
+        ]
+      ],
+      "AUSGANG_SL_BL_LINKS_2": [
+        [
+          3,
+          "0x13"
+        ]
+      ],
+      "AUSGANG_SL_BL_RECHTS_2": [
+        [
+          3,
+          "0x14"
+        ]
+      ],
+      "AUSGANG_KZL_LINKS": [
+        [
+          3,
+          "0x15"
+        ]
+      ],
+      "AUSGANG_KZL_RECHTS": [
+        [
+          3,
+          "0x16"
+        ]
+      ],
+      "AUSGANG_NSL_LINKS": [
+        [
+          3,
+          "0x17"
+        ]
+      ],
+      "AUSGANG_NSL_RECHTS": [
+        [
+          3,
+          "0x18"
+        ]
+      ],
+      "AUSGANG_RFL_LINKS": [
+        [
+          3,
+          "0x19"
+        ]
+      ],
+      "AUSGANG_RFL_RECHTS": [
+        [
+          3,
+          "0x1a"
+        ]
+      ],
+      "AUSGANG_FRA_ZUSATZ_LINKS": [
+        [
+          3,
+          "0x1b"
+        ]
+      ],
+      "AUSGANG_FRA_ZUSATZ_RECHTS": [
+        [
+          3,
+          "0x1c"
+        ]
+      ],
+      "AUSGANG_SML_VORN": [
+        [
+          3,
+          "0x1d"
+        ]
+      ],
+      "AUSGANG_SML_HINTEN": [
+        [
+          3,
+          "0x1f"
+        ]
+      ],
+      "AUSGANG_BEGRL_LINKS_AUSSEN": [
+        [
+          3,
+          "0x04"
+        ]
+      ],
+      "AUSGANG_BEGRL_RECHTS_AUSSEN": [
+        [
+          3,
+          "0x05"
+        ]
+      ],
+      "AUSGANG_BEGRL_LINKS_INNEN": [
+        [
+          3,
+          "0x13"
+        ]
+      ],
+      "AUSGANG_BEGRL_RECHTS_INNEN": [
+        [
+          3,
+          "0x14"
+        ]
+      ]
+    },
+    "state": {
+      "on": [
+        [
+          4,
+          "0x72"
+        ]
+      ],
+      "off": []
+    },
+    "fixed": {
+      "DIAGNOSE_ENDE": "20"
+    }
+  }
+}

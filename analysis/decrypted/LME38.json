@@ -1,0 +1,270 @@
+[
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "AL_L",
+    "command": "LOW_BEAM_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "AL_L"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "AL_R",
+    "command": "LOW_BEAM_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "AL_R"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "FL_L",
+    "command": "HIGH_BEAM_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "FL_L"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "FL_R",
+    "command": "HIGH_BEAM_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "FL_R"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "NSW_L",
+    "command": "FOG_FRONT_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "NSW_L"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "NSW_R",
+    "command": "FOG_FRONT_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "NSW_R"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "NSL_L",
+    "command": "FOG_REAR_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "NSL_L"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "NSL_R",
+    "command": "FOG_REAR_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "NSL_R"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "SL_L_V",
+    "command": "POSITION_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "SL_L_V"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "SL_R_V",
+    "command": "POSITION_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "SL_R_V"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "SL_L_H",
+    "command": "REAR_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "SL_L_H"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "SL_R_H",
+    "command": "REAR_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "SL_R_H"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "SL_I_L",
+    "command": "BOOTLID_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "SL_I_L"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "SL_I_R",
+    "command": "BOOTLID_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "SL_I_R"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "BL_L",
+    "command": "BRAKE_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "BL_L"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "BL_R",
+    "command": "BRAKE_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "BL_R"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "BL_M",
+    "command": "BRAKE_CENTER",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "BL_M"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "BLK_L_V",
+    "command": "INDICATOR_FRONT_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "BLK_L_V"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "BLK_R_V",
+    "command": "INDICATOR_FRONT_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "BLK_R_V"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "BLK_L_H",
+    "command": "INDICATOR_REAR_LEFT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "BLK_L_H"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "BLK_R_H",
+    "command": "INDICATOR_REAR_RIGHT",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "BLK_R_H"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "RFS",
+    "command": "REVERSE",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "RFS"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "KZL",
+    "command": "LICENSE",
+    "function": "STEUERN_DIGITAL",
+    "args": [
+      "KZL"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_AUFRECHT",
+    "args": []
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_ENDE",
+    "args": []
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "COMMUNICATION_ON",
+    "command": "COMMUNICATION_ON",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "00",
+      "03"
+    ]
+  },
+  {
+    "sgbd": "LME38",
+    "group": "LME38",
+    "description": "COMMUNICATION_OFF",
+    "command": "COMMUNICATION_OFF",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "02",
+      "01"
+    ]
+  }
+]

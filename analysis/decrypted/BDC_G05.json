@@ -1,0 +1,1148 @@
+[
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "AL_L",
+    "command": "LOW_BEAM_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x01",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "AL_R",
+    "command": "LOW_BEAM_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x02",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "TFL_L",
+    "command": "DAYTIME_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x03",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "TFL_R",
+    "command": "DAYTIME_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x04",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SML_L",
+    "command": "SIDEMARKER_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x05",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SML_R",
+    "command": "SIDEMARKER_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x06",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FL_L",
+    "command": "HIGH_BEAM_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x07",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FL_R",
+    "command": "HIGH_BEAM_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x08",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "POL_L",
+    "command": "POSITION_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x09",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "POL_R",
+    "command": "POSITION_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x0A",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "NSW_L",
+    "command": "FOG_FRONT_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x0B",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "NSW_R",
+    "command": "FOG_FRONT_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x0C",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FRA_V_L",
+    "command": "INDICATOR_FRONT_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x0D",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FRA_V_R",
+    "command": "INDICATOR_FRONT_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x0E",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FRA_Z_L",
+    "command": "INDICATOR_SIDE_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x10",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FRA_Z_R",
+    "command": "INDICATOR_SIDE_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x11",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SL_L",
+    "command": "REAR_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x14",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SL_R",
+    "command": "REAR_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x15",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SL_2_L",
+    "command": "BOOTLID_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x16",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SL_2_R",
+    "command": "BOOTLID_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x17",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "BL_L",
+    "command": "BRAKE_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x18",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "BL_R",
+    "command": "BRAKE_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x19",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "BFD_L",
+    "command": "BRAKE_FORCE_DISPLAY_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x1A",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "BFD_R",
+    "command": "BRAKE_FORCE_DISPLAY_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x1B",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "NSL_L",
+    "command": "FOG_REAR_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x1C",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "NSL_R",
+    "command": "FOG_REAR_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x1D",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "RFS_L",
+    "command": "REVERSE_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x1E",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "RFS_R",
+    "command": "REVERSE_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x1F",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FRA_H_L",
+    "command": "INDICATOR_REAR_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x20",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FRA_H_R",
+    "command": "INDICATOR_REAR_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x21",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "KZL",
+    "command": "LICENSE",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x22",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "BL_M",
+    "command": "BRAKE_CENTER",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x23",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "WBL_LED",
+    "command": "",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x26",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_0",
+    "command": "LCI_0",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x27",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_1",
+    "command": "LCI_1",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x28",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_2",
+    "command": "LCI_2",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x29",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_3",
+    "command": "FOOT_WELL_DOOR_FRONT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x2A",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_4",
+    "command": "FOOT_WELL_DOOR_REAR",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x2B",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_5",
+    "command": "DOOR_HANDLE",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x2C",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_6",
+    "command": "AMBIENT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x2D",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_7",
+    "command": "LCI_7",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x2E",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LCI_8",
+    "command": "LCI_8",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x2F",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LC_R0",
+    "command": "LIGHT_CARPET_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x36",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LC_R1",
+    "command": "LIGHT_CARPET_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x37",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LC_R2",
+    "command": "",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x38",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LC_R3",
+    "command": "",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x39",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "PDC_LED",
+    "command": "",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x40",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "HDC_LED",
+    "command": "",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x41",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SPECIAL_FUNCTION_1_LED",
+    "command": "SPECIAL_FUNCTION_1_LED",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x42",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "MSA_LED",
+    "command": "",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x43",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SST_LED",
+    "command": "",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0x44",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "ALL_OUTPUTS",
+    "command": "",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "{param_steuern_io}",
+      "0xFE",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SIDE_LIGHT",
+    "command": "POSITION",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x01",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SIDE_LIGHT_ES",
+    "command": "POSITION_ES",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x02",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LOW_BEAM_LIGHT",
+    "command": "LOW_BEAM",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x03",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "DAY_DRIVING_LIGHT",
+    "command": "DAYTIME",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x04",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "HIGH_BEAM",
+    "command": "HIGH_BEAM",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x05",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "INDICATOR_LIGHT_LEFT",
+    "command": "INDICATOR_LEFT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x06",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "INDICATOR_LIGHT_RIGHT",
+    "command": "INDICATOR_RIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x07",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FOGLIGHT_FRONT",
+    "command": "FOG_FRONT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x08",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "CORNERING_LIGHT_FRONT_LEFT",
+    "command": "CORNERING_LEFT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x09",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "CORNERING_LIGHT_FRONT_RIGHT",
+    "command": "CORNERING_RIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0A",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "BREAK_LIGHT",
+    "command": "BRAKE",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0C",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "BFD_ESS",
+    "command": "BRAKE_FORCE_DISPLAY",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0D",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "REAR_FOGLIGHT",
+    "command": "FOG_REAR",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0E",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "REVERSING_LIGHT",
+    "command": "REVERSE",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0F",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "PARKING_LIGHT_LEFT",
+    "command": "PARK_LEFT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x10",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "PARKING_LIGHT_RIGHT",
+    "command": "PARK_RIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x11",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "HAZARD_LIGHT",
+    "command": "HAZARD",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x12",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "LOCATOR_AND_FUNCTIONAL_LIGHTING",
+    "command": "LOCATOR_AND_FUNCTIONAL_LIGHTING",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x15",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "FOLLOW_ME_HOME",
+    "command": "FOLLOW_ME_HOME",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x16",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "ANNOUNCEMENT_INDICATOR_LIGHT",
+    "command": "ANNOUNCEMENT_INDICATOR_LIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x17",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "MANEUVRING_LIGHT",
+    "command": "MANEUVRING_LIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x18",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "OVT",
+    "command": "OVT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x19",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "REMOTE_LIGHT",
+    "command": "REMOTE_LIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x1A",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "REVERSING_FLASH",
+    "command": "REVERSING_FLASH",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x1B",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "SPECIAL_FUNCTION_FLASHING",
+    "command": "SPECIAL_FUNCTION_FLASHING",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x1C",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "WELCOME_LIGHT",
+    "command": "WELCOME_LIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x1D",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "GOODBYE_LIGHT",
+    "command": "GOODBYE_LIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x1E",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "BUNCH_LIGHT",
+    "command": "BUNCH_LIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x1F",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "ECUEXTDIAG"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "DEFAULT"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "Reset to default",
+    "command": "RESET_TO_ECU",
+    "function": "STEUERN_IO",
+    "args": [
+      "ARG",
+      "LICHT_AUSGANG_DIGITAL_STEUERN",
+      "RTD"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "COMMUNICATION_ON",
+    "command": "COMMUNICATION_ON",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "00",
+      "03"
+    ]
+  },
+  {
+    "sgbd": "BDC_G05",
+    "group": "CAS",
+    "description": "COMMUNICATION_OFF",
+    "command": "COMMUNICATION_OFF",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "02",
+      "01"
+    ]
+  }
+]

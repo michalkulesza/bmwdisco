@@ -1,0 +1,328 @@
+[
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 1",
+    "command": "GROUP_1_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x60",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 2",
+    "command": "GROUP_2_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x61",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 3",
+    "command": "GROUP_3_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x62",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 4",
+    "command": "GROUP_4_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x63",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 5",
+    "command": "GROUP_5_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x64",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 6",
+    "command": "GROUP_6_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x65",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 7",
+    "command": "GROUP_7_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x66",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 8",
+    "command": "GROUP_8_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x67",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 9",
+    "command": "GROUP_9_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x68",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 10",
+    "command": "GROUP_10_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x69",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 11",
+    "command": "GROUP_11_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x6A",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 12",
+    "command": "GROUP_12_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x6B",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 13",
+    "command": "GROUP_13_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x6C",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 14",
+    "command": "GROUP_14_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x6D",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 15",
+    "command": "GROUP_15_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x6E",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Gruppe 16",
+    "command": "GROUP_16_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x6F",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "alle Kanale",
+    "command": "ALL_LEFT_2_LEFT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0x70",
+      "{param_lhm_pwm}",
+      "{param_rlm_strom_ausgang_wert}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "ECUEXTDIAG"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "DEFAULT"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "Stop routine",
+    "command": "STOP_ROUTINE",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "STPR"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "COMMUNICATION_ON",
+    "command": "COMMUNICATION_ON",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "00",
+      "03"
+    ]
+  },
+  {
+    "sgbd": "RLM2_2L",
+    "group": "RLM2_2L",
+    "description": "COMMUNICATION_OFF",
+    "command": "COMMUNICATION_OFF",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "02",
+      "01"
+    ]
+  }
+]

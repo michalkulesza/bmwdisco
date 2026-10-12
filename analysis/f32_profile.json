@@ -1,0 +1,846 @@
+{
+  "status": "Static evidence only; verify module identity on the actual F32",
+  "model": "BMW F32",
+  "candidate_module": {
+    "sgbd": "FEM_20",
+    "destination_hex": "40",
+    "identity_job_hex": "22F150",
+    "sgbd_index_hex": "0F16B0"
+  },
+  "commands": [
+    {
+      "sgbd": "FEM_20",
+      "group": "CAS",
+      "description": "FRA_V_L",
+      "command": "INDICATOR_FRONT_LEFT",
+      "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+      "args": [
+        "0x0D",
+        "{param_aktion}"
+      ]
+    },
+    {
+      "sgbd": "FEM_20",
+      "group": "CAS",
+      "description": "FRA_V_R",
+      "command": "INDICATOR_FRONT_RIGHT",
+      "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+      "args": [
+        "0x0E",
+        "{param_aktion}"
+      ]
+    },
+    {
+      "sgbd": "FEM_20",
+      "group": "CAS",
+      "description": "Activate diagnose mode",
+      "command": "DIAGNOSE_MODE_ON",
+      "function": "DIAGNOSE_MODE",
+      "args": [
+        "ECUEXTDIAG"
+      ]
+    },
+    {
+      "sgbd": "FEM_20",
+      "group": "CAS",
+      "description": "Disable diagnose mode",
+      "command": "DIAGNOSE_MODE_OFF",
+      "function": "DIAGNOSE_MODE",
+      "args": [
+        "DEFAULT"
+      ]
+    },
+    {
+      "sgbd": "FEM_20",
+      "group": "CAS",
+      "description": "Return all light outputs to ECU (returnControlToECU)",
+      "command": "RETURN_CONTROL",
+      "function": "IO_RETURN_CONTROL",
+      "args": [
+        "45",
+        "01",
+        "00",
+        "FE"
+      ]
+    }
+  ],
+  "job_template": "2f4501030000",
+  "function_schema": [
+    {
+      "n": "_STEUERN_LEUCHTENAUSGANG_DIGITAL",
+      "s": 47,
+      "id": "4501",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_AUSGANG_LEUCHTEN"
+        ],
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    }
+  ],
+  "ecu_index_rows": [
+    {
+      "ADR_INDEX": "40",
+      "SGBD_HEX": "0F16B0",
+      "SGBD": "FEM_20",
+      "GRUPPE": "G_CAS",
+      "BAUREIHE": "F20"
+    },
+    {
+      "ADR_INDEX": "72",
+      "SGBD_HEX": "0F16C0",
+      "SGBD": "REM_20",
+      "GRUPPE": "G_FRM",
+      "BAUREIHE": "F20"
+    }
+  ],
+  "f32_type_codes": [
+    {
+      "name": "430i",
+      "chassis": "4W33",
+      "region": "USA",
+      "engine": "B46",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "418i",
+      "chassis": "4S11",
+      "region": "ECE",
+      "engine": "B38",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "420i",
+      "chassis": "4S32",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430iX",
+      "chassis": "4W53",
+      "region": "USA",
+      "engine": "B46",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "420dX",
+      "chassis": "4X52",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "425d",
+      "chassis": "4X72",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430i",
+      "chassis": "4W31",
+      "region": "ECE",
+      "engine": "B46",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430iX",
+      "chassis": "4W11",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "420d",
+      "chassis": "4X32",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430d",
+      "chassis": "4X92",
+      "region": "ECE",
+      "engine": "N57N",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "420d",
+      "chassis": "4X31",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430dX",
+      "chassis": "4Y11",
+      "region": "ECE",
+      "engine": "N57N",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "420iX",
+      "chassis": "4S52",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "418d",
+      "chassis": "4X11",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430i",
+      "chassis": "4S71",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "418d",
+      "chassis": "4X12",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "440i",
+      "chassis": "4W72",
+      "region": "ECE",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "420i",
+      "chassis": "4S31",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430dX",
+      "chassis": "4Y12",
+      "region": "ECE",
+      "engine": "N57N",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "440i",
+      "chassis": "4W73",
+      "region": "USA",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "440iX",
+      "chassis": "4W91",
+      "region": "ECE",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "435dX",
+      "chassis": "4Y31",
+      "region": "ECE",
+      "engine": "N57Z",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430i",
+      "chassis": "4S72",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "420dX",
+      "chassis": "4X51",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "420iX",
+      "chassis": "4S51",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "425d",
+      "chassis": "4X71",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "435dX",
+      "chassis": "4Y32",
+      "region": "ECE",
+      "engine": "N57Z",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "430d",
+      "chassis": "4X91",
+      "region": "ECE",
+      "engine": "N57N",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "440iX",
+      "chassis": "4W93",
+      "region": "USA",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "440i",
+      "chassis": "4W71",
+      "region": "ECE",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32 LCI"
+    },
+    {
+      "name": "435dX",
+      "chassis": "3S92",
+      "region": "ECE",
+      "engine": "N57Z",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "428i",
+      "chassis": "3N33",
+      "region": "USA",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "435i",
+      "chassis": "3R11",
+      "region": "ECE",
+      "engine": "N55",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430i",
+      "chassis": "4N71",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "440i",
+      "chassis": "4P13",
+      "region": "USA",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430d",
+      "chassis": "3P72",
+      "region": "ECE",
+      "engine": "N57N",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "440iX",
+      "chassis": "4P31",
+      "region": "ECE",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "428iX",
+      "chassis": "3N51",
+      "region": "ECE",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "418d",
+      "chassis": "4P51",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420dX",
+      "chassis": "3P31",
+      "region": "ECE",
+      "engine": "N47N",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430dX",
+      "chassis": "3S31",
+      "region": "ECE",
+      "engine": "N57N",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "428iX",
+      "chassis": "3N93",
+      "region": "USA",
+      "engine": "N26",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420iX",
+      "chassis": "3S51",
+      "region": "ECE",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420iX",
+      "chassis": "4N51",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "425d",
+      "chassis": "3P52",
+      "region": "ECE",
+      "engine": "N47S1",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "428i",
+      "chassis": "3N73",
+      "region": "USA",
+      "engine": "N26",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "435dX",
+      "chassis": "3S91",
+      "region": "ECE",
+      "engine": "N57Z",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "428i",
+      "chassis": "3N32",
+      "region": "ECE",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420i",
+      "chassis": "4N31",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "440i",
+      "chassis": "4P11",
+      "region": "ECE",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430d",
+      "chassis": "3P71",
+      "region": "ECE",
+      "engine": "N57N",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420dX",
+      "chassis": "4P92",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420i",
+      "chassis": "4N32",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420iX",
+      "chassis": "4N52",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "425d",
+      "chassis": "4R12",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420iX",
+      "chassis": "3S52",
+      "region": "ECE",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420d",
+      "chassis": "4P72",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "418d",
+      "chassis": "4P52",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "425d",
+      "chassis": "3P51",
+      "region": "ECE",
+      "engine": "N47S1",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420d",
+      "chassis": "3P11",
+      "region": "ECE",
+      "engine": "N47N",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "418i",
+      "chassis": "4N11",
+      "region": "ECE",
+      "engine": "B38",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420d",
+      "chassis": "4P71",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "425d",
+      "chassis": "4R11",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420dX",
+      "chassis": "3P32",
+      "region": "ECE",
+      "engine": "N47N",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "440i",
+      "chassis": "4P12",
+      "region": "ECE",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420d",
+      "chassis": "3P12",
+      "region": "ECE",
+      "engine": "N47N",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "428i",
+      "chassis": "3N31",
+      "region": "ECE",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "435i",
+      "chassis": "3R13",
+      "region": "USA",
+      "engine": "N55",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "428i",
+      "chassis": "3N71",
+      "region": "ECE",
+      "engine": "N26",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "428iX",
+      "chassis": "3N53",
+      "region": "USA",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430iX",
+      "chassis": "4N91",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430i",
+      "chassis": "4R73",
+      "region": "USA",
+      "engine": "B46",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430i",
+      "chassis": "4N72",
+      "region": "ECE",
+      "engine": "B48",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420dX",
+      "chassis": "4P91",
+      "region": "ECE",
+      "engine": "B47",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420i",
+      "chassis": "3N12",
+      "region": "ECE",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "435iX",
+      "chassis": "3R51",
+      "region": "ECE",
+      "engine": "N55",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "435i",
+      "chassis": "3R12",
+      "region": "ECE",
+      "engine": "N55",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "440iX",
+      "chassis": "4P33",
+      "region": "USA",
+      "engine": "B58",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430iX",
+      "chassis": "4R93",
+      "region": "USA",
+      "engine": "B46",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "435iX",
+      "chassis": "3R53",
+      "region": "USA",
+      "engine": "N55",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "430dX",
+      "chassis": "3S32",
+      "region": "ECE",
+      "engine": "N57N",
+      "body": "Coupe",
+      "steering": "Right-hand drive",
+      "series": "4' F32"
+    },
+    {
+      "name": "420i",
+      "chassis": "3N11",
+      "region": "ECE",
+      "engine": "N20",
+      "body": "Coupe",
+      "steering": "Left-hand drive",
+      "series": "4' F32"
+    }
+  ],
+  "source_binaries": {
+    "BimmerLight": "ae934b4ebf3b1f2e87d1da6566314315bf6c4973ad050914323b308ebf6890ae",
+    "Frameworks\\EdiabasKit.framework\\EdiabasKit": "a16095fb744d0a93a557c1c2dbdc2f794fdda6a39e91a3e7e5fe6c2ecaf96362"
+  }
+}

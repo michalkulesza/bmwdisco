@@ -1,0 +1,8618 @@
+{
+  "sgbd": "FEM_20",
+  "addr": "40",
+  "jobs": {
+    "IDENT": "22f150",
+    "FS_LESEN": "19020c",
+    "FS_LESEN_EXPERT": "19020c",
+    "FS_LESEN_DETAIL": "1909ffffff",
+    "FS_LOESCHEN": "14ffffff",
+    "PRUEFSTEMPEL_LESEN": "221000",
+    "PRUEFSTEMPEL_SCHREIBEN": "2e1000000000",
+    "SVK_LESEN": "22f101",
+    "STATUS_LESEN": "22",
+    "STEUERN": "2e",
+    "SERIENNUMMER_LESEN": "22f18c",
+    "STEUERN_IO": "2f",
+    "STEUERN_ROUTINE": "31",
+    "FS_SPERREN": "8502",
+    "IS_LESEN": "222000",
+    "IS_LESEN_DETAIL": "222000",
+    "IS_LOESCHEN": "31010f06",
+    "HERSTELLINFO_LESEN": "22f18a",
+    "DIAGNOSE_AUFRECHT": "3eff",
+    "DIAGNOSE_MODE": "1001",
+    "SLEEP_MODE": "1104",
+    "ENERGIESPARMODE": "31010f0cff",
+    "STATUS_ENERGIESPARMODE": "22100a",
+    "STATUS_BETRIEBSMODE": "22100e",
+    "STEUERN_BETRIEBSMODE": "31011003ff",
+    "SENSOREN_ANZAHL_LESEN": "221600",
+    "SENSOREN_IDENT_LESEN": "221600",
+    "STEUERGERAETE_RESET": "1101",
+    "STEUERN_ROE_PERSISTENT_STOP": "31010f0bff0003864002",
+    "STEUERN_ROE_PERSISTENT_START": "31010f0bff0003864502",
+    "CPS_LESEN": "2237fe",
+    "DIAG_SESSION_LESEN": "22f186",
+    "FLASH_TP_LESEN": "222504",
+    "PROG_ZAEHLER_LESEN": "222502",
+    "PROG_MAX_LESEN": "222503",
+    "IS_LESEN_TMS_LINKS": "310110092900000322fd03",
+    "IS_LESEN_TMS_RECHTS": "310110092a00000322fd03",
+    "IS_LOESCHEN_TMS": "310110092900000414ffffff",
+    "STATUS_AHL_POSITION_ERWEITERT": "31011009290000032ffd82",
+    "STATUS_BETR_H_FUNKTIONEN": "310110092900000322fd05",
+    "STATUS_CAS_ANLIEFERZUSTAND": "22dc7d",
+    "STATUS_CAS_FREQ_TYPE": "22dc79",
+    "STATUS_CAS_INIT_LOC_DATE": "22dc7b",
+    "STATUS_CAS_WUP": "22dc78",
+    "STATUS_CODIERDATEN_TMS_BLOCK_LESEN": "310110092900000322fe00",
+    "STATUS_CODIERDATEN_TMS_LESEN_KOMPLETT": "310110092900000322fe00",
+    "STATUS_DEM_DEBUG_INFO": "221077",
+    "STATUS_ECUMA_AWAKE": "225102",
+    "STATUS_ECUMA_HISTORIE": "225100",
+    "STATUS_EGS_ISN": "22dc76",
+    "STATUS_ELV": "22dac3",
+    "STATUS_ELV_FEHLERSPEICHER": "3101aa72",
+    "STATUS_ELV_HISTORIE": "22d09e",
+    "STATUS_EM_FE_MODE": "225106",
+    "STATUS_EM_SPIELSCHUTZ": "225107",
+    "STATUS_EWS": "22c000",
+    "STATUS_EWS4_SK": "22c002",
+    "STATUS_FAHRGESTELLNUMMER": "22f190",
+    "STATUS_FAHRPROFIL": "22d0f2",
+    "STATUS_FBD_EMPFAENGER": "22dac9",
+    "STATUS_FBD_TELEGRAMM": "3101ac5900",
+    "STATUS_FH_BEWERTUNG_KENNLINIEN": "353000",
+    "STATUS_FH_DENORMIERUNGS_LOGGER_LESEN": "226048",
+    "STATUS_FH_MOTORSTOP_LOGGER_LESEN": "226044",
+    "STATUS_FH_REVERSIER_LOGGER_LESEN": "226046",
+    "STATUS_FH_SCHLIESSZEIT_VORNE": "226008",
+    "STATUS_FH_STATISTIKZAEHLER_LESEN": "226020",
+    "STATUS_FH_THERMOMONITOR_AKTIV": "226004",
+    "STATUS_HERSTELLERDATEN_TMS_LESEN": "310110092900000322fe8a",
+    "STATUS_HISTORIE_30F_ABSCHALTUNG": "22dc5d",
+    "STATUS_HISTORIE_KL30B_AKTIV": "22dc5e",
+    "STATUS_HISTORIE_ZUENDUNG_EIN": "22dc5f",
+    "STATUS_HW_OPTIONEN_CODIERUNG": "225105",
+    "STATUS_KILOMETERSTAND": "221700",
+    "STATUS_KL15_KURZSCHLUSS_WIEDERAKTIVIERUNG_COUNTER": "224516",
+    "STATUS_KLEMMEN_HISTORIE": "22dc5c",
+    "STATUS_KURVENLICHT_SCHRITTVERLUSTE": "310110092900000322fd08",
+    "STATUS_KURZSCHLUSSABSCHALTUNG": "224503",
+    "STATUS_KURZSCHLUSSCOUNTER_ABS": "224514",
+    "STATUS_LED_AUSGAENGE_TMS": "31011009290000032ffda8",
+    "STATUS_LED_DERATING_STROEME_TMS": "31011009290000032ffda5",
+    "STATUS_LED_PWM_TMS": "31011009290000032ffda7",
+    "STATUS_LED_SOLL_STROEME_TMS": "31011009290000032ffda4",
+    "STATUS_LED_SPITZEN_STROEME_TMS": "31011009290000032ffda6",
+    "STATUS_LEUCHTENAUSGANG_DIGITAL": "224500",
+    "STATUS_LEUCHTEN_BETRIEBSDAUER": "224505",
+    "STATUS_LICHT_UEBERSPANNUNGSCOUNTER": "224508",
+    "STATUS_LIMP_HOME_ANALYSE": "224517",
+    "STATUS_LWR_POSITION": "31011009290000032ffd81",
+    "STATUS_RCS_BATTERIESTATUS": "22dacb",
+    "STATUS_RDU_RDL_INFO": "222000",
+    "STATUS_SCHEINWERFERHERSTELLERDATEN_LESEN": "310110092900000322fe8b",
+    "STATUS_SCHLUESSELDATEN": "3101ac5aff",
+    "STATUS_SCHLUESSEL_TRSP": "22dc7e",
+    "STATUS_SENSE_LESEN": "3101f10000",
+    "STATUS_SERVICESCHLUESSELDATEN_AKTUALISIERUNGSSTATUSBYTES": "3101f00100",
+    "STATUS_SPANNUNGEN_TMS": "31011009290000032ffda9",
+    "STATUS_STANDVERBRAUCHER_AKTUELL": "22dc81",
+    "STATUS_STANDVERBRAUCHER_HISTORIE": "22dc82",
+    "STATUS_SW_COMPONENTS": "225110",
+    "STATUS_TEMPERATURSENSOREN_TMS": "31011009290000032ffdd1",
+    "STATUS_TEMPERATURVERTEILUNG_TMS": "310110092900000322fd07",
+    "STATUS_TMS_EINLERNVORGANG": "31011009290000032ffdb1",
+    "STATUS_TMS_IDENTDATEN_LESEN": "310110092900000322fd01",
+    "STATUS_TMS_ID_LESEN": "310110092900000322fd04",
+    "STATUS_TMS_SPEICHER_LESEN": "31011009290000082324000000000000",
+    "STATUS_VERTEILUNG_WINKEL_ANSTEUERUNG_TMS": "310110092900000322fd06",
+    "STATUS_ZV_AKTUELL": "22dac7",
+    "STATUS_ZV_HISTORIE": "22dac6",
+    "STEUERGERAETE_RESET_FAST": "1160",
+    "STEUERN_AHL_POSITION_ERWEITERT": "31011009290000072ffd8203000000",
+    "STEUERN_AHL_REFERENZLAUF_ERWEITERT": "31011009290000052ffd840300",
+    "STEUERN_BETR_H_FUNKTIONEN": "31011009290000042ffd0503",
+    "STEUERN_CAS_ANLIEFERZUSTAND": "3101ac50ffffffffffffffffffffffffffffffff",
+    "STEUERN_CAS_FREQ_TYPE": "2edc79ffff",
+    "STEUERN_CAS_INIT_LOC_DATE": "2edc7bffffffff0000000000000000",
+    "STEUERN_CAS_WUP": "2edc78ffffffff",
+    "STEUERN_CODIERDATEN_TMS_BLOCK_SCHREIBEN": "31011009290000132e",
+    "STEUERN_CODIERDATEN_TMS_SCHREIBEN": "31011009290000132e",
+    "STEUERN_ECUMA_HISTORIE": "2e5100",
+    "STEUERN_EGS_ISN": "2edc76ffffffff",
+    "STEUERN_EM_FE_MODE": "2e5106",
+    "STEUERN_EWS4": "2ec0010000000000000000000000000000000000",
+    "STEUERN_FAHRGESTELLNUMMER": "2ef190ffffffffffffffffffffffffffffffffff",
+    "STEUERN_FH_DENORMIERUNGS_LOGGER_LOESCHEN": "2e604900",
+    "STEUERN_FH_MOTORSTOP_LOGGER_LOESCHEN": "2e604500",
+    "STEUERN_FH_REVERSIER_LOGGER_LOESCHEN": "2e604700",
+    "STEUERN_FH_THERMOMONITOR_AKTIV": "2e6004",
+    "STEUERN_HERSTELLERDATEN_TMS_SCHREIBEN": "31011009290000132efe8a",
+    "STEUERN_INIT_KURZSCHLUSSCOUNTER_ABS": "2e4513",
+    "STEUERN_KL30F": "3101ac5c000000",
+    "STEUERN_KLEMMEN": "31011001ffffff",
+    "STEUERN_KURVENLICHT_SCHRITTVERLUSTE_LOESCHEN": "31011009290000042ffd0803",
+    "STEUERN_LED_AUSGAENGE_TMS": "31011009290000052ffda30064",
+    "STEUERN_LEUCHTENAUSGANG_DIGITAL": "2f4501030000",
+    "STEUERN_LIN_QUERY": "31011009",
+    "STEUERN_LWR_POSITION": "31011009290000072ffd8103000000",
+    "STEUERN_LWR_REFERENZLAUF": "31011009290000042ffd8303",
+    "STEUERN_PIA_NR": "2edc5b0000",
+    "STEUERN_RCS_BATTERIESTATUS": "2edacb00",
+    "STEUERN_RESET_BETRIEBSDAUER": "2e450600",
+    "STEUERN_RESET_KURZSCHLUSSABSCHALTUNG": "2e450400",
+    "STEUERN_RESET_LICHT_UEBERSPANNUNGSCOUNTER": "2e4523",
+    "STEUERN_SCHEINWERFERHERSTELLERDATEN_SCHREIBEN": "31011009290000132efe8b",
+    "STEUERN_SCHLUESSELDATEN": "2edc80ffffffffffffffffff",
+    "STEUERN_SCHLUESSEL_INIT": "3101ac52ffffffffffffff",
+    "STEUERN_SCHLUESSEL_SPERRE": "2edc73ffffff",
+    "STEUERN_TEMPERATURVERTEILUNG_LOESCHEN_TMS": "31011009290000042ffd0703",
+    "STEUERN_TMS_EEPROM_UPDATE": "31011009290000042ffd8903",
+    "STEUERN_TMS_EINLERNVORGANG_AKTIVIEREN": "31011009290000032ffdb0",
+    "STEUERN_TMS_ID_SCHREIBEN": "31011009290000052efd040000",
+    "STEUERN_TMS_RESET": "31011009290000021103",
+    "STEUERN_TMS_SPEICHER_SCHREIBEN": "31011009290000083d24000000000000",
+    "STEUERN_VERTEILUNG_WINKEL_ANSTEUERUNG_LOESCHEN_TMS": "31011009290000042ffd0603",
+    "_STATUS_ANTENNA_CALIBRATION": "3101f040",
+    "_STEUERN_KURZSCHLUSSCOUNTER_ABS": "2e4514000000"
+  },
+  "fns": [
+    {
+      "n": "PIA_NR_AKTUELL",
+      "s": 34,
+      "id": "0F27",
+      "p": "raw"
+    },
+    {
+      "n": "SCHLUESSELDATEN_SERVICE",
+      "s": 49,
+      "id": "1006",
+      "a": [
+        [
+          "BLOCK_NR",
+          1,
+          "TAB_CAS_SERVICE_SCHLUESSELDATEN_BLOCK_NR"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_LIN_CODIERUNG",
+      "s": 49,
+      "id": "100A",
+      "a": [
+        [
+          "VERBAUORT_ID",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "COUNT_NSC_MIRRORHEATING_ACTIVATIONS",
+      "s": 34,
+      "id": "2303",
+      "p": "raw"
+    },
+    {
+      "n": "RESET_COUNT_NSC_MIRRORHEATING_ACTIVATIONS",
+      "s": 46,
+      "id": "2304",
+      "a": [
+        [
+          "RESET",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SERVICE_SCHLUESSELDATEN_UPDATE",
+      "s": 49,
+      "id": "4005",
+      "a": [
+        [
+          "UPDATE_MODUS",
+          1,
+          "TAB_CAS_SERVICE_SCHLUESSELDATEN_UPDATE_MODUS"
+        ]
+      ]
+    },
+    {
+      "n": "_STEUERN_LEUCHTENAUSGANG_DIGITAL",
+      "s": 47,
+      "id": "4501",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_AUSGANG_LEUCHTEN"
+        ],
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_RESET_BETRIEBSDAUER",
+      "s": 46,
+      "id": "4506",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_AUSGANG_LEUCHTEN"
+        ]
+      ]
+    },
+    {
+      "n": "_LWR_DIAG",
+      "s": 34,
+      "id": "4507",
+      "r": [
+        [
+          "STAT_LWR_ENABLE",
+          1
+        ],
+        [
+          "STAT_LWR_SPUL_ERR_STOP",
+          1
+        ],
+        [
+          "STAT_LWR_SPUL_EINTR",
+          1
+        ],
+        [
+          "STAT_SP_PRUEF_AKTIV",
+          1
+        ],
+        [
+          "STAT_LWR_DIAGNOSE_PARAM_WERT",
+          1
+        ],
+        [
+          "STAT_LWR_DIAGNOSE_PARAM_A_WERT",
+          1
+        ],
+        [
+          "STAT_LWR_CHECKGRENZE_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LWR_PRUEF_SPANNUNG_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LWR_DIAG_HEAT_TIME_WERT",
+          1,
+          {
+            "s": [
+              512,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LWR_DIAG_COOL_TIME_WERT",
+          1,
+          {
+            "s": [
+              512,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LWR_FRONT_LIGHT_HOT",
+          1
+        ],
+        [
+          "STAT_LWR_FRONT_LIGHT_THERMO_TIMER_WERT",
+          2,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "_LICHT_UEBERSPANNUNGSCOUNTER",
+      "s": 34,
+      "id": "4508",
+      "p": "raw"
+    },
+    {
+      "n": "_LICHT_12H_TIMER",
+      "s": 34,
+      "id": "4509",
+      "a": [
+        [
+          "12H_TIMER",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_12H_TIMER_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "_LICHT_12H_TIMER",
+      "s": 46,
+      "id": "4509",
+      "a": [
+        [
+          "12H_TIMER",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "_RESET_LICHT_UEBERSPANNUNGSCOUNTER",
+      "s": 46,
+      "id": "4523",
+      "a": [
+        [
+          "DUMMY",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_INNENBELEUCHTUNG_PWM",
+      "s": 47,
+      "id": "4800",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_INNENLICHT"
+        ],
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_INNENBELEUCHTUNG_PWM",
+      "s": 34,
+      "id": "4800",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_INNENLICHT"
+        ],
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_INNENLICHT_WBL_LED_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_0_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_1_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_2_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_3_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_4_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_5_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_6_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_7_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_LCI_8_PWM_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_INNENBELEUCHTUNG_DAUERAUS",
+      "s": 34,
+      "id": "4801",
+      "p": "raw"
+    },
+    {
+      "n": "_SARAH_STATISTIK",
+      "s": 34,
+      "id": "4910",
+      "r": [
+        [
+          "STAT_FAHRDAUER_WERT",
+          2,
+          {
+            "s": [
+              10,
+              60,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_FAHRZYKLEN_WERT",
+          2
+        ],
+        [
+          "STAT_SARAH_TASTER_WERT",
+          2
+        ],
+        [
+          "STAT_SARAH_CONFIG_WERT",
+          2
+        ],
+        [
+          "STAT_SARAH_CONFIG_DIREKT_WERT",
+          1
+        ],
+        [
+          "STAT_RESERVE1_WERT",
+          1
+        ],
+        [
+          "STAT_RESERVE2_WERT",
+          2
+        ],
+        [
+          "STAT_RESERVE3_WERT",
+          2
+        ],
+        [
+          "STAT_RESERVE4_WERT",
+          2
+        ],
+        [
+          "STAT_RESERVE5_WERT",
+          2
+        ],
+        [
+          "STAT_RESERVE6_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "_LHZ_TASTENSIMULATION",
+      "s": 46,
+      "id": "4920",
+      "a": [
+        [
+          "DUMMY",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_STATUS_BASESTATION",
+      "s": 34,
+      "id": "4E07",
+      "p": "raw"
+    },
+    {
+      "n": "IBS_WAKEUP_GRUND",
+      "s": 34,
+      "id": "4F0E",
+      "p": "raw"
+    },
+    {
+      "n": "_STATUS_DFZ_SK",
+      "s": 34,
+      "id": "5001",
+      "p": "raw"
+    },
+    {
+      "n": "_DFZ_MODUS",
+      "s": 46,
+      "id": "5002",
+      "a": [
+        [
+          "DFZ_MODUS",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_DFZ_MODUS",
+      "s": 34,
+      "id": "5002",
+      "a": [
+        [
+          "DFZ_MODUS",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_DFZ_MODUS_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_STATUS_DFZ_GUELTIGKEIT",
+      "s": 34,
+      "id": "5003",
+      "p": "raw"
+    },
+    {
+      "n": "_STEUERN_FBD_EMPFAENGER",
+      "s": 46,
+      "id": "5007",
+      "a": [
+        [
+          "FBD_HF_KANAL",
+          1
+        ],
+        [
+          "FBD_DATENRATE_HF",
+          1
+        ],
+        [
+          "FBD_SENDELEISTUNG",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_KLEMMENSTEUERUNG_KURZSCHLUSSABSCHALTUNG_ZAEHLER",
+      "s": 34,
+      "id": "5020",
+      "r": [
+        [
+          "STAT_TREIBER_15N1_ZAEHLER_COUNT_MAX_WERT",
+          4
+        ],
+        [
+          "STAT_TREIBER_15N1_ZAEHLER_KS_RESTARTS_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_15N1_ZAEHLER_KS_KL15_CYCLES_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_15N2_ZAEHLER_COUNT_MAX_WERT",
+          4
+        ],
+        [
+          "STAT_TREIBER_15N2_ZAEHLER_KS_RESTARTS_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_15N2_ZAEHLER_KS_KL15_CYCLES_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_KL30BACSM_ZAEHLER_COUNT_MAX_WERT",
+          4
+        ],
+        [
+          "STAT_TREIBER_KL30BACSM_ZAEHLER_KS_RESTARTS_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_KL30BACSM_ZAEHLER_KS_KL15_CYCLES_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_KL30B1_ZAEHLER_COUNT_MAX_WERT",
+          4
+        ],
+        [
+          "STAT_TREIBER_KL30B1_ZAEHLER_KS_RESTARTS_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_KL30B1_ZAEHLER_KS_KL15_CYCLES_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_KL30B2_ZAEHLER_COUNT_MAX_WERT",
+          4
+        ],
+        [
+          "STAT_TREIBER_KL30B2_ZAEHLER_KS_RESTARTS_WERT",
+          1
+        ],
+        [
+          "STAT_TREIBER_KL30B2_ZAEHLER_KS_KL15_CYCLES_WERT",
+          1
+        ],
+        [
+          "STAT_KODIERUNG_RESTARTS_WERT",
+          1
+        ],
+        [
+          "STAT_KODIERUNG_KL15_CYCLES_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_ECUMA_INTERN",
+      "s": 34,
+      "id": "5101",
+      "r": [
+        [
+          "STAT_ECUMA_LAST_HW_WAKEUP_ID_WERT",
+          4
+        ],
+        [
+          "STAT_ECUMA_LAST_SW_WAKEUP_ID",
+          1,
+          {
+            "e": "TAB_ZSG_BF_WECK_GRUND"
+          }
+        ],
+        [
+          "STAT_ECUMA_LAST_BUS_WAKEUP_ID",
+          1,
+          {
+            "e": "TAB_ZSG_BF_WECK_GRUND"
+          }
+        ],
+        [
+          "STAT_ECUMA_LAST_RESET_ID",
+          1,
+          {
+            "e": "TAB_ZSG_BF_WECK_GRUND"
+          }
+        ],
+        [
+          "STAT_ECUMA_CAN_WAKEUP_ID_WERT",
+          2
+        ],
+        [
+          "STAT_RESERVED_WERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "_ECUMA_DISABLE_WAKESRC",
+      "s": 46,
+      "id": "5108",
+      "a": [
+        [
+          "ON_OFF",
+          1
+        ],
+        [
+          "ECUMA_ID",
+          1,
+          "TAB_ZSG_BF_WECK_GRUND"
+        ]
+      ]
+    },
+    {
+      "n": "_ECUMA_SLEEP_MODE_NRC",
+      "s": 34,
+      "id": "5109",
+      "p": "raw"
+    },
+    {
+      "n": "_FH_STATISTIKZAEHLER_LOESCHEN",
+      "s": 46,
+      "id": "6000",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_FH_AUSWAHL"
+        ]
+      ]
+    },
+    {
+      "n": "_FH_FA_THERMOMONITOR_AKTIV",
+      "s": 34,
+      "id": "6004",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_DEV_FH_THERMOMONITOR_SETZEN"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_FH_THERMOMONITOR_AKTIV",
+          1,
+          {
+            "e": "FH_THERMOMONITOR_AKTIV"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "_FH_FA_THERMOMONITOR_AKTIV",
+      "s": 46,
+      "id": "6004",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_DEV_FH_THERMOMONITOR_SETZEN"
+        ]
+      ]
+    },
+    {
+      "n": "_FH_BF_THERMOMONITOR_AKTIV",
+      "s": 34,
+      "id": "6005",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_DEV_FH_THERMOMONITOR_SETZEN"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_FH_THERMOMONITOR_AKTIV",
+          1,
+          {
+            "e": "FH_THERMOMONITOR_AKTIV"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "_FH_BF_THERMOMONITOR_AKTIV",
+      "s": 46,
+      "id": "6005",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_DEV_FH_THERMOMONITOR_SETZEN"
+        ]
+      ]
+    },
+    {
+      "n": "_FH_FA_STATISTIKZAEHLER_LESEN",
+      "s": 34,
+      "id": "6020",
+      "p": "raw"
+    },
+    {
+      "n": "_FH_BF_STATISTIKZAEHLER_LESEN",
+      "s": 34,
+      "id": "6021",
+      "p": "raw"
+    },
+    {
+      "n": "_FH_FREIGABE_AKTIV",
+      "s": 34,
+      "id": "6030",
+      "a": [
+        [
+          "FREIGABE_GLOBAL",
+          1
+        ],
+        [
+          "FREIGABE_PANIK",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_FH_FREIGABE_AKTIV",
+          1
+        ],
+        [
+          "STAT_FH_PANIKFREIGABE_AKTIV",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_FH_FREIGABE_AKTIV",
+      "s": 46,
+      "id": "6030",
+      "a": [
+        [
+          "FREIGABE_GLOBAL",
+          1
+        ],
+        [
+          "FREIGABE_PANIK",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_FH_MOTORSTOP_LOGGER_LESEN",
+      "s": 34,
+      "id": "6044",
+      "r": [
+        [
+          "STAT_FA_STOPREASON_1_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_2_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_3_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_4_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_5_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_6_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_7_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_8_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_9_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_FA_STOPREASON_10_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_1_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_2_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_3_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_4_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_5_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_6_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_7_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_8_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_9_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ],
+        [
+          "STAT_BF_STOPREASON_10_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "_FH_MOTORSTOP_LOGGER_LOESCHEN",
+      "s": 46,
+      "id": "6045",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_FH_AUSWAHL"
+        ]
+      ]
+    },
+    {
+      "n": "_FH_REVERSIER_LOGGER_LESEN",
+      "s": 34,
+      "id": "6046",
+      "r": [
+        [
+          "STAT_FA_REVERSIEREN_ZAEHLER_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_1_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_REVERSIEREN_1_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_1_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_REVERSIEREN_1_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_1_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_1_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_2_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_REVERSIEREN_2_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_2_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_REVERSIEREN_2_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_2_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_2_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_3_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_REVERSIEREN_3_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_3_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_REVERSIEREN_3_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_3_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_3_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_4_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_REVERSIEREN_4_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_4_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_REVERSIEREN_4_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_4_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_4_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_5_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_REVERSIEREN_5_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_REVERSIEREN_5_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_REVERSIEREN_5_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_5_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_FA_REVERSIEREN_5_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_ZAEHLER_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_1_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_REVERSIEREN_1_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_1_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_REVERSIEREN_1_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_1_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_1_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_2_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_REVERSIEREN_2_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_2_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_REVERSIEREN_2_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_2_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_2_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_3_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_REVERSIEREN_3_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_3_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_REVERSIEREN_3_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_3_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_3_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_4_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_REVERSIEREN_4_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_4_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_REVERSIEREN_4_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_4_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_4_GESCHWINDIGKEIT_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_5_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_REVERSIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_REVERSIEREN_5_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_REVERSIEREN_5_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_REVERSIEREN_5_ATEMP_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_5_SPANNUNG_WERT",
+          1
+        ],
+        [
+          "STAT_BF_REVERSIEREN_5_GESCHWINDIGKEIT_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "_FH_REVERSIER_LOGGER_LOESCHEN",
+      "s": 46,
+      "id": "6047",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_FH_AUSWAHL"
+        ]
+      ]
+    },
+    {
+      "n": "_FH_DENORMIERUNGS_LOGGER_LESEN",
+      "s": 34,
+      "id": "6048",
+      "r": [
+        [
+          "STAT_FA_DENORM_ZAEHLER_WERT",
+          1
+        ],
+        [
+          "STAT_FA_DENORM_1_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_DENORM_1_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_1_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_RESERVED_1_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_2_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_DENORM_2_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_2_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_RESERVED_2_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_3_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_DENORM_3_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_3_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_RESERVED_3_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_4_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_DENORM_4_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_4_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_RESERVED_4_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_5_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_FA_DENORM_5_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FA_DENORM_5_KM_WERT",
+          4
+        ],
+        [
+          "STAT_FA_RESERVED_5_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_ZAEHLER_WERT",
+          1
+        ],
+        [
+          "STAT_BF_DENORM_1_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_DENORM_1_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_1_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_RESERVED_1_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_2_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_DENORM_2_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_2_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_RESERVED_2_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_3_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_DENORM_3_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_3_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_RESERVED_3_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_4_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_DENORM_4_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_4_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_RESERVED_4_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_5_URSACHE_NR",
+          1,
+          {
+            "e": "TAB_DEV_FH_DENORMIER_URSACHE"
+          }
+        ],
+        [
+          "STAT_BF_DENORM_5_POS_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_BF_DENORM_5_KM_WERT",
+          4
+        ],
+        [
+          "STAT_BF_RESERVED_5_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "_FH_DENORMIERUNGS_LOGGER_LOESCHEN",
+      "s": 46,
+      "id": "6049",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_FH_AUSWAHL"
+        ]
+      ]
+    },
+    {
+      "n": "KLEMMENSTEUERUNG_KURZSCHLUSSABSCHALTUNG_RESET",
+      "s": 49,
+      "id": "A084",
+      "a": [
+        [
+          "AUSWAHL",
+          1,
+          "TAB_CAS_KLEMMENSTEUERUNG_KURZSCHLUSSABSCHALTUNG_KOMPONENTE"
+        ]
+      ]
+    },
+    {
+      "n": "FH_VERFAHREN_ZEIT",
+      "s": 49,
+      "id": "A178",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "RICHTUNG",
+          1
+        ],
+        [
+          "ZEIT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "FH_EINLERNEN",
+      "s": 49,
+      "id": "A17B",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "MODUS",
+          1,
+          "TAB_FH_SHD_ESH_EINLERNEN"
+        ]
+      ]
+    },
+    {
+      "n": "FH_VERFAHREN_HALL",
+      "s": 49,
+      "id": "A17E",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "POSITION",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "FH_VERFAHREN_PROZENT",
+      "s": 49,
+      "id": "A17F",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "POSITION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "FH_VERFAHREN_SONDERFUNKTION",
+      "s": 49,
+      "id": "A180",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "FUNKTION",
+          1,
+          "TAB_FH_SHD_ESH_SFK1"
+        ],
+        [
+          "RICHTUNG",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "FH_TASTER_STEUERN",
+      "s": 49,
+      "id": "A181",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "RICHTUNG",
+          1,
+          "TAB_FH_SHD_ESH_TASTER_RICHTUNG"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "FH_VERFAHREN_SERVICE_POSITION",
+      "s": 49,
+      "id": "A182",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "POSITION",
+          1,
+          "TAB_FH_SHD_ESH_SERVICEPOSITION"
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_SELBSTTEST",
+      "s": 49,
+      "id": "A322"
+    },
+    {
+      "n": "REGENSENSOR_INITIALISIERUNG",
+      "s": 49,
+      "id": "A3B7"
+    },
+    {
+      "n": "LEUCHTEN_KALTUEBERWACHUNG",
+      "s": 49,
+      "id": "A530"
+    },
+    {
+      "n": "LEUCHTEN_WARMUEBERWACHUNG",
+      "s": 49,
+      "id": "A531"
+    },
+    {
+      "n": "ELV_ANLIEFERZUSTAND",
+      "s": 49,
+      "id": "AA73"
+    },
+    {
+      "n": "ELV_AKTION",
+      "s": 49,
+      "id": "AA7C",
+      "a": [
+        [
+          "ELV_AKTION",
+          1,
+          "TAB_CAS_ELV_AKTION"
+        ]
+      ]
+    },
+    {
+      "n": "SMO_SIMULATION_BEDIENUNG",
+      "s": 49,
+      "id": "AA80"
+    },
+    {
+      "n": "STEUERN_KL15_ABSCHALTUNG",
+      "s": 49,
+      "id": "AC51",
+      "a": [
+        [
+          "DEAKTIVIERUNGSGESCHWINDIGKEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_CA_KOMM_TEST",
+      "s": 49,
+      "id": "AC53",
+      "a": [
+        [
+          "SCHL_NUM",
+          1,
+          "TAB_CA_SCHLUESSEL_POSITION"
+        ],
+        [
+          "CA_ANTENNE",
+          1,
+          "TAB_CA_ANTENNEN"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_CA_BROADCAST",
+      "s": 49,
+      "id": "AC54"
+    },
+    {
+      "n": "STEUERN_CA_ANTENNEN_TEST",
+      "s": 49,
+      "id": "AC55"
+    },
+    {
+      "n": "STEUERN_ZV_MASTER",
+      "s": 49,
+      "id": "AC57",
+      "a": [
+        [
+          "ZV_AKTION",
+          1,
+          "TAB_ZSG_ZV_AKTION_MASTER"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_FBD_EMPFAENGER_INIT",
+      "s": 49,
+      "id": "AC58"
+    },
+    {
+      "n": "STEUERN_TRANSPONDERSPULE",
+      "s": 49,
+      "id": "AC5B",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_TRSP_AKTIVIERUNG"
+        ]
+      ]
+    },
+    {
+      "n": "FBD_REICHWEITENMESSUNG",
+      "s": 49,
+      "id": "AC5D"
+    },
+    {
+      "n": "FBD_KANALEINSTELLUNG",
+      "s": 49,
+      "id": "AC5F",
+      "a": [
+        [
+          "KANAL",
+          1,
+          "TAB_FBD_EMPFAENGER_KANAL"
+        ],
+        [
+          "SENDELEISTUNG",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LENKRADHEIZUNG_LED",
+      "s": 46,
+      "id": "D071",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LENKRADHEIZUNG_TASTER",
+      "s": 34,
+      "id": "D073",
+      "p": "raw"
+    },
+    {
+      "n": "LENKRADHEIZUNG",
+      "s": 34,
+      "id": "D074",
+      "a": [
+        [
+          "ZEIT",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_LENKRADHEIZUNG_EIN",
+          1
+        ],
+        [
+          "STAT_LENKRADHEIZUNG_LED_EIN",
+          1
+        ],
+        [
+          "STAT_LENKRADHEIZUNG_STROM_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LENKRADHEIZUNG_AKTUATOR_STATUS_NR",
+          1,
+          {
+            "e": "TAB_LIMIT"
+          }
+        ],
+        [
+          "STAT_VORHANDEN_LENKRADHEIZUNG_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LENKRADHEIZUNG",
+      "s": 46,
+      "id": "D074",
+      "a": [
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LENKRAD_MFL",
+      "s": 34,
+      "id": "D081",
+      "r": [
+        [
+          "STAT_TASTER_LENKRAD_MFL_FGR_SET_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_2"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_FGR_TIPPRAENDEL_NR",
+          1,
+          {
+            "e": "TAB_MFL_RAENDEL_FGR"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_FGR_RES_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_2"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_UMSCHALT_TASTE_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_1"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_ACC_ABSTAND_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_3"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_FGR_OFF_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_2"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_PUSH_TO_TALK_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_1"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_MODE_TASTE",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_1"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_TIPPRAENDEL_BC_NR",
+          1,
+          {
+            "e": "TAB_MFL_TIPPRAENDEL"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_TEL_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_1"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_VOL_MINUS_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_1"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL_VOL_PLUS_EIN",
+          1,
+          {
+            "e": "TAB_TASTER_MFL_1"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL1_NR",
+          1,
+          {
+            "e": "TAB_MFL_TASTEN1"
+          }
+        ],
+        [
+          "STAT_TASTER_LENKRAD_MFL2_NR",
+          1,
+          {
+            "e": "TAB_MFL_TASTEN2"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TLC_ABGLEICH_MITTEN_FREQUENZ",
+      "s": 34,
+      "id": "D08B",
+      "a": [
+        [
+          "TLC_MITTEN_FREQUENZ",
+          1,
+          {
+            "s": [
+              10,
+              1,
+              -373
+            ]
+          }
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TLC_ABGLEICH_MITTEN_FREQUENZ_WERT",
+          1,
+          {
+            "s": [
+              0.1,
+              1,
+              37.3
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TLC_ABGLEICH_MITTEN_FREQUENZ",
+      "s": 46,
+      "id": "D08B",
+      "a": [
+        [
+          "TLC_MITTEN_FREQUENZ",
+          1,
+          {
+            "s": [
+              10,
+              1,
+              -373
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "SMO_SPIELSCHUTZZAEHLER",
+      "s": 34,
+      "id": "D096",
+      "p": "raw"
+    },
+    {
+      "n": "SMO_VARIANTE",
+      "s": 34,
+      "id": "D098",
+      "p": "raw"
+    },
+    {
+      "n": "ZUSATZINFO_LICHT",
+      "s": 34,
+      "id": "D0F1",
+      "r": [
+        [
+          "STAT_KM_STAND_1_WERT",
+          4
+        ],
+        [
+          "STAT_ENBN_AEP_STATUS_1_WERT",
+          1
+        ],
+        [
+          "STAT_U_BATT_ANFANG_1_WERT",
+          1
+        ],
+        [
+          "STAT_DAUER_1_WERT",
+          2
+        ],
+        [
+          "STAT_LICHT_1_NR",
+          1,
+          {
+            "e": "TAB_ENERGIE_BETEILIGTE_BEL"
+          }
+        ],
+        [
+          "STAT_ABSCHALTUNG_LICHT_1_WERT",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_1_WERT",
+          1
+        ],
+        [
+          "STAT_KLEMMENSTATUS_1_WERT",
+          1
+        ],
+        [
+          "STAT_KM_STAND_2_WERT",
+          4
+        ],
+        [
+          "STAT_ENBN_AEP_STATUS_2_WERT",
+          1
+        ],
+        [
+          "STAT_U_BATT_ANFANG_2_WERT",
+          1
+        ],
+        [
+          "STAT_DAUER_2_WERT",
+          2
+        ],
+        [
+          "STAT_LICHT_2_NR",
+          1,
+          {
+            "e": "TAB_ENERGIE_BETEILIGTE_BEL"
+          }
+        ],
+        [
+          "STAT_ABSCHALTUNG_LICHT_2_WERT",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_2_WERT",
+          1
+        ],
+        [
+          "STAT_KLEMMENSTATUS_2_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HANDBREMSE_KONTAKT",
+      "s": 34,
+      "id": "D130",
+      "p": "raw"
+    },
+    {
+      "n": "FH_NORMIERUNG_LOESCHEN",
+      "s": 46,
+      "id": "D17A",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ]
+      ]
+    },
+    {
+      "n": "FH_KENNLINIE_LOESCHEN",
+      "s": 46,
+      "id": "D17B",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ]
+      ]
+    },
+    {
+      "n": "FH_FA_TASTER",
+      "s": 34,
+      "id": "D188",
+      "r": [
+        [
+          "STAT_TASTER_FA_FA_NR",
+          1,
+          {
+            "e": "TAB_FH_VERFAHREN"
+          }
+        ],
+        [
+          "STAT_TASTER_FA_BF_NR",
+          1,
+          {
+            "e": "TAB_FH_VERFAHREN"
+          }
+        ],
+        [
+          "STAT_TASTER_FA_FAH_NR",
+          1,
+          {
+            "e": "TAB_FH_VERFAHREN"
+          }
+        ],
+        [
+          "STAT_TASTER_FA_BFH_NR",
+          1,
+          {
+            "e": "TAB_FH_VERFAHREN"
+          }
+        ],
+        [
+          "STAT_TASTER_FA_HS_NR",
+          1,
+          {
+            "e": "TAB_FH_VERFAHREN"
+          }
+        ],
+        [
+          "STAT_TASTER_FA_RESERVE",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "FH_BF_TASTER",
+      "s": 34,
+      "id": "D189",
+      "p": "raw"
+    },
+    {
+      "n": "FH_KISI_TASTER",
+      "s": 34,
+      "id": "D18C",
+      "a": [
+        [
+          "AKTION",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_KISI_TASTER_EIN",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "FH_KISI_TASTER",
+      "s": 46,
+      "id": "D18C",
+      "a": [
+        [
+          "AKTION",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "FH_KISI_LED",
+      "s": 34,
+      "id": "D18D",
+      "p": "raw"
+    },
+    {
+      "n": "FH_KURZHUB_AKTIV",
+      "s": 46,
+      "id": "D18F",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "FH_KURZHUB_AKTIV",
+      "s": 34,
+      "id": "D18F",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_FH_KURZHUB_AKTIV",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "FH_FA_BEWEGUNG",
+      "s": 34,
+      "id": "D1A7",
+      "r": [
+        [
+          "STAT_FH_FA_INIT_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_INIT"
+          }
+        ],
+        [
+          "STAT_FH_FA_BEWEGUNG_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_BEWEGUNG"
+          }
+        ],
+        [
+          "STAT_FH_FA_POSITION_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_POSITION"
+          }
+        ],
+        [
+          "STAT_FH_FA_POSITION_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FH_FA_POSITION_HALL_MAX_WERT",
+          2
+        ],
+        [
+          "STAT_FH_FA_POSITION_MM_WERT",
+          2
+        ],
+        [
+          "STAT_FH_FA_POSITION_MM_MAX_WERT",
+          2
+        ],
+        [
+          "STAT_FH_FA_POSITION_PROZENT_WERT",
+          1
+        ],
+        [
+          "STAT_FH_FA_LAGE_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_LAGE_NR"
+          }
+        ],
+        [
+          "STAT_FH_FA_ZUSTAND_TUER_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_ZUSTAND_TUER"
+          }
+        ],
+        [
+          "STAT_FH_FA_FREIGABE_AKTIV_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_FREIGABE"
+          }
+        ],
+        [
+          "STAT_FH_FA_PANIKMODUS_AKTIV_NR",
+          1,
+          {
+            "e": "TAB_FH_PANIKMODUS"
+          }
+        ],
+        [
+          "STAT_FH_FA_RESERVE",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "FH_BF_BEWEGUNG",
+      "s": 34,
+      "id": "D1A8",
+      "r": [
+        [
+          "STAT_FH_BF_INIT_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_INIT"
+          }
+        ],
+        [
+          "STAT_FH_BF_BEWEGUNG_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_BEWEGUNG"
+          }
+        ],
+        [
+          "STAT_FH_BF_POSITION_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_POSITION"
+          }
+        ],
+        [
+          "STAT_FH_BF_POSITION_HALL_WERT",
+          2
+        ],
+        [
+          "STAT_FH_BF_POSITION_HALL_MAX_WERT",
+          2
+        ],
+        [
+          "STAT_FH_BF_POSITION_MM_WERT",
+          2
+        ],
+        [
+          "STAT_FH_BF_POSITION_MM_MAX_WERT",
+          2
+        ],
+        [
+          "STAT_FH_BF_POSITION_PROZENT_WERT",
+          1
+        ],
+        [
+          "STAT_FH_BF_LAGE_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_LAGE_NR"
+          }
+        ],
+        [
+          "STAT_FH_BF_ZUSTAND_TUER_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_ZUSTAND_TUER"
+          }
+        ],
+        [
+          "STAT_FH_BF_FREIGABE_AKTIV_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_FREIGABE"
+          }
+        ],
+        [
+          "STAT_FH_BF_PANIKMODUS_AKTIV_NR",
+          1,
+          {
+            "e": "TAB_FH_PANIKMODUS"
+          }
+        ],
+        [
+          "STAT_FH_BF_RESERVE",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "FH_RELAIS_STEUERN",
+      "s": 46,
+      "id": "D1AB",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "AKTION",
+          1,
+          "TAB_RELAIS_RICHTUNG"
+        ],
+        [
+          "RELAIS_NUMBER",
+          1,
+          "TAB_FH_SHD_ESH_RELAIS_NUMBER"
+        ]
+      ]
+    },
+    {
+      "n": "FH_HALL_VERSORGUNG",
+      "s": 47,
+      "id": "D1AC",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_FH_AUSWAHL"
+        ],
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "FH_FA_RELAIS",
+      "s": 34,
+      "id": "D1B1",
+      "r": [
+        [
+          "STAT_RELAIS_A_ANSTEUERUNG_EIN",
+          1
+        ],
+        [
+          "STAT_RELAIS_A_RUECK_EIN",
+          1
+        ],
+        [
+          "STAT_RELAIS_B_ANSTEUERUNG_EIN",
+          1
+        ],
+        [
+          "STAT_RELAIS_B_RUECK_EIN",
+          1
+        ],
+        [
+          "STAT_RELAIS_A_VERSORGUNG_WERT",
+          2
+        ],
+        [
+          "STAT_RELAIS_B_VERSORGUNG_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "FH_FA_HALLSENSOREN",
+      "s": 34,
+      "id": "D1B2",
+      "r": [
+        [
+          "STAT_HALL_A_SCHALTZUSTAND_EIN",
+          1
+        ],
+        [
+          "STAT_HALL_A_VERSORGUNG_EIN",
+          1
+        ],
+        [
+          "STAT_HALL_A_FEHLERZUSTAND_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_HALL_FEHLERZUSTAND"
+          }
+        ],
+        [
+          "STAT_HALL_B_SCHALTZUSTAND_EIN",
+          1
+        ],
+        [
+          "STAT_HALL_B_VERSORGUNG_EIN",
+          1
+        ],
+        [
+          "STAT_HALL_B_FEHLERZUSTAND_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_HALL_FEHLERZUSTAND"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "FH_BF_RELAIS",
+      "s": 34,
+      "id": "D1B3",
+      "r": [
+        [
+          "STAT_RELAIS_A_ANSTEUERUNG_EIN",
+          1
+        ],
+        [
+          "STAT_RELAIS_A_RUECK_EIN",
+          1
+        ],
+        [
+          "STAT_RELAIS_B_ANSTEUERUNG_EIN",
+          1
+        ],
+        [
+          "STAT_RELAIS_B_RUECK_EIN",
+          1
+        ],
+        [
+          "STAT_RELAIS_A_VERSORGUNG_WERT",
+          2
+        ],
+        [
+          "STAT_RELAIS_B_VERSORGUNG_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "FH_BF_HALLSENSOREN",
+      "s": 34,
+      "id": "D1B4",
+      "r": [
+        [
+          "STAT_HALL_A_SCHALTZUSTAND_EIN",
+          1
+        ],
+        [
+          "STAT_HALL_A_VERSORGUNG_EIN",
+          1
+        ],
+        [
+          "STAT_HALL_A_FEHLERZUSTAND_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_HALL_FEHLERZUSTAND"
+          }
+        ],
+        [
+          "STAT_HALL_B_SCHALTZUSTAND_EIN",
+          1
+        ],
+        [
+          "STAT_HALL_B_VERSORGUNG_EIN",
+          1
+        ],
+        [
+          "STAT_HALL_B_FEHLERZUSTAND_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_HALL_FEHLERZUSTAND"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "FH_FA_STATUS_DETAIL",
+      "s": 34,
+      "id": "D1B5",
+      "r": [
+        [
+          "STAT_FH_FA_KURZHUB_VORHANDEN",
+          1,
+          {
+            "e": "TAB_FH_KURZHUB_KODIEROPTION"
+          }
+        ],
+        [
+          "STAT_FH_FA_MOTORTEMPERATUR_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_MOTORTEMPERATUR"
+          }
+        ],
+        [
+          "STAT_FH_FA_AUSSENTEMPERATUR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_FH_FA_MT_LIEFERANT_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_MT_LIEFERANT"
+          }
+        ],
+        [
+          "STAT_FH_FA_MT_SW_VERSION_WERT",
+          4
+        ],
+        [
+          "STAT_FH_FA_MT_PARAMETER_VERSION_WERT",
+          4
+        ],
+        [
+          "STAT_FH_FA_EEPROM_PRUEFSUMME_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_STAT_EEPROM"
+          }
+        ],
+        [
+          "STAT_FH_FA_STATUS_VON_FAH",
+          1,
+          {
+            "e": "TAB_FH_FENSTER_GS"
+          }
+        ],
+        [
+          "STAT_FH_FA_WACHHALTEN",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_WACHHALTEN"
+          }
+        ],
+        [
+          "STAT_FH_FA_FZG_GESCHWINDIGKEIT_WERT",
+          1
+        ],
+        [
+          "STAT_FH_FA_RELATIVZEIT_WERT",
+          4
+        ],
+        [
+          "STAT_FH_FA_TEMPERATUR_UEBERWACHUNG",
+          1
+        ],
+        [
+          "STAT_FH_FA_EKS_AKTIV",
+          1
+        ],
+        [
+          "STAT_FH_FA_SYSTEMTYP",
+          1,
+          {
+            "e": "TAB_FH_SYSTEMTYP"
+          }
+        ],
+        [
+          "STAT_FH_FA_RESERVE_DATA",
+          3
+        ]
+      ]
+    },
+    {
+      "n": "FH_BF_STATUS_DETAIL",
+      "s": 34,
+      "id": "D1B6",
+      "r": [
+        [
+          "STAT_FH_BF_KURZHUB_VORHANDEN",
+          1,
+          {
+            "e": "TAB_FH_KURZHUB_KODIEROPTION"
+          }
+        ],
+        [
+          "STAT_FH_BF_MOTORTEMPERATUR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_MOTORTEMPERATUR"
+          }
+        ],
+        [
+          "STAT_FH_BF_AUSSENTEMPERATUR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_FH_BF_MT_LIEFERANT",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_MT_LIEFERANT"
+          }
+        ],
+        [
+          "STAT_FH_BF_MT_SW_VERSION_WERT",
+          4
+        ],
+        [
+          "STAT_FH_BF_MT_PARAMETER_VERSION_WERT",
+          4
+        ],
+        [
+          "STAT_FH_BF_EEPROM_PRUEFSUMME_NR",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_STAT_EEPROM"
+          }
+        ],
+        [
+          "STAT_FH_BF_STATUS_VON_BFH",
+          1,
+          {
+            "e": "TAB_FH_FENSTER_GS"
+          }
+        ],
+        [
+          "STAT_FH_BF_WACHHALTEN",
+          1,
+          {
+            "e": "TAB_FH_SHD_ESH_WACHHALTEN"
+          }
+        ],
+        [
+          "STAT_FH_BF_FZG_GESCHWINDIGKEIT_WERT",
+          1
+        ],
+        [
+          "STAT_FH_BF_RELATIVZEIT_WERT",
+          4
+        ],
+        [
+          "STAT_FH_BF_TEMPERATUR_UEBERWACHUNG",
+          1
+        ],
+        [
+          "STAT_FH_BF_EKS_AKTIV",
+          1
+        ],
+        [
+          "STAT_FH_BF_SYSTEMTYP",
+          1,
+          {
+            "e": "TAB_FH_SYSTEMTYP"
+          }
+        ],
+        [
+          "STAT_FH_BF_RESERVE_WERT",
+          3
+        ]
+      ]
+    },
+    {
+      "n": "FH_TASTER_ALLE_FH",
+      "s": 46,
+      "id": "D1C2",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_FH_SHD_ESH_VERFAHREN"
+        ]
+      ]
+    },
+    {
+      "n": "FH_TASTER_ALLE_FH",
+      "s": 34,
+      "id": "D1C2",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_FH_SHD_ESH_VERFAHREN"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TASTER_ALLE_FH_NR",
+          1,
+          {
+            "e": "TAB_FH_VERFAHREN"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "HECKSPOILER_TASTER",
+      "s": 46,
+      "id": "D220",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HECKSPOILER_TASTER",
+      "s": 34,
+      "id": "D220",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_HECKSPOILER_TASTER",
+          1,
+          {
+            "e": "TAB_ROLLO_VERFAHREN"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "HUPE_TASTER",
+      "s": 34,
+      "id": "D297",
+      "p": "raw"
+    },
+    {
+      "n": "HUPE",
+      "s": 34,
+      "id": "D298",
+      "a": [
+        [
+          "ZEIT",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_HUPE_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUPE",
+      "s": 46,
+      "id": "D298",
+      "a": [
+        [
+          "ZEIT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "ROLLO_HECK_TASTER",
+      "s": 34,
+      "id": "D30B",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_ROLLO_HECK_TASTER_NR",
+          1,
+          {
+            "e": "TAB_ROLLO_VERFAHREN"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ROLLO_HECK_TASTER",
+      "s": 46,
+      "id": "D30B",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_ABBLENDEN",
+      "s": 46,
+      "id": "D320",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_ABBLENDEN",
+      "s": 34,
+      "id": "D320",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SPIEGEL_ABBLEND_EIN",
+          2
+        ],
+        [
+          "STAT_AUSSENSPIEGEL_ABBLEND_WERT",
+          2
+        ],
+        [
+          "STAT_AUSSENSPIEGEL_ABBLEND_ZEIT_WERT",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_THERMOSCHUTZ",
+      "s": 34,
+      "id": "D321",
+      "p": "raw"
+    },
+    {
+      "n": "AUSSENSPIEGEL_RECHTS_RICHTUNG",
+      "s": 46,
+      "id": "D322",
+      "a": [
+        [
+          "RICHTUNG",
+          2,
+          "TAB_SPIEGEL_VERFAHREN"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_RECHTS_RICHTUNG",
+      "s": 34,
+      "id": "D322",
+      "a": [
+        [
+          "RICHTUNG",
+          2,
+          "TAB_SPIEGEL_VERFAHREN"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SPIEGEL_RE_FAEHRT_LINKS",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_RE_FAEHRT_OBEN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_RE_FAEHRT_RECHTS",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_RE_FAEHRT_UNTEN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_RE_FAEHRT_NR",
+          2,
+          {
+            "e": "TAB_SPIEGEL_VERFAHREN"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_KLAPPEN",
+      "s": 46,
+      "id": "D324",
+      "a": [
+        [
+          "AKTION",
+          2,
+          "TAB_SPIEGEL_KLAPPEN"
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_KLAPPEN",
+      "s": 34,
+      "id": "D324",
+      "a": [
+        [
+          "AKTION",
+          2,
+          "TAB_SPIEGEL_KLAPPEN"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SPIEGEL_ABGEKLAPPT",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_BEIGEKLAPPT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_LINKS_RICHTUNG",
+      "s": 46,
+      "id": "D327",
+      "a": [
+        [
+          "RICHTUNG",
+          2,
+          "TAB_SPIEGEL_VERFAHREN"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_LINKS_RICHTUNG",
+      "s": 34,
+      "id": "D327",
+      "a": [
+        [
+          "RICHTUNG",
+          2,
+          "TAB_SPIEGEL_VERFAHREN"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SPIEGEL_LI_FAEHRT_LINKS",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_LI_FAEHRT_OBEN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_LI_FAEHRT_RECHTS",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_LI_FAEHRT_UNTEN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_LI_FAEHRT_NR",
+          2,
+          {
+            "e": "TAB_SPIEGEL_VERFAHREN"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_LINKS_POS",
+      "s": 46,
+      "id": "D328",
+      "a": [
+        [
+          "POS_HOR",
+          2
+        ],
+        [
+          "POS_VER",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_LINKS_POS",
+      "s": 34,
+      "id": "D328",
+      "a": [
+        [
+          "POS_HOR",
+          2
+        ],
+        [
+          "POS_VER",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SPIEGEL_LI_POSHOR_WERT",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_LI_POSVERT_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_LIN",
+      "s": 34,
+      "id": "D329",
+      "p": "raw"
+    },
+    {
+      "n": "AUSSENSPIEGEL_MEM_VORHANDEN",
+      "s": 34,
+      "id": "D32B",
+      "p": "raw"
+    },
+    {
+      "n": "AUSSENSPIEGEL_HEIZUNG",
+      "s": 34,
+      "id": "D32D",
+      "a": [
+        [
+          "WERT",
+          2,
+          "TAB_SPIEGEL_HEIZUNG"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SPIEGEL_HEIZUNG_EIN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_HEIZUNG_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_HEIZUNG",
+      "s": 46,
+      "id": "D32D",
+      "a": [
+        [
+          "WERT",
+          2,
+          "TAB_SPIEGEL_HEIZUNG"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_HEIZUNG_VERBAUT",
+      "s": 34,
+      "id": "D32E",
+      "p": "raw"
+    },
+    {
+      "n": "EC_SPIEGEL_ABBLENDEN",
+      "s": 46,
+      "id": "D32F",
+      "a": [
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "EC_SPIEGEL_ABBLENDEN",
+      "s": 34,
+      "id": "D32F",
+      "a": [
+        [
+          "ZEIT",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_INNENSPIEGEL_ABBLEND_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "EC_SPIEGEL_VORHANDEN",
+      "s": 34,
+      "id": "D330",
+      "p": "raw"
+    },
+    {
+      "n": "AUSSENSPIEGEL_TASTER",
+      "s": 34,
+      "id": "D331",
+      "r": [
+        [
+          "STAT_SPIEGEL_BEIKLAPPEN_EIN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_SCHALTER_FA_EIN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_TASTER_LINKS_EIN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_TASTER_OBEN_EIN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_TASTER_RECHTS_EIN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_TASTER_UNTEN_EIN",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_TASTER_NR",
+          2,
+          {
+            "e": "TAB_SPIEGEL_VERFAHREN"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_KLAPPEN_VORHANDEN",
+      "s": 34,
+      "id": "D332",
+      "p": "raw"
+    },
+    {
+      "n": "AUSSENSPIEGEL_RECHTS_POS",
+      "s": 46,
+      "id": "D333",
+      "a": [
+        [
+          "POS_HOR",
+          2
+        ],
+        [
+          "POS_VER",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_RECHTS_POS",
+      "s": 34,
+      "id": "D333",
+      "a": [
+        [
+          "POS_HOR",
+          2
+        ],
+        [
+          "POS_VER",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SPIEGEL_RE_POSHOR_WERT",
+          2
+        ],
+        [
+          "STAT_SPIEGEL_RE_POSVERT_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_MEM_POS_STEUERN",
+      "s": 46,
+      "id": "D336",
+      "a": [
+        [
+          "MEM_POS",
+          2,
+          "TAB_SPIEGELMEM_POS"
+        ],
+        [
+          "KEY",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_MEM_POS_SCHREIBEN",
+      "s": 46,
+      "id": "D338",
+      "a": [
+        [
+          "MEM_POS",
+          2,
+          "TAB_SPIEGELMEM_POS"
+        ],
+        [
+          "KEY",
+          2
+        ],
+        [
+          "POS_LI_HORIZONTAL",
+          2
+        ],
+        [
+          "POS_LI_VERTIKAL",
+          2
+        ],
+        [
+          "POS_RE_HORIZONTAL",
+          2
+        ],
+        [
+          "POS_RE_VERTIKAL",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "UGDO_VORHANDEN",
+      "s": 34,
+      "id": "D33A",
+      "p": "raw"
+    },
+    {
+      "n": "AUSSENSPIEGEL_ABBLENDEN_VORHANDEN",
+      "s": 34,
+      "id": "D33C",
+      "p": "raw"
+    },
+    {
+      "n": "UGDO_LAND",
+      "s": 34,
+      "id": "D33D",
+      "p": "raw"
+    },
+    {
+      "n": "UGDO_MODE",
+      "s": 34,
+      "id": "D33E",
+      "p": "raw"
+    },
+    {
+      "n": "KOMPASS_SPIEGEL_VORHANDEN",
+      "s": 34,
+      "id": "D343",
+      "p": "raw"
+    },
+    {
+      "n": "KOMPASS_SPIEGEL_MAGNET",
+      "s": 34,
+      "id": "D344",
+      "p": "raw"
+    },
+    {
+      "n": "KOMPASS_SPIEGEL_SPRACHE",
+      "s": 34,
+      "id": "D345",
+      "p": "raw"
+    },
+    {
+      "n": "KOMPASS_SPIEGEL_LENKUNG",
+      "s": 34,
+      "id": "D346",
+      "p": "raw"
+    },
+    {
+      "n": "AUSSENSPIEGEL_HC2",
+      "s": 46,
+      "id": "D347",
+      "a": [
+        [
+          "SPIEGEL",
+          1,
+          "TAB_SPIEGEL_AUSWAHL"
+        ],
+        [
+          "DIMMUNG",
+          1
+        ],
+        [
+          "AKTION",
+          1,
+          "TAB_SPIEGEL_HC2"
+        ]
+      ]
+    },
+    {
+      "n": "AUSSENSPIEGEL_HC2",
+      "s": 34,
+      "id": "D347",
+      "a": [
+        [
+          "SPIEGEL",
+          1,
+          "TAB_SPIEGEL_AUSWAHL"
+        ],
+        [
+          "DIMMUNG",
+          1
+        ],
+        [
+          "AKTION",
+          1,
+          "TAB_SPIEGEL_HC2"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SPIEGEL_HC2_LINKS_NR",
+          1,
+          {
+            "e": "TAB_SPIEGEL_HC2"
+          }
+        ],
+        [
+          "STAT_SPIEGEL_HC2_RECHTS_NR",
+          1,
+          {
+            "e": "TAB_SPIEGEL_HC2"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "WASCHDUESENHEIZUNG",
+      "s": 46,
+      "id": "D350",
+      "a": [
+        [
+          "WASCHDUESENHEIZUNG_WERT",
+          1,
+          "TAB_WASCHDUESENHEIZUNG"
+        ],
+        [
+          "WASCHDUESENHEIZUNG_ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WASCHDUESENHEIZUNG",
+      "s": 34,
+      "id": "D350",
+      "a": [
+        [
+          "WASCHDUESENHEIZUNG_WERT",
+          1,
+          "TAB_WASCHDUESENHEIZUNG"
+        ],
+        [
+          "WASCHDUESENHEIZUNG_ZEIT",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_WASCHDUESENHEIZUNG_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WISCHER_FRONT_MOTOR",
+      "s": 34,
+      "id": "D351",
+      "p": "raw"
+    },
+    {
+      "n": "WASCHERPUMPE_HINTEN",
+      "s": 46,
+      "id": "D352",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WASCHERPUMPE_HINTEN",
+      "s": 34,
+      "id": "D352",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_WASCHERPUMPE_HINTEN_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SRA_RELAIS",
+      "s": 34,
+      "id": "D354",
+      "p": "raw"
+    },
+    {
+      "n": "WISCHER_FRONT_RSK",
+      "s": 46,
+      "id": "D355",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WISCHER_FRONT_RSK",
+      "s": 34,
+      "id": "D355",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_FRONTWISCHER_RSK_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WASCHWASSERSTAND",
+      "s": 34,
+      "id": "D357",
+      "r": [
+        [
+          "STAT_WASCHWASSERSTAND_EIN",
+          1
+        ],
+        [
+          "STAT_WASCHWASSERSTAND_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "SRA_VORHANDEN",
+      "s": 34,
+      "id": "D359",
+      "p": "raw"
+    },
+    {
+      "n": "LENKSTOCK_WISCHER",
+      "s": 34,
+      "id": "D35B",
+      "r": [
+        [
+          "STAT_LENKSTOCK_WISCHER_TASTER_AXIAL_EIN",
+          1,
+          {
+            "e": "TAB_LENKSTOCK_WISCHER_AXIAL_TASTER"
+          }
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_FRONTWASCHEN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_HECKWASCHEN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_HECKWISCHEN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_POS_INTERVALL",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_NULLSTELLUNG",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_POS_1",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_POS_2",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_RAENDEL_NR",
+          1,
+          {
+            "e": "TAB_WISCHER_RAENDEL"
+          }
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_TIPPWISCHEN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_WISCHER_NR",
+          1,
+          {
+            "e": "TAB_LENKSTOCK_WISCHER"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "WASCHWASSER_VORNE",
+      "s": 34,
+      "id": "D35C",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_WASCHERPUMPE_VORNE_AKTIV",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WASCHWASSER_VORNE",
+      "s": 46,
+      "id": "D35C",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WISCHER_FRONT",
+      "s": 46,
+      "id": "D35D",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_WISCHER"
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SRA",
+      "s": 46,
+      "id": "D360",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LENKSTOCK_WISCHER_RLS_LED",
+      "s": 46,
+      "id": "D361",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WISCHER_FRONT_MONTAGE",
+      "s": 34,
+      "id": "D362",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_FRONTWISCHER_MONTAGE_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WISCHER_FRONT_MONTAGE",
+      "s": 46,
+      "id": "D362",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WISCHER_FRONT_SERVICE",
+      "s": 34,
+      "id": "D363",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_FRONTWISCHER_SERVICE_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WISCHER_FRONT_SERVICE",
+      "s": 46,
+      "id": "D363",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SPURWECHSELASSISTENT_TASTER",
+      "s": 34,
+      "id": "D369",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_HC2_TASTER_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SPURWECHSELASSISTENT_TASTER",
+      "s": 46,
+      "id": "D369",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SPURWECHSELASSISTENT_TASTER_LED",
+      "s": 46,
+      "id": "D36A",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SPURWECHSELASSISTENT_TASTER_LED",
+      "s": 34,
+      "id": "D36A",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_HC2_TASTER_LED_NR",
+          1,
+          {
+            "e": "TAB_LED"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "REGENSENSOR_VORHANDEN",
+      "s": 34,
+      "id": "D373",
+      "p": "raw"
+    },
+    {
+      "n": "REGENSENSOR_INIT",
+      "s": 34,
+      "id": "D375",
+      "p": "raw"
+    },
+    {
+      "n": "REGENSENSOR_INT_WERT",
+      "s": 34,
+      "id": "D376",
+      "r": [
+        [
+          "STAT_REGEN_INT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_RESERVE_WERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "NIGHTVISION_TASTER",
+      "s": 34,
+      "id": "D389",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_NIVI_TASTER_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "NIGHTVISION_TASTER",
+      "s": 46,
+      "id": "D389",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "TLC_AKTUATOR",
+      "s": 34,
+      "id": "D399",
+      "a": [
+        [
+          "DAUER",
+          1
+        ],
+        [
+          "ANLAUFRAMPE",
+          1
+        ],
+        [
+          "STOPRAMPE",
+          1
+        ],
+        [
+          "AMPLITUDE",
+          1
+        ],
+        [
+          "FREQUENZ",
+          1,
+          {
+            "s": [
+              10,
+              1,
+              -373
+            ]
+          }
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TLC_AKTUATOR_WERT",
+          1
+        ],
+        [
+          "STAT_TLC_AKTUATOR_STATUS_NR",
+          1,
+          {
+            "e": "TAB_TLC_STATUS"
+          }
+        ],
+        [
+          "STAT_TLC_AKTUATOR_AKTIV",
+          1
+        ],
+        [
+          "STAT_TLC_AKTUATOR_HW_LEITUNG_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TLC_AKTUATOR",
+      "s": 46,
+      "id": "D399",
+      "a": [
+        [
+          "DAUER",
+          1
+        ],
+        [
+          "ANLAUFRAMPE",
+          1
+        ],
+        [
+          "STOPRAMPE",
+          1
+        ],
+        [
+          "AMPLITUDE",
+          1
+        ],
+        [
+          "FREQUENZ",
+          1,
+          {
+            "s": [
+              10,
+              1,
+              -373
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TLC_TASTER",
+      "s": 46,
+      "id": "D39A",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "TLC_TASTER",
+      "s": 34,
+      "id": "D39A",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TLC_TASTER_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "TLC_TASTER_LED",
+      "s": 34,
+      "id": "D39B",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TLC_TASTER_LED_NR",
+          1,
+          {
+            "e": "TAB_LED"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TLC_TASTER_LED",
+      "s": 46,
+      "id": "D39B",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "FAHRLICHTSENSOR",
+      "s": 34,
+      "id": "D3BE",
+      "r": [
+        [
+          "STAT_FRONTLICHT_WERT",
+          2,
+          {
+            "s": [
+              6.7,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_FRONTLICHT_GEMITTELT_WERT",
+          2,
+          {
+            "s": [
+              6.7,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_UMGEBUNGSLICHT_WERT",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_UMGEBUNGSLICHT_GEMITTELT_WERT",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_HUD_WERT",
+          2
+        ],
+        [
+          "STAT_RESERVE_WERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "FAHRLICHTSENSOR_VORHANDEN",
+      "s": 34,
+      "id": "D3BF",
+      "p": "raw"
+    },
+    {
+      "n": "AHL_LWR_TMS_BESTROMEN",
+      "s": 46,
+      "id": "D531",
+      "a": [
+        [
+          "TMS_LINKS",
+          1
+        ],
+        [
+          "TMS_RECHTS",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "AHL_LWR_TMS_BESTROMEN",
+      "s": 34,
+      "id": "D531",
+      "a": [
+        [
+          "TMS_LINKS",
+          1
+        ],
+        [
+          "TMS_RECHTS",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TMS_BESTROMT_LINKS_EIN",
+          1
+        ],
+        [
+          "STAT_TMS_BESTROMT_RECHTS_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "TAGFAHRLICHT_DEAKTIVIEREN",
+      "s": 46,
+      "id": "D537",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "TAGFAHRLICHT_DEAKTIVIEREN",
+      "s": 34,
+      "id": "D537",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TAGFAHRLICHT_DEAKTIVIERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LWR_REFERENZLAUF",
+      "s": 46,
+      "id": "D538",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_SCHEINWERFER_AUSWAHL"
+        ]
+      ]
+    },
+    {
+      "n": "LESELICHT_VORNE",
+      "s": 34,
+      "id": "D53A",
+      "r": [
+        [
+          "STAT_LESELICHT_LINKS_VORNE",
+          2
+        ],
+        [
+          "STAT_LESELICHT_RECHTS_VORNE",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "LICHTSCHALTER_WBL_TASTER_BEL",
+      "s": 34,
+      "id": "D53D",
+      "p": "raw"
+    },
+    {
+      "n": "RUECKWAERTSGANG_SCHALTER",
+      "s": 34,
+      "id": "D540",
+      "p": "raw"
+    },
+    {
+      "n": "SCHEINWERFER_GRUNDSTELLUNG_STATUS",
+      "s": 34,
+      "id": "D541",
+      "p": "raw"
+    },
+    {
+      "n": "LEUCHTEN_FUNKTION",
+      "s": 46,
+      "id": "D542",
+      "a": [
+        [
+          "ELEMENT",
+          2,
+          "TAB_LAMPEN_FUNKTION"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "LEUCHTEN_FUNKTION",
+      "s": 34,
+      "id": "D542",
+      "a": [
+        [
+          "ELEMENT",
+          2,
+          "TAB_LAMPEN_FUNKTION"
+        ],
+        [
+          "ZEIT",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_UNBELEGT_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_STANDLICHT_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_STANDLICHT_ES_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_ABBLENDLICHT_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_TAGFAHRLICHT_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_FERNLICHT_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_BLINKER_LINKS_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_BLINKER_RECHTS_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_NEBELLICHT_VORNE_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_ABBIEGELICHT_VORNE_LINKS_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_ABBIEGELICHT_VORNE_RECHTS_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_RESERVE_1_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_BREMSLICHT_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_BFD_ESS_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_NEBELSCHLUSSLICHT_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_RUECKFAHRLICHT_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_PARKLICHT_LINKS_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_PARKLICHT_RECHTS_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_WARNBLINKEN_EIN",
+          1
+        ],
+        [
+          "STAT_FUNKTION_INNENBELEUCHTUNG_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LESELICHT_VORNE_VORHANDEN",
+      "s": 34,
+      "id": "D544",
+      "p": "raw"
+    },
+    {
+      "n": "LESELICHT_HINTEN_VORHANDEN",
+      "s": 34,
+      "id": "D545",
+      "p": "raw"
+    },
+    {
+      "n": "AHL_LWR_REFERENZLAUF",
+      "s": 46,
+      "id": "D547",
+      "a": [
+        [
+          "LWR_AHL",
+          1,
+          "TAB_AHL_LWR_AUSWAHL"
+        ],
+        [
+          "SCHEINWERFER",
+          1,
+          "TAB_SCHEINWERFER_AUSWAHL"
+        ]
+      ]
+    },
+    {
+      "n": "AHL_LWR_REFERENZLAUF",
+      "s": 34,
+      "id": "D547",
+      "a": [
+        [
+          "LWR_AHL",
+          1,
+          "TAB_AHL_LWR_AUSWAHL"
+        ],
+        [
+          "SCHEINWERFER",
+          1,
+          "TAB_SCHEINWERFER_AUSWAHL"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_AHL_REFERENZLAUF_NR",
+          1,
+          {
+            "e": "TAB_LWR_REFERENZLAUF"
+          }
+        ],
+        [
+          "STAT_LWR_REFERENZLAUF_NR",
+          1,
+          {
+            "e": "TAB_LWR_REFERENZLAUF"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "LWR_DYNAMISCH_SCHRITTE_REFLAUF",
+      "s": 34,
+      "id": "D548",
+      "p": "raw"
+    },
+    {
+      "n": "INNENLICHT_HINTEN_TASTER",
+      "s": 34,
+      "id": "D54B",
+      "p": "raw"
+    },
+    {
+      "n": "INNENLICHT_VORNE_TASTER",
+      "s": 34,
+      "id": "D54C",
+      "r": [
+        [
+          "STAT_INNENLICHT_TASTER_VORNE_EIN",
+          1
+        ],
+        [
+          "STAT_INNENLICHT_VORNE_DAUER_AUS_AKTIV",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "BUS_IN_BELADUNGSSENSOR",
+      "s": 34,
+      "id": "D54D",
+      "r": [
+        [
+          "STAT_BUS_IN_BELADUNGSSENSOR_VORNE_WERT",
+          2
+        ],
+        [
+          "STAT_BUS_IN_BELADUNGSSENSOR_HINTEN_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "LESELICHT_HINTEN_RECHTS_TASTER",
+      "s": 34,
+      "id": "D54E",
+      "p": "raw"
+    },
+    {
+      "n": "LWR_MANUELL_POTI",
+      "s": 34,
+      "id": "D54F",
+      "p": "raw"
+    },
+    {
+      "n": "LICHTSCHALTEREINHEIT",
+      "s": 34,
+      "id": "D550",
+      "r": [
+        [
+          "STAT_LICHTSCHALTEREINHEIT_AL_EIN",
+          1
+        ],
+        [
+          "STAT_LICHTSCHALTEREINHEIT_FLC_EIN",
+          1
+        ],
+        [
+          "STAT_LICHTSCHALTEREINHEIT_NEUTRAL_EIN",
+          1
+        ],
+        [
+          "STAT_LICHTSCHALTEREINHEIT_STL_EIN",
+          1
+        ],
+        [
+          "STAT_LICHTSCHALTEREINHEIT_NR",
+          1,
+          {
+            "e": "TAB_LICHTSCHALTER"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "LICHTSCHALTER_WBL_TASTER",
+      "s": 34,
+      "id": "D552",
+      "p": "raw"
+    },
+    {
+      "n": "LESELICHT_HINTEN",
+      "s": 34,
+      "id": "D553",
+      "r": [
+        [
+          "STAT_LESELICHT_LINKS_HINTEN",
+          2
+        ],
+        [
+          "STAT_LESELICHT_RECHTS_HINTEN",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "PIA_FLA_FOLLOW",
+      "s": 34,
+      "id": "D555",
+      "r": [
+        [
+          "STAT_PIA_FLA_EIN",
+          1
+        ],
+        [
+          "STAT_PIA_FOLLOW_ME_HOME_ZEIT_WERT",
+          1
+        ],
+        [
+          "STAT_PIA_WELCOMELIGHT_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SCHALTERBELEUCHTUNG_RAENDELRAD",
+      "s": 34,
+      "id": "D557",
+      "p": "raw"
+    },
+    {
+      "n": "AHL_LWR_POSITION",
+      "s": 34,
+      "id": "D558",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_AHL_LWR_AUSWAHL"
+        ],
+        [
+          "SCHEINWERFER",
+          1,
+          "TAB_SCHEINWERFER_AUSWAHL"
+        ],
+        [
+          "HOR_POSITION",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "HOR_GESCHW",
+          1
+        ],
+        [
+          "VER_POSITION",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "VER_GESCHW",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_POS_HOR_LINKS_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_POS_VER_LINKS_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_POS_HOR_RECHTS_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_POS_VER_RECHTS_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "AHL_LWR_POSITION",
+      "s": 46,
+      "id": "D558",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_AHL_LWR_AUSWAHL"
+        ],
+        [
+          "SCHEINWERFER",
+          1,
+          "TAB_SCHEINWERFER_AUSWAHL"
+        ],
+        [
+          "HOR_POSITION",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "HOR_GESCHW",
+          1
+        ],
+        [
+          "VER_POSITION",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "VER_GESCHW",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "PIA_ABBIEGELICHT",
+      "s": 34,
+      "id": "D559",
+      "p": "raw"
+    },
+    {
+      "n": "PIA_TIPPBLINKEN",
+      "s": 34,
+      "id": "D55E",
+      "r": [
+        [
+          "STAT_PIA_MIND_ANZAHL_BLINKZYKLEN_BEI_TIPP_WERT",
+          1
+        ],
+        [
+          "STAT_PIA_QUITT_BLINK_ENTRIEGELN_EIN",
+          1
+        ],
+        [
+          "STAT_PIA_QUITT_BLINK_SICHERN_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LWR_MANUELL",
+      "s": 34,
+      "id": "D55F",
+      "r": [
+        [
+          "STAT_MAN_LWR_MAXPOS_WERT",
+          2
+        ],
+        [
+          "STAT_MAN_LWR_MINPOS_WERT",
+          2
+        ],
+        [
+          "STAT_MAN_LWR_LINKS_WERT",
+          2
+        ],
+        [
+          "STAT_MAN_LWR_RECHTS_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "PIA_TAGFAHRLICHT",
+      "s": 34,
+      "id": "D573",
+      "p": "raw"
+    },
+    {
+      "n": "INNENLICHT_HINTEN",
+      "s": 34,
+      "id": "D57B",
+      "r": [
+        [
+          "STAT_INNENLICHT_HINTEN_EIN",
+          2
+        ],
+        [
+          "STAT_INNENLICHT_HINTEN_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "INNENLICHT_VORNE",
+      "s": 34,
+      "id": "D57C",
+      "a": [
+        [
+          "DAUERAUS",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_INNENLICHT_VORNE_EIN",
+          2
+        ],
+        [
+          "STAT_INNENLICHT_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "INNENLICHT_VORNE",
+      "s": 46,
+      "id": "D57C",
+      "a": [
+        [
+          "DAUERAUS",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LWR_MODUS",
+      "s": 34,
+      "id": "D57E",
+      "r": [
+        [
+          "STAT_KEINE_LWR_EIN",
+          1
+        ],
+        [
+          "STAT_MAN_LWR_EIN",
+          1
+        ],
+        [
+          "STAT_AUT_LWR_EIN",
+          1
+        ],
+        [
+          "STAT_DYN_LWR_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "INNENLICHT_KLEMME_VA",
+      "s": 34,
+      "id": "D57F",
+      "r": [
+        [
+          "STAT_INNENLICHT_KLEMME_VA_EIN",
+          2
+        ],
+        [
+          "STAT_INNENLICHT_KLEMME_VA_NACHLAUFZEIT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "LENKSTOCK_BLINKER_TASTER_FLA",
+      "s": 34,
+      "id": "D580",
+      "p": "raw"
+    },
+    {
+      "n": "LENKSTOCK_BLINKER_TASTER_BC",
+      "s": 34,
+      "id": "D581",
+      "p": "raw"
+    },
+    {
+      "n": "LENKSTOCK_BLINKER_FRA",
+      "s": 34,
+      "id": "D582",
+      "r": [
+        [
+          "STAT_LENKSTOCK_BLINKER_LINKS_EIN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_LINKS_DAUER_EIN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_RECHTS_EIN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_RECHTS_DAUER_EIN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_NULLSTELLUNG_EIN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_NR",
+          1,
+          {
+            "e": "TAB_LENKSTOCK_BLINKER"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "LENKSTOCK_BLINKER_LICHTHUPE_FERNLICHT",
+      "s": 34,
+      "id": "D583",
+      "r": [
+        [
+          "STAT_LENKSTOCK_BLINKER_FERNLICHT_BETAETIGT",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_LICHTHUPE_BETAETIGT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LENKSTOCK_BLINKER_WIPPE",
+      "s": 34,
+      "id": "D585",
+      "r": [
+        [
+          "STAT_LENKSTOCK_BLINKER_WIPPE_NACH_OBEN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_WIPPE_NACH_UNTEN",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_WIPPE_NULLSTELLUNG",
+          1
+        ],
+        [
+          "STAT_LENKSTOCK_BLINKER_TASTER_WIPPE_NR",
+          1,
+          {
+            "e": "TAB_LENKSTOCK_BLINKER_WIPPE"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "LESELICHT_HINTEN_LINKS_TASTER",
+      "s": 34,
+      "id": "D587",
+      "p": "raw"
+    },
+    {
+      "n": "LESELICHT_VORNE_RECHTS_TASTER",
+      "s": 34,
+      "id": "D588",
+      "p": "raw"
+    },
+    {
+      "n": "LESELICHT_VORNE_LINKS_TASTER",
+      "s": 34,
+      "id": "D589",
+      "p": "raw"
+    },
+    {
+      "n": "LWR_POSITION_MIN_MAX",
+      "s": 34,
+      "id": "D58A",
+      "r": [
+        [
+          "STAT_LWR_POSITION_MAX_EIN",
+          1
+        ],
+        [
+          "STAT_LWR_POSITION_MIN_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LICHTSCHALTER_NSW_TASTER",
+      "s": 34,
+      "id": "D58B",
+      "p": "raw"
+    },
+    {
+      "n": "LICHTSCHALTER_NSL_TASTER",
+      "s": 34,
+      "id": "D58C",
+      "p": "raw"
+    },
+    {
+      "n": "SCHEINWERFER_GRUNDSTELLUNG",
+      "s": 46,
+      "id": "D58E",
+      "a": [
+        [
+          "AKTION",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AMBIENTE_BELEUCHTUNG",
+      "s": 34,
+      "id": "D5D3",
+      "r": [
+        [
+          "STAT_AMBIENTE_EIN",
+          1
+        ],
+        [
+          "STAT_AMBIENTE_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SMO_LOESCHEN_SPIELSCHUTZZAEHLER",
+      "s": 46,
+      "id": "D5D5",
+      "a": [
+        [
+          "LOESCHEN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SMO_RESET",
+      "s": 46,
+      "id": "D5D7",
+      "a": [
+        [
+          "RESET",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "INNENLICHT_MAPPING",
+      "s": 34,
+      "id": "D5DE",
+      "r": [
+        [
+          "STAT_BELEGUNG_LCI_0",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ],
+        [
+          "STAT_BELEGUNG_LCI_1",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ],
+        [
+          "STAT_BELEGUNG_LCI_2",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ],
+        [
+          "STAT_BELEGUNG_LCI_3",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ],
+        [
+          "STAT_BELEGUNG_LCI_4",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ],
+        [
+          "STAT_BELEGUNG_LCI_5",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ],
+        [
+          "STAT_BELEGUNG_LCI_6",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ],
+        [
+          "STAT_BELEGUNG_LCI_7",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ],
+        [
+          "STAT_BELEGUNG_LCI_8",
+          1,
+          {
+            "e": "TAB_INNENLICHT_MAPPING"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "AHL_LWR_TMS_ID_LESEN",
+      "s": 34,
+      "id": "D5E5",
+      "r": [
+        [
+          "STAT_TMS_ID_LINKS_WERT",
+          2
+        ],
+        [
+          "STAT_TMS_ID_RECHTS_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "AHL_LWR_FAHRSITUATION",
+      "s": 46,
+      "id": "D5E6",
+      "a": [
+        [
+          "FAHRLICHTSITUATION",
+          1,
+          "TAB_FAHRLICHTSITUATION_2"
+        ]
+      ]
+    },
+    {
+      "n": "AHL_LWR_FAHRSITUATION",
+      "s": 34,
+      "id": "D5E6",
+      "a": [
+        [
+          "FAHRLICHTSITUATION",
+          1,
+          "TAB_FAHRLICHTSITUATION_2"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_FAHRLICHTSITUATION_LINKS_NR",
+          1,
+          {
+            "e": "TAB_FAHRLICHTSITUATION_2"
+          }
+        ],
+        [
+          "STAT_FAHRLICHTSITUATION_RECHTS_NR",
+          1,
+          {
+            "e": "TAB_FAHRLICHTSITUATION_2"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KUEHLMITTELSTAND",
+      "s": 34,
+      "id": "D672",
+      "r": [
+        [
+          "STAT_KUEHLMITTELSTAND_EIN",
+          1
+        ],
+        [
+          "STAT_KUEHLMITTELSTAND_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "WASSERVENTIL_DUO_PWM_WERT",
+      "s": 34,
+      "id": "D89E",
+      "a": [
+        [
+          "PWM_VENTIL_FAHRER",
+          2
+        ],
+        [
+          "PWM_VENTIL_BEIFAHRER",
+          2
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_WASSERVENTIL_FAHRER_PWM_WERT",
+          1
+        ],
+        [
+          "STAT_WASSERVENTIL_BEIFAHRER_PWM_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "WASSERVENTIL_DUO_PWM_WERT",
+      "s": 46,
+      "id": "D89E",
+      "a": [
+        [
+          "PWM_VENTIL_FAHRER",
+          2
+        ],
+        [
+          "PWM_VENTIL_BEIFAHRER",
+          2
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VORHANDEN_FONDSCHICHTUNG",
+      "s": 34,
+      "id": "D8AA",
+      "p": "raw"
+    },
+    {
+      "n": "SOLARSENSOR_VORHANDEN",
+      "s": 34,
+      "id": "D8AB",
+      "p": "raw"
+    },
+    {
+      "n": "AUC_SENSOR_VORHANDEN",
+      "s": 34,
+      "id": "D8AC",
+      "p": "raw"
+    },
+    {
+      "n": "ZUSATZWASSERPUMPE",
+      "s": 34,
+      "id": "D903",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_ZUSATZWASSERPUMPE_EIN",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "ZUSATZWASSERPUMPE",
+      "s": 46,
+      "id": "D903",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "KLIMAKOMPRESSOR",
+      "s": 34,
+      "id": "D906",
+      "r": [
+        [
+          "STAT_KLIMAKOMPRESSOR_EIN",
+          2
+        ],
+        [
+          "STAT_KLIMAKOMPRESSOR_PWM_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "KLIMAKOMPRESSOR_ANSTEUERN",
+      "s": 46,
+      "id": "D908",
+      "a": [
+        [
+          "PWM",
+          2
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VORHANDEN_KOMPRESSORKUPPLUNG",
+      "s": 34,
+      "id": "D916",
+      "p": "raw"
+    },
+    {
+      "n": "DRUCKSENSOR_VORHANDEN",
+      "s": 34,
+      "id": "D959",
+      "p": "raw"
+    },
+    {
+      "n": "VORHANDEN_WASSERVENTIL",
+      "s": 34,
+      "id": "D95A",
+      "r": [
+        [
+          "STAT_VORHANDEN_WASSERVENTIL_MONO",
+          1
+        ],
+        [
+          "STAT_VORHANDEN_WASSERVENTIL_DUO",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SOLARSENSOR",
+      "s": 34,
+      "id": "D961",
+      "r": [
+        [
+          "STAT_SOLARSENSOR_FA_WERT",
+          2,
+          {
+            "s": [
+              4.0158,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SOLARSENSOR_BF_WERT",
+          2,
+          {
+            "s": [
+              4.0158,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "AUC_SENSOR",
+      "s": 34,
+      "id": "D963",
+      "p": "raw"
+    },
+    {
+      "n": "DRUCKSENSOR",
+      "s": 34,
+      "id": "D967",
+      "p": "raw"
+    },
+    {
+      "n": "BESCHLAGSENSOR",
+      "s": 34,
+      "id": "D96C",
+      "r": [
+        [
+          "STAT_BESCHLAGSENSOR_WERT",
+          2,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BESCHLAGSENSOR_TEMP_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              -40
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "BESCHLAGSENSOR_VORHANDEN",
+      "s": 34,
+      "id": "D96D",
+      "p": "raw"
+    },
+    {
+      "n": "FONDSCHICHTUNGS_POTI",
+      "s": 34,
+      "id": "D96E",
+      "p": "raw"
+    },
+    {
+      "n": "KOMPRESSORKUPPLUNG",
+      "s": 34,
+      "id": "D971",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_KOMPRESSOR_KUPPLUNG_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "KOMPRESSORKUPPLUNG",
+      "s": 46,
+      "id": "D971",
+      "a": [
+        [
+          "AKTION",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_TASTER",
+      "s": 46,
+      "id": "DA0D",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_TASTER",
+      "s": 34,
+      "id": "DA0D",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_HUD_TASTER_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "LENKRAD_SCHALTPADDLES",
+      "s": 34,
+      "id": "DA24",
+      "r": [
+        [
+          "STAT_LENKRAD_SCHALTPADDLE_NR",
+          1,
+          {
+            "e": "TAB_SCHALTWIPPE"
+          }
+        ],
+        [
+          "STAT_SCHALTPADDLES_AD_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_HISTORIE_ZUENDUNG_EIN",
+      "s": 46,
+      "id": "DA4B",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HISTORIENSPEICHER_SPERRE"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_KLEMMEN_HISTORIE",
+      "s": 46,
+      "id": "DA4C",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HISTORIENSPEICHER_SPERRE"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_STANDVERBRAUCHER_HISTORIE",
+      "s": 46,
+      "id": "DA4D",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HISTORIENSPEICHER_SPERRE"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_ZV_HISTORIE",
+      "s": 46,
+      "id": "DA4E",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HISTORIENSPEICHER_SPERRE"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_ELV_HISTORIE",
+      "s": 46,
+      "id": "DA4F",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HISTORIENSPEICHER_SPERRE"
+        ]
+      ]
+    },
+    {
+      "n": "DC_DC_WANDLER_VORHANDEN",
+      "s": 34,
+      "id": "DA54",
+      "r": [
+        [
+          "STAT_DC_DC_WANDLER_1_VORHANDEN",
+          1
+        ],
+        [
+          "STAT_DC_DC_WANDLER_2_VORHANDEN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "TUERKONTAKT_BF",
+      "s": 34,
+      "id": "DA77",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HW_KONTAKT"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TUERKONTAKT_BF",
+          1,
+          {
+            "e": "TAB_CAS_HW_KONTAKT"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TUERKONTAKT_BF",
+      "s": 47,
+      "id": "DA77",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HW_KONTAKT"
+        ]
+      ]
+    },
+    {
+      "n": "TUERKONTAKT_BFH",
+      "s": 47,
+      "id": "DA78",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HW_KONTAKT"
+        ]
+      ]
+    },
+    {
+      "n": "TUERKONTAKT_BFH",
+      "s": 34,
+      "id": "DA78",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HW_KONTAKT"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TUERKONTAKT_BFH",
+          1,
+          {
+            "e": "TAB_CAS_TUERKONTAKT"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TUERKONTAKT_FA",
+      "s": 47,
+      "id": "DA79",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HW_KONTAKT"
+        ]
+      ]
+    },
+    {
+      "n": "TUERKONTAKT_FA",
+      "s": 34,
+      "id": "DA79",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HW_KONTAKT"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TUERKONTAKT_FA",
+          1,
+          {
+            "e": "TAB_CAS_TUERKONTAKT"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TUERKONTAKT_FAH",
+      "s": 47,
+      "id": "DA7A",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HW_KONTAKT"
+        ]
+      ]
+    },
+    {
+      "n": "TUERKONTAKT_FAH",
+      "s": 34,
+      "id": "DA7A",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HW_KONTAKT"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TUERKONTAKT_FAH",
+          1,
+          {
+            "e": "TAB_CAS_HW_KONTAKT"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ZV_BEIFAHRER",
+      "s": 34,
+      "id": "DA81",
+      "r": [
+        [
+          "STAT_ZV_BF_ENTRIEGELT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_ZV_BF_VERRIEGELT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_ZV_BF_GESICHERT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ZV_BEIFAHRER_HINTEN",
+      "s": 34,
+      "id": "DA82",
+      "r": [
+        [
+          "STAT_ZV_BFH_ENTRIEGELT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_ZV_BFH_VERRIEGELT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_ZV_BFH_GESICHERT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ZV_FAHRER",
+      "s": 34,
+      "id": "DA83",
+      "r": [
+        [
+          "STAT_ZV_FA_ENTRIEGELT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_ZV_FA_VERRIEGELT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_ZV_FA_GESICHERT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ZV_FAHRER_HINTEN",
+      "s": 34,
+      "id": "DA84",
+      "r": [
+        [
+          "STAT_ZV_FAH_ENTRIEGELT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_ZV_FAH_VERRIEGELT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_ZV_FAH_GESICHERT",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ZV_GESAMT",
+      "s": 34,
+      "id": "DA87",
+      "r": [
+        [
+          "STAT_ZV_FA_NR",
+          1,
+          {
+            "e": "TAB_CAS_ZV_STATUS"
+          }
+        ],
+        [
+          "STAT_ZV_BF_NR",
+          1,
+          {
+            "e": "TAB_CAS_ZV_STATUS"
+          }
+        ],
+        [
+          "STAT_ZV_FAH_NR",
+          1,
+          {
+            "e": "TAB_CAS_ZV_STATUS"
+          }
+        ],
+        [
+          "STAT_ZV_BFH_NR",
+          1,
+          {
+            "e": "TAB_CAS_ZV_STATUS"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "SPANNUNG_KLEMMEN",
+      "s": 34,
+      "id": "DAB3",
+      "r": [
+        [
+          "STAT_SPANNUNG_KLEMME_30B_1_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_30B_2_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_30B_3_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_15WUP_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_15N1_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_15N2_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_15_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STROM_KLEMME_15_50_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_50_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_50MSA_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STROM_LF_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DIAG_LF_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_31ELV_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_KLEMME_30ELV_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SPANNUNG_INNENTEMPERATUR_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KEY_VALID_NR_AKTUELL",
+      "s": 34,
+      "id": "DAB4",
+      "p": "raw"
+    },
+    {
+      "n": "CA_TAGE_ER_LEITUNG",
+      "s": 34,
+      "id": "DAB5",
+      "r": [
+        [
+          "STAT_TAGE_ER_FT",
+          1,
+          {
+            "e": "TAB_CAS_CA_TAGE_ER_LEITUNG"
+          }
+        ],
+        [
+          "STAT_TAGE_ER_BFT",
+          1,
+          {
+            "e": "TAB_CAS_CA_TAGE_ER_LEITUNG"
+          }
+        ],
+        [
+          "STAT_TAGE_ER_FTH",
+          1,
+          {
+            "e": "TAB_CAS_CA_TAGE_ER_LEITUNG"
+          }
+        ],
+        [
+          "STAT_TAGE_ER_BFTH",
+          1,
+          {
+            "e": "TAB_CAS_CA_TAGE_ER_LEITUNG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "START_STOP_TASTER",
+      "s": 34,
+      "id": "DAB6",
+      "p": "raw"
+    },
+    {
+      "n": "STEUERN_FAHRPROFIL",
+      "s": 46,
+      "id": "DAB8",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HISTORIENSPEICHER_SPERRE"
+        ]
+      ]
+    },
+    {
+      "n": "CAS_MONTAGEMODUS",
+      "s": 34,
+      "id": "DAB9",
+      "a": [
+        [
+          "CAS_MONTAGEMODUS",
+          1,
+          "TAB_CAS_MONTAGEMODUS"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_CAS_MONTAGEMODUS",
+          1,
+          {
+            "e": "TAB_CAS_MONTAGEMODUS"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "CAS_MONTAGEMODUS",
+      "s": 46,
+      "id": "DAB9",
+      "a": [
+        [
+          "CAS_MONTAGEMODUS",
+          1,
+          "TAB_CAS_MONTAGEMODUS"
+        ]
+      ]
+    },
+    {
+      "n": "STATUS_KLEMMEN_VERHINDERER",
+      "s": 34,
+      "id": "DABA",
+      "r": [
+        [
+          "STAT_KL15_EIN_VERHINDERER",
+          1,
+          {
+            "e": "TAB_CAS_KLEMMEN_VERHINDERER"
+          }
+        ],
+        [
+          "STAT_KL15_AUS_VERHINDERER",
+          1,
+          {
+            "e": "TAB_CAS_KLEMMEN_VERHINDERER"
+          }
+        ],
+        [
+          "STAT_KL50_EIN_VERHINDERER",
+          1,
+          {
+            "e": "TAB_CAS_KLEMMEN_VERHINDERER"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "BUS_IN_DATUM_ZEIT",
+      "s": 34,
+      "id": "DABB",
+      "r": [
+        [
+          "STAT_BUS_IN_ZEIT_STUNDEN_WERT",
+          1
+        ],
+        [
+          "STAT_BUS_IN_ZEIT_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_BUS_IN_DATUM_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BUS_IN_DATUM_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BUS_IN_DATUM_JAHR_WERT",
+          2
+        ],
+        [
+          "STAT_BUS_IN_ZEIT_RELATIV_WERT",
+          4
+        ],
+        [
+          "STAT_BUS_IN_ZEIT_TAGE_RELATIV_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "BUS_IN_DME1",
+      "s": 34,
+      "id": "DABC",
+      "r": [
+        [
+          "STAT_BUS_IN_GANG",
+          1,
+          {
+            "e": "TAB_CAS_GANG"
+          }
+        ],
+        [
+          "STAT_BUS_IN_MOTOR_LAEUFT",
+          1,
+          {
+            "e": "TAB_CAS_MOTOR_STATUS"
+          }
+        ],
+        [
+          "STAT_BUS_IN_MOTOR_FREIGABE",
+          1,
+          {
+            "e": "TAB_CAS_MOTORSTART_FREIGABE"
+          }
+        ],
+        [
+          "STAT_BUS_IN_ANLASSER_SPERRE",
+          1,
+          {
+            "e": "TAB_CAS_MOTOR_ANLASSERSPERRE"
+          }
+        ],
+        [
+          "STAT_BUS_IN_KUPPLUNG",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_BUS_IN_DREHZAHL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              4,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "BUS_IN_DSC",
+      "s": 34,
+      "id": "DABD",
+      "r": [
+        [
+          "STAT_BUS_IN_GESCHW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              64,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BUS_IN_GESCHW_STATUS",
+          1,
+          {
+            "e": "TAB_CAS_GESCHW_STATUS"
+          }
+        ],
+        [
+          "STAT_BUS_IN_BREMSPEDAL",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_HISTORIE_30F_ABSCHALTUNG",
+      "s": 46,
+      "id": "DABE",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HISTORIENSPEICHER_SPERRE"
+        ]
+      ]
+    },
+    {
+      "n": "BUS_IN_FH",
+      "s": 34,
+      "id": "DABF",
+      "r": [
+        [
+          "STAT_BUS_IN_FH_FT",
+          1,
+          {
+            "e": "TAB_CAS_FH_STATUS"
+          }
+        ],
+        [
+          "STAT_BUS_IN_FH_BFT",
+          1,
+          {
+            "e": "TAB_CAS_FH_STATUS"
+          }
+        ],
+        [
+          "STAT_BUS_IN_FH_FTH",
+          1,
+          {
+            "e": "TAB_CAS_FH_STATUS"
+          }
+        ],
+        [
+          "STAT_BUS_IN_FH_BFTH",
+          1,
+          {
+            "e": "TAB_CAS_FH_STATUS"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_HISTORIE_KL30B_AKTIV",
+      "s": 46,
+      "id": "DAC0",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_CAS_HISTORIENSPEICHER_SPERRE"
+        ]
+      ]
+    },
+    {
+      "n": "CA_TAGE_SPERRSTATUS",
+      "s": 46,
+      "id": "DAC4",
+      "a": [
+        [
+          "TAGE_FT_ER_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_FT_DATA_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_BFT_ER_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_BFT_DATA_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_FTH_ER_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_FTH_DATA_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_BFTH_ER_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_BFTH_DATA_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ]
+      ]
+    },
+    {
+      "n": "CA_TAGE_SPERRSTATUS",
+      "s": 34,
+      "id": "DAC4",
+      "a": [
+        [
+          "TAGE_FT_ER_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_FT_DATA_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_BFT_ER_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_BFT_DATA_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_FTH_ER_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_FTH_DATA_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_BFTH_ER_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ],
+        [
+          "TAGE_BFTH_DATA_SPERRE",
+          1,
+          "TAB_TAGE_SPERRSTATUS_ARG"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TAGE_FT_ER_SPERRSTATUS",
+          1,
+          {
+            "e": "TAB_CAS_TAGE_SPERRSTATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_FT_DATA_SPERRSTATUS",
+          1,
+          {
+            "e": "TAB_CAS_TAGE_SPERRSTATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_BFT_ER_SPERRSTATUS",
+          1,
+          {
+            "e": "TAB_CAS_TAGE_SPERRSTATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_BFT_DATA_SPERRSTATUS",
+          1,
+          {
+            "e": "TAB_CAS_TAGE_SPERRSTATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_FTH_ER_SPERRSTATUS",
+          1,
+          {
+            "e": "TAB_CAS_TAGE_SPERRSTATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_FTH_DATA_SPERRSTATUS",
+          1,
+          {
+            "e": "TAB_CAS_TAGE_SPERRSTATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_BFTH_ER_SPERRSTATUS",
+          1,
+          {
+            "e": "TAB_CAS_TAGE_SPERRSTATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_BFTH_DATA_SPERRSTATUS",
+          1,
+          {
+            "e": "TAB_CAS_TAGE_SPERRSTATUS"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "CA_TAGE_STATUS",
+      "s": 34,
+      "id": "DACA",
+      "r": [
+        [
+          "STAT_TAGE_FT",
+          1,
+          {
+            "e": "TAB_CAS_CA_TAGE_STATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_BFT",
+          1,
+          {
+            "e": "TAB_CAS_CA_TAGE_STATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_FTH",
+          1,
+          {
+            "e": "TAB_CAS_CA_TAGE_STATUS"
+          }
+        ],
+        [
+          "STAT_TAGE_BFTH",
+          1,
+          {
+            "e": "TAB_CAS_CA_TAGE_STATUS"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "SPANNUNG_KLEMME_30L1",
+      "s": 34,
+      "id": "DAD6",
+      "p": "raw"
+    },
+    {
+      "n": "SPANNUNG_KLEMME_30L2",
+      "s": 34,
+      "id": "DAD7",
+      "p": "raw"
+    },
+    {
+      "n": "KLEMMENSTEUERUNG_KURZSCHLUSSABSCHALTUNG",
+      "s": 34,
+      "id": "DB12",
+      "r": [
+        [
+          "STAT_KURZSCHLUSSABSCHALTUNG_TREIBER_15N1_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_KURZSCHLUSSABSCHALTUNG_TREIBER_15N2_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_KURZSCHLUSSABSCHALTUNG_TREIBER_KL30BACSM_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_KURZSCHLUSSABSCHALTUNG_TREIBER_KL301_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ],
+        [
+          "STAT_KURZSCHLUSSABSCHALTUNG_TREIBER_KL302_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "NACHLAUFZEIT_KLEMME_15N",
+      "s": 34,
+      "id": "DB2D",
+      "p": "raw"
+    },
+    {
+      "n": "NACHLAUFZEIT_KLEMME_30B",
+      "s": 34,
+      "id": "DB2E",
+      "p": "raw"
+    },
+    {
+      "n": "ACC_TASTER",
+      "s": 46,
+      "id": "DBEA",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "ACC_TASTER",
+      "s": 34,
+      "id": "DBEA",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_ACC_TASTER_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "ACC_TASTER_LED",
+      "s": 46,
+      "id": "DBEB",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "ACC_TASTER_LED",
+      "s": 34,
+      "id": "DBEB",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_ACC_TASTER_LED_NR",
+          1,
+          {
+            "e": "TAB_LED"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "HO_INFO",
+      "s": 46,
+      "id": "DC54",
+      "a": [
+        [
+          "HAENDLER_NUMMER",
+          5
+        ],
+        [
+          "ERSTZULASSUNGSDATUM_TAG",
+          1
+        ],
+        [
+          "ERSTZULASSUNGSDATUM_MONAT",
+          1
+        ],
+        [
+          "ERSTZULASSUNGSDATUM_JAHR",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "HO_INFO",
+      "s": 34,
+      "id": "DC54",
+      "a": [
+        [
+          "HAENDLER_NUMMER",
+          5
+        ],
+        [
+          "ERSTZULASSUNGSDATUM_TAG",
+          1
+        ],
+        [
+          "ERSTZULASSUNGSDATUM_MONAT",
+          1
+        ],
+        [
+          "ERSTZULASSUNGSDATUM_JAHR",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_HAENDLER_NUMMER_WERT",
+          5
+        ],
+        [
+          "STAT_ERSTZULASSUNGSDATUM_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_ERSTZULASSUNGSDATUM_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_ERSTZULASSUNGSDATUM_JAHR_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "STATUS_KLEMMEN",
+      "s": 34,
+      "id": "DC56",
+      "p": "raw"
+    },
+    {
+      "n": "STATUS_KL15_ABSCHALTUNG",
+      "s": 34,
+      "id": "DC57",
+      "r": [
+        [
+          "STAT_CODIERUNG_KL15_ABSCHALTUNG_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_BREMSE_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_MOTORLAUF_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_KUPPLUNG_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_FEMODE_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_GESCHWINDIGKEIT_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_GESCHWINDIGKEIT_UNPLAUSIBEL_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_MSA_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_ABBLENDLICHT_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_WAEHLHEBEL_IN_N_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_DIAGNOSE_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_FLA_MODE_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_PRAESENTATIONSMODUS_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_OBDKOMMUNIKATION_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_FREMDLADUNG_HYBRID_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_GURT_FAHRER_GESTECKT_AKTIV",
+          1
+        ],
+        [
+          "STAT_ABSCHALTVERHINDERER_AKTIV",
+          1
+        ],
+        [
+          "STAT_AUTOMATISCHE_ABSCHALTUNG_DURCHGEFUEHRT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "ANSTEUERUNG_KL30F_HINTEN",
+      "s": 34,
+      "id": "DC5A",
+      "r": [
+        [
+          "STAT_KL30F_HINTEN_AN",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG_PEGEL"
+          }
+        ],
+        [
+          "STAT_KL30F_HINTEN_AUS",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG_PEGEL"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "START_STOP_TASTER_SENSOREN",
+      "s": 47,
+      "id": "DC60",
+      "a": [
+        [
+          "SST",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ]
+    },
+    {
+      "n": "START_STOP_TASTER_SENSOREN",
+      "s": 34,
+      "id": "DC60",
+      "a": [
+        [
+          "SST",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SSTA_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_HALL_SENSOR"
+          }
+        ],
+        [
+          "STAT_SSTB_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_HALL_SENSOR"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "BREMSLICHT_SCHALTER",
+      "s": 34,
+      "id": "DC61",
+      "p": "raw"
+    },
+    {
+      "n": "KUPPL_PN_SCHALTER",
+      "s": 34,
+      "id": "DC63",
+      "p": "raw"
+    },
+    {
+      "n": "CENTERLOCK_TASTER",
+      "s": 47,
+      "id": "DC64",
+      "a": [
+        [
+          "TASTER_CENTERLOCK",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ]
+    },
+    {
+      "n": "CENTERLOCK_TASTER",
+      "s": 34,
+      "id": "DC64",
+      "a": [
+        [
+          "TASTER_CENTERLOCK",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TASTER_CENTERLOCK_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "MOTORHAUBE_SCHALTER",
+      "s": 34,
+      "id": "DC65",
+      "p": "raw"
+    },
+    {
+      "n": "HOTEL_SCHALTER",
+      "s": 34,
+      "id": "DC66",
+      "p": "raw"
+    },
+    {
+      "n": "MSA_TASTER",
+      "s": 34,
+      "id": "DC67",
+      "a": [
+        [
+          "TASTER_MSA",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TASTER_MSA_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "MSA_TASTER",
+      "s": 47,
+      "id": "DC67",
+      "a": [
+        [
+          "TASTER_MSA",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ]
+    },
+    {
+      "n": "TASTER_SICHERN_HECKKL",
+      "s": 34,
+      "id": "DC68",
+      "a": [
+        [
+          "TASTER_SICHERN_HECKKL",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TASTER_SICHERN_HECKKL_AKTIV",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TASTER_SICHERN_HECKKL",
+      "s": 47,
+      "id": "DC68",
+      "a": [
+        [
+          "TASTER_SICHERN_HECKKL",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ]
+    },
+    {
+      "n": "HECKKLAPPE_TASTER_OEFFNEN_INNEN",
+      "s": 47,
+      "id": "DC69",
+      "a": [
+        [
+          "TASTER_OEFFNEN_HECKKLAPPE_INNEN",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ]
+    },
+    {
+      "n": "HECKKLAPPE_TASTER_OEFFNEN_INNEN",
+      "s": 34,
+      "id": "DC69",
+      "a": [
+        [
+          "TASTER_OEFFNEN_HECKKLAPPE_INNEN",
+          1,
+          "TAB_CAS_DIGITAL_EINGANG"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TASTER_HECKKLAPPE_OEFFNEN_INNEN_NR",
+          1,
+          {
+            "e": "TAB_CAS_DIGITAL_EINGANG"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "SARAH",
+      "s": 34,
+      "id": "DC83",
+      "a": [
+        [
+          "SARAH",
+          1,
+          "TAB_SARAH_ZUSTAND"
+        ],
+        [
+          "AUFFAHRWARNUNG",
+          1
+        ],
+        [
+          "VORWARNUNG",
+          1,
+          "TAB_VORWARNUNG"
+        ],
+        [
+          "PERSONENWARNUNG",
+          1
+        ],
+        [
+          "GEZIELTES_ANLEUCHTEN",
+          1
+        ],
+        [
+          "SPURVERLASSENSWARNUNG",
+          1
+        ],
+        [
+          "SPURWECHSELWARNUNG",
+          1
+        ],
+        [
+          "RESERVE_1",
+          1
+        ],
+        [
+          "RESERVE_2",
+          1
+        ],
+        [
+          "RESERVE_3",
+          1
+        ],
+        [
+          "RESERVE_4",
+          1
+        ],
+        [
+          "RESERVE_5",
+          1
+        ],
+        [
+          "RESERVE_6",
+          1
+        ],
+        [
+          "RESERVE_7",
+          1
+        ],
+        [
+          "RESERVE_8",
+          1
+        ],
+        [
+          "RESERVE_9",
+          1
+        ],
+        [
+          "RESERVE_10",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SARAH",
+          1,
+          {
+            "e": "TAB_SARAH_ZUSTAND"
+          }
+        ],
+        [
+          "STAT_AUFFAHRWARNUNG",
+          1
+        ],
+        [
+          "STAT_VORWARNUNG",
+          1,
+          {
+            "e": "TAB_VORWARNUNG"
+          }
+        ],
+        [
+          "STAT_PERSONENWARNUNG",
+          1
+        ],
+        [
+          "STAT_GEZIELTES_ANLEUCHTEN",
+          1
+        ],
+        [
+          "STAT_SPURVERLASSENSWARNUNG",
+          1
+        ],
+        [
+          "STAT_SPURWECHSELWARNUNG",
+          1
+        ],
+        [
+          "STAT_RESERVE_1",
+          1
+        ],
+        [
+          "STAT_RESERVE_2",
+          1
+        ],
+        [
+          "STAT_RESERVE_3",
+          1
+        ],
+        [
+          "STAT_RESERVE_4",
+          1
+        ],
+        [
+          "STAT_RESERVE_5",
+          1
+        ],
+        [
+          "STAT_RESERVE_6",
+          1
+        ],
+        [
+          "STAT_RESERVE_7",
+          1
+        ],
+        [
+          "STAT_RESERVE_8",
+          1
+        ],
+        [
+          "STAT_RESERVE_9",
+          1
+        ],
+        [
+          "STAT_RESERVE_10",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SARAH",
+      "s": 46,
+      "id": "DC83",
+      "a": [
+        [
+          "SARAH",
+          1,
+          "TAB_SARAH_ZUSTAND"
+        ],
+        [
+          "AUFFAHRWARNUNG",
+          1
+        ],
+        [
+          "VORWARNUNG",
+          1,
+          "TAB_VORWARNUNG"
+        ],
+        [
+          "PERSONENWARNUNG",
+          1
+        ],
+        [
+          "GEZIELTES_ANLEUCHTEN",
+          1
+        ],
+        [
+          "SPURVERLASSENSWARNUNG",
+          1
+        ],
+        [
+          "SPURWECHSELWARNUNG",
+          1
+        ],
+        [
+          "RESERVE_1",
+          1
+        ],
+        [
+          "RESERVE_2",
+          1
+        ],
+        [
+          "RESERVE_3",
+          1
+        ],
+        [
+          "RESERVE_4",
+          1
+        ],
+        [
+          "RESERVE_5",
+          1
+        ],
+        [
+          "RESERVE_6",
+          1
+        ],
+        [
+          "RESERVE_7",
+          1
+        ],
+        [
+          "RESERVE_8",
+          1
+        ],
+        [
+          "RESERVE_9",
+          1
+        ],
+        [
+          "RESERVE_10",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SARAH_TASTER",
+      "s": 34,
+      "id": "DC84",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SARAH_TASTER_EIN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SARAH_TASTER",
+      "s": 46,
+      "id": "DC84",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SARAH_TASTER_LED",
+      "s": 34,
+      "id": "DC85",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_SARAH_LED"
+        ]
+      ],
+      "r": [
+        [
+          "STAT_SARAH_TASTER_LED_NR",
+          1,
+          {
+            "e": "TAB_SARAH_LED"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "SARAH_TASTER_LED",
+      "s": 46,
+      "id": "DC85",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_SARAH_LED"
+        ]
+      ]
+    },
+    {
+      "n": "_STEUERN_DFZ_ALARM",
+      "s": 49,
+      "id": "F002",
+      "a": [
+        [
+          "DFZ_ALARM_TYP",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_STEUERN_DFZ_VERBINDUNGSENDE",
+      "s": 49,
+      "id": "F003"
+    },
+    {
+      "n": "_CTRL_XCP_PROTOCOL",
+      "s": 49,
+      "id": "F004"
+    },
+    {
+      "n": "_LIN_ANFRAGE",
+      "s": 49,
+      "id": "F009"
+    },
+    {
+      "n": "_SENSE_LESEN",
+      "s": 49,
+      "id": "F100",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_AUSGANG_LEUCHTEN"
+        ]
+      ]
+    },
+    {
+      "n": "READHWMODIFICATIONINDEX",
+      "s": 34,
+      "id": "F152",
+      "r": [
+        [
+          "STAT_HW_MODIFICATION_INDEX_WERT",
+          1
+        ],
+        [
+          "BF_22_F152_SUPPLIERINFO",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_HWMODEL",
+                "0xC0",
+                "HW_MODEL"
+              ],
+              [
+                "STAT_SUPPLIERINFOFIELD",
+                "0x3F",
+                "TAB_SUPPLIERINFO_FIELD"
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "_FH_DEBUG_OUTPUT_KONF",
+      "s": 49,
+      "id": "F200",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_FH_AUSWAHL"
+        ],
+        [
+          "CONF_CAN_DEBUG_CH_1",
+          1
+        ],
+        [
+          "CONF_CAN_DEBUG_CH_2",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_FH_LAST_HALL_EVENTS",
+      "s": 49,
+      "id": "F221",
+      "a": [
+        [
+          "ELEMENT",
+          1,
+          "TAB_DEV_FH_ELEMENT"
+        ],
+        [
+          "MODE",
+          1,
+          "TAB_DEV_FH_QUEUE_MODE"
+        ]
+      ]
+    }
+  ],
+  "enums": {
+    "TAB_CAS_SERVICE_SCHLUESSELDATEN_BLOCK_NR": {
+      "Datenblock 0": 0,
+      "Datenblock 1": 1,
+      "Datenblock 2": 2,
+      "Datenblock 3": 3,
+      "Datenblock 4": 4,
+      "Datenblock 5": 5,
+      "Datenblock 6": 6,
+      "Datenblock 7": 7,
+      "Datenblock 8": 8,
+      "Datenblock 9": 9,
+      "Datenblock 10": 10,
+      "Datenblock 11": 11,
+      "Datenblock 12": 12,
+      "Datenblock 13": 13,
+      "Datenblock 14": 14,
+      "Datenblock 15": 15,
+      "Datenblock 16": 16,
+      "unbekannt": 255
+    },
+    "TAB_CAS_SERVICE_SCHLUESSELDATEN_UPDATE_MODUS": {
+      "Vollständiges Update im CAS-Speicher / Vollständige Übertragung in Schlüssel": 0,
+      "Vollständiges Update im CAS-Speicher / Inkrementelle Übertragung in Schlüssel": 1,
+      "Kein Update im CAS-Speicher / Vollständige Übertragung in Schlüssel": 2,
+      "Kein Update im CAS-Speicher / Inkrementelle Übertragung in Schlüssel": 3,
+      "Update nur der CBS/CC-Umfänge im CAS/FEM-Speicher/Keine Übertragung in Schlüssel": 14,
+      "Vollständiges Update im CAS-Speicher / Keine Übertragung in Schlüssel": 15
+    },
+    "TAB_DEV_AUSGANG_LEUCHTEN": {
+      "AL_L": 1,
+      "AL_R": 2,
+      "TFL_L": 3,
+      "TFL_R": 4,
+      "SML_L": 5,
+      "SML_R": 6,
+      "FL_L": 7,
+      "FL_R": 8,
+      "POL_L": 9,
+      "POL_R": 10,
+      "NSW_L": 11,
+      "NSW_R": 12,
+      "FRA_V_L": 13,
+      "FRA_V_R": 14,
+      "FRA_Z_L": 16,
+      "FRA_Z_R": 17,
+      "BIX_L": 18,
+      "BIX_R": 19,
+      "WBL_LED": 38,
+      "LCI_0": 39,
+      "LCI_1": 40,
+      "LCI_2": 41,
+      "LCI_3": 42,
+      "LCI_4": 43,
+      "LCI_5": 44,
+      "LCI_6": 45,
+      "LCI_7": 46,
+      "LCI_8": 47,
+      "TMS_LEUCHTRING_L": 48,
+      "TMS_LEUCHTRING_R": 49,
+      "TMS_SML_L": 50,
+      "TMS_SML_R": 51,
+      "TMS_DESIGN_L": 52,
+      "TMS_DESIGN_R": 53,
+      "ALLE": 254,
+      "UNGUELTIG": 255
+    },
+    "TAB_INNENLICHT": {
+      "INNENLICHT_WBL_LED": 38,
+      "INNENLICHT_LCI_0": 39,
+      "INNENLICHT_LCI_1": 40,
+      "INNENLICHT_LCI_2": 41,
+      "INNENLICHT_LCI_3": 42,
+      "INNENLICHT_LCI_4": 43,
+      "INNENLICHT_LCI_5": 44,
+      "INNENLICHT_LCI_6": 45,
+      "INNENLICHT_LCI_7": 46,
+      "INNENLICHT_LCI_8": 47
+    },
+    "TAB_ZSG_BF_WECK_GRUND": {
+      "ECUMA_DEFAULT": 0,
+      "ECUMA_IM_NOTINITIALIZED": 1,
+      "ECUMA_DIAGSESSION_ACTIVE": 15,
+      "ECUMA_GW_15_ON": 16,
+      "ECUMA_GW_15WUP": 17,
+      "ECUMA_GW_POWER_ON": 18,
+      "ECUMA_GW_ETHERNET_OBD_ACT": 19,
+      "ECUMA_GW_CAN_ZSG": 21,
+      "ECUMA_GW_CAN_FA": 22,
+      "ECUMA_GW_CAN_B": 23,
+      "ECUMA_GW_CAN_B2": 24,
+      "ECUMA_GW_CAN_IK": 25,
+      "ECUMA_GW_CAN_D": 27,
+      "ECUMA_GW_FLEXRAY": 28,
+      "ECUMA_GW_ETHERNET_INT_WAKEUP": 29,
+      "ECUMA_BS_CAN_CAS": 31,
+      "ECUMA_BS_CAN_FA": 33,
+      "ECUMA_BS_LIN_A": 34,
+      "ECUMA_BS_LIN_B": 35,
+      "ECUMA_BS_LIN_C": 36,
+      "ECUMA_BS_LIN_D": 37,
+      "ECUMA_BS_LIN_E": 38,
+      "ECUMA_BS_LIN_F": 39,
+      "ECUMA_BS_LIN_G": 40,
+      "ECUMA_BS_LIN_H": 41,
+      "ECUMA_BS_LIN_I": 42,
+      "ECUMA_TC_PWF_STATE_CHANGE": 46,
+      "ECUMA_TC_PWF_PERM": 47,
+      "ECUMA_TC_15WUP": 48,
+      "ECUMA_TC_15_ON": 49,
+      "ECUMA_TC_15N_ON": 50,
+      "ECUMA_TC_SSPA": 52,
+      "ECUMA_TC_SSPB": 53,
+      "ECUMA_TC_IBS_WUP": 54,
+      "ECUMA_TC_PLOCK": 55,
+      "ECUMA_TC_CLUTCH": 56,
+      "ECUMA_TC_BRAKE": 57,
+      "ECUMA_TC_30B_SCD": 58,
+      "ECUMA_TC_30B_ON": 59,
+      "ECUMA_TC_R_ON": 60,
+      "ECUMA_TC_IBS_ACTIVE": 62,
+      "ECUMA_LC_LCE_ACTIVE": 64,
+      "ECUMA_LC_LCI_ACTIVE": 65,
+      "ECUMA_LC_OP_WARNLIGHT": 66,
+      "ECUMA_LC_OP_INDICATOR_LEFT": 67,
+      "ECUMA_LC_OP_INDICATOR_RIGHT": 68,
+      "ECUMA_LC_OP_HEADLIGHT_FLASHER": 69,
+      "ECUMA_LC_OP_INTERIORLIGHT_FRONT": 70,
+      "ECUMA_LC_OP_INTERIORLIGHT_REAR": 71,
+      "ECUMA_LC_OP_LIGHT_SW": 72,
+      "ECUMA_LC_POSITIONLIGHT_OFF": 73,
+      "ECUMA_LC_INDICATOR_KLR": 74,
+      "ECUMA_LC_WARNLIGHT_KLR": 75,
+      "ECUMA_LC_FOLLOWMEHOME": 76,
+      "ECUMA_LC_WELCOME": 77,
+      "ECUMA_LC_REMOTELIGHT": 78,
+      "ECUMA_LC_DISABLE_DIAGSLEEP": 79,
+      "ECUMA_CL_OP_CL_BUTTON": 80,
+      "ECUMA_CL_OP_DRD": 81,
+      "ECUMA_CL_OP_PSD": 82,
+      "ECUMA_CL_OP_BOOTLID_INT": 83,
+      "ECUMA_CL_OP_BOOTLID_EXT": 84,
+      "ECUMA_CL_OP_BOOTLID_SEC": 85,
+      "ECUMA_CL_OP_REARSCREEN": 86,
+      "ECUMA_CL_OP_HOTEL_MODE": 87,
+      "ECUMA_CL_SWITCH_DOOR_DRD": 88,
+      "ECUMA_CL_SWITCH_DOOR_PSD": 89,
+      "ECUMA_CL_SWITCH_DOOR_DRDR": 90,
+      "ECUMA_CL_SWITCH_DOOR_PSDR": 91,
+      "ECUMA_CL_SWITCH_BONNET": 92,
+      "ECUMA_CL_SWITCH_BOOTLID": 93,
+      "ECUMA_CL_SWITCH_REARSCREEN": 94,
+      "ECUMA_CL_SWITCH_BOOTLID_PRECATCH": 95,
+      "ECUMA_CL_PIA_LOCK_AT_TIMEOUT": 96,
+      "ECUMA_CL_RELAYSTUCK_FAULT": 97,
+      "ECUMA_LC_LOW_BEAM_ACTIVE": 98,
+      "ECUMA_LC_OP_PARKLIGHT": 99,
+      "ECUMA_LC_PARKLIGHT": 100,
+      "ECUMA_LC_INDICATOR": 101,
+      "ECUMA_LC_HEADLIGHT_FLASHER": 102,
+      "ECUMA_PW_OP_SZT_LIN": 112,
+      "ECUMA_PW_OP_PSD_LIN": 113,
+      "ECUMA_PW_OP_DRDR_LIN": 114,
+      "ECUMA_PW_OP_PSDR_LIN": 115,
+      "ECUMA_PW_OP_RSCR_CAB_LIN": 116,
+      "ECUMA_PW_DRIVER_ACTIVE": 121,
+      "ECUMA_PW_RELAYSTUCK_FAULT": 122,
+      "ECUMA_CE_CAP_DRD": 128,
+      "ECUMA_CE_CAP_PSD": 129,
+      "ECUMA_CE_CAP_DRDR": 130,
+      "ECUMA_CE_CAP_PSDR": 131,
+      "ECUMA_CE_PULL_DRD": 132,
+      "ECUMA_CE_PULL_PSD": 133,
+      "ECUMA_CE_PULL_DRDR": 134,
+      "ECUMA_CE_PULL_PSDR": 135,
+      "ECUMA_CE_SMO_ACTIVE": 136,
+      "ECUMA_ECL_ACTIVE": 144,
+      "ECUMA_TR_ACTIVE": 145,
+      "ECUMA_RC_ACTIVE": 146,
+      "ECUMA_EXMI_ACTIVE": 147,
+      "ECUMA_PF_SZL_ESCA_ACTIVE": 148,
+      "ECUMA_AC_WATERPUMPADD_ACTIVE": 152,
+      "ECUMA_AC_WATERVALVE_ACTIVE": 153,
+      "ECUMA_PF_HORN": 154,
+      "ECUMA_WW_ACTIVE": 155,
+      "ECUMA_SH_ACTIVE": 156,
+      "ECUMA_HC_EXMI_ACTIVE": 157,
+      "ECUMA_PF_BB_ACTIVE": 158,
+      "ECUMA_LC_OP_FOG_LIGHT": 159,
+      "ECUMA_LC_OP_REAR_FOG_LIGHT": 160,
+      "ECUMA_PF_OP_SARAH": 161,
+      "ECUMA_PF_OP_FES": 162,
+      "ECUMA_PF_OP_PDC": 163,
+      "ECUMA_PF_OP_SV": 164,
+      "ECUMA_PF_OP_SPOILER": 165,
+      "ECUMA_PF_OP_NIVEAU": 166,
+      "ECUMA_TC_OP_MSA": 167,
+      "ECUMA_PF_OP_MFL_VOL": 168,
+      "ECUMA_PF_OP_MFL_SONDERFUNKTION": 169,
+      "ECUMA_PF_OP_MFL_RAENDEL": 170,
+      "ECUMA_PF_OP_MFL_TEL": 171,
+      "ECUMA_PF_OP_MFL_PTT": 172,
+      "ECUMA_PF_OP_BEAUDIO": 173,
+      "ECUMA_PF_OP_SH_FAH": 179,
+      "ECUMA_PF_OP_SH_BFH": 180,
+      "ECUMA_PF_OP_SEATMEM_FA": 181,
+      "ECUMA_PF_OP_SEATMEM_FAH": 182,
+      "ECUMA_PF_OP_SEATMEM_BF": 183,
+      "ECUMA_PF_OP_SEATMEM_BFH": 184,
+      "ECUMA_PF_OP_S_SVBF_FOND": 185,
+      "ECUMA_INT_UNDERVOLTAGE": 232,
+      "ECUMA_INT_INVALID_ISR": 233,
+      "ECUMA_RESET_RESERVED0": 240,
+      "ECUMA_RESET_RESERVED1": 241,
+      "ECUMA_RESET_RESERVED2": 242,
+      "ECUMA_RESET_RESERVED3": 243,
+      "ECUMA_RESET_ILEGADR": 244,
+      "ECUMA_RESET_CODETRAP": 245,
+      "ECUMA_RESET_LVT": 246,
+      "ECUMA_RESET_SW": 247,
+      "ECUMA_RESET_CHKSTOP": 248,
+      "ECUMA_RESET_INT_WDG": 249,
+      "ECUMA_RESET_LOSSOFPLL": 250,
+      "ECUMA_RESET_OSCILLATOR": 251,
+      "ECUMA_RESET_EXT": 252,
+      "ECUMA_RESET_POWERON": 253,
+      "ECUMA_RESET_UNKOWN": 254,
+      "ECUMA_INVALID": 255
+    },
+    "TAB_DEV_FH_AUSWAHL": {
+      "Keine Auswahl": 0,
+      "Fenster Fahrer": 17,
+      "Fenster Beifahrer": 18,
+      "Fenster Fahrer hinten": 19,
+      "Fenster Beifahrer hinten": 20,
+      "Heckscheibe": 21,
+      "Fenster Fahrer und Beifahrer": 33,
+      "Fenster Fahrer hinten und Beifahrer hinten": 34,
+      "Fenster Fahrer, Beifahrer, Fahrer hinten und Beifahrer hinten": 64,
+      "Fenster Fahrer, Beifahrer, Fahrer hinten, Beifahrer hinten und Heckscheibe": 80,
+      "ungültiger Wert": 255
+    },
+    "TAB_DEV_FH_THERMOMONITOR_SETZEN": {
+      "Keine Thermoschwelle aktiv (Übersteuert)": 0,
+      "Thermo 90 aktiv (Übersteuert)": 1,
+      "Thermo 100 aktiv (Übersteuert)": 2,
+      "Normalbetrieb Schwellen werden entsprechend dem Ergebnis der Berechnung gesetzt": 3
+    },
+    "FH_THERMOMONITOR_AKTIV": {
+      "Keine Thermoschwelle aktiv (übersteuert)": 0,
+      "Thermo 90 aktiv (übersteuert)": 1,
+      "Thermo 100 aktiv (übersteuert)": 2,
+      "Normalbetrieb Schwellen werden entsprechend dem Ergebnis der Berechnung gesetzt": 3,
+      "Thermo 90 aktiv, nicht übersteuert": 4,
+      "Thermo 100 aktiv, nicht übersteuert": 5,
+      "Ungültig": 255
+    },
+    "TAB_DEV_FH_SHD_ESH_MOTORSTOPREASON": {
+      "NOT_STOPPED": 0,
+      "POSITION_REACHED": 1,
+      "STOP_MOVE": 2,
+      "NORM": 3,
+      "RENORM": 4,
+      "PINCHING": 5,
+      "REV_POS_REACHED": 6,
+      "BLOCKED": 7,
+      "NOT_MOVED": 8,
+      "SAFETY_TIMER": 9,
+      "OPPOSITE_DIRECTION": 10,
+      "INVALID_TARGET_POS_LOW": 11,
+      "INVALID_TARGET_POS_HIGH": 12,
+      "STOP_MOVE_HIGH_TEMP": 13,
+      "DRIVER_ERROR": 14,
+      "MOTOR_SHORT": 15,
+      "RESET": 16,
+      "PULSE_LOST": 17,
+      "MOTOR_VOLTAGE_RANGE": 18,
+      "HALL_ERROR": 19,
+      "ERR_MOTOR_OFF_CPU_OVERLOAD": 20,
+      "AUTO_COND_LOST (Conti)": 32,
+      "CODING_FAIL (Conti)": 33,
+      "WAITING_FOR_EE (Conti)": 34,
+      "EE_TIMEOUT (Conti)": 35,
+      "NOT_POSSIBLE_TO_WRITE_EE (Conti)": 36,
+      "HALL_DISABLED (Conti)": 37,
+      "CODING_SESSION (Conti)": 38,
+      "PANIC_NOT_VALID (Conti)": 39,
+      "DIAGNOSTIC_SESSION_ACTIVE (Conti)": 40,
+      "System_SIF_Error (Conti)": 41,
+      "System_Shutdown (Conti)": 42,
+      "Hall_Queue_error (Conti)": 43,
+      "soft stop on bottom (Magna)": 64,
+      "soft stop on top (Magna)": 65,
+      "short drop position (Magna)": 66,
+      "Hall Sensor Period FUSI Error (Magna)": 67,
+      "Relay state FUSI Error (Magna)": 68,
+      "SIF STATE FUSI Error (Magna)": 69,
+      "Vehicle Speed FUSI Error (Magna)": 70,
+      "Vehicle Speed Timeout (Magna)": 71,
+      "stopped for safety in fully closed state (Magna)": 72,
+      "stopped for safety in fully open state (Magna)": 73,
+      "stopped for safety in short drop pos state (Magna)": 74,
+      "stopped in window failure state (Magna)": 75,
+      "stopped before sleep (Magna)": 76,
+      "stopped while opening found not in opening (Magna)": 77,
+      "Motor unit (Magna)": 78,
+      "signature Interference Occurred (Magna)": 79,
+      "position out of validity tolerances (Magna)": 80,
+      "Motor voltage FuSi error (Magna)": 81,
+      "stopped for safety in mid open state (Magna)": 82,
+      "stopped in closing state because moving direction down (Magna)": 83,
+      "stopped for stall up while closing (Magna)": 84,
+      "stopped for stall down while opening (Magna)": 85,
+      "stopped for diagnostic denorm (Magna)": 86,
+      "stopped for hall puls counters different (Magna)": 87,
+      "Stopped for hall A timeout (Magna)": 88,
+      "Stopped for hall B timeout (Magna)": 89,
+      "Stopped for hall A & B timeout (Magna)": 90,
+      "Redundant Stop for Error in writingNvRam at end of movement (Magna)": 91,
+      "Redundant motor Stop for NVRAM block A error (Magna)": 92,
+      "Redundant Stop for coding changed (Magna)": 93,
+      "coding stated (Magna)": 94,
+      "Opening/closing relay: output voltage on the wrong relay. Motor voltage opposite to the command from controller (Magna)": 95,
+      "AUTO_COND_LOST (Brose)": 96,
+      "CODING_FAIL (Brose)": 97,
+      "WAITING_FOR_EE (Brose)": 98,
+      "EE_TIMEOUT (Brose)": 99,
+      "NOT_POSSIBLE_TO_WRITE_EE (Brose)": 100,
+      "HALL_DISABLED (Brose)": 101,
+      "CODING_SESSION (Brose)": 102,
+      "PANIC_NOT_VALID (Brose)": 103,
+      "DIAGNOSTIC_SESSION_ACTIVE (Brose)": 104,
+      "Ungültiger Wert": 255
+    },
+    "TAB_DEV_FH_REVERSIER_URSACHE": {
+      "KEIN FEHLEREINTRAG": 0,
+      "REVERS_ISR": 1,
+      "REVERS_BLOCK": 2,
+      "REVERS_ISRDIAG": 3,
+      "REVERS_AT": 4,
+      "REVERS_AT_DIAG": 5,
+      "REVERS_AT_TIMEOUT (Conti)": 32,
+      "REVERS_ATDIAGTIMEOUT (Conti)": 33,
+      "Reversal in Emergency Mode (Magna)": 64,
+      "Reversed in Timeout (Magna)": 65,
+      "REVERS_AT_TIMEOUT (Brose)": 96,
+      "REVERS_ATDIAGTIMEOUT (Brose)": 97,
+      "Ungültiger Wert": 255
+    },
+    "TAB_DEV_FH_DENORMIER_URSACHE": {
+      "KEIN FEHLEREINTRAG / NORMIERT": 0,
+      "EEPROMFEHLER BEIM STARTUP": 1,
+      "INTERFACE WURDE BEIM STARTUP NICHT BEDIENT": 2,
+      "ÜBERFAHREN DES OBEREN BLOCKS": 3,
+      "ÜBERFAHREN DES UNTEREN BLOCKS": 4,
+      "NICHT PLAUSIBLER ZUSTAND": 5,
+      "FALSCHE POSITION ERKANNT": 6,
+      "RELAISKLEBER_1": 7,
+      "RELAISKLEBER_2": 8,
+      "HALLFEHLER": 9,
+      "EXPLIZITES DENORMIEREN (ASCET)": 10,
+      "TASKS WURDEN NICHT RECHTZEITIG AUFGERUFEN": 11,
+      "HALLUNTERABTASTUNG": 12,
+      "START INITIALISIERUNGSLAUF": 13,
+      "INITIALSIERUNGSLAUF ABGEBROCHEN": 14,
+      "KEINE POSITION NACH RESET": 15,
+      "SIF_ERROR (Conti)": 32,
+      "SIGNATURE_ERROR (Conti)": 33,
+      "HALL_SWITCHED_OFF (Conti)": 34,
+      "HALL_QUEUE_ERROR (Conti)": 35,
+      "NEW_SW_CODING_APPLIED (Conti)": 36,
+      "No init data after reset (Magna)": 64,
+      "Voltage on motor and relays not active, closing (Magna)": 65,
+      "Voltage on motor and relays not active, opening (Magna)": 66,
+      "no pulses from Hall A but pulses from Hall element B (Magna)": 67,
+      "no pulses from Hall B but pulses from Hall element A (Magna)": 68,
+      "Motor actuated; no pulses from Hall elements A+B (Magna)": 69,
+      "Hall pulses not plausible (Magna)": 70,
+      "Wrong motor direction (Magna)": 71,
+      "Wrong motor unit (Magna)": 72,
+      "Timeout Motor actuat (Magna)": 73,
+      "Invalid MRC Logical failure: the MRC is invalid (Magna)": 74,
+      "CPU Overload (Magna)": 75,
+      "start of manual init (Magna)": 76,
+      "Halls Not Ready Voltage Shut Down (Magna)": 77,
+      "Halls Not Ready Open Load (Magna)": 78,
+      "Halls Not Ready Short to ground (Magna)": 79,
+      "Halls Not Ready Short to ubatt (Magna)": 80,
+      "different Software version stored in NvRam (Magna)": 81,
+      "different vendor code stored in NvRam (Magna)": 82,
+      "signature Interference Occurred (Magna)": 83,
+      "No valid position CRC after reset (Magna)": 84,
+      "Hall counters A and B value different (Magna)": 85,
+      "Hall pulses and no motor actuation (Magna)": 86,
+      "FUSI SIF state error (Magna)": 87,
+      "Profile and norming erased by RTERunnable_SwcPwDriverMagna01_diag_diagJobWriteFhKennlinieLoeschen (Magna)": 88,
+      "error saving NVRam after motor stop (Magna)": 89,
+      "coding changed (Magna)": 90,
+      "error in NvRam Block A (Magna)": 91,
+      "error Opening/closing relay: output voltage on the wrong relay. Motor voltage opposite to the command from controller (Magna)": 92,
+      "SIF_ERROR (Brose)": 96,
+      "SIGNATURE_ERROR (Brose)": 97,
+      "HALL_SWITCHED_OFF (Brose)": 98,
+      "DENORM_QUEUE_OVERFLOW (Brose)": 99,
+      "DENORM_SIF_PFM_NOK (Brose)": 100,
+      "DENORM_SIF_TM_NOK (Brose)": 101,
+      "DENORM_SIF_CRM_NOK (Brose)": 102,
+      "DENORM_SIF_VMM_NOK (Brose)": 103,
+      "DENORM_SIF_NVMM_NOK (Brose)": 104,
+      "DENORM_RTE_LOST_DATA (Brose)": 105,
+      "Ungültiger Wert": 255
+    },
+    "TAB_CAS_KLEMMENSTEUERUNG_KURZSCHLUSSABSCHALTUNG_KOMPONENTE": {
+      "Treiber KL15N1": 0,
+      "Treiber KL15N2": 1,
+      "Treiber KL30B-ACSM": 2,
+      "Treiber KL30B-1": 3,
+      "Treiber KL30B-2": 4,
+      "Ungültig/Unbekannt": 255
+    },
+    "TAB_FH_AUSWAHL": {
+      "Keine Auswahl": 0,
+      "Fenster Fahrer": 17,
+      "Fenster Beifahrer": 18,
+      "Fenster Fahrer hinten": 19,
+      "Fenster Beifahrer hinten": 20,
+      "Fenster Fahrer und Beifahrer": 33,
+      "Fenster Fahrer hinten und Beifahrer hinten": 34,
+      "Alle": 64,
+      "ungültiger Wert": 255
+    },
+    "TAB_FH_SHD_ESH_EINLERNEN": {
+      "Einlernen ohne Kraftbegrenzung": 1,
+      "Einlernen mit Kraftbegrenzung": 2,
+      "Einlernen mit Kraftbegrenzung und Not Stop": 3,
+      "Reserviert für Manuelles Einlernen": 4,
+      "Normieren (nur für FH)": 5
+    },
+    "TAB_FH_SHD_ESH_SFK1": {
+      "Kurzhub": 0,
+      "Langhub/Einstiegshilfe": 1,
+      "Cabrio Position": 2,
+      "Crash Position": 3,
+      "Windabweiser": 4,
+      "Komfort-Position": 5,
+      "Anti-Wummer-Position": 6
+    },
+    "TAB_FH_SHD_ESH_TASTER_RICHTUNG": {
+      "keine Betätigung": 0,
+      "Öffnen": 1,
+      "Schliessen": 2,
+      "Maut-Öffnen": 3,
+      "Maut-Schliessen": 4,
+      "Heben": 5
+    },
+    "TAB_FH_SHD_ESH_SERVICEPOSITION": {
+      "Montageposition": 0,
+      "Demontageposition": 1,
+      "Serviceposition A": 2,
+      "Serviceposition B": 3
+    },
+    "TAB_CAS_ELV_AKTION": {
+      "Entriegeln": 0,
+      "Verriegeln": 1,
+      "Nur für Entwicklungszwecke: Full-Cycle (Kompletter Zyklus Verriegeln + Entriegeln)": 2,
+      "Herstellerdaten-Update": 4,
+      "Fehlerzähler löschen": 5,
+      "FullCycle-Merker löschen": 6,
+      "Vorbereitung Fehlerzähler (Escape-Counter) löschen - ELV-Master + ELV-SG": 7,
+      "Verbauerkennung ELV durchführen(OpenLoad-Leitungsdiagnose)": 8
+    },
+    "TAB_CA_SCHLUESSEL_POSITION": {
+      "Schlüssel 0": 0,
+      "Schlüssel 1": 1,
+      "Schlüssel 2": 2,
+      "Schlüssel 3": 3,
+      "Schlüssel 4": 4,
+      "Schlüssel 5": 5,
+      "Schlüssel 6": 6,
+      "Schlüssel 7": 7,
+      "Schlüssel 8": 8,
+      "Schlüssel 9": 9,
+      "Schlüssel 10": 10,
+      "Schlüssel 11": 11,
+      "Schlüssel 12": 12,
+      "Schlüssel 13": 13,
+      "Schlüssel 14": 14,
+      "Schlüssel 15": 15,
+      "Schlüssel 16": 16,
+      "Schlüssel 17": 17,
+      "Schlüssel 18": 18,
+      "Schlüssel 19": 19,
+      "keine Kommunikation möglich oder kein weiterer Schlüssel": 255
+    },
+    "TAB_CA_ANTENNEN": {
+      "IRV (Innenraum vorn)": 1,
+      "IRH (Innenraum hinten)": 2,
+      "FT (Fahrertür/-seite)": 3,
+      "BFT (Beifahrertür/-seite)": 4,
+      "FK (Frontklappe)": 5,
+      "KRLI (Kofferraum links)": 6,
+      "KRRE (Kofferraum rechts)": 7,
+      "SFH (Stoßfänger hinten)": 8,
+      "IR (Innenraum IRV+IRH)": 9
+    },
+    "TAB_ZSG_ZV_AKTION_MASTER": {
+      "ENTRIEGELN": 1,
+      "VERRIEGELN": 2,
+      "SEL_ER_FT": 4,
+      "SEL_ER_HKL": 5,
+      "SEL_ER_HS": 6
+    },
+    "TAB_TRSP_AKTIVIERUNG": {
+      "Transponderspule für 10 Sekunden aktivieren (default)": 0,
+      "Transponderspule sofort deaktivieren": 1
+    },
+    "TAB_FBD_EMPFAENGER_KANAL": {
+      "Keine Änderung der Kanaleinstellung": 0,
+      "Kanal 1 aktiv": 1,
+      "Kanal 2 aktiv": 2,
+      "Kanal 1 und 2 aktiv": 3,
+      "Kanal 3 aktiv": 4,
+      "Kanal 1 und 3 aktiv": 5,
+      "Kanal 2 und 3 aktiv": 6,
+      "Kanal 1,2 und 3 aktiv": 7,
+      "Ungültig": 255
+    },
+    "TAB_LIMIT": {
+      "keine Aussage": 0,
+      "unterhalb Limit": 1,
+      "normal Zustand": 2,
+      "oberhalb Limit": 3,
+      "ungültiger Wert": 255
+    },
+    "TAB_TASTER_MFL_2": {
+      "keine Aktion": 0,
+      "Taste gedrückt": 1,
+      "ungültig": 15
+    },
+    "TAB_MFL_RAENDEL_FGR": {
+      "Keine Betätigung": 0,
+      "Rändel auf Stufe 2 unten": 1,
+      "Rändel auf Stufe 1 unten": 2,
+      "Rändel auf Stufe 1 oben": 3,
+      "Rändel auf Stufe 2 oben": 4,
+      "ungültige Position": 5
+    },
+    "TAB_TASTER_MFL_1": {
+      "keine Aktion": 0,
+      "Taster gedrückt": 1,
+      "ungültig": 3
+    },
+    "TAB_TASTER_MFL_3": {
+      "keine Aktion": 0,
+      "Taster/Wippe oben gedrückt": 1,
+      "Taster/Wippe unter gedrückt": 5,
+      "ungültig": 15
+    },
+    "TAB_MFL_TIPPRAENDEL": {
+      "Tipprändel BC nicht betätigt": 0,
+      "Tipprändel BC gedrückt": 1,
+      "Tipprändel nach unten": 2,
+      "Tipprändel nach oben": 3,
+      "ungültiger Wert": 255
+    },
+    "TAB_MFL_TASTEN1": {
+      "Keine Betätigung": 0,
+      "Taste FGR SET betätigt": 1,
+      "Umschalttaste ACC / DCC betätigt": 2,
+      "Taste FGR RES betätigt": 3,
+      "Taste ACC-Abstand betätigt": 4,
+      "Rändel FGR Stufe 2 unten betätigt": 5,
+      "Rändel FGR Stufe 1 unten betätigt": 6,
+      "Rändel FGR Stufe 1 oben betätigt": 7,
+      "Rändel FGR Stufe 2 oben betätigt": 8,
+      "Taste FGR OFF betätigt": 9,
+      "Mehrfachbetätigung": 10,
+      "ungültiger Wert": 255
+    },
+    "TAB_MFL_TASTEN2": {
+      "Keine Betätigung": 0,
+      "Taste Source / Mode betätigt": 1,
+      "BC-Rändel gedrückt": 2,
+      "BC-Rändel nach unten": 3,
+      "BC-Rändel nach oben": 4,
+      "Taste Telefon betätigt": 5,
+      "Taste Volume Minus betätigt": 6,
+      "Taste Volume Plus betätigt": 7,
+      "Taste Push-To-talk betätigt": 8,
+      "Mehrfachbetätigung": 9,
+      "ungültiger Wert": 255
+    },
+    "TAB_ENERGIE_BETEILIGTE_BEL": {
+      "Standlicht": 1,
+      "Parklicht": 2,
+      "Parklicht und Standlicht": 3,
+      "Warnblinken": 4,
+      "Warnblinken und Standlicht": 5,
+      "Warnblinken und Parklicht": 6,
+      "Warnblinken, Standlicht und Parklicht": 7,
+      "Ungültig": 255
+    },
+    "TAB_FH_VERFAHREN": {
+      "Keine Aktion": 0,
+      "Öffnen": 1,
+      "Schliessen": 2,
+      "Maut öffnen": 3,
+      "Maut schliessen": 4,
+      "Heben / Ausstellen": 5,
+      "Element nicht unterstützt": 254,
+      "ungültiger Wert": 255
+    },
+    "TAB_FH_SHD_ESH_INIT": {
+      "Element normiert, Adaptionsdaten Schließen gültig, Adaptionsdaten Senken gültig": 1,
+      "Element denormiert, Adaptionsdaten Schließen gültig, Adaptionsdaten Senken gültig": 2,
+      "Element normiert, Adaptionsdaten Schließen ungültig, Adaptionsdaten Senken gültig": 3,
+      "Element denormiert, Adaptionsdaten Schließen ungültig, Adaptionsdaten Senken gültig": 4,
+      "Element normiert, Adaptionsdaten Schließen gültig, Adaptionsdaten Senken ungültig": 5,
+      "Element denormiert, Adaptionsdaten Schließen gültig, Adaptionsdaten Senken ungültig": 6,
+      "Element normiert, Adaptionsdaten Schließen ungültig, Adaptionsdaten Senken ungültig": 7,
+      "Element denormiert, Adaptionsdaten Schließen ungültig, Adaptionsdaten Senken ungültig": 8,
+      "ungültiger Wert": 255
+    },
+    "TAB_FH_SHD_ESH_BEWEGUNG": {
+      "Element steht": 0,
+      "Element fährt auf": 1,
+      "Reversieren Mautlauf": 2,
+      "Reversieren Emergency-Mode": 3,
+      "Element fährt zu": 4,
+      "Element fährt zu Emergency-Mode": 5,
+      "Element fährt zu Panic-Mode": 6,
+      "Einlernvorgang aktiv": 7,
+      "stellt aus": 8,
+      "ungültiger Wert": 255
+    },
+    "TAB_FH_SHD_ESH_POSITION": {
+      "Element in Bewegung": 0,
+      "Element komplett geschlossen": 1,
+      "Element komplett offen": 2,
+      "Element steht in Zwischenpositon": 3,
+      "Element steht auf Position Kurzhub  nur FH": 4,
+      "Element steht auf Position Langhub  nur FH": 5,
+      "Element steht auf Position Cabrio nur FH": 6,
+      "Element steht in Ausstellage nur SHD/PDK": 7,
+      "Element steht in Komfortposition nur PDK": 8,
+      "Element steht in Anti-Wummer Position nur SHD": 9,
+      "Element steht in Crash-Position": 10,
+      "Element steht in Demontageposition": 160,
+      "Element steht in Serviceposition A": 161,
+      "Element steht in Serviceposition B": 162,
+      "ungültiger Wert": 255
+    },
+    "TAB_FH_SHD_ESH_LAGE_NR": {
+      "Ausstelllage": 1,
+      "Schiebelage": 2,
+      "Funktion nicht unterstützt": 255
+    },
+    "TAB_FH_SHD_ESH_ZUSTAND_TUER": {
+      "Tür geschlossen": 0,
+      "Tür offen": 1,
+      "Tür in Vorraste": 2,
+      "Türstatus ungültig": 3,
+      "Signal ungültig": 255
+    },
+    "TAB_FH_SHD_ESH_FREIGABE": {
+      "Keine Freigabe": 0,
+      "Freigabe vorhanden": 1,
+      "Freigabe ungültig": 3,
+      "ungültiger Wert": 255
+    },
+    "TAB_FH_PANIKMODUS": {
+      "Panikmodus nicht freigeschalten": 0,
+      "Panikmodus freigeschalten": 1,
+      "Freigabe Panikmodus ungültig": 3,
+      "ungültiger Wert": 255
+    },
+    "TAB_RELAIS_RICHTUNG": {
+      "Relais auf Ubatt": 0,
+      "Relais auf Masse": 1
+    },
+    "TAB_FH_SHD_ESH_RELAIS_NUMBER": {
+      "Relais 1": 1,
+      "Relais 2": 2
+    },
+    "TAB_FH_SHD_ESH_HALL_FEHLERZUSTAND": {
+      "Kein Fehler": 0,
+      "Leitungsunterbrechung": 1,
+      "Kurzschluss nach Masse": 2,
+      "Kurzschluss nach Ubatt": 3,
+      "Kurzschluss nach Ubatt oder Leitungsunterbrechung": 4,
+      "ungültiger Zustand": 255
+    },
+    "TAB_FH_KURZHUB_KODIEROPTION": {
+      "Kodieroption rahmenlose Tür ist nicht gesetzt": 0,
+      "Kodieroption rahmenlose Tür ist gesetzt": 1,
+      "ungültig": 3
+    },
+    "TAB_FH_SHD_ESH_MOTORTEMPERATUR": {
+      "Motortemperatur OK": 1,
+      "Motortemperatur 90% des maximal zulässigen Wertes erreicht": 2,
+      "Motortemperatur 100% des maximal zulässigen Wertes erreicht": 3,
+      "Motortemperatur ungültig": 255
+    },
+    "TAB_FH_SHD_ESH_MT_LIEFERANT": {
+      "Brose": 1,
+      "Küster": 2,
+      "Magna": 3,
+      "Webasto": 4,
+      "Inalfa": 5,
+      "Arvin Meritor": 6,
+      "Lames": 7,
+      "Dummy Motortreiber": 254,
+      "ungültiger Hersteller": 255
+    },
+    "TAB_FH_SHD_ESH_STAT_EEPROM": {
+      "Checksumme IO": 1,
+      "Checksumme NIO": 2,
+      "ungültiger Wert": 255
+    },
+    "TAB_FH_FENSTER_GS": {
+      "geschlossen": 0,
+      "teilweise geöffnet": 1,
+      "vollständig geöffnet": 2,
+      "ungültig": 255
+    },
+    "TAB_FH_SHD_ESH_WACHHALTEN": {
+      "Aus": 0,
+      "Ein": 1,
+      "ungültig": 255
+    },
+    "TAB_FH_SYSTEMTYP": {
+      "EKS mit 2-Hallsensoren": 0,
+      "Nur Motorschutz mit 1-Hallsensor": 1,
+      "Nur Motorschutz mit Strommessung": 2,
+      "ungültig": 255
+    },
+    "TAB_FH_SHD_ESH_VERFAHREN": {
+      "Keine Aktion": 0,
+      "Öffnen": 1,
+      "Schliessen": 2,
+      "Maut öffnen": 3,
+      "Maut schliessen": 4,
+      "Heben / Ausstellen": 5,
+      "Element nicht unterstützt": 254,
+      "ungültiger Wert": 255
+    },
+    "TAB_ROLLO_VERFAHREN": {
+      "Keine Betätigung": 0,
+      "Betätigt": 1,
+      "Signal ungültig": 7,
+      "ungültiger Wert": 255
+    },
+    "TAB_SPIEGEL_VERFAHREN": {
+      "Keine Ansteuerung": 0,
+      "links": 1,
+      "oben": 2,
+      "rechts": 3,
+      "unten": 4,
+      "ungültiger Wert": 255
+    },
+    "TAB_SPIEGEL_KLAPPEN": {
+      "Spiegel ausklappen und Bordstein-Position zurücknehmen": 0,
+      "Spiegel einklappen": 1,
+      "Spiegel ausklappen": 2,
+      "Bordstein-Position anfahren": 3,
+      "Bordstein-Position zurücknehmen": 4,
+      "ungültiger Wert": 255
+    },
+    "TAB_SPIEGEL_HEIZUNG": {
+      "Aus": 0,
+      "25 %": 1,
+      "50 %": 2,
+      "75 %": 3,
+      "100 %": 4,
+      "ungültiger Wert": 255
+    },
+    "TAB_SPIEGELMEM_POS": {
+      "Taste 1": 1,
+      "Taste 2": 2,
+      "Schlüssel": 3
+    },
+    "TAB_SPIEGEL_AUSWAHL": {
+      "Kein Spiegel": 0,
+      "linker Spiegel": 1,
+      "rechter Spiegel": 2,
+      "beide Spiegel": 3
+    },
+    "TAB_SPIEGEL_HC2": {
+      "Aus": 0,
+      "An Kein Blinken": 1,
+      "An Blinken Stufe 1": 2,
+      "An Blinken Stufe 2": 3,
+      "An Blinken Stufe 3": 4,
+      "Anzeigefehler": 13,
+      "Signal ungültig": 255
+    },
+    "TAB_WASCHDUESENHEIZUNG": {
+      "PWM Wert 0%": 0,
+      "PWM Wert 25%": 1,
+      "PWM Wert 50%": 2,
+      "PWM Wert 75%": 3,
+      "PWM Wert 100%": 4
+    },
+    "TAB_LENKSTOCK_WISCHER_AXIAL_TASTER": {
+      "Nicht betätigt": 0,
+      "Betätigt": 1,
+      "Element nicht unterstützt": 255
+    },
+    "TAB_WISCHER_RAENDEL": {
+      "Rändel in Stufe 1": 0,
+      "Rändel in Stufe 2": 1,
+      "Rändel in Stufe 3": 2,
+      "Rändel in Stufe 4": 3,
+      "ungültiger Wert": 255
+    },
+    "TAB_LENKSTOCK_WISCHER": {
+      "Nullstellung": 0,
+      "Tippwischen": 1,
+      "Wischer Stufe 1": 2,
+      "Wischer Stufe 2": 3,
+      "Frontwaschen": 4,
+      "Intervall": 5,
+      "Heckwischen": 6,
+      "Heckwaschen": 7,
+      "Mehrfachbetätigung": 8,
+      "ungültiger Wert": 255
+    },
+    "TAB_WISCHER": {
+      "Wischer aus": 0,
+      "Wischer in Stufe 1": 1,
+      "Wischer in Stufe 2": 2
+    },
+    "TAB_LED": {
+      "Aus": 0,
+      "Ein": 1,
+      "Defekt": 2,
+      "Signal ungültig": 3
+    },
+    "TAB_TLC_STATUS": {
+      "Keine Aussage": 0,
+      "Unterhalb Limit": 1,
+      "Normalzustand": 2,
+      "Oberhalb Limit": 3,
+      "ungültiger Wert": 255
+    },
+    "TAB_SCHEINWERFER_AUSWAHL": {
+      "links": 0,
+      "rechts": 1,
+      "beide": 2
+    },
+    "TAB_LAMPEN_FUNKTION": {
+      "Keine Leuchte": 0,
+      "Standlicht": 1,
+      "Standlicht ES": 2,
+      "Abblendlicht": 3,
+      "Tagfahrlicht": 4,
+      "Fernlicht": 5,
+      "Blinker links": 6,
+      "Blinker rechts": 7,
+      "Nebellicht vorne": 8,
+      "Abbiegelicht vorne links": 9,
+      "Abbiegelicht vorne rechts": 10,
+      "Bremslicht": 12,
+      "BFD / ESS": 13,
+      "Nebelschlusslicht": 14,
+      "Rückfahrlicht": 15,
+      "Parklicht links": 16,
+      "Parklicht rechts": 17,
+      "Warnblinken": 18,
+      "Innenbeleuchtung": 19,
+      "ungültiger Wert": 255
+    },
+    "TAB_AHL_LWR_AUSWAHL": {
+      "AHL": 0,
+      "LWR": 1,
+      "AHL + LWR": 2
+    },
+    "TAB_LWR_REFERENZLAUF": {
+      "Referenzlauf nicht gestartet": 0,
+      "Referenzlauf aktiv": 1,
+      "Referenzlauf ohne Fehler abgeschlossen": 2,
+      "Referenzlauf mit Fehler abgebrochen": 3,
+      "ungültiger Wert": 255
+    },
+    "TAB_LICHTSCHALTER": {
+      "Stellung Neutral": 0,
+      "Stellung Standlicht": 1,
+      "Stellung Abblendlicht": 2,
+      "Stellung Fahrlichtkontrolle": 3,
+      "ungültiges Signal": 255
+    },
+    "TAB_LENKSTOCK_BLINKER": {
+      "Lenkstock in Nullstellung": 0,
+      "Blinker rechts tipp": 1,
+      "Blinker rechts Dauer": 2,
+      "Blinker links tipp": 3,
+      "Blinker links Dauer": 4,
+      "Fernlicht": 5,
+      "Lichthupe": 6,
+      "Mehrfachbetätigung": 7,
+      "ungültiger Wert": 255
+    },
+    "TAB_LENKSTOCK_BLINKER_WIPPE": {
+      "nicht betätigt": 0,
+      "nach oben": 1,
+      "nach unten": 2,
+      "ungültiger Wert": 255
+    },
+    "TAB_INNENLICHT_MAPPING": {
+      "Suchbeleuchtung": 21,
+      "Innenbeleuchtung Front": 22,
+      "Innenbeleuchtung Fond": 23,
+      "Vorfeldbeleuchtung": 24,
+      "Fußraumleuchte Front": 25,
+      "Fußraumleuchte Fond": 26,
+      "Colourswitch 1": 27,
+      "Colourswitch 2": 28,
+      "Colourswitch 3": 29,
+      "separate Welcomeleuchte": 30,
+      "Kofferraumbeleuchtung": 31,
+      "ungültig": 255
+    },
+    "TAB_FAHRLICHTSITUATION_2": {
+      "keine Vorgabe": 0,
+      "Führungslicht 1": 1,
+      "Führungslicht 2": 2,
+      "Stadtlicht": 3,
+      "SAE": 4,
+      "Landstraßenlicht": 5,
+      "Autobahnlicht E3": 6,
+      "Autobahnlicht E2": 7,
+      "Autobahnlicht E1": 8,
+      "Autobahnlicht E": 9,
+      "Lichtverteilung H-2": 10,
+      "Lichtverteilung H-0": 11,
+      "Lichtverteilung H+2": 12,
+      "Lichtverteilung H+4": 13,
+      "Blendfreies Fernlicht": 14,
+      "Volles Fernlicht": 15,
+      "ungültiger Wert": 255
+    },
+    "TAB_SCHALTWIPPE": {
+      "Schaltpaddles nicht betätigt": 0,
+      "Schaltwippe Tip minus betätigt": 1,
+      "Schaltwippe Tip plus betätigt": 2,
+      "Fehler Schaltpaddle": 3,
+      "Schaltwippe Tip minus betätigt und entprellt": 5,
+      "Schaltwippe Tip plus betätigt und entprellt": 6,
+      "Signal ungültig": 255
+    },
+    "TAB_CAS_HISTORIENSPEICHER_SPERRE": {
+      "Historienspeicher freigegeben": 0,
+      "Historienspeicher  sperren": 1,
+      "Löschen/Neu initialisieren": 2,
+      "ungültig/unbekannt": 255
+    },
+    "TAB_CAS_HW_KONTAKT": {
+      "Leitungsbruch / Kurzschluss nach Batteriespannung": 0,
+      "Tür geschlossen": 2,
+      "Tür offen": 4,
+      "Kurzschluss nach Masse": 6,
+      "Kontakt nicht verbaut": 8,
+      "ungültig / unplausibel / unbekannt": 255
+    },
+    "TAB_CAS_TUERKONTAKT": {
+      "Leitungsbruch/Kurzschluss Batteriespannung": 0,
+      "Tür geschlossen": 2,
+      "Tür offen": 4,
+      "Kurzschluss Masse": 6,
+      "Ungültig / Unplausibel": 255
+    },
+    "TAB_CAS_DIGITAL_EINGANG": {
+      "nicht aktiv / nicht betätigt": 0,
+      "aktiv / betätigt": 1,
+      "nicht verbaut / Status nicht verfügbar": 2,
+      "ungültig": 3,
+      "ungültig / Fehler erkannt": 255
+    },
+    "TAB_CAS_ZV_STATUS": {
+      "Entriegelt": 0,
+      "Verriegelt": 1,
+      "Gesichert": 2,
+      "Klappe / Scheibe geschlossen": 128,
+      "Klappe / Scheibe geöffnet": 129,
+      "Ungültig/Unplausibel/Nicht verbaut": 255
+    },
+    "TAB_CAS_CA_TAGE_ER_LEITUNG": {
+      "Tage nicht verbaut": 0,
+      "Tage gezogen": 1,
+      "Tage nicht gezogen": 2,
+      "Kurzschluss": 3,
+      "Ausserhalb zulässigem Bereich": 255
+    },
+    "TAB_CAS_MONTAGEMODUS": {
+      "Normalbetrieb - Alle Montagemodi deaktiviert": 0,
+      "KL50-Montagemodus - Anlassersperre aktiv": 1,
+      "ELV_KL50-Montagemodus - Anlassersperre und keine Ansteuerung ELV": 2,
+      "Präsentations-Modus": 3,
+      "unbekannter Zustand": 255
+    },
+    "TAB_CAS_KLEMMEN_VERHINDERER": {
+      "Kein Hinderungsgrund vorhanden": 0,
+      "Aktuell kein gültiger Schlüssel erkannt": 1,
+      "Kurzschluss HW-Ausgänge erkannt": 2,
+      "Geschwindigkeit Fahren erkannt": 3,
+      "Geschwindigkeit unplausibel erkannt: HW <-> CAN": 4,
+      "Bremse nicht gedrückt": 5,
+      "Bremssignal unplausibel: Low-Schaltend <-> High-Schaltend": 6,
+      "Kupplung nicht gedrückt": 7,
+      "Kupplungssignal unplausibel: HW <-> CAN": 8,
+      "Einschaltverhinderung durch Motorsteuerung: Motorlauf erkannt/Kein Motorstart erlaubt über CAN": 9,
+      "Kraftschluss erkannt (P oder N nicht eingelegt)": 10,
+      "Montagemodus KL50 ist aktiv: Anlasseransteuerung deaktiviert": 13,
+      "Keine ELV-Freigabe vorhanden": 14,
+      "Keine Startfreigabe durch Klimasteuergerät: Motorfernstart nicht möglich": 15,
+      "Unbekannt/Ungültig": 255
+    },
+    "TAB_CAS_GANG": {
+      "N - Kein Kraftschluss": 1,
+      "R - Rückwärtsgang": 2,
+      "P - Parkposition": 3,
+      "1. Gang": 5,
+      "2. Gang": 6,
+      "3. Gang": 7,
+      "4. Gang": 8,
+      "5. Gang": 9,
+      "6. Gang": 10,
+      "7. Gang": 11,
+      "8. Gang": 12,
+      "9. Gang": 13,
+      "ungültig": 255
+    },
+    "TAB_CAS_MOTOR_STATUS": {
+      "Motor aus": 0,
+      "Motor startet": 1,
+      "Motor läuft": 2,
+      "ungültig/unbekannt": 255
+    },
+    "TAB_CAS_MOTORSTART_FREIGABE": {
+      "Kein Motorstart": 0,
+      "Motorstart/-stop verzögert": 1,
+      "Motorstart zulassen": 2,
+      "ungültig": 3,
+      "ungültig/unbekannt": 255
+    },
+    "TAB_CAS_MOTOR_ANLASSERSPERRE": {
+      "Kein Motorstart, Pos. D/R": 0,
+      "Motorstart zulassen - Getriebe in N": 1,
+      "Motorstart zulassen, Motorstop zulassen - Getriebe in P": 2,
+      "ungültig": 3,
+      "ungültig/unbekannt": 255
+    },
+    "TAB_CAS_GESCHW_STATUS": {
+      "Fahrzeug steht": 0,
+      "Fahrzeug fährt vorwärts": 1,
+      "Fahrzeug fährt rückwärts": 2,
+      "Fahrzeug fährt": 3,
+      "Fahrzeug steht, Hinterachse auf Rollenprüfstand erkannt": 4,
+      "Signal ungültig": 7
+    },
+    "TAB_CAS_FH_STATUS": {
+      "Geschlossen": 0,
+      "Zwischenstellung": 1,
+      "Offen": 2,
+      "ungültig/unbekannt": 255
+    },
+    "TAB_TAGE_SPERRSTATUS_ARG": {
+      "Sperren": 0,
+      "Freigeben": 1
+    },
+    "TAB_CAS_TAGE_SPERRSTATUS": {
+      "Gesperrt": 0,
+      "Freigegeben": 1,
+      "Ungültig/Unbekannt": 255
+    },
+    "TAB_CAS_CA_TAGE_STATUS": {
+      "Kein Status - keine Betätigung": 0,
+      "Zug-Sensor betätigt - Hall-Sensor": 1,
+      "Sichern-Sensor betätigt - Piezo und VR-Kap-Sensor": 2,
+      "Entriegeln-Sensor betätigt - ER-Kap-Sensor": 3,
+      "ungültig/unbekannt": 255
+    },
+    "TAB_CAS_DIGITAL_EINGANG_PEGEL": {
+      "Low-Pegel": 0,
+      "High-Pegel": 1,
+      "ungültig / Fehler erkannt": 255
+    },
+    "TAB_CAS_HALL_SENSOR": {
+      "Sensor nicht verbaut/ nicht vorhanden (Open Load)": 0,
+      "Sensor nicht aktiv": 2,
+      "Sensor aktiv": 4,
+      "Kurzschluss": 6,
+      "ungültig / unplausibel / unbekannt": 255
+    },
+    "TAB_SARAH_ZUSTAND": {
+      "Alle Funktionen aus": 0,
+      "Benutzerdefiniert": 1,
+      "Alle Funktionen an": 2
+    },
+    "TAB_VORWARNUNG": {
+      "aus": 0,
+      "früh": 1,
+      "spät": 2
+    },
+    "TAB_SARAH_LED": {
+      "Aus": 0,
+      "Gruen": 1,
+      "Defekt": 2,
+      "Orange": 3,
+      "ungueltig": 255
+    },
+    "HW_MODEL": {
+      "A-Muster": 0,
+      "B-Muster": 64,
+      "C-Muster": 128,
+      "D-Muster": 192,
+      "Wert ungültig": 255
+    },
+    "TAB_SUPPLIERINFO_FIELD": {
+      "Wert 0": 0,
+      "Wert 1": 1,
+      "Wert 2": 2,
+      "Wert 3": 3,
+      "Wert 4": 4,
+      "Wert 5": 5,
+      "Wert 6": 6,
+      "Wert 7": 7,
+      "Wert 8": 8,
+      "Wert 9": 9,
+      "Wert 10": 10,
+      "Wert 11": 11,
+      "Wert 12": 12,
+      "Wert 13": 13,
+      "Wert 14": 14,
+      "Wert 15": 15,
+      "Wert 16": 16,
+      "Wert 17": 17,
+      "Wert 18": 18,
+      "Wert 19": 19,
+      "Wert 20": 20,
+      "Wert 21": 21,
+      "Wert 22": 22,
+      "Wert 23": 23,
+      "Wert 24": 24,
+      "Wert 25": 25,
+      "Wert 26": 26,
+      "Wert 27": 27,
+      "Wert 28": 28,
+      "Wert 29": 29,
+      "Wert 30": 30,
+      "Wert 31": 31,
+      "Wert 32": 32,
+      "Wert 33": 33,
+      "Wert 34": 34,
+      "Wert 35": 35,
+      "Wert 36": 36,
+      "Wert 37": 37,
+      "Wert 38": 38,
+      "Wert 39": 39,
+      "Wert 40": 40,
+      "Wert 41": 41,
+      "Wert 42": 42,
+      "Wert 43": 43,
+      "Wert 44": 44,
+      "Wert 45": 45,
+      "Wert 46": 46,
+      "Wert 47": 47,
+      "Wert 48": 48,
+      "Wert 49": 49,
+      "Wert 50": 50,
+      "Wert 51": 51,
+      "Wert 52": 52,
+      "Wert 53": 53,
+      "Wert 54": 54,
+      "Wert 55": 55,
+      "Wert 56": 56,
+      "Wert 57": 57,
+      "Wert 58": 58,
+      "Wert 59": 59,
+      "Wert 60": 60,
+      "Wert 61": 61,
+      "Wert 62": 62,
+      "Wert ungültig": 255
+    },
+    "TAB_DEV_FH_ELEMENT": {
+      "DRIVER WINDOW": 1,
+      "PASSENGER WINDOW": 2
+    },
+    "TAB_DEV_FH_QUEUE_MODE": {
+      "FILTERED": 0,
+      "NOT FILTERED": 1
+    }
+  }
+}

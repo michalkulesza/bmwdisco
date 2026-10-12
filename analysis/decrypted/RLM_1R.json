@@ -1,0 +1,191 @@
+[
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "alle",
+    "command": "ALL_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "0",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Kanal 1",
+    "command": "REAR_LED_1_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "1",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Kanal 2",
+    "command": "REAR_LED_2_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "2",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Kanal 3",
+    "command": "REAR_LED_3_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "3",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Kanal 4",
+    "command": "REAR_LED_4_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "4",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Kanal 5",
+    "command": "REAR_LED_5_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "5",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Kanal 6",
+    "command": "REAR_LED_6_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "6",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Kanal 7",
+    "command": "REAR_LED_7_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "7",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Kanal 8",
+    "command": "REAR_LED_8_RIGHT_1_RIGHT",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "{param_steuern_routine}",
+      "8",
+      "{param_lhm_pwm}",
+      "{param_lhm_zeit}"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "ECUEXTDIAG"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "DEFAULT"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "Stop routine",
+    "command": "STOP_ROUTINE",
+    "function": "STEUERN_ROUTINE",
+    "args": [
+      "ARG",
+      "RLM_KANAL",
+      "STPR"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "COMMUNICATION_ON",
+    "command": "COMMUNICATION_ON",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "00",
+      "03"
+    ]
+  },
+  {
+    "sgbd": "RLM_1R",
+    "group": "RLM_1R",
+    "description": "COMMUNICATION_OFF",
+    "command": "COMMUNICATION_OFF",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "02",
+      "01"
+    ]
+  }
+]

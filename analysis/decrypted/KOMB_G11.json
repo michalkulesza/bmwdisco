@@ -1,0 +1,48 @@
+[
+  {
+    "sgbd": "KOMB_G11",
+    "group": "KOMBI",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "ECUEXTDIAG"
+    ]
+  },
+  {
+    "sgbd": "KOMB_G11",
+    "group": "KOMBI",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "DEFAULT"
+    ]
+  },
+  {
+    "sgbd": "KOMB_G11",
+    "group": "KOMBI",
+    "description": "Cluster feedback on",
+    "command": "KOMBI_ON",
+    "function": "STEUERN_CC_MELDUNG_TRIGGERN",
+    "args": [
+      "0x01",
+      "0xfc",
+      "0x32",
+      "0x21"
+    ]
+  },
+  {
+    "sgbd": "KOMB_G11",
+    "group": "KOMBI",
+    "description": "Cluster feedback off",
+    "command": "KOMBI_OFF",
+    "function": "STEUERN_CC_MELDUNG_TRIGGERN",
+    "args": [
+      "0x01",
+      "0xfc",
+      "0x32",
+      "0x00"
+    ]
+  }
+]

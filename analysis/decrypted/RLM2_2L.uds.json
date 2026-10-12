@@ -1,0 +1,3453 @@
+{
+  "sgbd": "rlm2_2l",
+  "addr": "1C",
+  "jobs": {
+    "IDENT": "22f150",
+    "FS_LESEN": "19020c",
+    "FS_LESEN_EXPERT": "19020c",
+    "FS_LESEN_DETAIL": "1909ffffff",
+    "FS_LOESCHEN": "14ffffff",
+    "PRUEFSTEMPEL_LESEN": "221000",
+    "PRUEFSTEMPEL_SCHREIBEN": "2e1000000000",
+    "SVK_LESEN": "22f101",
+    "STATUS_LESEN": "22",
+    "STEUERN": "2e",
+    "SERIENNUMMER_LESEN": "22f18c",
+    "STEUERN_ROUTINE": "31",
+    "FS_SPERREN": "8502",
+    "IS_LESEN": "19170c01",
+    "IS_LESEN_DETAIL": "1909ffffff",
+    "IS_LOESCHEN": "31010f06",
+    "HERSTELLINFO_LESEN": "22f18a",
+    "DIAGNOSE_AUFRECHT": "3eff",
+    "DIAGNOSE_MODE": "1001",
+    "ENERGIESPARMODE": "31010f0cff",
+    "STATUS_ENERGIESPARMODE": "22100a",
+    "STATUS_BETRIEBSMODE": "22100e",
+    "STEUERN_BETRIEBSMODE": "31011003ff",
+    "STEUERGERAETE_RESET": "1101",
+    "ECU_UID_LESEN": "228000",
+    "CPS_LESEN": "2237fe",
+    "STATUS_LCS_READ": "221104",
+    "STEUERN_SFA_READ_STATUS": "31010f2900000000",
+    "STATUS_CERTIFICATE_MANAGEMENT_READOUT_STATUS": "310110ac"
+  },
+  "fns": [
+    {
+      "n": "SFA_CLEAR_FEATURE",
+      "s": 49,
+      "id": "0F2B",
+      "a": [
+        [
+          "FEATURE_ID",
+          3
+        ]
+      ]
+    },
+    {
+      "n": "SFA_READ_VERSION",
+      "s": 49,
+      "id": "0F2C"
+    },
+    {
+      "n": "SFA_DELETE_TOKEN",
+      "s": 49,
+      "id": "0F2D",
+      "a": [
+        [
+          "FEATURE_ID",
+          3
+        ]
+      ]
+    },
+    {
+      "n": "SFA_VERIFY_TOKEN",
+      "s": 49,
+      "id": "0F2E"
+    },
+    {
+      "n": "CERTIFICATE_MANAGEMENT_START_CHECK",
+      "s": 49,
+      "id": "10AB"
+    },
+    {
+      "n": "FALLBACK_FIELD_MODE",
+      "s": 49,
+      "id": "1100"
+    },
+    {
+      "n": "LCS",
+      "s": 46,
+      "id": "1104",
+      "a": [
+        [
+          "LCS_NUMBER",
+          1,
+          "TAB_LCS_NUMBER"
+        ],
+        [
+          "LCS_VALUE",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SYSTEMZEIT_SUPREME",
+      "s": 34,
+      "id": "1769",
+      "r": [
+        [
+          "STAT_SYSTIME_SECONDS_WERT",
+          4
+        ],
+        [
+          "STAT_SYSTIME_MILLISECONDS_WERT",
+          1,
+          {
+            "s": [
+              5,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SYSTIME_INSYNC",
+          1,
+          {
+            "e": "TAB_SYSTIME_INSYNC"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "READ_SYNC_TIMING_INFORMATION",
+      "s": 34,
+      "id": "1820",
+      "r": [
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_1_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_1_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_1_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_2_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_2_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_2_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_3_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_3_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_3_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_4_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_4_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_4_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_5_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_5_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_5_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_6_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_6_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_6_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_7_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_7_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_7_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_8_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_8_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_8_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_9_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_9_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_9_WERT",
+          4
+        ],
+        [
+          "STAT_CORRECTED_SECOND_MEMBER_10_WERT",
+          1
+        ],
+        [
+          "STAT_CORRECTED_NANOSECOND_MEMBER_10_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HARDWARE_COUNTER_10_WERT",
+          4
+        ],
+        [
+          "STAT_LOCAL_HW_COUNTER_FREQUENCY_WERT",
+          4
+        ],
+        [
+          "STAT_SCALING_FACTOR_WERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "PROGRAMMING_COUNTER",
+      "s": 34,
+      "id": "2502",
+      "r": [
+        [
+          "STAT_RESERVE_WERT",
+          1
+        ],
+        [
+          "STAT_PROG_ZAEHLER_STATUS",
+          1,
+          {
+            "e": "RDBI_PC_PCS_DOP"
+          }
+        ],
+        [
+          "STAT_PROG_ZAEHLER_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "PROGRAMMING_COUNTER_MAX_VALUE",
+      "s": 34,
+      "id": "2503",
+      "p": "raw"
+    },
+    {
+      "n": "FLASH_TIMING_PARAMETER",
+      "s": 34,
+      "id": "2504",
+      "r": [
+        [
+          "STAT_ERASE_MEMORY_TIME_WERT",
+          2
+        ],
+        [
+          "STAT_CHECK_MEMORY_TIME_WERT",
+          2
+        ],
+        [
+          "STAT_BOOTLOADER_INSTALLATION_TIME_WERT",
+          2
+        ],
+        [
+          "STAT_AUTHENTICATION_TIME_WERT",
+          2
+        ],
+        [
+          "STAT_RESET_TIME_WERT",
+          2
+        ],
+        [
+          "STAT_TRANSFER_DATA_TIME_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "MILE_KM_EEPROM",
+      "s": 34,
+      "id": "2540",
+      "p": "raw"
+    },
+    {
+      "n": "ACTIVE_ERROR_MESSAGE",
+      "s": 49,
+      "id": "400A"
+    },
+    {
+      "n": "_REQUEST_KBD_SEED",
+      "s": 34,
+      "id": "5000",
+      "p": "raw"
+    },
+    {
+      "n": "_SEND_KBD_KEY",
+      "s": 46,
+      "id": "5001",
+      "a": [
+        [
+          "SEND_KBD_KEY",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "_KBD_EOL_CTL",
+      "s": 46,
+      "id": "5002",
+      "a": [
+        [
+          "CTR_MODE",
+          1
+        ],
+        [
+          "CTR_PARA",
+          24
+        ]
+      ]
+    },
+    {
+      "n": "_KEBODA_READ_ECU_ENCRYPTION_INFO",
+      "s": 34,
+      "id": "5003",
+      "p": "raw"
+    },
+    {
+      "n": "_KEBODA_INTERNAL_VERSION",
+      "s": 34,
+      "id": "5004",
+      "r": [
+        [
+          "STAT_BTL_INTERNAL_VERSION_DATA",
+          2
+        ],
+        [
+          "STAT_APP_INTERNAL_VERSION_DATA",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "_KEBODA_READ_HSS_CURRENT",
+      "s": 34,
+      "id": "5005",
+      "p": "raw"
+    },
+    {
+      "n": "_KEBODA_READ_PCBA_TEMP",
+      "s": 34,
+      "id": "5006",
+      "p": "raw"
+    },
+    {
+      "n": "_KEBODA_READ_NTC_VOL",
+      "s": 34,
+      "id": "5007",
+      "p": "raw"
+    },
+    {
+      "n": "_KEBODA_READ_GPIO_VOL_VALUE",
+      "s": 34,
+      "id": "5008",
+      "p": "raw"
+    },
+    {
+      "n": "_KEBODA_READ_DRIVER_COMM_STATE",
+      "s": 34,
+      "id": "5009",
+      "p": "raw"
+    },
+    {
+      "n": "_KEBODA_READ_CRITICAL_INFO",
+      "s": 34,
+      "id": "500A",
+      "r": [
+        [
+          "BF_INTEGER_CODING_ERROR",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_TYPE_VEHICLE_COMPARE_RESULT",
+                "0x01",
+                "VEHICLE_TYPE_COMPARE_RESULT"
+              ],
+              [
+                "STAT_NVM_COMPARE_RESULT",
+                "0x02",
+                "NVM_COMPARE_RESULT"
+              ],
+              [
+                "STAT_INFO_VEHICLE_TIMEOUT",
+                "0x04",
+                "INFO_VEHICLE_TIMEOUT"
+              ],
+              [
+                "STAT_CRC32_ERROR",
+                "0x08",
+                "CRC32_ERROR"
+              ],
+              [
+                "STAT_CODING_CRC_ERROR",
+                "0x10",
+                "CODING_CRC_ERROR"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_TI_DMCS_INFORMATION",
+          1,
+          {
+            "e": "TI_DMCS_INFORMATION"
+          }
+        ],
+        [
+          "STAT_PO_NVM",
+          1,
+          {
+            "e": "PO_NVM"
+          }
+        ],
+        [
+          "STAT_PL_NVM",
+          1,
+          {
+            "e": "PL_NVM"
+          }
+        ],
+        [
+          "STAT_BL_NVM",
+          1,
+          {
+            "e": "BL_NVM"
+          }
+        ],
+        [
+          "STAT_CAN_SIGNAL_ST_LP_POLI_DG_DRL_CKM_NVM",
+          1,
+          {
+            "e": "CAN_SIGNAL_ST_LP_LOPI_DG_DRL_CKM_NVM"
+          }
+        ],
+        [
+          "STAT_ECU_OVER_VOL_DERATE_COUNT_DATA",
+          2
+        ],
+        [
+          "STAT_ECU_UNDER_VOL_DARATE_COUNT_DATA",
+          2
+        ],
+        [
+          "STAT_ECU_OVER_VOL_COUNT_DATA",
+          2
+        ],
+        [
+          "STAT_ECU_UNDER_VOL_COUNT_DATA",
+          2
+        ],
+        [
+          "STAT_RESERVED_DATA",
+          10
+        ]
+      ]
+    },
+    {
+      "n": "_KEBODA_READ_ROOT_CAUSE",
+      "s": 34,
+      "id": "500B",
+      "r": [
+        [
+          "STAT_BL_DEFECT_REASON_1_DATA",
+          1
+        ],
+        [
+          "STAT_BL_DEFECT_REASON_2_DATA",
+          1
+        ],
+        [
+          "STAT_BL_DEFECT_REASON_3_DATA",
+          1
+        ],
+        [
+          "STAT_SIDE_LIGHT_DEFECT_REASON_1_DATA",
+          1
+        ],
+        [
+          "STAT_SIDE_LIGHT_DEFECT_REASON_2_DATA",
+          1
+        ],
+        [
+          "STAT_SIDE_LIGHT_DEFECT_REASON_3_DATA",
+          1
+        ],
+        [
+          "STAT_REVERSING_LIGHT_DEFECT_REASON_1_DATA",
+          1
+        ],
+        [
+          "STAT_REVERSING_LIGHT_DEFECT_REASON_2_DATA",
+          1
+        ],
+        [
+          "STAT_REVERSING_LIGHT_DEFECT_REASON_3_DATA",
+          1
+        ],
+        [
+          "STAT_REAR_FOG_LIGHT_DEFECT_REASON_1_DATA",
+          1
+        ],
+        [
+          "STAT_REAR_FOG_LIGHT_DEFECT_REASON_2_DATA",
+          1
+        ],
+        [
+          "STAT_REAR_FOG_LIGHT_DEFECT_REASON_3_DATA",
+          1
+        ],
+        [
+          "STAT_TI_LIGHT_DEFECT_REASON_1_DATA",
+          1
+        ],
+        [
+          "STAT_TI_LIGHT_DEFECT_REASON_2_DATA",
+          1
+        ],
+        [
+          "STAT_TI_LIGHT_DEFECT_REASON_3_DATA",
+          1
+        ],
+        [
+          "STAT_REMOTE_LIGHT_DEFECT_REASON_1_DATA",
+          1
+        ],
+        [
+          "STAT_REMOTE_LIGHT_DEFECT_REASON_2_DATA",
+          1
+        ],
+        [
+          "STAT_REMOTE_LIGHT_DEFECT_REASON_3_DATA",
+          1
+        ],
+        [
+          "STAT_POSITIONING_LIGHT_DEFECT_REASON_1_DATA",
+          1
+        ],
+        [
+          "STAT_POSITIONING_LIGHT_DEFECT_REASON_2_DATA",
+          1
+        ],
+        [
+          "STAT_POSITIONING_LIGHT_DEFECT_REASON_3_DATA",
+          1
+        ],
+        [
+          "STAT_PARKING_LIGHT_DEFECT_REASON_1_DATA",
+          1
+        ],
+        [
+          "STAT_PARKING_LIGHT_DEFECT_REASON_2_DATA",
+          1
+        ],
+        [
+          "STAT_PARKING_LIGHT_DEFECT_REASON_3_DATA",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_KEBODA_CLEAR_CSR",
+      "s": 46,
+      "id": "500D",
+      "a": [
+        [
+          "CTR_CLEAR",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "ECUMODES_READ_MODE",
+      "s": 34,
+      "id": "8002",
+      "r": [
+        [
+          "STAT_ECU_MODE_TYPE_SUBTYPE_DATA",
+          2
+        ],
+        [
+          "STAT_ECU_MODE",
+          1,
+          {
+            "e": "TAB_ECU_MODE"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "CDC_READ_CURRENT_JOBS",
+      "s": 49,
+      "id": "A290",
+      "a": [
+        [
+          "BLOCK_NUMBER",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "CDC_MODIFY",
+      "s": 49,
+      "id": "A291",
+      "a": [
+        [
+          "TYPE",
+          1,
+          "CDC_MODIFY_TYPE_TAB"
+        ],
+        [
+          "JOB_ID",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "RLM_HIGHSIDE_SCHALTER",
+      "s": 49,
+      "id": "A555",
+      "a": [
+        [
+          "AUSGANG",
+          1
+        ],
+        [
+          "PWM",
+          1
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_KANAL",
+      "s": 49,
+      "id": "A556",
+      "a": [
+        [
+          "KANAL",
+          1,
+          "RLM_KANAL"
+        ],
+        [
+          "PWM",
+          1
+        ],
+        [
+          "RLM_STROM_AUSGANG_WERT",
+          2
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "FUNKTIONSTEST_RLM",
+      "s": 49,
+      "id": "A5A8"
+    },
+    {
+      "n": "RLM_TEMPERATURHISTOGRAMM",
+      "s": 34,
+      "id": "A826",
+      "r": [
+        [
+          "STAT_FLM_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_FLM_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_1_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_2_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_3_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_4_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_5_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_6_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_7_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_8_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_9_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_10_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_11_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_12_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_13_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_14_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_15_TEMPKLASSE_10_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_1_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_2_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_3_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_4_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_5_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_6_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_7_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_8_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_9_WERT",
+          4
+        ],
+        [
+          "STAT_LM_16_TEMPKLASSE_10_WERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "RLM_TEMPERATURHISTOGRAMM_LOESCHEN",
+      "s": 46,
+      "id": "A827",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_NTC_DATEN",
+      "s": 34,
+      "id": "A828",
+      "r": [
+        [
+          "STAT_NTC_TEMPERATUR_LED_1_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_2_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_3_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_4_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_5_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_6_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_7_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_8_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_9_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_10_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_11_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_12_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_13_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_14_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_1_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_2_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_3_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_4_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_5_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_6_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_7_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_8_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_9_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_10_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_11_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_12_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_13_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_14_WERT",
+          1
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_1_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_2_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_3_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_4_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_5_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_6_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_7_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_8_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_9_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_10_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_11_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_12_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_13_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_14_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_15_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_TEMPERATUR_LED_16_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_15_WERT",
+          1
+        ],
+        [
+          "STAT_DEGRADATIONSLEVEL_LED_16_WERT",
+          1
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_15_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NTC_SPANNUNG_LED_16_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "RLM_HIGHSIDE_KURZSCHLUSS_ABSCHALTUNG_ZAEHLER",
+      "s": 34,
+      "id": "A829",
+      "r": [
+        [
+          "STAT_HIGHSIDE_KURZSCHLUSS_ABSCHALTUNG_DATA",
+          1
+        ],
+        [
+          "STAT_HIGHSIDE_KURZSCHLUSS_ZAEHLER_DATA",
+          1
+        ],
+        [
+          "STAT_HIGHSIDE_KURZSCHLUSS_WIEDERHOL_ZAEHLER_DATA",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_HIGHSIDE_RESET_KURZSCHLUSS_ABSCHALTUNG",
+      "s": 46,
+      "id": "A82A",
+      "a": [
+        [
+          "HIGHSIDE_NR",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_HIGHSIDE_SCHALTER_ERGEBNISSE",
+      "s": 34,
+      "id": "A82B",
+      "r": [
+        [
+          "STAT_PWM_AUSGANG_WERT",
+          1
+        ],
+        [
+          "STAT_STROM_AUSGANG_WERT",
+          2
+        ],
+        [
+          "STAT_SPANNUNG_AUSGANG_WERT",
+          1
+        ],
+        [
+          "STAT_SPANNUNG_AUSGANG_PHASE",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_HIGHSIDE_SCHALTER_RESET",
+      "s": 46,
+      "id": "A82C",
+      "a": [
+        [
+          "AUSGANG",
+          1,
+          "TAB_RLM_HSS"
+        ]
+      ]
+    },
+    {
+      "n": "RLM_SCHEINWERFER_DATEN",
+      "s": 34,
+      "id": "A82D",
+      "r": [
+        [
+          "STAT_SCHEINWERFER_DATEN_DATA",
+          16
+        ],
+        [
+          "STAT_LAMP_SUPPLIER_NAME",
+          1,
+          {
+            "e": "RLM_LAMP_SUPPLIER_NAME"
+          }
+        ],
+        [
+          "STAT_LAMP_SUPPLIER_PLANT",
+          1,
+          {
+            "e": "RLM_LAMP_SUPPLIER_PLANT"
+          }
+        ],
+        [
+          "STAT_PRODUCTIO_DATE_WERT",
+          4
+        ],
+        [
+          "STAT_SERIAL_NUMBER_LAMP_TEXT",
+          16
+        ],
+        [
+          "STAT_HARDWARE_VARIANT",
+          1,
+          {
+            "e": "SCHEINWERFER_LAENDER_VARIANTE"
+          }
+        ],
+        [
+          "STAT_SA_VARIANT",
+          1,
+          {
+            "e": "RLM_SA_VARIANT"
+          }
+        ],
+        [
+          "STAT_SG_VARIANTE_DATA",
+          1
+        ],
+        [
+          "STAT_FAHRZEUGLISTE",
+          1,
+          {
+            "e": "FAHRZEUG_TYP"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "RLM_SCHEINWERFER_DATEN_SCHREIBEN",
+      "s": 46,
+      "id": "A82E",
+      "a": [
+        [
+          "SCHEINWERFER_DATEN",
+          16
+        ],
+        [
+          "LAMP_SUPPLIER_NAME",
+          1,
+          "RLM_LAMP_SUPPLIER_NAME"
+        ],
+        [
+          "LAMP_SUPPLIER_PLANT",
+          1,
+          "RLM_LAMP_SUPPLIER_PLANT"
+        ],
+        [
+          "PRODUCTION_DATE",
+          4
+        ],
+        [
+          "SERIAL_NUMBER",
+          16
+        ],
+        [
+          "HARDWARE_VARIANT",
+          1,
+          "SCHEINWERFER_LAENDER_VARIANTE"
+        ],
+        [
+          "SA_VARIANT",
+          1,
+          "RLM_SA_VARIANT"
+        ]
+      ]
+    },
+    {
+      "n": "RLM_BETRIEBSDAUER",
+      "s": 34,
+      "id": "A831",
+      "r": [
+        [
+          "STAT_LED_1_WERT",
+          4
+        ],
+        [
+          "STAT_LED_2_WERT",
+          4
+        ],
+        [
+          "STAT_LED_3_WERT",
+          4
+        ],
+        [
+          "STAT_LED_4_WERT",
+          4
+        ],
+        [
+          "STAT_LED_5_WERT",
+          4
+        ],
+        [
+          "STAT_LED_6_WERT",
+          4
+        ],
+        [
+          "STAT_LED_7_WERT",
+          4
+        ],
+        [
+          "STAT_LED_8_WERT",
+          4
+        ],
+        [
+          "STAT_LED_9_WERT",
+          4
+        ],
+        [
+          "STAT_LED_10_WERT",
+          4
+        ],
+        [
+          "STAT_LED_11_WERT",
+          4
+        ],
+        [
+          "STAT_LED_12_WERT",
+          4
+        ],
+        [
+          "STAT_LED_13_WERT",
+          4
+        ],
+        [
+          "STAT_LED_14_WERT",
+          4
+        ],
+        [
+          "STAT_LED_15_WERT",
+          4
+        ],
+        [
+          "STAT_LED_16_WERT",
+          4
+        ],
+        [
+          "STAT_HSS_1_WERT",
+          4
+        ],
+        [
+          "STAT_RLM_WERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "RLM_BETRIEBSDAUER_LOESCHEN",
+      "s": 46,
+      "id": "A832",
+      "a": [
+        [
+          "AKTION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_BINNING_DATEN_LESEN",
+      "s": 34,
+      "id": "A834",
+      "r": [
+        [
+          "STAT_BINNINGWERT_SET_0_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_1_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_2_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_3_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_4_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_5_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_6_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_7_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_8_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_9_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_10_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_11_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_12_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_13_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_14_WERT",
+          1
+        ],
+        [
+          "STAT_BINNINGWERT_SET_15_WERT",
+          1
+        ],
+        [
+          "STAT_CHECKSUM_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "RLM_BINNINGDATEN_LEUCHTE_SCHREIBEN",
+      "s": 46,
+      "id": "A835",
+      "a": [
+        [
+          "BINNINGDATEN",
+          10
+        ]
+      ]
+    },
+    {
+      "n": "RLM_KANAL_ERGEBNISSE",
+      "s": 34,
+      "id": "A836",
+      "r": [
+        [
+          "STAT_PWM_KANAL_1_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_1_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_1_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_1_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_2_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_2_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_2_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_2_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_3_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_3_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_3_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_3_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_4_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_4_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_4_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_4_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_5_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_5_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_5_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_5_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_6_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_6_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_6_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_6_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_7_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_7_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_7_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_7_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_8_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_8_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_8_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_8_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_9_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_9_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_9_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_9_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_10_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_10_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_10_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_10_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_11_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_11_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_11_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_11_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_12_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_12_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_12_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_12_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_13_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_13_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_13_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_13_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_14_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_14_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_14_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_14_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_15_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_15_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_15_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_15_PHASE",
+          1
+        ],
+        [
+          "STAT_PWM_KANAL_16_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSTROM_KANAL_16_WERT",
+          2
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_16_WERT",
+          1
+        ],
+        [
+          "STAT_STRANGSPANNUNG_KANAL_16_PHASE",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_SPANNUNG_SEPICS_LESEN",
+      "s": 34,
+      "id": "A837",
+      "r": [
+        [
+          "STAT_RLM_SPANNUNG_SEPIC_1_LESEN_WERT",
+          2
+        ],
+        [
+          "STAT_RLM_SPANNUNG_SEPIC_2_LESEN_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "RLM_GPIO_FUNKTION_LESEN",
+      "s": 34,
+      "id": "A838",
+      "r": [
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_1",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_2",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_3",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_4",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_5",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_6",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_7",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_8",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_9",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_10",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_11",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ],
+        [
+          "STAT_RLM_GPIO_FUNKTION_KANAL_12",
+          1,
+          {
+            "e": "TAB_RLM_GPIO_FUNKTIONEN"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "RLM_GPIO_MESSWERTE",
+      "s": 34,
+      "id": "A839",
+      "r": [
+        [
+          "STAT_GPIO_KANAL_1_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_2_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_3_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_4_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_5_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_6_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_7_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_8_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_9_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_10_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_11_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ],
+        [
+          "STAT_GPIO_KANAL_12_MESSWERTE",
+          1,
+          {
+            "e": "TAB_MESSWERTE_GPIO"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "RLM_GPIO_FUNKTIONEN",
+      "s": 46,
+      "id": "A83A",
+      "a": [
+        [
+          "GPIO_AUSWAHL",
+          1,
+          "GPIO_AUSWAHL"
+        ],
+        [
+          "GPIO_FUNKTIONEN",
+          1,
+          "TAB_RLM_GPIO_FUNKTIONEN"
+        ],
+        [
+          "ZEIT",
+          1
+        ],
+        [
+          "PWM_TASTGRAD",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_LICHTFUNKTIONEN",
+      "s": 46,
+      "id": "A83B",
+      "a": [
+        [
+          "RLM_LICHTFUNKTIONEN",
+          1,
+          "TAB_RLM_LICHTFUNKTIONEN"
+        ],
+        [
+          "ZEIT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_LICHTFUNKTIONEN_LESEN",
+      "s": 34,
+      "id": "A83C",
+      "r": [
+        [
+          "STAT_POSITIONSLICHT",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_NEBELSCHLUSSLICHT",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_BREMSLICHT",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_FAHRTRICHTUNGSANZEIGER",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_RUECKFAHRLICHT",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_SEITENMARKIERUNGSLICHT",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_STANDLICHT",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_AUSGELAGERTE_LEUCHTE",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_PARKLICHT",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ],
+        [
+          "STAT_KENNZEICHENLEUCHTE",
+          1,
+          {
+            "e": "STATUS_RLM_FUNKTION"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "RLM_EINGANGSSPANNUNG_LESEN",
+      "s": 34,
+      "id": "A83D",
+      "p": "raw"
+    },
+    {
+      "n": "RLM_SACHNUMMER_LEUCHTE_SCHREIBEN",
+      "s": 46,
+      "id": "A83E",
+      "a": [
+        [
+          "SACHNUMMER",
+          7
+        ]
+      ]
+    },
+    {
+      "n": "RLM_SACHNUMMER_LEUCHTE_LESEN",
+      "s": 34,
+      "id": "A83F",
+      "p": "raw"
+    },
+    {
+      "n": "RLM_SACHNUMMER_ECU",
+      "s": 46,
+      "id": "A8EE",
+      "a": [
+        [
+          "STAT_HW_SACHNUMMER_ECU_LINKS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_LINKS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_RECHTS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_RECHTS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_LINKS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_LINKS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_RECHTS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_RECHTS_INNEN_TEXT",
+          7
+        ]
+      ]
+    },
+    {
+      "n": "RLM_SACHNUMMER_ECU",
+      "s": 34,
+      "id": "A8EE",
+      "a": [
+        [
+          "STAT_HW_SACHNUMMER_ECU_LINKS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_LINKS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_RECHTS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_RECHTS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_LINKS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_LINKS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_RECHTS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_RECHTS_INNEN_TEXT",
+          7
+        ]
+      ],
+      "r": [
+        [
+          "STAT_HW_SACHNUMMER_ECU_LINKS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_LINKS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_RECHTS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_HW_SACHNUMMER_ECU_RECHTS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_LINKS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_LINKS_INNEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_RECHTS_AUSSEN_TEXT",
+          7
+        ],
+        [
+          "STAT_SW_SACHNUMMER_ECU_RECHTS_INNEN_TEXT",
+          7
+        ]
+      ]
+    },
+    {
+      "n": "RLM_SEPIC_SPANNUNGSKLASSEN_SCHREIBEN",
+      "s": 46,
+      "id": "ACAA",
+      "a": [
+        [
+          "SPANNUNGSKLASSEN",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_SEPIC_SPANNUNGSKLASSEN",
+      "s": 34,
+      "id": "ACB6",
+      "r": [
+        [
+          "STAT_SPANNUNGSKLASSE_SEPIC_1_WERT",
+          1
+        ],
+        [
+          "STAT_SPANNUNGSKLASSE_SEPIC_2_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "RLM_RESET_SIDE",
+      "s": 46,
+      "id": "E3EB",
+      "a": [
+        [
+          "RESET_SIDE",
+          1,
+          "TAB_RLM_RESET_SIDE_DEFAULT"
+        ]
+      ]
+    },
+    {
+      "n": "CDC_CURRENT_JOB_COUNT",
+      "s": 34,
+      "id": "E4EE",
+      "p": "raw"
+    },
+    {
+      "n": "CDC_JOB_STORAGE",
+      "s": 34,
+      "id": "E4EF",
+      "r": [
+        [
+          "STAT_JOB_STORAGE_CURRENT_WERT",
+          4
+        ],
+        [
+          "STAT_JOB_STORAGE_MAXIMUM_WERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "READHWMODIFICATIONINDEX",
+      "s": 34,
+      "id": "F152",
+      "r": [
+        [
+          "STAT_HW_MODIFICATION_INDEX_WERT",
+          1
+        ],
+        [
+          "BF_22_F152_SUPPLIERINFO",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_HWMODEL",
+                "0xC0",
+                "HWMODEL"
+              ],
+              [
+                "STAT_SUPPLIERINFOFIELD",
+                "0x3F",
+                "TAB_SUPPLIERINFO_FIELD"
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ACTIVE_DIAGNOSTIC_SESSION",
+      "s": 34,
+      "id": "F186",
+      "p": "raw"
+    }
+  ],
+  "enums": {
+    "TAB_LCS_NUMBER": {
+      "SERVICE_PACK_FUNCTIONALITY_SWITCH": 0,
+      "SECOC_BYPASS_SWITCH": 1,
+      "INVALID_VALUE": 255
+    },
+    "TAB_SYSTIME_INSYNC": {
+      "Nicht synchronisiert, keine Zeit verfügbar": 0,
+      "Synchronisiert, ms SG-übergreifend nicht vergleichbar": 1,
+      "Nicht Synchronisiert, ms SG-übergreifend nicht vergleichbar": 4,
+      "Synchronisiert, ms SG-übergreifend vergleichbar": 5,
+      "ungültig": 7,
+      "Wert ungültig": 255
+    },
+    "RDBI_PC_PCS_DOP": {
+      "ECU mehrmals programmierbar": 0,
+      "ECU mindestens einmal vollstaendig programmierbar": 1,
+      "ECU nicht mehr programmierbar": 2,
+      "ungültig": 255
+    },
+    "VEHICLE_TYPE_COMPARE_RESULT": {
+      "Vehicle type compare is failed": 0,
+      "Vehicle type compare is passed": 1,
+      "Wert ungültig": 255
+    },
+    "NVM_COMPARE_RESULT": {
+      "Compare result is failed": 0,
+      "Compare result is no error": 1,
+      "Wert ungültig": 255
+    },
+    "INFO_VEHICLE_TIMEOUT": {
+      "No timeout": 0,
+      "Timeout": 1,
+      "Wert ungültig": 255
+    },
+    "CRC32_ERROR": {
+      "No error": 0,
+      "Error": 1,
+      "Wert ungültig": 255
+    },
+    "CODING_CRC_ERROR": {
+      "No error": 0,
+      "Error": 1,
+      "Wert ungültig": 255
+    },
+    "TI_DMCS_INFORMATION": {
+      "TI don't work.": 0,
+      "In DMCS synchronization": 1,
+      "CAN message TactCounterSynchronizationGlobalTimeCANAR timeout": 2,
+      "DMCS not syncrhonized because too far in the past": 3,
+      "DMCS not syncrhonized because too far in the future": 4,
+      "CTR_T_MSEC_IDC or CTR_T_SEC_IDC invalid": 5,
+      "Wert ungültig": 255
+    },
+    "PO_NVM": {
+      "Position light OFF": 0,
+      "Position light ON": 1,
+      "Wert ungültig": 255
+    },
+    "PL_NVM": {
+      "Parking light OFF": 0,
+      "Parking light ON": 1,
+      "Wert ungültig": 255
+    },
+    "BL_NVM": {
+      "Brake light is not ON due to functional safety": 0,
+      "Brake light is ON due to functional safety": 1,
+      "Wert ungültig": 255
+    },
+    "CAN_SIGNAL_ST_LP_LOPI_DG_DRL_CKM_NVM": {
+      "DRL control by CTR_FN_DRL": 0,
+      "DRL cannot controlled by CTR_FN_DRL": 1,
+      "Wert ungültig": 255
+    },
+    "TAB_ECU_MODE": {
+      "Plant Mode": 0,
+      "Engineering Mode": 1,
+      "Field Mode": 2,
+      "Wert ungültig": 255
+    },
+    "CDC_MODIFY_TYPE_TAB": {
+      "CLEAR_EVENT_BUFFER": 0,
+      "CLEAR_ALL_JOBS": 1,
+      "DELETE_JOB_ID": 2,
+      "IGNORE_NEW_JOBS": 3
+    },
+    "RLM_KANAL": {
+      "Kanal 1": 0,
+      "Kanal 2": 1,
+      "Kanal 3": 2,
+      "Kanal 4": 3,
+      "Kanal 5": 4,
+      "Kanal 6": 5,
+      "Kanal 7": 6,
+      "Kanal 8": 7,
+      "Kanal 9": 8,
+      "Kanal 10": 9,
+      "Kanal 11": 10,
+      "Kanal 12": 11,
+      "Kanal 13": 12,
+      "Kanal 14": 13,
+      "Kanal 15": 14,
+      "Kanal 16": 15,
+      "Kanal 17": 16,
+      "Kanal 18": 17,
+      "Kanal 19": 18,
+      "Kanal 20": 19,
+      "Kanal 21": 20,
+      "Kanal 22": 21,
+      "Kanal 23": 22,
+      "Kanal 24": 23,
+      "Kanal 25": 24,
+      "Kanal 26": 25,
+      "Kanal 27": 26,
+      "Kanal 28": 27,
+      "Kanal 29": 28,
+      "Kanal 30": 29,
+      "Kanal 31": 30,
+      "Kanal 32": 31,
+      "Kanal 33": 32,
+      "Kanal 34": 33,
+      "Kanal 35": 34,
+      "Kanal 36": 35,
+      "Kanal 37": 36,
+      "Kanal 38": 37,
+      "Kanal 39": 38,
+      "Kanal 40": 39,
+      "Kanal 41": 40,
+      "Kanal 42": 41,
+      "Kanal 43": 42,
+      "Kanal 44": 43,
+      "Kanal 45": 44,
+      "Kanal 46": 45,
+      "Kanal 47": 46,
+      "Kanal 48": 47,
+      "Kanal 49": 48,
+      "Kanal 50": 49,
+      "Kanal 51": 50,
+      "Kanal 52": 51,
+      "Kanal 53": 52,
+      "Kanal 54": 53,
+      "Kanal 55": 54,
+      "Kanal 56": 55,
+      "Kanal 57": 56,
+      "Kanal 58": 57,
+      "Kanal 59": 58,
+      "Kanal 60": 59,
+      "Kanal 61": 60,
+      "Kanal 62": 61,
+      "Kanal 63": 62,
+      "Kanal 64": 63,
+      "Kanal 65": 64,
+      "Kanal 66": 65,
+      "Kanal 67": 66,
+      "Kanal 68": 67,
+      "Kanal 69": 68,
+      "Kanal 70": 69,
+      "Kanal 71": 70,
+      "Kanal 72": 71,
+      "Kanal 73": 72,
+      "Kanal 74": 73,
+      "Kanal 75": 74,
+      "Kanal 76": 75,
+      "Kanal 77": 76,
+      "Kanal 78": 77,
+      "Kanal 79": 78,
+      "Kanal 80": 79,
+      "Kanal 81": 80,
+      "Kanal 82": 81,
+      "Kanal 83": 82,
+      "Kanal 84": 83,
+      "Kanal 85": 84,
+      "Kanal 86": 85,
+      "Kanal 87": 86,
+      "Kanal 88": 87,
+      "Kanal 89": 88,
+      "Kanal 90": 89,
+      "Kanal 91": 90,
+      "Kanal 92": 91,
+      "Kanal 93": 92,
+      "Kanal 94": 93,
+      "Kanal 95": 94,
+      "Kanal 96": 95,
+      "Gruppe 1": 96,
+      "Gruppe 2": 97,
+      "Gruppe 3": 98,
+      "Gruppe 4": 99,
+      "Gruppe 5": 100,
+      "Gruppe 6": 101,
+      "Gruppe 7": 102,
+      "Gruppe 8": 103,
+      "Gruppe 9": 104,
+      "Gruppe 10": 105,
+      "Gruppe 11": 106,
+      "Gruppe 12": 107,
+      "Gruppe 13": 108,
+      "Gruppe 14": 109,
+      "Gruppe 15": 110,
+      "Gruppe 16": 111,
+      "alle Kanäle": 112,
+      "Ungültiger Wert": 255
+    },
+    "TAB_RLM_HSS": {
+      "Highside Switch": 0,
+      "keine Aktion": 255
+    },
+    "RLM_LAMP_SUPPLIER_NAME": {
+      "AL/MARELLI": 0,
+      "ZKW": 1,
+      "MAGNA": 2,
+      "Hella": 3,
+      "Odelo": 4,
+      "MIND": 5,
+      "Xingyu": 6,
+      "VALEO": 7,
+      "invalid value": 255
+    },
+    "RLM_LAMP_SUPPLIER_PLANT": {
+      "Tolmezzo": 0,
+      "Slowakei": 1,
+      "Prebold / Slowenien": 2,
+      "invalid value": 255
+    },
+    "SCHEINWERFER_LAENDER_VARIANTE": {
+      "ECE": 0,
+      "US": 1,
+      "ECE/ US": 2,
+      "Wert ungültig": 255
+    },
+    "RLM_SA_VARIANT": {
+      "Base": 0,
+      "9T8A": 1,
+      "invalid value": 255
+    },
+    "FAHRZEUG_TYP": {
+      "G05": 32,
+      "G06": 34,
+      "G07": 36,
+      "G11": 38,
+      "G12": 40,
+      "G14": 42,
+      "G15": 44,
+      "G16": 46,
+      "G01": 64,
+      "G02": 66,
+      "G08": 68,
+      "G20": 70,
+      "G21": 72,
+      "G28": 74,
+      "G22": 76,
+      "G23": 78,
+      "G24": 80,
+      "G26": 82,
+      "G29": 84,
+      "G30": 86,
+      "G31": 88,
+      "G38": 90,
+      "G32": 92,
+      "J29": 94,
+      "F40": 128,
+      "F41": 130,
+      "F42": 132,
+      "F43": 134,
+      "F44": 136,
+      "F45NF": 138,
+      "F46NF": 140,
+      "F54NF": 142,
+      "F55NF": 144,
+      "F56NF": 146,
+      "F57NF": 148,
+      "RR21": 0,
+      "RR22": 2,
+      "RR24": 4,
+      "RR25": 6,
+      "F39": 96,
+      "F48": 97,
+      "F49": 98,
+      "F52": 99,
+      "F60": 100,
+      "F80": 101,
+      "F82": 102,
+      "F83": 103,
+      "F85": 104,
+      "F86": 105,
+      "F87": 106,
+      "F90": 107,
+      "F91": 108,
+      "F92": 109,
+      "F93": 110,
+      "F95": 111,
+      "F96": 112,
+      "F97": 113,
+      "F98": 114,
+      "G09": 115,
+      "G42": 116,
+      "G70": 117,
+      "G71": 118,
+      "G73": 206,
+      "G80": 120,
+      "G82": 121,
+      "G83": 122,
+      "I15": 123,
+      "I20": 124,
+      "M13": 125,
+      "RR11": 126,
+      "RR12": 127,
+      "RR31": 176,
+      "U06": 177,
+      "G60": 178,
+      "U11": 179,
+      "U15": 180,
+      "G18": 181,
+      "U25": 186,
+      "J01": 183,
+      "J05": 184,
+      "J21": 185,
+      "G81": 187,
+      "G87": 188,
+      "G61": 189,
+      "G65": 190,
+      "G66": 191,
+      "G67": 192,
+      "G77": 193,
+      "G90": 194,
+      "G91": 195,
+      "G93": 196,
+      "G45": 197,
+      "U12": 198,
+      "F65": 199,
+      "F66": 200,
+      "F67": 201,
+      "F70": 202,
+      "F74": 203,
+      "F78": 204,
+      "U10": 205,
+      "G99": 207,
+      "G97": 208,
+      "G98": 209,
+      "U28": 210,
+      "G46": 211,
+      "G48": 212,
+      "Wert ungültig": 255
+    },
+    "TAB_RLM_GPIO_FUNKTIONEN": {
+      "PWM Eingang": 0,
+      "PWM Ausgang": 1,
+      "Digitaler Eingang": 2,
+      "Digital Out High_Power": 3,
+      "Digital Out Low_Power": 4,
+      "A/D Eingang": 5,
+      "nicht konfiguriert": 6,
+      "Wert ungültig": 255
+    },
+    "TAB_MESSWERTE_GPIO": {
+      "Digital In High-Power - bei gewünschter Ansteuerung": 0,
+      "PWM in %": 1,
+      "Digital In Low-Power - bei Nichtansteuerung": 2,
+      "A/D input": 3,
+      "nicht definiert": 255
+    },
+    "GPIO_AUSWAHL": {
+      "GPIO 1": 1,
+      "GPIO 2": 2,
+      "GPIO 3": 3,
+      "GPIO 4": 4,
+      "GPIO 5": 5,
+      "GPIO 6": 6,
+      "GPIO 7": 7,
+      "GPIO 8": 8,
+      "GPIO 9": 9,
+      "GPIO 10": 10,
+      "GPIO 11": 11,
+      "GPIO 12": 12,
+      "Wert ungültig": 255
+    },
+    "TAB_RLM_LICHTFUNKTIONEN": {
+      "Positionslicht//Positioning light": 0,
+      "Nebelschlusslicht/Rear fog light": 1,
+      "Bremslicht/Break light": 2,
+      "Fahrtrichtungsanzeiger/Turn indicator": 3,
+      "Rückfahrlicht/Reversing light": 4,
+      "Seitenmarkierungsleuchte/Side marker light": 5,
+      "Standlicht/Side light": 6,
+      "Ausgelagerte Leuchte/Remote lamp": 7,
+      "Parklicht/Parking light": 8,
+      "Kennzeichenleuchte/Licence plate light": 9,
+      "nicht definiert": 255
+    },
+    "STATUS_RLM_FUNKTION": {
+      "aus": 0,
+      "ein": 1,
+      "nicht unterstützt": 254,
+      "nicht verbaut": 255
+    },
+    "TAB_RLM_RESET_SIDE_DEFAULT": {
+      "Part 1 left": 0,
+      "invalid": 255
+    },
+    "HWMODEL": {
+      "A-Muster": 0,
+      "B-Muster": 64,
+      "C-Muster": 128,
+      "Erstmuster (Serie)": 192,
+      "Wert ungültig": 255
+    },
+    "TAB_SUPPLIERINFO_FIELD": {
+      "Default value": 0,
+      "Wert 1": 1,
+      "Wert 2": 2,
+      "Wert 3": 3,
+      "Wert 4": 4,
+      "Wert 5": 5,
+      "Wert 6": 6,
+      "Wert 7": 7,
+      "Wert 8": 8,
+      "Wert 9": 9,
+      "Wert 10": 10,
+      "Wert 11": 11,
+      "Wert 12": 12,
+      "Wert 13": 13,
+      "Wert 14": 14,
+      "Wert 15": 15,
+      "Wert 16": 16,
+      "Wert 17": 17,
+      "Wert 18": 18,
+      "Wert 19": 19,
+      "Wert 20": 20,
+      "Wert 21": 21,
+      "Wert 22": 22,
+      "Wert 23": 23,
+      "Wert 24": 24,
+      "Wert 25": 25,
+      "Wert 26": 26,
+      "Wert 27": 27,
+      "Wert 28": 28,
+      "Wert 29": 29,
+      "Wert 30": 30,
+      "Wert 31": 31,
+      "Wert 32": 32,
+      "Wert 33": 33,
+      "Wert 34": 34,
+      "Wert 35": 35,
+      "Wert 36": 36,
+      "Wert 37": 37,
+      "Wert 38": 38,
+      "Wert 39": 39,
+      "Wert 40": 40,
+      "Wert 41": 41,
+      "Wert 42": 42,
+      "Wert 43": 43,
+      "Wert 44": 44,
+      "Wert 45": 45,
+      "Wert 46": 46,
+      "Wert 47": 47,
+      "Wert 48": 48,
+      "Wert 49": 49,
+      "Wert 50": 50,
+      "Wert 51": 51,
+      "Wert 52": 52,
+      "Wert 53": 53,
+      "Wert 54": 54,
+      "Wert 55": 55,
+      "Wert 56": 56,
+      "Wert 57": 57,
+      "Wert 58": 58,
+      "Wert 59": 59,
+      "Wert 60": 60,
+      "Wert 61": 61,
+      "Wert 62": 62,
+      "Wert 63": 63,
+      "Wert ungültig": 255
+    }
+  }
+}

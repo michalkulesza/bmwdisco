@@ -1,0 +1,609 @@
+{
+  "generated_at": "2026-09-25T08:35:37Z",
+  "cdn_base": "https://cdn.bimmerlight.com",
+  "sections": {
+    "information": {
+      "version": "2026-09-25",
+      "count": 3,
+      "hash": "bda7f5a3232c0d09a6afe0d46867885d9812c29f331ecaaa9de41f90c679dbc7",
+      "files": [
+        {
+          "path": "2026-09-25/information/chassis_info.bimmerlight",
+          "size": 1407036,
+          "sha256": "2db9f949bc12e39c6e82d77e09bac6fbdf5e738d264a6803303b17585d8e6eb9"
+        },
+        {
+          "path": "2026-09-25/information/ecu_modules.bimmerlight",
+          "size": 74232,
+          "sha256": "c59b885be8f540c1d82e361653937069314c2b10e47cefcc56be3618dc075c5d"
+        },
+        {
+          "path": "2026-09-25/information/salapa_info.bimmerlight",
+          "size": 523204,
+          "sha256": "8a2aee90d5b703846bbb2ad85c05e675418d22df3365ce27a1507354b3390480"
+        }
+      ]
+    },
+    "mappings": {
+      "version": "2026-09-25",
+      "count": 51,
+      "hash": "6d7bf4804439845fada5a868d60a934642dfea11c4d07e96db497e5513093edc",
+      "files": [
+        {
+          "path": "2026-09-25/mappings/G_CAS/BCP_SP21.bimmerlight",
+          "size": 25396,
+          "sha256": "eb2a08d39653d133189c0d4249e634088e94f53d6a44ac9301ab40ec0ae5f4eb"
+        },
+        {
+          "path": "2026-09-25/mappings/G_CAS/BDC.bimmerlight",
+          "size": 23548,
+          "sha256": "d3ac22df24c1b15fa6aee2ec393bbc413bf1501c44ade7396c1e7aa9fe2f03b2"
+        },
+        {
+          "path": "2026-09-25/mappings/G_CAS/BDC_G05.bimmerlight",
+          "size": 29896,
+          "sha256": "d2813100a9d09926c1a75e16bb646cf484aa7d2d0e27e7dc1372bd1b8ea5be69"
+        },
+        {
+          "path": "2026-09-25/mappings/G_CAS/BDC_G11.bimmerlight",
+          "size": 25572,
+          "sha256": "25e1b7d2e7d287b8d55456ca00260c0a2ae7a820c07481549e94e1dcda0df638"
+        },
+        {
+          "path": "2026-09-25/mappings/G_CAS/FEM_20.bimmerlight",
+          "size": 18296,
+          "sha256": "3062a6b200f50687d1611e5513a340951372507e502f13687b5a5c9e7e3b8d7a"
+        },
+        {
+          "path": "2026-09-25/mappings/G_FRM/FRM3.bimmerlight",
+          "size": 15396,
+          "sha256": "dca4bf1f022e9a09187b4264c11607ec6152a79570ff28353d07b7dea4447b0f"
+        },
+        {
+          "path": "2026-09-25/mappings/G_FRM/FRM_70.bimmerlight",
+          "size": 12480,
+          "sha256": "3bcf0e7d8084ce611bf69f89b9651a0d47eb96b60464c42477a8195322df91d7"
+        },
+        {
+          "path": "2026-09-25/mappings/G_FRM/FRM_87.bimmerlight",
+          "size": 11324,
+          "sha256": "a0586cb55bcaf0f92fa9c2d89b8814e85f16477b7cfcda9b15b1964a3c057d95"
+        },
+        {
+          "path": "2026-09-25/mappings/G_FRM/REM_20.bimmerlight",
+          "size": 6120,
+          "sha256": "ea1caa3cc5e51417e1ae6e526d01216d05da2cbe64fc633af4f64755296cd5ca"
+        },
+        {
+          "path": "2026-09-25/mappings/G_KOMBI/KOMB01.bimmerlight",
+          "size": 1260,
+          "sha256": "a582fba657619f64544730b80d880f3b183c07d79a30c3b394adc50f150a6792"
+        },
+        {
+          "path": "2026-09-25/mappings/G_KOMBI/KOMB25.bimmerlight",
+          "size": 1260,
+          "sha256": "f59354a3a822fc128d836358115191572f499b86ef0a598405a83b2e47f4ba3b"
+        },
+        {
+          "path": "2026-09-25/mappings/G_KOMBI/KOMBSP18.bimmerlight",
+          "size": 1248,
+          "sha256": "0a12573181735a1ae6ffdf597f1400b303ff8244ecffa9419f95fd13c3b7c719"
+        },
+        {
+          "path": "2026-09-25/mappings/G_KOMBI/KOMB_G11.bimmerlight",
+          "size": 1248,
+          "sha256": "6d58c4b0b736b777ac0c35809d60db8f7b6b200cf39c403d962ba44e6db6f31e"
+        },
+        {
+          "path": "2026-09-25/mappings/G_KOMBI/KOMB_SP21.bimmerlight",
+          "size": 1244,
+          "sha256": "52719842b6f44e70ad75ad9af4f2d9928d3f43fa88d95f6f6db1d50b5bddfc6f"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LCM/LCM.bimmerlight",
+          "size": 7208,
+          "sha256": "a132a129b4851b13660ed3ef1679d8ce7df00d0a7b4bbd8423f6ec1c2fdd97d2"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LCM/LCM_A.bimmerlight",
+          "size": 7288,
+          "sha256": "0a481aff6ce2105426a266821141c7bc7acb5d97b4c960bfc7173bb794856ce3"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LCM/LCM_II.bimmerlight",
+          "size": 7328,
+          "sha256": "417301c1e1e168815e83c7242049ad3d6ff6801f2ca44c70ab7b364abdc5df30"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LCM/LCM_III.bimmerlight",
+          "size": 7368,
+          "sha256": "44ed1a454e3bea70a20e325cc1252393a98890a1168e4a5e571fe2f574d477cd"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LCM/LCM_IV.bimmerlight",
+          "size": 7840,
+          "sha256": "920a01065bccd86fa13b1156a5a8b21ed685ff1c9284706d16405c3a077bb6f9"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_L/FLE02_L.bimmerlight",
+          "size": 8372,
+          "sha256": "982960e93786b595a268871c32dfd044f6974b535a297b382be20c38c3481d9a"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_L/FLE_L.bimmerlight",
+          "size": 7280,
+          "sha256": "23ee52c5ca65f2df690a48d2df5311cccde419d9836e1d4eeb63c06e2be4ecea"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_L/FLM01_L.bimmerlight",
+          "size": 9060,
+          "sha256": "7e895db44ece2f8283d2228884872ea6d26d84cd0fa2938ae53cd0d67a5c3f77"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_L/FLM02X_L.bimmerlight",
+          "size": 9776,
+          "sha256": "aef48ef57ce043e612553e2666413bde3cc4fa995a3eaadb85f9a13b9fba7c28"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_L/FLM02_L.bimmerlight",
+          "size": 10932,
+          "sha256": "b63b9f3fe16bd5888ec90332bb9796919cad6f044b640b08d20a2c83d2f804e7"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_L/FLM03_L.bimmerlight",
+          "size": 6960,
+          "sha256": "dcaae8daee6b3e25e671c5cff8bdf61af5f5434049e7d3ca5a632b518e6b2983"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_L/FLM2_1_L.bimmerlight",
+          "size": 9776,
+          "sha256": "2b4b09475db3f6d7493bb08c2a8611298fca075530c35cce7da70bda77ebd7d2"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_L/LHM2_L.bimmerlight",
+          "size": 6820,
+          "sha256": "d87bbd7e7100feb2a6997e75a3bf662becdaa6638a61c586ae6bbdb53930435e"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_R/FLE02_R.bimmerlight",
+          "size": 8388,
+          "sha256": "650b289b2736cedd9bbd968ace20fcc5a9da4e2a9dd3bac5f55c8a7331fc9547"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_R/FLE_R.bimmerlight",
+          "size": 7288,
+          "sha256": "e47308a13742ce53a30fe6a910ee0331678cf751bfb56cdc38b958ebb24fbcc4"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_R/FLM01_R.bimmerlight",
+          "size": 9076,
+          "sha256": "2f65020aa2cfbfdb52a9e50eca6c36ff170f8cea46b510440fddbb25a1b304ae"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_R/FLM02X_R.bimmerlight",
+          "size": 9792,
+          "sha256": "8a481e9f19d64c750c88fe11f4805255bd590ce392cb1e5443b87144411ec4d2"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_R/FLM02_R.bimmerlight",
+          "size": 10952,
+          "sha256": "b3e39dddffa685a068b54409b56f42b6b14050469da47f2b498eb1dbb17c1f19"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_R/FLM03_R.bimmerlight",
+          "size": 6968,
+          "sha256": "4ae26a10db623d2b4e414f6ad23dbc2c2ebe7e48ee640e0b9dbe43b4fe61eff0"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_R/FLM2_1_R.bimmerlight",
+          "size": 9792,
+          "sha256": "30f3c4b60b239425babb2a662e896fed5d465a31facb597de920fdd7bbd10f62"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LHM_R/LHM2_R.bimmerlight",
+          "size": 6828,
+          "sha256": "8cc5fb78fd9a6d4aff9647f5f0cb94ebe9e08ddc7f9823a8566f7af6870574f1"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LM/LM_60.bimmerlight",
+          "size": 12756,
+          "sha256": "2edc0be50fa074113ec6ced4a285989af339fcb14b53fd6f1b11b079e611e1ac"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LM/LM_AHL.bimmerlight",
+          "size": 12808,
+          "sha256": "873e809647d9bd26dfff5ff14aead7e7c50c0fc51633cb23db9a28d8c27906c9"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LM/LM_AHL_2.bimmerlight",
+          "size": 15128,
+          "sha256": "60b4fa491d5f1689f6c6715fdfcc35d9682cb35d2291d40a63e455e4032695ef"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LM/LM_E65_2.bimmerlight",
+          "size": 11496,
+          "sha256": "257d0af7044937010d3e9533b660586f444fb696907fafe1027b5521260a6120"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LME38/LME38.bimmerlight",
+          "size": 6664,
+          "sha256": "2a4a4fdc269f964d5c665d05b61c1a539cb0db19c8f559f6660e97c6ed934a57"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LSZ/LM2_83.bimmerlight",
+          "size": 6208,
+          "sha256": "fb0541369fee7e7de9fc84141b980eb95efcf7f2bb76e4bc2982a113a8b7c260"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LSZ/LSZ.bimmerlight",
+          "size": 5632,
+          "sha256": "f7e8cf85131ee7cfe97a83887bdab5cc15fd07f029bbc8e0a0f23b12a3bec8c2"
+        },
+        {
+          "path": "2026-09-25/mappings/G_LSZ/LSZ_2.bimmerlight",
+          "size": 6892,
+          "sha256": "fad0a7396a31a2c31756a046efee21dda61207aba0cfe41652eddd13347357a7"
+        },
+        {
+          "path": "2026-09-25/mappings/G_RLM2_1L/RLM2_1L.bimmerlight",
+          "size": 9388,
+          "sha256": "c507b2a432e1a26aec1eba21b3313b8738ba12a6deb7964589ac57e592205f18"
+        },
+        {
+          "path": "2026-09-25/mappings/G_RLM2_1R/RLM2_1R.bimmerlight",
+          "size": 9436,
+          "sha256": "ee5a87ec224284f1cfa49b9dfb73a9fa0dd6b6fd7024143439abb1862c833df0"
+        },
+        {
+          "path": "2026-09-25/mappings/G_RLM2_2L/RLM2_2L.bimmerlight",
+          "size": 9388,
+          "sha256": "f024500727874b56dbb3ddd97bbb937262264da114b03849e4369052197b6525"
+        },
+        {
+          "path": "2026-09-25/mappings/G_RLM2_2R/RLM2_2R.bimmerlight",
+          "size": 9436,
+          "sha256": "6e4fd367c743ab82a66b1f2a0746323a38ec4bb5c1b68fe34798e2fbd1dc7914"
+        },
+        {
+          "path": "2026-09-25/mappings/G_RLM_1L/RLM_1L.bimmerlight",
+          "size": 5108,
+          "sha256": "5a774f284c2d811fcd73f6f83ac19c49a940d78667f42168a056a13720a1b62e"
+        },
+        {
+          "path": "2026-09-25/mappings/G_RLM_1R/RLM_1R.bimmerlight",
+          "size": 5132,
+          "sha256": "2706541451470b6a856c80bc0e0a6eb180395e40098096aae21d61cad80681da"
+        },
+        {
+          "path": "2026-09-25/mappings/G_RLM_2L/RLM_2L.bimmerlight",
+          "size": 5108,
+          "sha256": "aebf6425f42f6fd72bbee40f249f85447732d330a262bc784cf23e61269a85f1"
+        },
+        {
+          "path": "2026-09-25/mappings/G_RLM_2R/RLM_2R.bimmerlight",
+          "size": 5132,
+          "sha256": "d869f84ee0b3ed9c43473941c65ebdef64c0379d41f3ee37f3fd739c43c70035"
+        }
+      ]
+    },
+    "packs": {
+      "version": "2026-09-25",
+      "count": 9,
+      "hash": "f793600ba34218f8879ced2ba1dd8c460e5a57257f0102adc580f62d322a17fc",
+      "files": [
+        {
+          "path": "2026-09-25/packs/flash.bimmerlight",
+          "size": 260912,
+          "sha256": "a81c557760c18c2ef99f81268afc3f780c6c131f47d24695be621cb1cbe9caa5"
+        },
+        {
+          "path": "2026-09-25/packs/ghost.bimmerlight",
+          "size": 81692,
+          "sha256": "bd454b5d3774db0560e7a970ebde5362868ca1ace43f56daad43a1f3c3d3c983"
+        },
+        {
+          "path": "2026-09-25/packs/headlight_flash.bimmerlight",
+          "size": 166392,
+          "sha256": "84c59f9c38d983c1daff79d6da1d21f0e79a8096a54df4bcbe4508e101cafb1f"
+        },
+        {
+          "path": "2026-09-25/packs/headlight_show.bimmerlight",
+          "size": 312132,
+          "sha256": "28405c8d8b593069fef973be04a0bca8757b5e8b1ff35003599d9a1dfc202a4b"
+        },
+        {
+          "path": "2026-09-25/packs/one_side.bimmerlight",
+          "size": 200000,
+          "sha256": "47a9b08af011e4ba24c5258f4c85b93fcaad991e07fc249feb52f4e5a654d611"
+        },
+        {
+          "path": "2026-09-25/packs/party_mode.bimmerlight",
+          "size": 190480,
+          "sha256": "ca7f00045716213733bf9c1d7a5319debedb103b54457624d0a18620b652521c"
+        },
+        {
+          "path": "2026-09-25/packs/taillight_flash.bimmerlight",
+          "size": 342160,
+          "sha256": "0296ab804fba9f4dfa09846dccc216b132ab0356c0e3f123fc5f7a234cf0078c"
+        },
+        {
+          "path": "2026-09-25/packs/taillight_show.bimmerlight",
+          "size": 121268,
+          "sha256": "ca999b902eb43393a35a74895e920b64e33df5695ace279217e10c62b71c0bb1"
+        },
+        {
+          "path": "2026-09-25/packs/toggle.bimmerlight",
+          "size": 61480,
+          "sha256": "9ab646479865008e7ac46f992d5e870e40827306e013e6537ffb08bd858f9c49"
+        }
+      ]
+    },
+    "uds": {
+      "version": "2026-09-25",
+      "count": 52,
+      "hash": "8687ca31914162249940f7d00f67a33edc8e9140f80a142fc7875797cf482b9f",
+      "files": [
+        {
+          "path": "2026-09-25/uds/BCP_SP21.uds.bimmerlight",
+          "size": 650796,
+          "sha256": "d2c88354f2698b58cc54c0dc89eccadbe8a66efa84a7f68a0c08702d4f1ea825"
+        },
+        {
+          "path": "2026-09-25/uds/BDC.uds.bimmerlight",
+          "size": 182376,
+          "sha256": "38e18063fe144451fdcf877119938830eb55cc18a9d8deaa61bee97810de529a"
+        },
+        {
+          "path": "2026-09-25/uds/BDC_G05.uds.bimmerlight",
+          "size": 343544,
+          "sha256": "9dbeded0c93c90c3d36ad1d53a5e0fb43e032e6b4c5e408b7960c41b53486fb8"
+        },
+        {
+          "path": "2026-09-25/uds/BDC_G11.uds.bimmerlight",
+          "size": 184292,
+          "sha256": "cfd72406cfbd07ddfc14e84aa4b602f3ac5c5a277f1703b6894eea9bc83d91f7"
+        },
+        {
+          "path": "2026-09-25/uds/CAS.uds.bimmerlight",
+          "size": 6172,
+          "sha256": "e82ff71d5822be8ea0833e73ae4609c5818b5b751e2fb70ec937db1ef9cf569f"
+        },
+        {
+          "path": "2026-09-25/uds/FEM_20.uds.bimmerlight",
+          "size": 122164,
+          "sha256": "d59a29f13624778cd37e4158a931e452d8836236f796e985bfec03348629f49f"
+        },
+        {
+          "path": "2026-09-25/uds/FLE02_L.uds.bimmerlight",
+          "size": 43520,
+          "sha256": "029025f4892b43ada02ec2403d951fcdb2c86f978963ab49c1aad239ef1ba92b"
+        },
+        {
+          "path": "2026-09-25/uds/FLE02_R.uds.bimmerlight",
+          "size": 43520,
+          "sha256": "859f1700fa6b618da46847583b2f2f05db559a38e09c0a6dc79e69572d13fef7"
+        },
+        {
+          "path": "2026-09-25/uds/FLE_L.uds.bimmerlight",
+          "size": 22620,
+          "sha256": "cc906531efc71935100c6ba3856c07c2ea786c535319260cd1607577d1869cca"
+        },
+        {
+          "path": "2026-09-25/uds/FLE_R.uds.bimmerlight",
+          "size": 22620,
+          "sha256": "d1fd621d2201ad3186f57e08b22a2d51cc10d628ecba427ce5d1cfa50f6202c7"
+        },
+        {
+          "path": "2026-09-25/uds/FLM01_L.uds.bimmerlight",
+          "size": 53012,
+          "sha256": "6b7121b6680f79e24e7109d9114369c811cd46545847c62b6ab8fd606123307b"
+        },
+        {
+          "path": "2026-09-25/uds/FLM01_R.uds.bimmerlight",
+          "size": 53012,
+          "sha256": "9f33211159a58ef1a8fba3022d155568934653c575d2cd3504baaffab36f9223"
+        },
+        {
+          "path": "2026-09-25/uds/FLM02X_L.uds.bimmerlight",
+          "size": 59952,
+          "sha256": "2c3309ada491238721da9a101b1d14f4aade15941d64ec2baa9c22a714c6c214"
+        },
+        {
+          "path": "2026-09-25/uds/FLM02X_R.uds.bimmerlight",
+          "size": 59948,
+          "sha256": "4ef014b48b388781b83831f20a3c4224472acc9b49e3ab7459bfe923488fd56d"
+        },
+        {
+          "path": "2026-09-25/uds/FLM02_L.uds.bimmerlight",
+          "size": 50380,
+          "sha256": "5f13b3383e4912ef43a206bed9ed30973c549c8d8ba1df092d908aa1bf92df91"
+        },
+        {
+          "path": "2026-09-25/uds/FLM02_R.uds.bimmerlight",
+          "size": 49576,
+          "sha256": "4ec647fb1ae9bb8da155be11059da0445bdd8d14285324b817f7c77de7937479"
+        },
+        {
+          "path": "2026-09-25/uds/FLM03_L.uds.bimmerlight",
+          "size": 69628,
+          "sha256": "cf16063cc79a32389ca20a9fdbb459e08d709f0a67c2cf7fa33052c4cb54609e"
+        },
+        {
+          "path": "2026-09-25/uds/FLM03_R.uds.bimmerlight",
+          "size": 69628,
+          "sha256": "10816a6631efac289f3ac85af32e2ea2672d7042dd4278ed3d94d235ef1eff70"
+        },
+        {
+          "path": "2026-09-25/uds/FLM2_1_L.uds.bimmerlight",
+          "size": 66728,
+          "sha256": "e26b6512683ad21c286ef96e1761372379a1fc11d17275f433aa567b46e1b289"
+        },
+        {
+          "path": "2026-09-25/uds/FLM2_1_R.uds.bimmerlight",
+          "size": 66728,
+          "sha256": "acac248fdcc9a97594127d75c0a1f3f6a2aa648b73cf44c63d8685f35bb9b82d"
+        },
+        {
+          "path": "2026-09-25/uds/FRM3.uds.bimmerlight",
+          "size": 42404,
+          "sha256": "4dd92531b6595e745a7d893576144cc8ca8b94ba3fcdce3e3bd64467ccc378fc"
+        },
+        {
+          "path": "2026-09-25/uds/FRM_70.uds.bimmerlight",
+          "size": 14096,
+          "sha256": "27b1844061f7ec5d5bb678e21c80eba4afe55c0e748f6d5a68cd76afac5e34cd"
+        },
+        {
+          "path": "2026-09-25/uds/FRM_87.uds.bimmerlight",
+          "size": 9588,
+          "sha256": "f426d1c8c7f46c4ba9748a207e4db524295ba7d216a5ef15bbf0473ab95085f6"
+        },
+        {
+          "path": "2026-09-25/uds/KOMB01.uds.bimmerlight",
+          "size": 81240,
+          "sha256": "33f403d0e2b54c487840562e5faba0a3d66787c4ad6beec1dc5c591d8f6ed010"
+        },
+        {
+          "path": "2026-09-25/uds/KOMB25.uds.bimmerlight",
+          "size": 85176,
+          "sha256": "36773c3b8e5b9f25be253260e9c002738cda5f80e86637c3799a0745beb8826c"
+        },
+        {
+          "path": "2026-09-25/uds/KOMBSP18.uds.bimmerlight",
+          "size": 76960,
+          "sha256": "e3f2481cfe8eb84f93f745e774ea858876a2871986d866eabf5832c19f681a44"
+        },
+        {
+          "path": "2026-09-25/uds/KOMB_G11.uds.bimmerlight",
+          "size": 60952,
+          "sha256": "48b57211feaf8af90392d6da22d87e2355e3dcc791fafd11d6c50cd7cf5901a0"
+        },
+        {
+          "path": "2026-09-25/uds/LCM.uds.bimmerlight",
+          "size": 1056,
+          "sha256": "4cd7501c60d3697ad77e6e9d8bfd9fce3ee07a39f9241d854cd3a0dc86c65dbc"
+        },
+        {
+          "path": "2026-09-25/uds/LCM_A.uds.bimmerlight",
+          "size": 1056,
+          "sha256": "67e9254bf2642b375b50235789313c8dea9dc2e773df9385c6435fd3af108b30"
+        },
+        {
+          "path": "2026-09-25/uds/LCM_II.uds.bimmerlight",
+          "size": 1060,
+          "sha256": "34a7fb15fa8ddcfc6953a86083ed1f96f655fc267de922caae9d571650e0613b"
+        },
+        {
+          "path": "2026-09-25/uds/LCM_III.uds.bimmerlight",
+          "size": 1124,
+          "sha256": "495244b258255f55e0bbab74eb694e22cf54aa68d9146a05f1132c09c60264e9"
+        },
+        {
+          "path": "2026-09-25/uds/LCM_IV.uds.bimmerlight",
+          "size": 1184,
+          "sha256": "67e03e1590212f718319b87235daffd8c131539835456c8bb95a847a202678d0"
+        },
+        {
+          "path": "2026-09-25/uds/LHM2_L.uds.bimmerlight",
+          "size": 12756,
+          "sha256": "339ba3b9b71b3f2120cfde12dd1193fc405cd131bded3bd99b5391eee96d333b"
+        },
+        {
+          "path": "2026-09-25/uds/LHM2_R.uds.bimmerlight",
+          "size": 12756,
+          "sha256": "502222a5ff957efd8dd42c19b270fa60caf9e27d726ead37a01bfe2816136fe3"
+        },
+        {
+          "path": "2026-09-25/uds/LM2_83.uds.bimmerlight",
+          "size": 1008,
+          "sha256": "1d696492c26495f6e76641e584e433e48238108229bc5e6bc929f72f789e4491"
+        },
+        {
+          "path": "2026-09-25/uds/LME38.uds.bimmerlight",
+          "size": 1000,
+          "sha256": "ce7cf750b5b81f5ef9228e80d57652b02c178a011f3ab2e26072004f3bb5ea0a"
+        },
+        {
+          "path": "2026-09-25/uds/LM_60.uds.bimmerlight",
+          "size": 7880,
+          "sha256": "a8d777cd20b14d200c44f1a2f322062b856db214d447cc9ec6c986dfc0733c0a"
+        },
+        {
+          "path": "2026-09-25/uds/LM_AHL.uds.bimmerlight",
+          "size": 8024,
+          "sha256": "f6ec1c55323c8e926329777f291a4144d9a130410a253843374aae11bccf5748"
+        },
+        {
+          "path": "2026-09-25/uds/LM_AHL_2.uds.bimmerlight",
+          "size": 9376,
+          "sha256": "ec869320196e17f1d2b899eaf7accae2d73c3a50c9462ebfadae769a0108067b"
+        },
+        {
+          "path": "2026-09-25/uds/LM_E65_2.uds.bimmerlight",
+          "size": 5628,
+          "sha256": "857d0965cb7dd139491e52979c765ad35f9605ed6fc9bfa37c4d45453c98d978"
+        },
+        {
+          "path": "2026-09-25/uds/LSZ.uds.bimmerlight",
+          "size": 884,
+          "sha256": "bd6d6d61e80dc442ef73b0cfa0cb2f65ef007fdabbe2a024118b076d399be5e6"
+        },
+        {
+          "path": "2026-09-25/uds/LSZ_2.uds.bimmerlight",
+          "size": 1072,
+          "sha256": "b975a3d584bd1afaa5a75ef54ee94bd2c2eb9a8b5b2241aad281421ad286ddf2"
+        },
+        {
+          "path": "2026-09-25/uds/REM_20.uds.bimmerlight",
+          "size": 65560,
+          "sha256": "b4eb442f7def30a4de8b4fced0b6f9553c9658616549130c98ab6c990e8b13cb"
+        },
+        {
+          "path": "2026-09-25/uds/RLM2_1L.uds.bimmerlight",
+          "size": 43240,
+          "sha256": "81e1d196a26340fd8d9bf223eec44071be6c244522a8b64523683efc257a1537"
+        },
+        {
+          "path": "2026-09-25/uds/RLM2_1R.uds.bimmerlight",
+          "size": 42940,
+          "sha256": "de695d66a790e31c5dcdfbd85a4bb7cb91383659dffb99cb3c5bf3b569643d21"
+        },
+        {
+          "path": "2026-09-25/uds/RLM2_2L.uds.bimmerlight",
+          "size": 42936,
+          "sha256": "35d964664f9acc840aef973d3da9ca397aa57355529c1bd13618ac844c78cbbc"
+        },
+        {
+          "path": "2026-09-25/uds/RLM2_2R.uds.bimmerlight",
+          "size": 45300,
+          "sha256": "2b4b137024533e11a464c173e2e95be770adfb9b76d74e32f1f73b097aa025e0"
+        },
+        {
+          "path": "2026-09-25/uds/RLM_1L.uds.bimmerlight",
+          "size": 18932,
+          "sha256": "eda1b2201ff580f0bdfe3bc3fa9d25b36b9788a3de2e660af1c4a2a25ff55a3d"
+        },
+        {
+          "path": "2026-09-25/uds/RLM_1R.uds.bimmerlight",
+          "size": 18704,
+          "sha256": "6071845e1090ee0be2b781df1a9041fdab4834875ae832e71cd3072751175188"
+        },
+        {
+          "path": "2026-09-25/uds/RLM_2L.uds.bimmerlight",
+          "size": 18704,
+          "sha256": "7fdb961c763a403a177b236bdbaf0ce146ffe9803122fd3047267d50ec9ddb60"
+        },
+        {
+          "path": "2026-09-25/uds/RLM_2R.uds.bimmerlight",
+          "size": 18704,
+          "sha256": "2bdfae528bac847cd5802a6e583061107b0a0ee7fa0f6f72fda54795ab0c6e10"
+        },
+        {
+          "path": "2026-09-25/uds/ZGW_01.uds.bimmerlight",
+          "size": 8856,
+          "sha256": "77cf7c7a50c918ae5e7c660b2dd841f5a8fc4907e25881755a057c87e5737a6e"
+        }
+      ]
+    }
+  }
+}

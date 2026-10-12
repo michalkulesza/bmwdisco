@@ -1,0 +1,87 @@
+# Extracted adapter constants (offline static evidence)
+# Addresses are Mach-O VAs. ASCII is decoded from MOVZ/MOVK immediates in selected once initializers.
+# Reproduce with: python analysis/adapter-constants.py
+
+## BimmerCommander: function 0x18570..0x18738
+ASCII immediates: 0x185e4 32-bit bytes=46464632 text=FFF2; 0x18674 32-bit bytes=46464631 text=FFF1; 0x186dc 64-bit bytes=42696d6d6572436f text=BimmerCo; 0x186ec 64-bit bytes=6d6d616e646572ef text=mmander
+These are literal byte sequences; config field/UUID roles are not assigned.
+
+## Konnwei: function 0x182bc..0x18478
+ASCII immediates: 0x18330 32-bit bytes=46464632 text=FFF2; 0x183c0 32-bit bytes=46464631 text=FFF1; 0x18428 64-bit bytes=4b6f6e6e77656900 text=Konnwei
+These are literal byte sequences; config field/UUID roles are not assigned.
+
+## OBDLink: function 0x17b08..0x17cdc
+ASCII immediates: 0x17c8c 64-bit bytes=4f42444c696e6b00 text=OBDLink
+These are literal byte sequences; config field/UUID roles are not assigned.
+
+## Vlinker: function 0x17e94..0x180d4
+ASCII immediates: 0x17f0c 32-bit bytes=32414631 text=2AF1; 0x17fe0 32-bit bytes=32414630 text=2AF0; 0x18080 64-bit bytes=566c696e6b657200 text=Vlinker
+These are literal byte sequences; config field/UUID roles are not assigned.
+
+## UniCarScan: function 0x1847c..0x1856c
+ASCII immediates: 0x184cc 64-bit bytes=556e694361725363 text=UniCarSc
+These are literal byte sequences; config field/UUID roles are not assigned.
+
+## Veepeak: function 0x188b8..0x18a74
+ASCII immediates: 0x1892c 32-bit bytes=46464632 text=FFF2; 0x189bc 32-bit bytes=46464631 text=FFF1; 0x18a24 64-bit bytes=5665657065616b00 text=Veepeak
+These are literal byte sequences; config field/UUID roles are not assigned.
+
+## Vgate iCar: function 0x18a74..0x18c80
+ASCII immediates: 0x18bc4 32-bit bytes=32414630 text=2AF0; 0x18c28 64-bit bytes=5667617465496361 text=VgateIca
+These are literal byte sequences; config field/UUID roles are not assigned.
+
+## Embedded AT-style command literals
+These are literal adapter-command-like strings. Their presence alone does not show which adapters receive them.
+analysis/EdiabasKit.strings.txt:2409 0x00147640 ATPBC101 (embedded string)
+analysis/EdiabasKit.strings.txt:2410 0x00147650 ATSPB (embedded string)
+analysis/EdiabasKit.strings.txt:2411 0x00147670 ATAT2 (embedded string)
+analysis/EdiabasKit.strings.txt:2412 0x001477d8 ATCAF0 (embedded string)
+analysis/EdiabasKit.strings.txt:2413 0x001477e8 ATPBE101 (embedded string)
+analysis/EdiabasKit.strings.txt:2414 0x001477f8 ATSPB (embedded string)
+analysis/EdiabasKit.strings.txt:2415 0x00147818 ATAT2 (embedded string)
+analysis/EdiabasKit.strings.txt:2416 0x00147828 ATST10 (embedded string)
+analysis/EdiabasKit.strings.txt:2417 0x00147838 ATFCSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2418 0x00147848 ATSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2419 0x001478e0 ATPBC101 (embedded string)
+analysis/EdiabasKit.strings.txt:2420 0x001478f0 ATSPB (embedded string)
+analysis/EdiabasKit.strings.txt:2421 0x00147910 ATAT2 (embedded string)
+analysis/EdiabasKit.strings.txt:2422 0x00147920 ATFCSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2423 0x00147930 ATSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2424 0x001479d8 ATPBC101 (embedded string)
+analysis/EdiabasKit.strings.txt:2425 0x001479e8 ATSPB (embedded string)
+analysis/EdiabasKit.strings.txt:2426 0x00147a08 ATAT2 (embedded string)
+analysis/EdiabasKit.strings.txt:2427 0x00147aa0 ATCAF0 (embedded string)
+analysis/EdiabasKit.strings.txt:2428 0x00147ab0 ATPBE101 (embedded string)
+analysis/EdiabasKit.strings.txt:2429 0x00147ac0 ATSPB (embedded string)
+analysis/EdiabasKit.strings.txt:2430 0x00147ae0 ATAT2 (embedded string)
+analysis/EdiabasKit.strings.txt:2431 0x00147af0 ATFCSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2432 0x00147b00 ATSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2433 0x00147b98 ATCAF0 (embedded string)
+analysis/EdiabasKit.strings.txt:2434 0x00147ba8 ATPBE101 (embedded string)
+analysis/EdiabasKit.strings.txt:2435 0x00147bb8 ATSPB (embedded string)
+analysis/EdiabasKit.strings.txt:2436 0x00147bd8 ATAT2 (embedded string)
+analysis/EdiabasKit.strings.txt:2437 0x00147be8 ATFCSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2438 0x00147bf8 ATSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2439 0x00147c90 ATPBC101 (embedded string)
+analysis/EdiabasKit.strings.txt:2440 0x00147ca0 ATSPB (embedded string)
+analysis/EdiabasKit.strings.txt:2441 0x00147cc0 ATAT2 (embedded string)
+analysis/EdiabasKit.strings.txt:2442 0x00147cd0 ATFCSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2443 0x00147ce0 ATSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2446 0x00147e08 ATPBC101 (embedded string)
+analysis/EdiabasKit.strings.txt:2447 0x00147e18 ATSPB (embedded string)
+analysis/EdiabasKit.strings.txt:2448 0x00147e38 ATAT2 (embedded string)
+analysis/EdiabasKit.strings.txt:2449 0x00147e48 ATFCSH6F1 (embedded string)
+analysis/EdiabasKit.strings.txt:2450 0x00147e58 ATSH6F1 (embedded string)
+Code-reference evidence:
+analysis/EdiabasKit.references.txt:1271 0x00020a70 fn=0x000207a0 -> 0x00147d18 ATPC
+analysis/EdiabasKit.references.txt:1282 0x00020ed8 fn=0x00020d24 -> 0x00147d28 ATZ
+analysis/EdiabasKit.references.txt:1290 0x00021268 fn=0x00020f6c -> 0x00147d28 ATZ
+analysis/EdiabasKit.references.txt:2149 0x00032854 fn=0x000327f0 -> 0x00147da8 ATZ
+analysis/EdiabasKit.references.txt:2198 0x00033444 fn=0x000332dc -> 0x00147e90 ATPC
+analysis/EdiabasKit.references.txt:2212 0x0003383c fn=0x00033738 -> 0x00147ea0 ATZ
+analysis/EdiabasKit.references.txt:3009 0x000442ec fn=0x00044288 -> 0x001480f0 ATZ
+
+## Observed full UUID literals
+analysis/EdiabasKit.strings.txt:746 0x001122d0 E7810A71-73AE-499D-8C15-FAA9AEF0C3F2; reference at analysis/EdiabasKit.references.txt:1115 from function 0x1e65c.
+analysis/EdiabasKit.strings.txt:666 0x00111780 BEF8D6C9-9C21-4C9E-B632-BD58C1009F9F; reference at analysis/EdiabasKit.references.txt:1116 from function 0x1e65c.
+Both literals are referenced by the same function; this pass does not assign service/write/notify roles.

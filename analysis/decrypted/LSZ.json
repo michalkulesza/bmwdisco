@@ -1,0 +1,238 @@
+[
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "AL_L",
+    "command": "LOW_BEAM_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "AL_L"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "AL_R",
+    "command": "LOW_BEAM_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "AL_R"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "FL_L",
+    "command": "HIGH_BEAM_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "FL_L"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "FL_R",
+    "command": "HIGH_BEAM_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "FL_R"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "NSW_L",
+    "command": "FOG_FRONT_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "NSW_L"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "NSW_R",
+    "command": "FOG_FRONT_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "NSW_R"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "NSL",
+    "command": "FOG_REAR",
+    "function": "STEUERN_IO",
+    "args": [
+      "NSL"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "SL_LV",
+    "command": "POSITION_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "SL_LV"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "SL_RV",
+    "command": "POSITION_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "SL_RV"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "SL_LH",
+    "command": "REAR_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "SL_LH"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "SL_RH",
+    "command": "REAR_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "SL_RH"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "BL_L",
+    "command": "BRAKE_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "BL_L"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "BL_R",
+    "command": "BRAKE_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "BL_R"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "BL_M",
+    "command": "BRAKE_CENTER",
+    "function": "STEUERN_IO",
+    "args": [
+      "BL_M"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "BLK_LV",
+    "command": "INDICATOR_FRONT_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "BLK_LV"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "BLK_RV",
+    "command": "INDICATOR_FRONT_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "BLK_RV"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "BLK_LH",
+    "command": "INDICATOR_REAR_LEFT",
+    "function": "STEUERN_IO",
+    "args": [
+      "BLK_LH"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "BLK_RH",
+    "command": "INDICATOR_REAR_RIGHT",
+    "function": "STEUERN_IO",
+    "args": [
+      "BLK_RH"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "KZL",
+    "command": "LICENSE",
+    "function": "STEUERN_IO",
+    "args": [
+      "KZL"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "All outputs OFF",
+    "command": "ALL_OFF",
+    "function": "STEUERN_IO",
+    "args": []
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_AUFRECHT",
+    "args": []
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_ENDE",
+    "args": []
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "COMMUNICATION_ON",
+    "command": "COMMUNICATION_ON",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "00",
+      "03"
+    ]
+  },
+  {
+    "sgbd": "LSZ",
+    "group": "LSZ",
+    "description": "COMMUNICATION_OFF",
+    "command": "COMMUNICATION_OFF",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "02",
+      "01"
+    ]
+  }
+]
