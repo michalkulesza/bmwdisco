@@ -6,6 +6,9 @@
     "scheme": "bimmerdisco",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.kules.bimmerdisco"
+    },
     "ios": {
       "bundleIdentifier": "com.kules.bimmerdisco",
       "supportsTablet": false,
@@ -17,7 +20,8 @@
       "expo-router",
       "expo-status-bar",
       "expo-sharing",
-      "expo-sqlite"
+      "expo-sqlite",
+      ["react-native-ble-plx", { "neverForLocation": true, "bluetoothAlwaysPermission": "Connect to your Vgate iCar OBD adapter over Bluetooth to identify the lighting controller and run light presets." }]
     ]
   }
 }

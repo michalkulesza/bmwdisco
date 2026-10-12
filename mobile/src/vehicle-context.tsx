@@ -4,6 +4,7 @@ import { Mode, SessionState, VehicleSession } from './session';
 
 export const CONNECTION_DEFAULTS: Record<Mode, { host: string; port: string }> = {
   demo: { host: '', port: '6801' }, enet: { host: '169.254.250.250', port: '6801' }, thor: { host: '192.168.4.1', port: '23' },
+  icar: { host: '', port: '' },
 };
 const INITIAL: SessionState = { status: 'Disconnected', connected: false, verified: false, busy: false, logs: [], identity: null, vehicle: null, error: null };
 function useVehicleState() {

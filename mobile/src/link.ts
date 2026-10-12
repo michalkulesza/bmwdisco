@@ -1,4 +1,7 @@
-export type Mode = 'demo' | 'enet' | 'thor';
+export type Mode = 'demo' | 'enet' | 'thor' | 'icar';
+export class ConnectionCancelledError extends Error {
+  constructor() { super('Connection cancelled'); }
+}
 export interface DiagnosticLink {
   open(): Promise<void>;
   request(payload: Uint8Array, address: number): Promise<Uint8Array>;
