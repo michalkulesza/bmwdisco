@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Bimlight Lab",
-    "slug": "bimlight-lab",
+    "name": "BimmerDisco",
+    "slug": "bimmerdisco",
     "version": "0.1.0",
-    "scheme": "bimlightlab",
+    "scheme": "bimmerdisco",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "bundleIdentifier": "com.kules.bimlightlab",
+      "bundleIdentifier": "com.kules.bimmerdisco",
       "supportsTablet": false,
       "infoPlist": {
         "NSLocalNetworkUsageDescription": "Connect to your BMW through an ENET Ethernet or THOR Wi-Fi adapter to identify its lighting controller and test front indicators."
@@ -15,7 +15,9 @@
     },
     "plugins": [
       "expo-router",
-      "expo-status-bar"
+      "expo-status-bar",
+      "expo-sharing",
+      "expo-sqlite"
     ]
   }
 }

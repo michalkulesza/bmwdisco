@@ -10,7 +10,7 @@ export interface SocketLike {
   destroy(): unknown;
 }
 interface Pending {
-  payload: Uint8Array; resolve: (bytes: Uint8Array) => void; reject: (error: Error) => void;
+  payload: Uint8Array; address: number; resolve: (bytes: Uint8Array) => void; reject: (error: Error) => void;
   timer: ReturnType<typeof setTimeout>; deadline: number;
 }
 
@@ -61,16 +61,17 @@ export class WireLink implements DiagnosticLink {
           }
           if (packet.type === 2) { this.log('HSFZ transport ACK (not an ECU reply)'); continue; }
           if (packet.type !== 1) throw new Error(`HSFZ control/error type 0x${packet.type.toString(16)}`);
-          if (packet.source === 0x40 && packet.destination === 0xf4) this.response(packet.payload);
+          if (packet.destination === 0xf4 && this.fromAddressed(packet.source)) this.response(packet.payload);
         }
       } else {
         for (const packet of this.thor.push(bytes)) {
           // THOR may echo our request; never accept that as a vehicle response.
-          if (packet.source === 0x40 && packet.destination === 0xf1) this.response(packet.payload);
+          if (packet.destination === 0xf1 && this.fromAddressed(packet.source)) this.response(packet.payload);
         }
       }
     } catch (error) { this.fail(error instanceof Error ? error : new Error(String(error))); }
   }
+  private fromAddressed(source?: number) { return !this.pending || source === this.pending.address; }
   private response(bytes: Uint8Array) {
     const pending = this.pending; if (!pending) { this.log('Unsolicited ECU response ignored'); return; }
     const match = matchUdsResponse(pending.payload, bytes);
@@ -86,13 +87,13 @@ export class WireLink implements DiagnosticLink {
     if (match.kind === 'negative') pending.reject(new Error(`ECU rejected service 0x${pending.payload[0].toString(16)}: NRC 0x${match.code.toString(16).padStart(2, '0')}`));
     else pending.resolve(bytes);
   }
-  request(payload: Uint8Array): Promise<Uint8Array> {
+  request(payload: Uint8Array, address: number): Promise<Uint8Array> {
     if (!this.opened || this.ended) return Promise.reject(new Error('TCP is disconnected'));
     if (this.pending) return Promise.reject(new Error('A diagnostic request is already in progress'));
     return new Promise((resolve, reject) => {
-      this.pending = { payload: payload.slice(), resolve, reject, deadline: Date.now() + this.totalMs,
+      this.pending = { payload: payload.slice(), address, resolve, reject, deadline: Date.now() + this.totalMs,
         timer: setTimeout(() => this.fail(new Error('ECU response timed out; reconnect before retrying')), this.responseMs) };
-      try { this.write(this.mode === 'enet' ? encodeHsfzDiagnostic(payload) : encodeThorDiagnostic(payload)); }
+      try { this.write(this.mode === 'enet' ? encodeHsfzDiagnostic(payload, 0xf4, address) : encodeThorDiagnostic(payload, 0xf1, address)); }
       catch (error) { this.fail(error instanceof Error ? error : new Error(String(error))); }
     });
   }

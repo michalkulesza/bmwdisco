@@ -1,52 +1,39 @@
-import { useEffect, useRef, useState } from 'react';
-import { AppState, Button, Pressable, ScrollView, Share, Text, TextInput, View } from 'react-native';
-import { Mode, SessionState, VehicleSession } from '../src/session';
+import { useState } from 'react';
+import { Button, Pressable, ScrollView, Share, Text, TextInput, View } from 'react-native';
+import { Link } from 'expo-router';
+import { Mode } from '../src/session';
+import { profileLabel } from '../src/protocol/profiles';
+import { CONNECTION_DEFAULTS as defaults, useVehicle } from '../src/vehicle-context';
 
 const colors = { text: '#F2F6FF', muted: '#9BAAC1', blue: '#79B6FF', card: '#121F33', border: '#24344D' };
 const card = { backgroundColor: colors.card, borderRadius: 22, borderCurve: 'continuous' as const, padding: 20, gap: 16, borderWidth: 1, borderColor: colors.border };
 const label = { color: colors.muted, fontSize: 12, fontWeight: '600' as const, letterSpacing: 1.6 };
 const field = { color: colors.text, backgroundColor: '#0A1424', borderColor: colors.border, borderWidth: 1, borderRadius: 12, padding: 14, fontSize: 16, fontVariant: ['tabular-nums'] as ('tabular-nums')[] };
-const initial: SessionState = { status: 'Disconnected', connected: false, verified: false, busy: false, logs: [], identity: null, error: null };
-const defaults: Record<Mode, { host: string; port: string }> = {
-  demo: { host: '', port: '6801' }, enet: { host: '169.254.250.250', port: '6801' }, thor: { host: '192.168.4.1', port: '23' },
-};
 
 export default function Home() {
-  const [state, setState] = useState<SessionState>(initial);
-  const [mode, setMode] = useState<Mode>('demo');
-  const [endpoint, setEndpoint] = useState(defaults.demo);
+  const { state, session, mode, setMode, endpoint, setEndpoint } = useVehicle();
   const [shareError, setShareError] = useState<string | null>(null);
-  const sessionRef = useRef<VehicleSession | null>(null);
-  if (!sessionRef.current) sessionRef.current = new VehicleSession(setState);
-  const session = sessionRef.current;
   const locked = state.connected || state.busy;
   const ready = state.connected && state.verified && !state.busy;
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener('change', value => {
-      // iOS Local Network permission may temporarily deactivate the app during
-      // identification. Only an already-verified test needs cancellation here.
-      if (value !== 'active' && session.state.verified) void session.stop();
-    });
-    return () => { subscription.remove(); void session.disconnect(); };
-  }, [session]);
+  const vehicleLabel = profileLabel(state.vehicle);
+  const ecuName = state.vehicle?.ecu ?? 'ECU';
 
   async function exportLogs() {
     setShareError(null);
     try {
-      await Share.share({ title: 'Bimlight diagnostic log', message: [
-        'Bimlight · BMW F32 · 2016',
+      await Share.share({ title: 'BimmerDisco diagnostic log', message: [
+        `BimmerDisco · ${vehicleLabel}`,
         mode === 'demo' ? 'SIMULATED DEMO — no vehicle connection' : `Adapter: ${mode.toUpperCase()}`,
-        `Status: ${state.status}`, `FEM identity: ${state.identity ?? 'Not identified'}`, '', ...state.logs,
+        `Status: ${state.status}`, `${ecuName} identity: ${state.identity ?? 'Not identified'}`, '', ...state.logs,
       ].join('\n') });
     } catch (error) { setShareError(error instanceof Error ? error.message : 'Could not share logs'); }
   }
 
   return <ScrollView contentInsetAdjustmentBehavior="automatic" keyboardShouldPersistTaps="handled" contentContainerStyle={{ padding: 20, paddingBottom: 48, gap: 20 }}>
     <View style={{ gap: 8 }}>
-      <Text style={label}>BMW F32 · 2016</Text>
+      <Text style={label}>{vehicleLabel}</Text>
       <Text style={{ color: colors.text, fontSize: 27, fontWeight: '700', letterSpacing: -0.7 }}>Front indicator test</Text>
-      <Text style={{ color: colors.muted, fontSize: 15, lineHeight: 22 }}>Connect, identify the FEM, then run a one-second light test.</Text>
+      <Text style={{ color: colors.muted, fontSize: 15, lineHeight: 22 }}>Connect, identify the ECU, then run a one-second light test.</Text>
     </View>
 
     <View style={card}>
@@ -79,10 +66,16 @@ export default function Home() {
         <Button title={state.busy && !state.connected ? 'Connecting…' : 'Connect & identify'} color="#FFFFFF" disabled={locked} onPress={() => void session.connect(mode, endpoint.host.trim(), Number(endpoint.port))} />
       </View>
       <Text selectable accessibilityLiveRegion="polite" style={{ color: colors.text, fontSize: 14 }}>{state.status}</Text>
-      {state.identity && <Text selectable style={{ color: colors.muted, fontSize: 13, fontVariant: ['tabular-nums'] }}>FEM identity  {state.identity}{state.verified ? ' · verified' : ' · mismatch'}</Text>}
+      {state.identity && <Text selectable style={{ color: colors.muted, fontSize: 13, fontVariant: ['tabular-nums'] }}>{ecuName} identity  {state.identity}{state.verified ? ' · verified' : ' · mismatch'}</Text>}
       {state.error && <Text selectable accessibilityRole="alert" style={{ color: '#FFB4AB', fontSize: 14, lineHeight: 21 }}>{state.error}</Text>}
     </View>
 
+    <View style={card}>
+      <Text style={label}>LIGHTING PRESETS</Text>
+      <Text style={{ color: colors.text, fontSize: 20, fontWeight: '600' }}>Build your own sequence.</Text>
+      <Text style={{ color: colors.muted, lineHeight: 21 }}>Arrange light and delay blocks, preview in Demo, and save or share JSON files.</Text>
+      <Link href="/presets" style={{ color: colors.blue, fontSize: 17, paddingVertical: 12 }}>Open lighting presets →</Link>
+    </View>
     <View style={card}>
       <Text style={label}>02 / LIGHT TEST</Text>
       <Text style={{ color: colors.text, fontSize: 20, fontWeight: '600' }}>A single, short pulse.</Text>
@@ -93,7 +86,7 @@ export default function Home() {
           <View style={{ gap: 4 }}><Text style={{ color: colors.text, fontSize: 16, fontWeight: '600' }}>Front {side}</Text><Text style={{ color: colors.muted, fontSize: 12 }}>1 SECOND</Text></View>
         </Pressable>)}
       </View>
-      {!state.verified && <Text style={{ color: colors.muted, fontSize: 12, lineHeight: 18 }}>Tests unlock after a matching FEM_20 identity is verified.</Text>}
+      {!state.verified && <Text style={{ color: colors.muted, fontSize: 12, lineHeight: 18 }}>Tests unlock after a supported ECU identity is verified.</Text>}
       <View style={{ borderColor: colors.border, borderWidth: 1, borderRadius: 12, paddingVertical: 5 }}>
         <Button title={state.busy ? 'Stop & restore control' : 'Restore ECU control'} color="#FFCE96" disabled={!state.busy && !ready} onPress={() => void (state.busy ? session.stop() : session.restore())} />
       </View>
@@ -109,6 +102,6 @@ export default function Home() {
       <Button title="Export logs" color={colors.blue} disabled={state.logs.length === 0} onPress={() => void exportLogs()} />
       {shareError && <Text selectable accessibilityRole="alert" style={{ color: '#FFB4AB', fontSize: 13 }}>{shareError}</Text>}
     </View>
-    <Text style={{ color: '#70819C', fontSize: 12, lineHeight: 18, textAlign: 'center' }}>BMW F32 · FEM_20 · Prototype</Text>
+    <Text style={{ color: '#70819C', fontSize: 12, lineHeight: 18, textAlign: 'center' }}>{vehicleLabel} · Prototype</Text>
   </ScrollView>;
 }

@@ -1,7 +1,7 @@
 export type Mode = 'demo' | 'enet' | 'thor';
 export interface DiagnosticLink {
   open(): Promise<void>;
-  request(payload: Uint8Array): Promise<Uint8Array>;
+  request(payload: Uint8Array, address: number): Promise<Uint8Array>;
   close(): void;
 }
 export type LinkFactory = (mode: Mode, host: string, port: number,

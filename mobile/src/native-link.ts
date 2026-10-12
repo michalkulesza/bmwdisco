@@ -7,7 +7,8 @@ export class NativeLink extends WireLink {
     log: (message: string) => void, lost: (error: Error) => void) {
     super(mode, host, port, log, lost, () => {
       if (!NativeModules.TcpSockets) throw new Error('Live TCP requires the custom iOS build. Use Demo in Expo Go.');
-      const TcpSocket = require('react-native-tcp-socket').default as typeof import('react-native-tcp-socket').default;
+      // The package's CommonJS entry exports the API directly, without `.default`.
+      const TcpSocket = require('react-native-tcp-socket') as typeof import('react-native-tcp-socket').default;
       const socket = new TcpSocket.Socket();
       return {
         on: (event, callback) => socket.on(event as any, callback),

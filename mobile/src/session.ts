@@ -1,11 +1,13 @@
 import { DemoLink } from './demo-link';
 import { DiagnosticLink, LinkFactory, Mode, hex } from './link';
-import { femIdentify, femExtendedSession, femDefaultSession, femReturnControl, femIndicator, isFemIdentity } from './protocol/fem';
+import { DEFAULT_SESSION, EXTENDED_SESSION, IDENTIFY, PROFILES, VehicleProfile, isProfileIdentity } from './protocol/profiles';
+import { ElementId, LIGHT_ELEMENTS, LightingPreset, validatePreset } from './presets';
 export type { Mode } from './link';
 
 export interface SessionState {
   status: string; connected: boolean; verified: boolean; busy: boolean;
-  logs: string[]; identity: string | null; error: string | null;
+  logs: string[]; identity: string | null; vehicle: VehicleProfile | null; error: string | null;
+  presetProgress?: { name: string; index: number; total: number; lights: ElementId[] } | null;
 }
 
 const defaultFactory: LinkFactory = (mode, host, port, log, lost) => {
@@ -17,12 +19,13 @@ const defaultFactory: LinkFactory = (mode, host, port, log, lost) => {
 
 export class VehicleSession {
   state: SessionState = { status: 'Disconnected', connected: false, verified: false,
-    busy: false, logs: [], identity: null, error: null };
+    busy: false, logs: [], identity: null, vehicle: null, error: null };
   private link?: DiagnosticLink;
   private operation?: Promise<void>;
   private cancelled = false;
   private wake?: () => void;
-  constructor(private changed: (state: SessionState) => void, private factory: LinkFactory = defaultFactory) {}
+  constructor(private changed: (state: SessionState) => void, private factory: LinkFactory = defaultFactory,
+    private profiles: readonly VehicleProfile[] = PROFILES) {}
   private update(values: Partial<SessionState>) { this.state = { ...this.state, ...values }; this.changed(this.state); }
   private log = (message: string) => {
     this.update({ logs: [...this.state.logs.slice(-299), `${new Date().toISOString()} ${message}`] });
@@ -52,67 +55,139 @@ export class VehicleSession {
       if (mode !== 'demo' && (!/^\d{1,3}(\.\d{1,3}){3}$/.test(host) || host.split('.').some(n => Number(n) > 255)
         || !Number.isInteger(port) || port < 1 || port > 65535)) throw new Error('Enter a valid IPv4 address and TCP port');
       this.link?.close();
-      this.update({ status: 'Connecting…', identity: null, verified: false });
+      this.update({ status: 'Connecting…', identity: null, verified: false, vehicle: null });
       this.log(`Connect ${mode.toUpperCase()} ${mode === 'demo' ? '(simulated)' : `${host}:${port}`}`);
       this.link = this.factory(mode, host, port, this.log, this.lost);
       try {
         await this.link.open();
         if (this.cancelled) throw new Error('Connection cancelled');
-        this.update({ connected: true, status: 'Reading FEM identity…' });
-        const response = await this.link.request(femIdentify());
-        if (this.cancelled) throw new Error('Identification cancelled');
-        const identity = hex(response.slice(3, 6)).replaceAll(' ', '');
-        const verified = isFemIdentity(response);
-        this.update({ identity, verified, status: verified ? (mode === 'demo' ? 'Simulated FEM_20 ready' : 'FEM_20 verified') : 'Controller mismatch — tests disabled' });
-        this.log(`FEM identity ${identity || '(empty)'}; expected 0F16B0`);
+        this.update({ connected: true, status: 'Identifying vehicle…' });
+        let firstIdentity: string | null = null;
+        let vehicle: VehicleProfile | null = null;
+        for (const profile of this.profiles) {
+          const address = `0x${profile.address.toString(16).toUpperCase()}`;
+          let response: Uint8Array;
+          try { response = await this.link.request(IDENTIFY, profile.address); }
+          catch (error) {
+            if (this.cancelled) throw error;
+            this.log(`Identity read ${address} failed: ${error instanceof Error ? error.message : error}`);
+            continue;
+          }
+          if (this.cancelled) throw new Error('Identification cancelled');
+          const identity = hex(response.slice(3, 6)).replaceAll(' ', '');
+          this.log(`Identity read ${address}: ${identity || '(empty)'}; ${profile.ecu} expects ${profile.identity.slice(-8).replaceAll(' ', '')}`);
+          firstIdentity ??= identity;
+          if (isProfileIdentity(profile, response)) { vehicle = profile; firstIdentity = identity; break; }
+        }
+        const suffix = mode === 'demo' ? 'Simulated ' : '';
+        this.update({ identity: firstIdentity, vehicle, verified: vehicle !== null,
+          status: vehicle ? `${suffix}${vehicle.ecu} ${mode === 'demo' ? 'ready' : 'verified'}` : 'Controller mismatch — tests disabled' });
       } catch (error) {
         this.link.close(); this.update({ connected: false, verified: false }); throw error;
       }
     });
   }
-  private async request(payload: Uint8Array) {
+  private async request(vehicle: VehicleProfile, payload: Uint8Array) {
     if (!this.link || !this.state.connected) throw new Error('Vehicle connection unavailable');
-    return this.link.request(payload);
+    return this.link.request(payload, vehicle.address);
   }
-  private async cleanup(): Promise<void> {
+  private async cleanup(vehicle: VehicleProfile): Promise<void> {
     this.update({ status: 'Restoring ECU control…' });
     let failure: unknown;
-    // Attempt both operations, even if return-control is rejected by the ECU.
-    for (const command of [femReturnControl(), femDefaultSession()]) {
-      try { await this.request(command); } catch (error) { failure ??= error; }
+    // Attempt every step, even if return-control is rejected by the ECU.
+    for (const command of [...vehicle.returnControl, DEFAULT_SESSION]) {
+      try { await this.request(vehicle, command); } catch (error) { failure ??= error; }
     }
     if (failure) {
       this.update({ verified: false });
       throw new Error(`ECU restoration unconfirmed: ${failure instanceof Error ? failure.message : failure}. Reconnect and identify before another test.`);
     }
-    this.log('ECU acknowledged return-control and default session');
+    this.log('ECU acknowledged cleanup and default session');
     this.update({ status: 'ECU control restored' });
   }
   pulse(side: 'left' | 'right'): Promise<void> {
     return this.run(async () => {
-      if (!this.state.verified) throw new Error('Identify a matching FEM_20 before testing');
+      const vehicle = this.state.vehicle;
+      if (!vehicle || !this.state.verified) throw new Error('Identify a supported vehicle before testing');
+      const light = LIGHT_ELEMENTS.find(element => element.side === side)!;
+      const command = vehicle.elements[light.id];
+      if (!command) throw new Error(`${light.label} is not supported on ${vehicle.chassis}`);
       let failure: unknown;
       try {
         this.update({ status: `Testing front ${side} indicator…` });
-        await this.request(femExtendedSession());
+        await this.request(vehicle, EXTENDED_SESSION);
         if (this.cancelled) return;
-        await this.request(femIndicator(side, true));
+        await this.request(vehicle, command(true));
         if (!this.cancelled) await new Promise<void>(resolve => {
           const timer = setTimeout(() => { this.wake = undefined; resolve(); }, 1000);
           this.wake = () => { clearTimeout(timer); this.wake = undefined; resolve(); };
         });
-        await this.request(femIndicator(side, false));
+        await this.request(vehicle, command(false));
       } catch (error) { failure = error; }
       finally {
-        try { await this.cleanup(); } catch (error) { failure = error; }
+        try { await this.cleanup(vehicle); } catch (error) { failure = error; }
         if (failure) throw failure;
       }
     });
   }
   restore(): Promise<void> {
     return this.run(async () => {
-      if (!this.state.verified) throw new Error('Identify a matching FEM_20 before restoring');
-      await this.cleanup();
+      const vehicle = this.state.vehicle;
+      if (!vehicle || !this.state.verified) throw new Error('Identify a supported vehicle before restoring');
+      await this.cleanup(vehicle);
+    });
+  }
+  playPreset(input: LightingPreset): Promise<void> {
+    return this.run(async () => {
+      const preset = validatePreset(input);
+      const vehicle = this.state.vehicle;
+      if (!this.state.connected || !this.state.verified || !vehicle) throw new Error('Identify a supported vehicle before running a preset');
+      const touched = new Set<ElementId>();
+      const lights = new Set<ElementId>();
+      let failure: unknown;
+      let expired = false;
+      const deadline = setTimeout(() => { expired = true; this.cancelled = true; this.wake?.(); }, 90000);
+      this.log(`Preset started: ${preset.name}`);
+      try {
+        await this.request(vehicle, EXTENDED_SESSION);
+        for (const [index, step] of preset.steps.entries()) {
+          if (this.cancelled) break;
+          this.update({ status: `${preset.name} · block ${index + 1}/${preset.steps.length}`,
+            presetProgress: { name: preset.name, index, total: preset.steps.length, lights: [...lights] } });
+          if (step.type === 'wait') {
+            this.log(`WAIT ${step.durationMs} ms`);
+            await new Promise<void>(resolve => {
+              const timer = setTimeout(() => { this.wake = undefined; resolve(); }, step.durationMs);
+              this.wake = () => { clearTimeout(timer); this.wake = undefined; resolve(); };
+            });
+          } else {
+            for (const id of step.elements) {
+              if (this.cancelled) break;
+              const light = LIGHT_ELEMENTS.find(element => element.id === id)!;
+              const command = vehicle.elements[id];
+              if (!command) { this.log(`${light.label}: skipped, unsupported on ${vehicle.chassis}`); continue; }
+              touched.add(id); // Include commands with ambiguous or rejected replies in cleanup.
+              this.log(`${light.label}: ${step.state}`);
+              await this.request(vehicle, command(step.state === 'on'));
+              if (step.state === 'on') lights.add(id); else lights.delete(id);
+              this.update({ presetProgress: { name: preset.name, index, total: preset.steps.length, lights: [...lights] } });
+            }
+          }
+        }
+        if (expired) throw new Error('Preset exceeded its 90-second execution limit');
+      } catch (error) { failure = error; }
+      finally {
+        clearTimeout(deadline);
+        this.update({ status: 'Restoring ECU control…' });
+        for (const id of touched) {
+          try { await this.request(vehicle, vehicle.elements[id]!(false)); }
+          catch (error) { failure ??= error; }
+        }
+        try { await this.cleanup(vehicle); } catch (error) { failure = error; }
+        this.update({ presetProgress: null });
+        if (failure) throw failure;
+        this.log(`Preset ${this.cancelled ? 'stopped' : 'completed'}: ${preset.name}`);
+      }
     });
   }
   async stop(): Promise<void> {
@@ -121,6 +196,6 @@ export class VehicleSession {
   }
   async disconnect(): Promise<void> {
     await this.stop(); this.link?.close(); this.link = undefined;
-    this.update({ connected: false, verified: false, identity: null, status: 'Disconnected' });
+    this.update({ connected: false, verified: false, identity: null, vehicle: null, status: 'Disconnected' });
   }
 }
