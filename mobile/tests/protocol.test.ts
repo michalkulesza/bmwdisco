@@ -5,6 +5,7 @@ import { encodeHsfzControl, encodeHsfzDiagnostic, HsfzParser, HSFZ_MAX_BODY } fr
 import { encodeThorDiagnostic, ThorParser, THOR_MAX_PAYLOAD } from '../src/protocol/thor';
 import { DEFAULT_SESSION, EXTENDED_SESSION, F10_PROFILE, F32_PROFILE, IDENTIFY, PROFILES,
   isProfileIdentity, profileLabel } from '../src/protocol/profiles';
+import { LIGHT_ELEMENTS, ElementId } from '../src/presets';
 import { matchUdsResponse } from '../src/protocol/uds';
 
 const bytes = fromHex;
@@ -26,12 +27,40 @@ test('vehicle profile byte tables', () => {
   assert.equal(hex(EXTENDED_SESSION), '10 03');
   assert.equal(hex(DEFAULT_SESSION), '10 01');
   const table = (profile: typeof F32_PROFILE) => (['frontLeftIndicator', 'frontRightIndicator'] as const)
-    .flatMap(id => [true, false].map(on => hex(profile.elements[id]!(on))));
+    .flatMap(id => [true, false].map(on => hex(on ? profile.elements[id]!.on : profile.elements[id]!.off)));
   assert.deepEqual(table(F32_PROFILE), ['2F 45 01 03 0D 01', '2F 45 01 03 0D 00', '2F 45 01 03 0E 01', '2F 45 01 03 0E 00']);
   assert.deepEqual(table(F10_PROFILE), ['2F 01 1C 03 64', '2F 01 1C 03 00', '2F 01 1D 03 64', '2F 01 1D 03 00']);
   assert.deepEqual(F32_PROFILE.returnControl.map(hex), ['2F 45 01 00 FE']);
   assert.deepEqual(F10_PROFILE.returnControl, []);
-  assert.deepEqual(F32_PROFILE.elements.frontLeftIndicator!(true), leftOn);
+  assert.deepEqual(F32_PROFILE.elements.frontLeftIndicator!.on, leftOn);
+});
+
+test('profile tables cover the full element list', () => {
+  const ids = (profile: typeof F32_PROFILE) => Object.keys(profile.elements);
+  assert.equal(LIGHT_ELEMENTS.length, 44);
+  assert.equal(ids(F32_PROFILE).length, 32);
+  assert.equal(ids(F10_PROFILE).length, 26);
+  const spot = (profile: typeof F32_PROFILE, id: ElementId) => [profile.elements[id]!.on, profile.elements[id]!.off].map(hex);
+  assert.deepEqual(spot(F32_PROFILE, 'brakeAll'), ['2E D5 42 00 0C 00 64', '2E D5 42 00 0C 00 00']);
+  assert.deepEqual(spot(F32_PROFILE, 'footwellRear'), ['2F 45 01 03 2B 01', '2F 45 01 03 2B 00']);
+  assert.deepEqual(spot(F10_PROFILE, 'brakeCenter'), ['2F 01 07 03 64', '2F 01 07 03 00']);
+  assert.deepEqual(spot(F10_PROFILE, 'licensePlate'), ['2F 01 0E 03 64', '2F 01 0E 03 00']);
+  assert.equal(F32_PROFILE.elements.licensePlate, undefined);
+  assert.equal(F10_PROFILE.elements.brakeAll, undefined);
+  for (const profile of [F32_PROFILE, F10_PROFILE]) {
+    for (const element of Object.values(profile.elements)) assert.equal(element.on.length, element.off.length);
+  }
+});
+
+test('UDS matcher accepts the F32 aggregate WriteDataByIdentifier reply only', () => {
+  const request = bytes('2ED5420001 0064'.replaceAll(' ', ''));
+  assert.deepEqual(matchUdsResponse(request, bytes('6ED542')), { kind: 'positive' });
+  for (const response of ['6ED543', '6ED442', '6ED5', '6ED54200', '6F45010301', '7F2E']) {
+    assert.deepEqual(matchUdsResponse(request, bytes(response)), { kind: 'unrelated' });
+  }
+  assert.deepEqual(matchUdsResponse(request, bytes('7F2E31')), { kind: 'negative', code: 0x31 });
+  assert.deepEqual(matchUdsResponse(request, bytes('7F2E78')), { kind: 'pending', code: 0x78 });
+  assert.deepEqual(matchUdsResponse(bytes('2ED5'), bytes('6ED5')), { kind: 'unrelated' });
 });
 
 test('profile identity gate is exact and per profile', () => {

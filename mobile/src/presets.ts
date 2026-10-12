@@ -1,10 +1,54 @@
+export const LIGHT_GROUPS = ['Indicators', 'Front', 'Fog', 'Rear', 'Interior'] as const;
 export const LIGHT_ELEMENTS = [
-  { id: 'frontLeftIndicator', label: 'Front left indicator', side: 'left' },
-  { id: 'frontRightIndicator', label: 'Front right indicator', side: 'right' },
+  { id: 'frontLeftIndicator', label: 'Front indicator left', group: 'Indicators' },
+  { id: 'frontRightIndicator', label: 'Front indicator right', group: 'Indicators' },
+  { id: 'sideIndicatorLeft', label: 'Side repeater left', group: 'Indicators' },
+  { id: 'sideIndicatorRight', label: 'Side repeater right', group: 'Indicators' },
+  { id: 'rearLeftIndicator', label: 'Rear indicator left', group: 'Indicators' },
+  { id: 'rearRightIndicator', label: 'Rear indicator right', group: 'Indicators' },
+  { id: 'indicatorLeftAll', label: 'Left indicators (all, aggregate)', group: 'Indicators' },
+  { id: 'indicatorRightAll', label: 'Right indicators (all, aggregate)', group: 'Indicators' },
+  { id: 'hazard', label: 'Hazard flashers (aggregate)', group: 'Indicators' },
+  { id: 'lowBeamLeft', label: 'Low beam left', group: 'Front' },
+  { id: 'lowBeamRight', label: 'Low beam right', group: 'Front' },
+  { id: 'highBeamLeft', label: 'High beam left', group: 'Front' },
+  { id: 'highBeamRight', label: 'High beam right', group: 'Front' },
+  { id: 'daytimeLeft', label: 'Daytime running light left', group: 'Front' },
+  { id: 'daytimeRight', label: 'Daytime running light right', group: 'Front' },
+  { id: 'positionLeft', label: 'Position light left', group: 'Front' },
+  { id: 'positionRight', label: 'Position light right', group: 'Front' },
+  { id: 'sideMarkerFrontLeft', label: 'Front side marker left', group: 'Front' },
+  { id: 'sideMarkerFrontRight', label: 'Front side marker right', group: 'Front' },
+  { id: 'parkingLights', label: 'Parking lights (all, aggregate)', group: 'Front' },
+  { id: 'parkLightLeft', label: 'Parking light left side (aggregate)', group: 'Front' },
+  { id: 'parkLightRight', label: 'Parking light right side (aggregate)', group: 'Front' },
+  { id: 'frontFogLeft', label: 'Front fog left', group: 'Fog' },
+  { id: 'frontFogRight', label: 'Front fog right', group: 'Fog' },
+  { id: 'rearFogLeft', label: 'Rear fog left', group: 'Fog' },
+  { id: 'rearFogRight', label: 'Rear fog right', group: 'Fog' },
+  { id: 'rearFogBoth', label: 'Rear fog (both, aggregate)', group: 'Fog' },
+  { id: 'tailLeft', label: 'Tail light left (outer)', group: 'Rear' },
+  { id: 'tailRight', label: 'Tail light right (outer)', group: 'Rear' },
+  { id: 'brakeLeft', label: 'Brake light left', group: 'Rear' },
+  { id: 'brakeCenter', label: 'Brake light centre (CHMSL)', group: 'Rear' },
+  { id: 'brakeRight', label: 'Brake light right', group: 'Rear' },
+  { id: 'brakeAll', label: 'Brake lights (all, aggregate)', group: 'Rear' },
+  { id: 'brakeForceDisplay', label: 'Brake force display / ESS (aggregate)', group: 'Rear' },
+  { id: 'reverseLeft', label: 'Reverse light left', group: 'Rear' },
+  { id: 'reverseRight', label: 'Reverse light right', group: 'Rear' },
+  { id: 'reverseBoth', label: 'Reverse lights (both, aggregate)', group: 'Rear' },
+  { id: 'licensePlate', label: 'Licence plate light', group: 'Rear' },
+  { id: 'hazardLed', label: 'Hazard button LED', group: 'Interior' },
+  { id: 'interiorFront', label: 'Interior light', group: 'Interior' },
+  { id: 'footwellFront', label: 'Footwell/door light front', group: 'Interior' },
+  { id: 'footwellRear', label: 'Footwell/door light rear', group: 'Interior' },
+  { id: 'doorHandle', label: 'Door handle light', group: 'Interior' },
+  { id: 'ambient', label: 'Ambient light', group: 'Interior' },
 ] as const;
 export type ElementId = typeof LIGHT_ELEMENTS[number]['id'];
 export type PresetStep = { type: 'set'; elements: ElementId[]; state: 'on' | 'off' }
   | { type: 'wait'; durationMs: number };
+export const elementLabel = (id: ElementId) => LIGHT_ELEMENTS.find(light => light.id === id)!.label;
 export interface LightingPreset { id: string; name: string; steps: PresetStep[] }
 export const PRESET_LIMITS = { presets: 100, steps: 200, waitMs: 2000, totalWaitMs: 60000, fileBytes: 1024 * 1024 };
 
@@ -70,4 +114,8 @@ export function mergePresets(existing: LightingPreset[], incoming: LightingPrese
     return { ...preset, id, name: id === preset.id ? preset.name : `${preset.name.slice(0, 69)} (imported)` };
   });
   return parsePresets(serializePresets([...existing, ...added]));
+}
+export function presetSummary(preset: LightingPreset) {
+  const delayMs = preset.steps.reduce((sum, step) => sum + (step.type === 'wait' ? step.durationMs : 0), 0);
+  return `${preset.steps.length} blocks · ${(delayMs / 1000).toFixed(2)} s of delays`;
 }

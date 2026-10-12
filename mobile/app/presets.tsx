@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { Alert, AppState, Button, Pressable, ScrollView, Switch, Text, TextInput, View } from 'react-native';
+import { Alert, Button, Pressable, ScrollView, Switch, Text, TextInput, View } from 'react-native';
 import { Stack, useNavigation } from 'expo-router';
 import { usePreventRemove } from 'expo-router/react-navigation';
-import { ElementId, LIGHT_ELEMENTS, LightingPreset, mergePresets, newPresetId, PRESET_LIMITS, PresetStep, validatePreset } from '../src/presets';
+import { LightingPreset, elementLabel, mergePresets, newPresetId, presetSummary, PRESET_LIMITS, PresetStep, validatePreset } from '../src/presets';
 import { exportPresetFile, importPresetFile, loadPresets, savePresets } from '../src/preset-files';
 import { unsupportedElements } from '../src/protocol/profiles';
-import { VehicleSession } from '../src/session';
+import LightPicker from '../src/presets-ui/LightPicker';
+import LiveLights from '../src/presets-ui/LiveLights';
 import { useVehicle } from '../src/vehicle-context';
 
 const c = { text: '#F2F6FF', muted: '#9BAAC1', blue: '#79B6FF', card: '#121F33', border: '#24344D', amber: '#FFCE96' };
@@ -20,13 +21,6 @@ function Action({ title, onPress, disabled = false, danger = false }: { title: s
   </Pressable>;
 }
 function failure(error: unknown) { return error instanceof Error ? error.message : String(error); }
-function Lights({ active }: { active: ElementId[] }) {
-  return <View style={row}>{LIGHT_ELEMENTS.map(light => <View key={light.id} style={{ flex: 1, minWidth: 115, borderRadius: 14, padding: 16, gap: 8,
-    backgroundColor: active.includes(light.id) ? '#F3AB42' : '#0A1424' }}>
-    <Text style={{ color: active.includes(light.id) ? '#261A09' : c.muted, fontSize: 25 }}>{light.side === 'left' ? '↖' : '↗'}</Text>
-    <Text style={{ color: active.includes(light.id) ? '#261A09' : c.muted }}>Front {light.side} · {active.includes(light.id) ? 'On' : 'Off'}</Text>
-  </View>)}</View>;
-}
 
 export default function PresetsScreen() {
   const { session, state, mode } = useVehicle();
@@ -40,27 +34,20 @@ export default function PresetsScreen() {
   const [fileBusy, setFileBusy] = useState(false);
   const fileLock = useRef(false);
   const playLock = useRef(false);
-  const [, redrawPreview] = useState(0);
-  const previewRef = useRef<VehicleSession | null>(null);
-  if (!previewRef.current) previewRef.current = new VehicleSession(() => redrawPreview(n => n + 1));
-  const preview = previewRef.current;
-  const previewBusy = preview.state.busy;
-  const busy = state.busy || previewBusy || fileBusy;
+  const busy = state.busy || fileBusy;
   const dirty = draft !== null && JSON.stringify(draft) !== baseline;
-  const progress = preview.state.presetProgress ?? state.presetProgress;
-  const running = previewBusy || !!state.presetProgress;
+  const progress = state.presetProgress;
+  const running = !!progress;
   const scroll = useRef<ScrollView>(null);
 
   useEffect(() => {
     try { setPresets(loadPresets()); setLoaded(true); } catch (e) { setError(`Could not load presets: ${failure(e)}. Stored data has been preserved.`); }
-    const subscription = AppState.addEventListener('change', value => { if (value !== 'active') void preview.stop(); });
-    return () => { subscription.remove(); void preview.disconnect(); };
-  }, [preview]);
+  }, []);
   usePreventRemove(dirty || running, ({ data }) => {
     Alert.alert(running ? 'Stop playback and leave?' : 'Discard unsaved changes?', 'Saved presets will be kept.', [
       { text: 'Stay', style: 'cancel' },
       { text: running ? 'Stop & leave' : 'Discard', style: 'destructive', onPress: () => {
-        void Promise.all([session.stop(), preview.stop()]).then(() => navigation.dispatch(data.action));
+        void session.stop().then(() => navigation.dispatch(data.action));
       } },
     ]);
   });
@@ -84,7 +71,8 @@ export default function PresetsScreen() {
     try {
       const validated = validatePreset(draft);
       persist(presets.some(p => p.id === validated.id) ? presets.map(p => p.id === validated.id ? validated : p) : [...presets, validated]);
-      setDraft(validated); setBaseline(JSON.stringify(validated)); setError(null); setNotice('Preset saved on this iPhone.');
+      setDraft(null); setBaseline(''); setError(null); setNotice(`Saved “${validated.name}”.`);
+      scroll.current?.scrollTo({ y: 0, animated: true });
     } catch (e) { setError(failure(e)); }
   }
   function updateStep(index: number, step: PresetStep) {
@@ -104,26 +92,18 @@ export default function PresetsScreen() {
     fileLock.current = true; setFileBusy(true); setError(null); setNotice(null);
     try { await action(); } catch (e) { setError(failure(e)); } finally { fileLock.current = false; setFileBusy(false); }
   }
-  async function play(preset: LightingPreset, demo: boolean) {
+  async function play(preset: LightingPreset) {
     if (busy || playLock.current) return;
     playLock.current = true; setError(null); setNotice(null);
     try {
-      const validated = validatePreset(preset);
-      if (demo) {
-        await preview.connect('demo', '', 0);
-        if (preview.state.verified) await preview.playPreset(validated);
-        if (preview.state.error) setError(preview.state.error);
-        else setNotice('Demo finished. No vehicle commands were sent.');
-        await preview.disconnect();
-      } else await session.playPreset(validated);
+      await session.playPreset(validatePreset(preset));
     } catch (e) { setError(failure(e)); } finally { playLock.current = false; }
   }
   function playback(preset: LightingPreset) {
     const skipped = state.vehicle ? unsupportedElements(state.vehicle, preset) : [];
-    const skippedLabels = skipped.map(id => LIGHT_ELEMENTS.find(light => light.id === id)!.label.toLowerCase()).join(', ');
+    const skippedLabels = skipped.map(id => elementLabel(id).toLowerCase()).join(', ');
     return <View style={{ gap: 8 }}><View style={row}>
-      <Action title="Preview in Demo" disabled={busy} onPress={() => void play(preset, true)} />
-      <Action title={mode === 'demo' ? 'Run on Demo connection' : 'Run on car'} disabled={busy || !state.connected || !state.verified} onPress={() => void play(preset, false)} />
+      <Action title={mode === 'demo' ? 'Run on Demo connection' : 'Run on car'} disabled={busy || !state.connected || !state.verified} onPress={() => void play(preset)} />
     </View>
     {skipped.length > 0 && <Text style={{ color: c.amber, fontSize: 13 }}>Not supported on {state.vehicle!.chassis}, will be skipped: {skippedLabels}.</Text>}
     </View>;
@@ -133,17 +113,17 @@ export default function PresetsScreen() {
     contentContainerStyle={{ padding: 20, paddingBottom: 48, gap: 18 }}>
     <Stack.Screen options={{ title: draft ? 'Edit preset' : 'Lighting presets', gestureEnabled: !draft,
       headerLeft: draft ? () => <Button title="Presets" color={c.blue} disabled={busy} onPress={closeEditor} /> : undefined }} />
-    <Text style={{ color: c.muted, lineHeight: 21 }}>{draft ? 'Light blocks change the selected indicators. Delay blocks hold the current state before the next block.' : 'Your sequences, saved on this iPhone. Build once, preview, then play.'}</Text>
+    <Text style={{ color: c.muted, lineHeight: 21 }}>{draft ? 'Light blocks change the selected lights. Delay blocks hold the current state before the next block.' : 'Your sequences, saved on this iPhone. Build once, then play.'}</Text>
     {error && <Text selectable accessibilityRole="alert" style={{ color: '#FFB4AB', lineHeight: 21 }}>{error}</Text>}
     {notice && <Text selectable accessibilityLiveRegion="polite" style={{ color: '#A1E7CD' }}>{notice}</Text>}
     <View style={card}>
-      <Text style={{ color: c.text, fontWeight: '600' }}>{previewBusy ? 'Demo preview · no vehicle commands' : `${mode.toUpperCase()} · ${state.status}`}</Text>
+      <Text style={{ color: c.text, fontWeight: '600' }}>{`${mode.toUpperCase()} · ${state.status}`}</Text>
       {progress && <>
         <Text style={{ color: c.amber }}>{progress.name} · block {progress.index + 1} of {progress.total}</Text>
-        <Lights active={progress.lights} />
+        <LiveLights active={progress.lights} />
       </>}
       {state.error && <Text selectable style={{ color: '#FFB4AB' }}>{state.error}</Text>}
-      {running || state.busy ? <Action title="Stop & restore control" danger onPress={() => { void session.stop(); void preview.stop(); }} /> :
+      {running || state.busy ? <Action title="Stop & restore control" danger onPress={() => void session.stop()} /> :
         <Text style={{ color: c.muted, lineHeight: 20 }}>Runs once, then restores ECU control. To run on the car, connect and identify it on the home screen first.</Text>}
     </View>
     {!draft ? <>
@@ -166,7 +146,7 @@ export default function PresetsScreen() {
       </View>}
       {presets.map(preset => <View key={preset.id} style={card}>
         <Text style={{ color: c.text, fontSize: 21, fontWeight: '600' }}>{preset.name}</Text>
-        <Text style={{ color: c.muted }}>{preset.steps.length} blocks · {(preset.steps.reduce((sum, step) => sum + (step.type === 'wait' ? step.durationMs : 0), 0) / 1000).toFixed(2)} s of delays</Text>
+        <Text style={{ color: c.muted }}>{presetSummary(preset)}</Text>
         {playback(preset)}
         <View style={row}>
           <Action title="Edit" disabled={busy} onPress={() => edit(preset)} />
@@ -197,13 +177,7 @@ export default function PresetsScreen() {
           <Text style={{ color: c.muted }}>{step.type === 'set' ? step.state.toUpperCase() : `${step.durationMs || 0} ms`}</Text>
         </View>
         {step.type === 'set' ? <>
-          {LIGHT_ELEMENTS.map(light => <Pressable key={light.id} accessibilityRole="checkbox" accessibilityLabel={light.label}
-            accessibilityState={{ checked: step.elements.includes(light.id), disabled: busy }} disabled={busy}
-            onPress={() => updateStep(index, { ...step, elements: step.elements.includes(light.id) ? step.elements.filter(id => id !== light.id) : [...step.elements, light.id] })}
-            style={{ ...row, minHeight: 44 }}>
-            <Text style={{ color: step.elements.includes(light.id) ? c.blue : c.muted, fontSize: 22 }}>{step.elements.includes(light.id) ? '☑' : '☐'}</Text>
-            <Text style={{ color: c.text, flex: 1 }}>{light.label}</Text>
-          </Pressable>)}
+          <LightPicker selected={step.elements} vehicle={state.vehicle} busy={busy} onChange={elements => updateStep(index, { ...step, elements })} />
           <View style={{ ...row, justifyContent: 'space-between' }}>
             <Text style={{ color: c.text }}>Set selected lights {step.state}</Text>
             <Switch accessibilityLabel={`Block ${index + 1} lights on`} disabled={busy} value={step.state === 'on'} onValueChange={on => updateStep(index, { ...step, state: on ? 'on' : 'off' })} />

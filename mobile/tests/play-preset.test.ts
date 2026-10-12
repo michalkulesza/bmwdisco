@@ -109,6 +109,36 @@ test('elements unsupported by the profile are skipped, logged, and never cleaned
   await session.connect('demo', '', 0);
   await session.playPreset(sequence);
   assert.deepEqual(sent, ['22 F1 50', '10 03', LEFT_ON, LEFT_OFF, LEFT_OFF, RETURN_CONTROL, '10 01']);
-  assert.match(session.state.logs.join('\n'), /Front right indicator: skipped, unsupported on BMW F32/);
+  assert.match(session.state.logs.join('\n'), /Front indicator right: skipped, unsupported on BMW F32/);
+  assert.equal(session.state.error, null);
+});
+
+const mixed: LightingPreset = {
+  id: 'mixed',
+  name: 'Mixed',
+  steps: [
+    { type: 'set', elements: ['brakeAll', 'licensePlate', 'frontLeftIndicator'], state: 'on' },
+    { type: 'set', elements: ['brakeAll'], state: 'off' },
+  ],
+};
+
+test('F32-only and F10-only elements translate on F32 and skip the F10-only one', async () => {
+  const { session, sent } = fixture();
+  await session.connect('demo', '', 0);
+  await session.playPreset(mixed);
+  assert.deepEqual(sent, ['22 F1 50', '10 03', '2E D5 42 00 0C 00 64', LEFT_ON, '2E D5 42 00 0C 00 00',
+    '2E D5 42 00 0C 00 00', LEFT_OFF, RETURN_CONTROL, '10 01']);
+  assert.match(session.state.logs.join('\n'), /Licence plate light: skipped, unsupported on BMW F32/);
+  assert.equal(session.state.error, null);
+});
+
+test('F32-only elements are skipped on an F10 while F10-only ones run', async () => {
+  const { session, addressed } = fixture({ identities: { 0x40: CAS_IDENTITY, 0x72: FRM_IDENTITY } });
+  await session.connect('demo', '', 0);
+  addressed.length = 0;
+  await session.playPreset(mixed);
+  assert.deepEqual(addressed.map(entry => entry.replace(/^72:/, '')), ['10 03', '2F 01 0E 03 64', '2F 01 1C 03 64',
+    '2F 01 0E 03 00', '2F 01 1C 03 00', '10 01']);
+  assert.match(session.state.logs.join('\n'), /Brake lights \(all, aggregate\): skipped, unsupported on BMW F10\/F11/);
   assert.equal(session.state.error, null);
 });

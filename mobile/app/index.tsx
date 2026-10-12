@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { Button, Pressable, ScrollView, Share, Text, TextInput, View } from 'react-native';
+import { useCallback, useState } from 'react';
+import { Button, PlatformColor, Pressable, ScrollView, Share, Text, TextInput, View } from 'react-native';
 import { Link } from 'expo-router';
 import { Mode } from '../src/session';
 import { profileLabel } from '../src/protocol/profiles';
+import PresetRunList from '../src/home-ui/PresetRunList';
+import SessionLog from '../src/home-ui/SessionLog';
 import { CONNECTION_DEFAULTS as defaults, useVehicle } from '../src/vehicle-context';
 
 const colors = { text: '#F2F6FF', muted: '#9BAAC1', blue: '#79B6FF', card: '#121F33', border: '#24344D' };
@@ -18,7 +20,7 @@ export default function Home() {
   const vehicleLabel = profileLabel(state.vehicle);
   const ecuName = state.vehicle?.ecu ?? 'ECU';
 
-  async function exportLogs() {
+  const handleExportLogs = useCallback(async () => {
     setShareError(null);
     try {
       await Share.share({ title: 'BimmerDisco diagnostic log', message: [
@@ -27,13 +29,13 @@ export default function Home() {
         `Status: ${state.status}`, `${ecuName} identity: ${state.identity ?? 'Not identified'}`, '', ...state.logs,
       ].join('\n') });
     } catch (error) { setShareError(error instanceof Error ? error.message : 'Could not share logs'); }
-  }
+  }, [mode, state.identity, state.logs, state.status, vehicleLabel, ecuName]);
 
   return <ScrollView contentInsetAdjustmentBehavior="automatic" keyboardShouldPersistTaps="handled" contentContainerStyle={{ padding: 20, paddingBottom: 48, gap: 20 }}>
     <View style={{ gap: 8 }}>
       <Text style={label}>{vehicleLabel}</Text>
-      <Text style={{ color: colors.text, fontSize: 27, fontWeight: '700', letterSpacing: -0.7 }}>Front indicator test</Text>
-      <Text style={{ color: colors.muted, fontSize: 15, lineHeight: 22 }}>Connect, identify the ECU, then run a one-second light test.</Text>
+      <Text style={{ color: colors.text, fontSize: 27, fontWeight: '700', letterSpacing: -0.7 }}>Lighting presets</Text>
+      <Text style={{ color: colors.muted, fontSize: 15, lineHeight: 22 }}>Connect, identify the ECU, then run your light sequences.</Text>
     </View>
 
     <View style={card}>
@@ -65,43 +67,27 @@ export default function Home() {
       <View style={{ backgroundColor: '#2566B4', borderRadius: 12, paddingVertical: 5, opacity: locked ? 0.45 : 1 }}>
         <Button title={state.busy && !state.connected ? 'Connecting…' : 'Connect & identify'} color="#FFFFFF" disabled={locked} onPress={() => void session.connect(mode, endpoint.host.trim(), Number(endpoint.port))} />
       </View>
+      <Button title="Disconnect" color={PlatformColor('systemRed')} disabled={!state.connected && !state.busy} onPress={() => void session.disconnect()} />
+      <View style={{ borderColor: colors.border, borderWidth: 1, borderRadius: 12, paddingVertical: 5 }}>
+        <Button title={state.busy ? 'Stop & restore control' : 'Restore ECU control'} color="#FFCE96" disabled={!state.busy && !ready} onPress={() => void (state.busy ? session.stop() : session.restore())} />
+      </View>
       <Text selectable accessibilityLiveRegion="polite" style={{ color: colors.text, fontSize: 14 }}>{state.status}</Text>
       {state.identity && <Text selectable style={{ color: colors.muted, fontSize: 13, fontVariant: ['tabular-nums'] }}>{ecuName} identity  {state.identity}{state.verified ? ' · verified' : ' · mismatch'}</Text>}
       {state.error && <Text selectable accessibilityRole="alert" style={{ color: '#FFB4AB', fontSize: 14, lineHeight: 21 }}>{state.error}</Text>}
     </View>
 
     <View style={card}>
-      <Text style={label}>LIGHTING PRESETS</Text>
-      <Text style={{ color: colors.text, fontSize: 20, fontWeight: '600' }}>Build your own sequence.</Text>
-      <Text style={{ color: colors.muted, lineHeight: 21 }}>Arrange light and delay blocks, preview in Demo, and save or share JSON files.</Text>
-      <Link href="/presets" style={{ color: colors.blue, fontSize: 17, paddingVertical: 12 }}>Open lighting presets →</Link>
+      <Text style={label}>02 / LIGHTING PRESETS</Text>
+      <PresetRunList />
+      <Link href="/presets" style={{ color: colors.blue, fontSize: 17, paddingVertical: 12 }}>Manage lighting presets →</Link>
     </View>
     <View style={card}>
-      <Text style={label}>02 / LIGHT TEST</Text>
-      <Text style={{ color: colors.text, fontSize: 20, fontWeight: '600' }}>A single, short pulse.</Text>
-      <Text style={{ color: colors.muted, fontSize: 14, lineHeight: 21 }}>Keep the vehicle stationary with the ignition on. Each test runs for one second, then returns control to the ECU.</Text>
-      <View style={{ flexDirection: 'row', gap: 12 }}>
-        {(['left', 'right'] as const).map(side => <Pressable key={side} accessibilityRole="button" accessibilityLabel={`Test front ${side} indicator for one second`} accessibilityState={{ disabled: !ready }} disabled={!ready} onPress={() => void session.pulse(side)} style={({ pressed }) => ({ flex: 1, minHeight: 112, padding: 16, justifyContent: 'space-between', gap: 12, backgroundColor: '#1C3555', borderRadius: 16, opacity: !ready ? 0.4 : pressed ? 0.65 : 1 })}>
-          <Text style={{ color: colors.blue, fontSize: 23 }}>{side === 'left' ? '↖' : '↗'}</Text>
-          <View style={{ gap: 4 }}><Text style={{ color: colors.text, fontSize: 16, fontWeight: '600' }}>Front {side}</Text><Text style={{ color: colors.muted, fontSize: 12 }}>1 SECOND</Text></View>
-        </Pressable>)}
-      </View>
-      {!state.verified && <Text style={{ color: colors.muted, fontSize: 12, lineHeight: 18 }}>Tests unlock after a supported ECU identity is verified.</Text>}
-      <View style={{ borderColor: colors.border, borderWidth: 1, borderRadius: 12, paddingVertical: 5 }}>
-        <Button title={state.busy ? 'Stop & restore control' : 'Restore ECU control'} color="#FFCE96" disabled={!state.busy && !ready} onPress={() => void (state.busy ? session.stop() : session.restore())} />
-      </View>
-      <Button title="Disconnect" color={colors.blue} disabled={!state.connected && !state.busy} onPress={() => void session.disconnect()} />
-    </View>
-
-    <View style={card}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Text style={label}>SESSION LOG</Text>
-        <Text style={{ color: colors.muted, fontSize: 12, fontVariant: ['tabular-nums'] }}>{state.logs.length} entries</Text>
-      </View>
-      <Text selectable style={{ color: colors.muted, fontSize: 11, lineHeight: 18, fontFamily: 'Courier', fontVariant: ['tabular-nums'] }}>{state.logs.slice(-8).join('\n') || 'Connection and test activity will appear here.'}</Text>
-      <Button title="Export logs" color={colors.blue} disabled={state.logs.length === 0} onPress={() => void exportLogs()} />
+      <SessionLog logs={state.logs} onExport={handleExportLogs} />
       {shareError && <Text selectable accessibilityRole="alert" style={{ color: '#FFB4AB', fontSize: 13 }}>{shareError}</Text>}
     </View>
-    <Text style={{ color: '#70819C', fontSize: 12, lineHeight: 18, textAlign: 'center' }}>{vehicleLabel} · Prototype</Text>
+    <View style={{ gap: 4 }}>
+      <Text style={{ color: '#70819C', fontSize: 12, lineHeight: 16, textAlign: 'center' }}>{vehicleLabel} · Prototype</Text>
+      <Text style={{ color: '#70819C', fontSize: 12, lineHeight: 16, textAlign: 'center' }}>Kula daje fula</Text>
+    </View>
   </ScrollView>;
 }

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { LightingPreset, PRESET_LIMITS, mergePresets, parsePresets, serializePresets, validatePreset } from '../src/presets';
+import { LIGHT_ELEMENTS, LightingPreset, PRESET_LIMITS, mergePresets, parsePresets, serializePresets, validatePreset } from '../src/presets';
 
 const blink: LightingPreset = {
   id: 'blink',
@@ -31,6 +31,17 @@ test('single-preset export is a one-item array', () => {
 test('singular element is normalized to elements', () => {
   const preset = validatePreset(withSteps([{ type: 'set', element: 'frontRightIndicator', state: 'on' }]));
   assert.deepEqual(preset.steps[0], { type: 'set', elements: ['frontRightIndicator'], state: 'on' });
+});
+
+test('every generic element is accepted in one block and round-trips', () => {
+  const elements = LIGHT_ELEMENTS.map(light => light.id);
+  const preset = validatePreset(withSteps([{ type: 'set', elements, state: 'on' }]));
+  assert.deepEqual(parsePresets(serializePresets([preset]))[0].steps[0], { type: 'set', elements, state: 'on' });
+});
+
+test('older files that only use the two indicator ids still parse', () => {
+  const parsed = parsePresets(file([withSteps([{ type: 'set', elements: ['frontLeftIndicator', 'frontRightIndicator'], state: 'on' }])]));
+  assert.deepEqual(parsed[0].steps[0], { type: 'set', elements: ['frontLeftIndicator', 'frontRightIndicator'], state: 'on' });
 });
 
 test('name is trimmed', () => {
