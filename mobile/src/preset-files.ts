@@ -2,12 +2,20 @@ import Storage from 'expo-sqlite/kv-store';
 import { File, Paths } from 'expo-file-system';
 import * as DocumentPicker from 'expo-document-picker';
 import * as Sharing from 'expo-sharing';
+import { withDefaultPresets } from './default-presets';
 import { LightingPreset, parsePresets, PRESET_LIMITS, serializePresets } from './presets';
 
 const KEY = 'bimmerdisco.presets.v1';
+const DEFAULTS_SEEDED_KEY = 'bimmerdisco.defaultPresets.v1';
 export function loadPresets(): LightingPreset[] {
   const json = Storage.getItemSync(KEY);
-  return json === null ? [] : parsePresets(json);
+  const presets = json === null ? [] : parsePresets(json);
+  if (Storage.getItemSync(DEFAULTS_SEEDED_KEY) !== null) return presets;
+
+  const seeded = withDefaultPresets(presets, PRESET_LIMITS.presets);
+  savePresets(seeded);
+  Storage.setItemSync(DEFAULTS_SEEDED_KEY, '1');
+  return seeded;
 }
 export function savePresets(presets: LightingPreset[]) { Storage.setItemSync(KEY, serializePresets(presets)); }
 export async function importPresetFile(): Promise<LightingPreset[] | null> {
