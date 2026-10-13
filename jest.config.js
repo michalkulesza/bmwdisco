@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const COVERED_DIRS = ['src/protocol', 'src/link', 'src/domain'];
+const COVERED_DIRS = ['src/protocol', 'src/link', 'src/domain', 'src/simulator'];
 const THRESHOLD = { statements: 90, branches: 90, functions: 90, lines: 90 };
 
 const hasSources = (dir) => {
