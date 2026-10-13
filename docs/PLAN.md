@@ -86,6 +86,12 @@ Session machine: `idle → connecting → identifying → ready ⇄ running → 
 - FLE02 `STOP_ROUTINE` (`31 02 A5 43`) is kept as a command only; unverified that it stops every LED routine, so it is not treated as return control. COMMUNICATION_OFF (`28 02 01`) is required by headlight LED effects (`silenceCommunication`) and must be restored with `28 00 03`.
 - F32 has no row in the identification table (FEM_20 `0F16B0` is listed under F20), so chassis-to-module hints are sparse; identification relies on `22 F1 50`.
 - F10 `positionLeft`/`positionRight` alias `daytimeLeft`/`daytimeRight` (same channels); F10 has no `ambient`, only `ambient1`/`ambient2`.
+- IO-control response matcher: for FEM-style `2F 45 01 03 <ch> <st>` the channel is compared only when the ECU echoes it (a bare `6F 45 01 03` is accepted; the reply layout of FEM_20 is unverified). FRM3-style requests carry the channel in the DID, which is always compared.
+- Timeout policy: any request timeout fails the link (late replies cannot be told apart from new ones); the session layer must reconnect and restore.
+- ELM: `NO DATA` after the last frame is surfaced as `AdapterError('no-data')`; 0x78 on ELM is followed with `ATMA` monitoring (unverified on hardware); `ATH1` frame lines are assumed to look like `640F1...` (id + data, no spaces).
+- ENET discovery packet (type `0x11`) and `DIAGADR..BMWMAC..BMWVIN..` announcement format are from memory of the ENET spec, not from the app evidence.
+- `react-native-udp` was last published 2025-10 (4.1.7) and is not maintained for Expo SDK 57, so `discoverEnet()` takes an injectable `createSocket` and returns `[]` without one; a UDP socket must be wired later (or a manual IP entered).
+- `react-native-ble-plx` 3.5.1 is an old-architecture bridge module; confirm it runs under RN 0.86 (interop layer) on a dev build before M7.
 
 ## Milestones & progress
 
@@ -95,7 +101,7 @@ Status: ☐ todo · ◐ in progress · ☑ done
 | --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------ |
 | M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `CLAUDE.md` overrides, this plan            | ☑      |
 | M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☑      |
-| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☐      |
+| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☑      |
 | M3  | Simulator + Demo link with fault injection                                                                                               | ☐      |
 | M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☐      |
 | M5  | Design canvas: connecting, error, empty states, Library, Cable list → **user checkpoint**                                                | ☐      |
@@ -109,6 +115,7 @@ Status: ☐ todo · ◐ in progress · ☑ done
 - 2026-10-13 — Grill session complete; plan written. M0 started.
 - 2026-10-13 — M0 done: Expo SDK 57 (expo 57.0.28, RN 0.86.3, React 19.2.3, expo-router 57.0.26, TypeScript 6.0.3) scaffolded at repo root with `app/` routes and `src/` skeleton; ESLint 9 + eslint-config-expo + react-hooks + import/order, Prettier 3, jest-expo 57 (Jest 29) with per-dir 90% coverage thresholds activated once `src/protocol|link|domain` contain sources, Husky 9 + lint-staged, GitHub Actions CI, project `CLAUDE.md`. `expo-doctor` 21/21.
 - 2026-10-13 — M1 done: `data/ecu/` holds 10 modules (20 files), `ecu_modules.json`, 9 effect packs and `chassis_info.json` filtered to 1906 of 5894 F-series rows; `npm run gen:data` (zod-validated, Prettier-formatted) emits `src/data/generated` and `i18n-keys.json`, `gen:data:check` runs in CI after lint. Elements per module: FEM_20 40, BDC 56, REM_20 16, FRM3 37, FLE02_L/R 11 each, KOMB01/KOMB25 1 each (cluster feedback), LHM2_L/R 0 (see uncertainties); 87 distinct element ids. Effects kept/total: flash 58/68, headlight_flash 22/36, headlight_show 15/15, one_side 16/16, taillight_flash 0/100 (rear-light modules out of scope), taillight_show 7/7, party_mode 9/10, ghost 9/11, toggle 3/11 pairs (139 effects). Generated size about 193 KB (effects 85 KB, vehicles 57 KB, modules 39 KB). Prototype F32/FEM_20 (32) and F10/FRM3 (26) payloads reproduced byte for byte.
+- 2026-10-13 — M2 done: `src/transport` (Transport interface, TcpTransport, BleTransport + scan filtered to known adapter service UUIDs, private/link-local host validation), `src/protocol` (bytes, UDS matcher incl. IO-control channel, NRC enum, typed errors, HSFZ/Thor/ISO-TP/ELM codecs, CommandQueue with priority lane, 4 s/12 s timeouts, 0x78 extension and abort, KeepaliveScheduler), `src/link` (BaseLink, HsfzLink, ThorLink, ElmIsoTpLink, `discoverEnet` with injectable UDP). Added react-native-tcp-socket 6.4.3, react-native-ble-plx 3.5.1, buffer 6.0.3, BLE/local-network permission strings in app.json. Coverage on protocol and link above 90 %.
 
 ## How to resume
 
