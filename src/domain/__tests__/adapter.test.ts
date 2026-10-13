@@ -16,6 +16,7 @@ jest.mock('@/transport/TcpTransport', () => ({
     }
   },
 }));
+jest.mock('@/transport/UdpSocket', () => ({ createUdpSocket: jest.fn() }));
 jest.mock('@/transport/BleTransport', () => ({
   BleTransport: class {
     options: unknown;
