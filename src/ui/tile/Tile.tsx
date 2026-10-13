@@ -29,11 +29,13 @@ const Tile = ({ item, size, side = DEFAULT_SIDE, onMenuPress }: TileProps) => {
   const { status, toggledOn, visual } = useTileView(item);
   const hue = useColorToken(item.hue);
   const soft = useColorToken('text-soft');
+  const page = useColorToken('page');
   const handlePress = useTilePress(item, visual, toggledOn);
 
   const handleMenuPress = useCallback(() => onMenuPress(item), [item, onMenuPress]);
 
   const running = visual === 'running';
+  const menuColor = running || visual === 'on' ? page : soft;
   const tag = tileTag(item, visual, status, toggledOn, t);
   const label = running ? t('tile.stopLabel', { name: item.name }) : `${item.name}, ${tag}`;
   const accessibilityState = {
@@ -59,17 +61,15 @@ const Tile = ({ item, size, side = DEFAULT_SIDE, onMenuPress }: TileProps) => {
           )}
         </TileBackground>
       </Pressable>
-      {running ? null : (
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t('tile.menuLabel', { name: item.name })}
-          onPress={handleMenuPress}
-          className="size-touch items-center justify-center active:opacity-60"
-          style={getMenuPosition(size)}
-        >
-          <DotsThreeVerticalIcon size={18} weight="bold" color={soft} />
-        </Pressable>
-      )}
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={t('tile.menuLabel', { name: item.name })}
+        onPress={handleMenuPress}
+        className="size-touch items-center justify-center active:opacity-60"
+        style={getMenuPosition(size)}
+      >
+        <DotsThreeVerticalIcon size={18} weight="bold" color={menuColor} />
+      </Pressable>
     </View>
   );
 };
