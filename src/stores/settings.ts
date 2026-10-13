@@ -10,20 +10,58 @@ export const THEME_MODES: readonly ThemeMode[] = ['system', 'light', 'dark'];
 export const LANGUAGE_CHOICES: readonly LanguageChoice[] = ['system', 'en', 'pl'];
 export const ADAPTER_CHOICES: readonly AdapterChoice[] = ['enet', 'thor', 'vgate', 'demo'];
 
+export const DEFAULT_THOR_HOST = '192.168.0.10';
+export const DEFAULT_THOR_PORT = '23';
+export const DEFAULT_DEMO_CHASSIS = 'F32';
+
+export interface BleDevice {
+  id: string;
+  name: string | null;
+}
+
 const syncStorage: StateStorage = {
   getItem: (key) => Storage.getItemSync(key),
   setItem: (key, value) => Storage.setItemSync(key, value),
   removeItem: (key) => Storage.removeItemSync(key),
 };
 
-interface SettingsState {
+export interface AdapterSettings {
+  adapter: AdapterChoice;
+  enetHost: string;
+  thorHost: string;
+  thorPort: string;
+  icarDevice: BleDevice | null;
+  demoChassis: string;
+}
+
+interface SettingsState extends AdapterSettings {
   theme: ThemeMode;
   language: LanguageChoice;
-  adapter: AdapterChoice;
   setTheme: (theme: ThemeMode) => void;
   setLanguage: (language: LanguageChoice) => void;
   setAdapter: (adapter: AdapterChoice) => void;
+  setEnetHost: (enetHost: string) => void;
+  setThorHost: (thorHost: string) => void;
+  setThorPort: (thorPort: string) => void;
+  setIcarDevice: (icarDevice: BleDevice | null) => void;
+  setDemoChassis: (demoChassis: string) => void;
 }
+
+export const selectAdapterSettings = ({
+  adapter,
+  enetHost,
+  thorHost,
+  thorPort,
+  icarDevice,
+  demoChassis,
+}: SettingsState): AdapterSettings => ({
+  adapter,
+  enetHost,
+  thorHost,
+  thorPort,
+  icarDevice,
+  demoChassis,
+});
 
 export const useSettingsStore = create<SettingsState>()(
   persist(
@@ -31,14 +69,28 @@ export const useSettingsStore = create<SettingsState>()(
       theme: 'system',
       language: 'system',
       adapter: 'enet',
+      enetHost: '',
+      thorHost: DEFAULT_THOR_HOST,
+      thorPort: DEFAULT_THOR_PORT,
+      icarDevice: null,
+      demoChassis: DEFAULT_DEMO_CHASSIS,
       setTheme: (theme) => set({ theme }),
       setLanguage: (language) => set({ language }),
       setAdapter: (adapter) => set({ adapter }),
+      setEnetHost: (enetHost) => set({ enetHost }),
+      setThorHost: (thorHost) => set({ thorHost }),
+      setThorPort: (thorPort) => set({ thorPort }),
+      setIcarDevice: (icarDevice) => set({ icarDevice }),
+      setDemoChassis: (demoChassis) => set({ demoChassis }),
     }),
     {
       name: 'settings',
       storage: createJSONStorage(() => syncStorage),
-      partialize: ({ theme, language, adapter }) => ({ theme, language, adapter }),
+      partialize: (state) => ({
+        theme: state.theme,
+        language: state.language,
+        ...selectAdapterSettings(state),
+      }),
     },
   ),
 );

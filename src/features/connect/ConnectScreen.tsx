@@ -1,21 +1,27 @@
-import { PlugsConnected } from 'phosphor-react-native';
-import { useTranslation } from 'react-i18next';
+import { useSessionActions, useSessionPhase, useSessionSelector } from '@/session';
 
-import EmptyState from '@/ui/EmptyState';
-import Screen from '@/ui/Screen';
+import ConnectErrorView from './ConnectErrorView';
+import ConnectingView from './ConnectingView';
+import { isOnlinePhase, toErrorReason } from './helpers';
+import NotConnectedView from './NotConnectedView';
+import { useConnect } from './useConnect';
 
 const ConnectScreen = () => {
-  const { t } = useTranslation();
+  const phase = useSessionPhase();
+  const reason = useSessionSelector((snapshot) => snapshot.context.lastError?.reason);
+  const { disconnect } = useSessionActions();
+  const connect = useConnect();
 
-  return (
-    <Screen scroll={false} topInset>
-      <EmptyState
-        icon={PlugsConnected}
-        title={t('connect.notConnected')}
-        description={t('connect.subtitle')}
-      />
-    </Screen>
-  );
+  if (phase === 'error') {
+    return (
+      <ConnectErrorView reason={toErrorReason(reason)} onRetry={connect} onBack={disconnect} />
+    );
+  }
+  if (phase === 'connecting' || phase === 'identifying' || isOnlinePhase(phase)) {
+    return <ConnectingView phase={phase} />;
+  }
+
+  return <NotConnectedView />;
 };
 
 export default ConnectScreen;

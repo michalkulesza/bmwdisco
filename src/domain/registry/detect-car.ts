@@ -18,7 +18,7 @@ import {
 
 import type { DetectedCar, DetectedModule, DetectOptions, LinkProvider } from './types';
 
-export const DEFAULT_PROBE_TIMEOUT_MS = 1500;
+export const DEFAULT_PROBE_TIMEOUT_MS = 700;
 
 const IDENTITY_REQUEST = fromHex('22 F1 50');
 const VIN_REQUEST = fromHex('22 F1 90');
@@ -65,6 +65,7 @@ export const detectCar = async (
       response = await link.request(address, IDENTITY_REQUEST, {
         timeoutMs: probeTimeoutMs,
         totalMs: probeTimeoutMs,
+        probe: true,
         signal,
       });
     } catch {

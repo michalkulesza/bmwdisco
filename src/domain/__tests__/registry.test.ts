@@ -32,6 +32,18 @@ const stubLink = (
     },
   }) as DiagnosticLink;
 
+const dyingLink = (): DiagnosticLink => {
+  const link = stubLink(() => undefined);
+  const state = { current: 'open' as DiagnosticLink['state'] };
+  Object.defineProperty(link, 'state', { get: () => state.current });
+  link.request = async () => {
+    state.current = 'failed';
+    throw new Error('timeout');
+  };
+
+  return link;
+};
+
 const detectOnStub = (link: DiagnosticLink, addresses?: number[]) =>
   detectCar(
     createLinkProvider(link, async () => link),
@@ -70,16 +82,45 @@ describe('detectCar', () => {
     expect((await detectOnSim(makeVehicle('F10'))).car.chassis).toBe('F01');
   });
 
-  it('replaces the link when an absent module kills it', async () => {
-    const vehicle = makeVehicle('F10');
+  it('identifies the F10 profile over simulated enet latency without reopening the link', async () => {
+    const vehicle = makeVehicle('F10', { latency: 'enet' });
     const first = await openSimLink(vehicle);
-    const provider = createLinkProvider(first, () => openSimLink(vehicle));
+    const reopen = jest.fn(() => openSimLink(vehicle));
+    const provider = createLinkProvider(first, reopen);
 
-    await detectCar(provider, { probeTimeoutMs: PROBE_TIMEOUT_MS });
+    const startedAt = Date.now();
+    const car = await detectCar(provider);
+    const elapsedMs = Date.now() - startedAt;
 
-    expect(provider.link).not.toBe(first);
-    expect(provider.link.state).toBe('open');
-    expect(first.state).not.toBe('open');
+    expect(elapsedMs).toBeLessThan(1500);
+    expect(reopen).not.toHaveBeenCalled();
+    expect(provider.link).toBe(first);
+    expect(car.modules.map((module) => module.sgbd).sort()).toEqual(
+      [...createProfile('F10').modules].sort(),
+    );
+  });
+
+  it('probes every distinct address exactly once', async () => {
+    const vehicle = makeVehicle('F10');
+    await detectOnSim(vehicle);
+
+    const probed = vehicle.requestLog
+      .filter((entry) => entry.request[1] === 0xf1 && entry.request[2] === 0x50)
+      .map((entry) => entry.ecu);
+
+    expect(probed.sort()).toEqual(ModuleRegistry.probeAddresses().sort());
+  });
+
+  it('replaces a link that a probe timeout killed', async () => {
+    const healthy = stubLink((address) => identityOf(address, 'FEM_20'));
+    const reopen = jest.fn(async () => healthy);
+    const provider = createLinkProvider(dyingLink(), reopen);
+
+    const car = await detectCar(provider, { addresses: [0x41, 0x40], probeTimeoutMs: 10 });
+
+    expect(reopen).toHaveBeenCalledTimes(1);
+    expect(provider.link).toBe(healthy);
+    expect(car.modules.map((module) => module.sgbd)).toEqual(['FEM_20']);
   });
 
   it('restricts probing to the requested addresses', async () => {
@@ -175,13 +216,10 @@ describe('detectCar', () => {
   });
 
   it('propagates a failure to reopen the link', async () => {
-    const vehicle = makeVehicle('F10');
-    const provider = createLinkProvider(await openSimLink(vehicle), async () => {
+    const provider = createLinkProvider(dyingLink(), async () => {
       throw new Error('adapter gone');
     });
 
-    await expect(detectCar(provider, { probeTimeoutMs: PROBE_TIMEOUT_MS })).rejects.toThrow(
-      'adapter gone',
-    );
+    await expect(detectCar(provider, { addresses: [0x41, 0x40] })).rejects.toThrow('adapter gone');
   });
 });

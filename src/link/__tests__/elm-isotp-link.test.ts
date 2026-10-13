@@ -357,6 +357,25 @@ describe('ElmIsoTpLink requests', () => {
     }
   });
 
+  it('still fails the link on a probe timeout because ELM output cannot be attributed', async () => {
+    jest.useFakeTimers();
+    try {
+      const { elm, link } = adapter();
+      await link.open();
+      elm.hold();
+      const outcome = link
+        .request(ECU, fromHex('22 F1 50'), { probe: true })
+        .catch((e: unknown) => e);
+
+      await jest.advanceTimersByTimeAsync(4000);
+
+      expect(await outcome).toBeInstanceOf(TimeoutError);
+      expect(link.state).toBe('failed');
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
   it('fails the next command when the abandoned one never returns', async () => {
     jest.useFakeTimers();
     try {

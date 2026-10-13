@@ -3,6 +3,9 @@ import { ThemeProvider } from 'expo-router/react-navigation';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
+import ConnectionLostOverlay from '@/features/connect/ConnectionLostOverlay';
+
+import { useConnectionFlow } from './useConnectionFlow';
 import { useNavigationTheme, useSheetOptions, useStackScreenOptions } from './useNavigationOptions';
 
 const RootNavigator = () => {
@@ -10,6 +13,8 @@ const RootNavigator = () => {
   const navigationTheme = useNavigationTheme();
   const screenOptions = useStackScreenOptions();
   const sheetOptions = useSheetOptions();
+
+  useConnectionFlow();
 
   return (
     <ThemeProvider value={navigationTheme}>
@@ -23,6 +28,18 @@ const RootNavigator = () => {
         <Stack.Screen
           name="settings/cable"
           options={{ title: t('cable.title'), headerLargeTitle: true }}
+        />
+        <Stack.Screen
+          name="settings/language"
+          options={{ title: t('settings.language'), headerLargeTitle: true }}
+        />
+        <Stack.Screen
+          name="settings/ble-devices"
+          options={{ title: t('connect.devices.title'), headerLargeTitle: true }}
+        />
+        <Stack.Screen
+          name="settings/demo-chassis"
+          options={{ title: t('settings.demoChassis'), headerLargeTitle: true }}
         />
         <Stack.Screen
           name="home"
@@ -41,6 +58,7 @@ const RootNavigator = () => {
         <Stack.Screen name="icon-picker" options={sheetOptions} />
         <Stack.Screen name="tile-menu" options={sheetOptions} />
       </Stack>
+      <ConnectionLostOverlay />
     </ThemeProvider>
   );
 };

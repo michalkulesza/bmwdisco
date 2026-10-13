@@ -14,7 +14,80 @@
     "title": "Połącz",
     "notConnected": "Brak połączenia",
     "subtitle": "Wybierz adapter, aby połączyć się z samochodem.",
-    "settings": "Ustawienia"
+    "settings": "Ustawienia",
+    "appName": "BimmerDisco",
+    "connect": "Połącz",
+    "cable": "Kabel:",
+    "connecting": "Łączenie",
+    "progress": "Postęp łączenia",
+    "openSettings": "Otwórz Ustawienia",
+    "adapterShort": {
+      "enet": "Ethernet USB-C",
+      "thor": "Wi-Fi",
+      "vgate": "Bluetooth",
+      "demo": "Symulacja"
+    },
+    "steps": {
+      "reaching": {
+        "title": "Łączenie z adapterem",
+        "detail": "Otwieranie połączenia",
+        "status": "Łączenie z adapterem…"
+      },
+      "identifying": {
+        "title": "Rozpoznawanie samochodu",
+        "detail": "Odczyt numeru VIN",
+        "status": "Rozpoznawanie samochodu…"
+      },
+      "loading": {
+        "title": "Ładowanie modułów",
+        "detail": "Sterowniki oświetlenia",
+        "status": "Ładowanie modułów…"
+      }
+    },
+    "errors": {
+      "adapterUnreachable": {
+        "title": "Adapter niedostępny",
+        "description": "Sprawdź, czy kabel jest podłączony, a adapter zasilany, i spróbuj ponownie."
+      },
+      "bluetoothOff": {
+        "title": "Bluetooth jest wyłączony",
+        "description": "BimmerDisco potrzebuje Bluetooth, aby połączyć się z adapterem Vgate iCar. Włącz go lub zezwól na dostęp w Ustawieniach."
+      },
+      "bluetoothDenied": {
+        "title": "Brak dostępu do Bluetooth",
+        "description": "Zezwól BimmerDisco na dostęp do Bluetooth w Ustawieniach, aby połączyć się z adapterem."
+      },
+      "carNotResponding": {
+        "title": "Samochód nie odpowiada",
+        "description": "Adapter jest połączony, ale samochód nie odpowiedział. Włącz zapłon i spróbuj ponownie."
+      },
+      "unsupportedVehicle": {
+        "title": "Nieobsługiwany samochód",
+        "description": "Nie znaleziono obsługiwanego modułu świateł serii F. BimmerDisco działa tylko z samochodami BMW serii F."
+      },
+      "connectionLost": {
+        "title": "Utracono połączenie",
+        "description": "Nie udało się ponownie połączyć z adapterem. Sprawdź kabel i spróbuj ponownie."
+      }
+    },
+    "lost": {
+      "banner": "Utracono połączenie",
+      "attempt": "Próba {{attempt}} z {{max}}",
+      "attemptShort": "próba {{attempt}} z {{max}}",
+      "title": "Utracono połączenie",
+      "titleRunning": "Utracono połączenie w trakcie działania",
+      "lightsOn": "Światła mogą nadal świecić.",
+      "reconnecting": "Ponowne łączenie…",
+      "reconnect": "Połącz ponownie i przywróć",
+      "disconnect": "Rozłącz"
+    },
+    "devices": {
+      "title": "Adapter Bluetooth",
+      "description": "Wybierz swój adapter Vgate iCar. Najpierw podłącz go do gniazda OBD.",
+      "scanning": "Wyszukiwanie adapterów…",
+      "found": "Wyszukiwanie…",
+      "unknown": "Adapter bez nazwy"
+    }
   },
   "settings": {
     "title": "Ustawienia",
@@ -33,6 +106,30 @@
       "system": "Systemowy",
       "en": "English",
       "pl": "Polski"
+    },
+    "adapter": "Adapter",
+    "latency": "Opóźnienie",
+    "latencyValue": "{{ms}} ms",
+    "disconnect": "Rozłącz",
+    "disconnectTitle": "Rozłączyć się z samochodem?",
+    "disconnectMessage": "Wszystkie sterowane światła zostaną przywrócone przed zamknięciem połączenia.",
+    "disconnectHint": "Rozłącz, aby zmienić kabel.",
+    "demoChassis": "Samochód demo",
+    "status": {
+      "label": "Stan",
+      "connected": "Połączono",
+      "reconnecting": "Łączenie ponownie"
+    },
+    "fields": {
+      "enetHost": "Adres bramy (opcjonalnie)",
+      "enetHostPlaceholder": "Wykryj automatycznie",
+      "thorHost": "Adres adaptera",
+      "thorPort": "Port",
+      "hostInvalid": "Podaj prywatny adres IPv4, na przykład 192.168.0.10.",
+      "portInvalid": "Podaj port od 1 do 65535.",
+      "device": "Adapter",
+      "deviceNone": "Wybierz",
+      "car": "Samochód"
     }
   },
   "cable": {
@@ -248,6 +345,25 @@
   "ui": {
     "dismiss": "Odrzuć",
     "placeholder": "Wkrótce"
+  },
+  "car": {
+    "title": "Samochód",
+    "detected": "Wykryty automatycznie",
+    "unknownChassis": "Nieznany samochód serii F",
+    "vin": "VIN {{vin}}",
+    "modulesTitle": "Wykryte moduły",
+    "modules": {
+      "FEM_20": "Moduł elektroniki przedniej",
+      "REM_20": "Moduł elektroniki tylnej",
+      "FRM3": "Moduł nadwozia (FRM)",
+      "BDC": "Centralny sterownik nadwozia",
+      "FLE02_L": "Sterownik lewego reflektora",
+      "FLE02_R": "Sterownik prawego reflektora",
+      "LHM2_L": "Lewy moduł świateł",
+      "LHM2_R": "Prawy moduł świateł",
+      "KOMB01": "Zestaw wskaźników",
+      "KOMB25": "Zestaw wskaźników"
+    }
   },
   "tile": {
     "steps": "Kroki: {{count}}",
