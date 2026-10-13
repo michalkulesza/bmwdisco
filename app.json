@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "BMW Lights",
+    "slug": "bmw-lights",
+    "version": "0.1.0",
+    "scheme": "bmwlights",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android"],
+    "ios": {
+      "bundleIdentifier": "com.michalkulesza.bmwlights",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.michalkulesza.bmwlights"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
