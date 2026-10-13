@@ -1,0 +1,88 @@
+{
+  "common": {
+    "back": "Wstecz",
+    "cancel": "Anuluj",
+    "close": "Zamknij",
+    "done": "Gotowe",
+    "edit": "Edytuj",
+    "new": "Nowy",
+    "save": "Zapisz",
+    "seeAll": "Zobacz wszystkie",
+    "tryAgain": "Spróbuj ponownie"
+  },
+  "connect": {
+    "title": "Połącz",
+    "notConnected": "Brak połączenia",
+    "subtitle": "Wybierz adapter, aby połączyć się z samochodem.",
+    "settings": "Ustawienia"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "connection": "Połączenie",
+    "cable": "Kabel",
+    "appearance": "Wygląd",
+    "theme": "Motyw",
+    "themeOptions": {
+      "system": "Systemowy",
+      "light": "Jasny",
+      "dark": "Ciemny"
+    },
+    "language": "Język",
+    "appLanguage": "Język aplikacji",
+    "languageOptions": {
+      "system": "Systemowy",
+      "en": "English",
+      "pl": "Polski"
+    }
+  },
+  "cable": {
+    "title": "Kabel",
+    "description": "Wybierz adapter między telefonem a gniazdem OBD w samochodzie.",
+    "demoBadge": "Bez auta",
+    "adapters": {
+      "enet": {
+        "name": "ENET",
+        "description": "Adapter Ethernet USB-C"
+      },
+      "thor": {
+        "name": "Thor",
+        "description": "Adapter OBD Wi-Fi. Najpierw dołącz do jego sieci Wi-Fi."
+      },
+      "vgate": {
+        "name": "Vgate iCar",
+        "description": "Adapter OBD Bluetooth"
+      },
+      "demo": {
+        "name": "Demo",
+        "description": "Samochód nie jest potrzebny. Wypróbuj aplikację z symulowanymi światłami."
+      }
+    }
+  },
+  "home": {
+    "title": "Światła",
+    "favourites": "Ulubione",
+    "predefined": "Gotowe",
+    "myPresets": "Moje presety",
+    "settings": "Ustawienia"
+  },
+  "library": {
+    "title": "Biblioteka"
+  },
+  "preset": {
+    "editTitle": "Edytuj preset",
+    "addStepTitle": "Dodaj krok"
+  },
+  "iconPicker": {
+    "title": "Ikona"
+  },
+  "tileMenu": {
+    "title": "Opcje"
+  },
+  "favourites": {
+    "editTitle": "Edytuj ulubione"
+  },
+  "ui": {
+    "dismiss": "Odrzuć",
+    "placeholder": "Wkrótce"
+  }
+}

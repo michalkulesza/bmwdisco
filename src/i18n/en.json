@@ -1,0 +1,88 @@
+{
+  "common": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "close": "Close",
+    "done": "Done",
+    "edit": "Edit",
+    "new": "New",
+    "save": "Save",
+    "seeAll": "See all",
+    "tryAgain": "Try again"
+  },
+  "connect": {
+    "title": "Connect",
+    "notConnected": "Not connected",
+    "subtitle": "Choose an adapter to connect to your car.",
+    "settings": "Settings"
+  },
+  "settings": {
+    "title": "Settings",
+    "connection": "Connection",
+    "cable": "Cable",
+    "appearance": "Appearance",
+    "theme": "Theme",
+    "themeOptions": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "language": "Language",
+    "appLanguage": "App language",
+    "languageOptions": {
+      "system": "System",
+      "en": "English",
+      "pl": "Polski"
+    }
+  },
+  "cable": {
+    "title": "Cable",
+    "description": "Choose the adapter between your phone and the car's OBD port.",
+    "demoBadge": "No car",
+    "adapters": {
+      "enet": {
+        "name": "ENET",
+        "description": "USB-C Ethernet adapter"
+      },
+      "thor": {
+        "name": "Thor",
+        "description": "Wi-Fi OBD adapter. Join its Wi-Fi network first."
+      },
+      "vgate": {
+        "name": "Vgate iCar",
+        "description": "Bluetooth OBD adapter"
+      },
+      "demo": {
+        "name": "Demo",
+        "description": "No car needed. Try the app with simulated lights."
+      }
+    }
+  },
+  "home": {
+    "title": "Lights",
+    "favourites": "Favourites",
+    "predefined": "Predefined",
+    "myPresets": "My presets",
+    "settings": "Settings"
+  },
+  "library": {
+    "title": "Library"
+  },
+  "preset": {
+    "editTitle": "Edit preset",
+    "addStepTitle": "Add step"
+  },
+  "iconPicker": {
+    "title": "Icon"
+  },
+  "tileMenu": {
+    "title": "Options"
+  },
+  "favourites": {
+    "editTitle": "Edit favourites"
+  },
+  "ui": {
+    "dismiss": "Dismiss",
+    "placeholder": "Coming soon"
+  }
+}

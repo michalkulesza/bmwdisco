@@ -1,13 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native';
+import ConnectScreen from '@/features/connect/ConnectScreen';
 
-const HomeScreen = () => (
-  <View style={styles.container}>
-    <Text>BimmerDisco</Text>
-  </View>
-);
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-});
-
-export default HomeScreen;
+export default ConnectScreen;

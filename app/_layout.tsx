@@ -1,5 +1,13 @@
-import { Stack } from 'expo-router';
+import '@/global.css';
+import '@/i18n';
 
-const RootLayout = () => <Stack screenOptions={{ headerShown: false }} />;
+import RootNavigator from '@/features/navigation/RootNavigator';
+import AppProviders from '@/ui/AppProviders';
+
+const RootLayout = () => (
+  <AppProviders>
+    <RootNavigator />
+  </AppProviders>
+);
 
 export default RootLayout;
