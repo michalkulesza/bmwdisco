@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { loadEffects } from '@/data/generated';
 import { curatedEffects, resolveFavourites } from '@/features/home/HomeScreen/helpers';
+import { toHeaderItems } from '@/features/navigation/headerItems';
 import { moveItem } from '@/features/preset/helpers';
 import { useSessionSelector } from '@/session';
 import { FAVOURITE_SIZES, useFavouritesStore, type FavouriteSize } from '@/stores/favourites';
@@ -20,7 +21,7 @@ import FavouriteRow from './FavouriteRow';
 import HeaderDoneButton from './HeaderDoneButton';
 import { buildCandidates } from './helpers';
 
-const renderDoneButton = () => <HeaderDoneButton />;
+const doneHeaderItems = toHeaderItems(<HeaderDoneButton />);
 
 const getItemKey = (item: TileItem) => item.id;
 
@@ -95,7 +96,7 @@ const EditFavouritesScreen = () => {
 
   return (
     <>
-      <Stack.Screen options={{ headerRight: renderDoneButton }} />
+      <Stack.Screen options={{ unstable_headerRightItems: doneHeaderItems }} />
       <ReorderableList
         data={items}
         keyExtractor={getItemKey}

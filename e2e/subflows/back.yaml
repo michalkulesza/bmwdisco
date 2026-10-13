@@ -1,0 +1,6 @@
+appId: com.michalkulesza.bimmerdisco
+---
+- swipe:
+    start: 1%,50%
+    end: 85%,50%
+    duration: 300

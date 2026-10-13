@@ -6,10 +6,12 @@ import { Alert, View } from 'react-native';
 import ReorderableList, { type ReorderableListReorderEvent } from 'react-native-reorderable-list';
 
 import { presetSchema, PRESET_LIMITS } from '@/domain';
+import { toHeaderItems } from '@/features/navigation/headerItems';
 import { useSessionActions, useSessionSelector } from '@/session';
 import { createPresetId, usePresetsStore } from '@/stores/presets';
 import EmptyState from '@/ui/EmptyState';
 import Text from '@/ui/Text';
+import { useColorToken } from '@/ui/theme';
 import { translateKey } from '@/ui/tile/helpers';
 import { useToast } from '@/ui/Toast';
 
@@ -47,6 +49,7 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
   const { t } = useTranslation();
   const router = useRouter();
   const toast = useToast();
+  const pageColor = useColorToken('page');
   const { run, stop } = useSessionActions();
   const car = useSessionSelector((snapshot) => snapshot.context.car);
   const runningItemId = useSessionSelector((snapshot) => snapshot.context.runningItemId);
@@ -176,12 +179,14 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
     [handleEditElement, handleStepChange, removeStep, stepIssues],
   );
 
-  const renderCancel = useCallback(
-    () => <HeaderTextButton label={t('common.cancel')} onPress={handleCancelPress} />,
+  const cancelHeaderItems = useMemo(
+    () =>
+      toHeaderItems(<HeaderTextButton label={t('common.cancel')} onPress={handleCancelPress} />),
     [handleCancelPress, t],
   );
-  const renderSave = useCallback(
-    () => <HeaderTextButton label={t('common.save')} onPress={handleSavePress} strong />,
+  const saveHeaderItems = useMemo(
+    () =>
+      toHeaderItems(<HeaderTextButton label={t('common.save')} onPress={handleSavePress} strong />),
     [handleSavePress, t],
   );
 
@@ -221,8 +226,9 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
           title: isNew ? t('preset.newTitle') : t('preset.editTitle'),
           headerBackVisible: false,
           gestureEnabled: !dirty,
-          headerLeft: renderCancel,
-          headerRight: renderSave,
+          headerStyle: { backgroundColor: pageColor },
+          unstable_headerLeftItems: cancelHeaderItems,
+          unstable_headerRightItems: saveHeaderItems,
         }}
       />
       <ReorderableList

@@ -54,8 +54,14 @@ const RootNavigator = () => {
           name="favourites/edit"
           options={{ title: t('favourites.editTitle'), headerLargeTitle: true }}
         />
-        <Stack.Screen name="preset/add-step" options={sheetOptions} />
-        <Stack.Screen name="icon-picker" options={sheetOptions} />
+        <Stack.Screen
+          name="preset/add-step"
+          options={{ ...sheetOptions, sheetAllowedDetents: [0.8, 1] }}
+        />
+        <Stack.Screen
+          name="icon-picker"
+          options={{ ...sheetOptions, sheetAllowedDetents: [0.94] }}
+        />
         <Stack.Screen name="tile-menu" options={sheetOptions} />
       </Stack>
       <ConnectionLostOverlay />

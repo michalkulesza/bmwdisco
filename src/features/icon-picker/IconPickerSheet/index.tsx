@@ -45,7 +45,11 @@ const IconPickerSheet = () => {
   );
 
   return (
-    <View className="flex-1 gap-4 px-4 pt-6" style={{ paddingBottom: insets.bottom + 16 }}>
+    <View
+      collapsable={false}
+      className="flex-1 gap-4 px-4 pt-6"
+      style={{ paddingBottom: insets.bottom + 16 }}
+    >
       <View className="flex-row items-center justify-between">
         <Text variant="section" accessibilityRole="header">
           {t('iconPicker.title')}
