@@ -1,0 +1,284 @@
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { WarningCircleIcon } from 'phosphor-react-native/src/icons/WarningCircle';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Alert, View } from 'react-native';
+import ReorderableList, { type ReorderableListReorderEvent } from 'react-native-reorderable-list';
+
+import { presetSchema, PRESET_LIMITS } from '@/domain';
+import { useSessionActions, useSessionSelector } from '@/session';
+import { createPresetId, usePresetsStore } from '@/stores/presets';
+import EmptyState from '@/ui/EmptyState';
+import Text from '@/ui/Text';
+import { translateKey } from '@/ui/tile/helpers';
+import { useToast } from '@/ui/Toast';
+
+import { isDraftDirty, useDraftStore } from '../draft-store';
+import {
+  buildPresetPayload,
+  draftTotalMs,
+  ISSUE_PARAMS,
+  moveItem,
+  validateDraft,
+  type DraftIssue,
+  type EditorStep,
+} from '../helpers';
+
+import AppearanceCard from './AppearanceCard';
+import BottomBar from './BottomBar';
+import HeaderTextButton from './HeaderTextButton';
+import NameField from './NameField';
+import StepRow from './StepRow';
+
+const DRAFT_TEST_ID = 'draft-preview';
+const LIST_CONTENT_STYLE = { paddingHorizontal: 16, paddingTop: 16, paddingBottom: 24 };
+const LIST_STYLE = { flex: 1 };
+
+const getStepKey = (step: EditorStep) => step.key;
+
+const issueText = (issue: DraftIssue | undefined, t: ReturnType<typeof useTranslation>['t']) =>
+  issue ? translateKey(t, `preset.errors.${issue.code}`, ISSUE_PARAMS[issue.code]) : undefined;
+
+interface PresetEditorContentProps {
+  presetId: string | undefined;
+}
+
+const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
+  const { t } = useTranslation();
+  const router = useRouter();
+  const toast = useToast();
+  const { run, stop } = useSessionActions();
+  const car = useSessionSelector((snapshot) => snapshot.context.car);
+  const runningItemId = useSessionSelector((snapshot) => snapshot.context.runningItemId);
+  const addPreset = usePresetsStore((state) => state.add);
+  const updatePreset = usePresetsStore((state) => state.update);
+  const name = useDraftStore((state) => state.name);
+  const color = useDraftStore((state) => state.color);
+  const icon = useDraftStore((state) => state.icon);
+  const steps = useDraftStore((state) => state.steps);
+  const setName = useDraftStore((state) => state.setName);
+  const setColor = useDraftStore((state) => state.setColor);
+  const setSteps = useDraftStore((state) => state.setSteps);
+  const updateStep = useDraftStore((state) => state.updateStep);
+  const removeStep = useDraftStore((state) => state.removeStep);
+  const dirty = useDraftStore(isDraftDirty);
+  const [submitted, setSubmitted] = useState(false);
+
+  const isNew = presetId === undefined;
+  const testId = presetId ?? DRAFT_TEST_ID;
+  const testing = runningItemId === testId;
+  const draft = useMemo(() => ({ name, color, icon, steps }), [name, color, icon, steps]);
+  const issues = useMemo(() => validateDraft(draft), [draft]);
+  const nameIssue = issues.find((issue) => issue.scope === 'name');
+  const stepsIssue = issues.find(
+    (issue) => issue.scope === 'steps' && (submitted || issue.code !== 'noSteps'),
+  );
+  const stepIssues = useMemo(
+    () =>
+      Object.fromEntries(
+        issues
+          .filter((issue) => issue.scope === 'step')
+          .map((issue) => [issue.stepKey, issue.code]),
+      ),
+    [issues],
+  );
+
+  const handleCancelConfirmed = useCallback(() => router.back(), [router]);
+
+  const handleCancelPress = useCallback(() => {
+    if (!dirty) {
+      router.back();
+
+      return;
+    }
+
+    Alert.alert(t('preset.discardTitle'), t('preset.discardMessage'), [
+      { text: t('preset.keepEditing'), style: 'cancel' },
+      { text: t('preset.discard'), style: 'destructive', onPress: handleCancelConfirmed },
+    ]);
+  }, [dirty, handleCancelConfirmed, router, t]);
+
+  const handleSavePress = useCallback(() => {
+    setSubmitted(true);
+    if (issues.length > 0) return;
+
+    const payload = buildPresetPayload(draft, presetId ?? createPresetId());
+    const result = isNew ? addPreset(payload) : updatePreset(payload);
+    if (result.ok) {
+      router.back();
+
+      return;
+    }
+
+    const title =
+      result.reason === 'limit'
+        ? t('preset.errors.limit', { max: PRESET_LIMITS.maxPresets })
+        : t('preset.errors.saveFailed');
+    toast.show({ title, tone: 'error' });
+  }, [addPreset, draft, isNew, issues.length, presetId, router, t, toast, updatePreset]);
+
+  const handleTestPress = useCallback(() => {
+    if (testing) {
+      stop();
+
+      return;
+    }
+
+    setSubmitted(true);
+    const parsed = presetSchema.safeParse(buildPresetPayload(draft, testId));
+    if (!parsed.success) return;
+
+    if (!car) {
+      toast.show({ title: t('preset.testNeedsCar'), tone: 'error' });
+
+      return;
+    }
+
+    run(parsed.data);
+  }, [car, draft, run, stop, t, testId, testing, toast]);
+
+  const handleAddAction = useCallback(
+    () => router.push({ pathname: '/preset/add-step', params: { type: 'set' } }),
+    [router],
+  );
+  const handleAddWait = useCallback(
+    () => router.push({ pathname: '/preset/add-step', params: { type: 'wait' } }),
+    [router],
+  );
+  const handleEditElement = useCallback(
+    (key: string) => router.push({ pathname: '/preset/add-step', params: { key } }),
+    [router],
+  );
+
+  const handleReorder = useCallback(
+    ({ from, to }: ReorderableListReorderEvent) => {
+      setSteps(moveItem(steps, from, to));
+    },
+    [setSteps, steps],
+  );
+
+  const handleStepChange = useCallback(
+    (step: EditorStep) => updateStep(step.key, step),
+    [updateStep],
+  );
+
+  const renderStep = useCallback(
+    ({ item, index }: { item: EditorStep; index: number }) => (
+      <StepRow
+        step={item}
+        number={index + 1}
+        issue={stepIssues[item.key]}
+        onChange={handleStepChange}
+        onRemove={removeStep}
+        onEditElement={handleEditElement}
+      />
+    ),
+    [handleEditElement, handleStepChange, removeStep, stepIssues],
+  );
+
+  const renderCancel = useCallback(
+    () => <HeaderTextButton label={t('common.cancel')} onPress={handleCancelPress} />,
+    [handleCancelPress, t],
+  );
+  const renderSave = useCallback(
+    () => <HeaderTextButton label={t('common.save')} onPress={handleSavePress} strong />,
+    [handleSavePress, t],
+  );
+
+  const stepsIssueText = issueText(stepsIssue, t);
+  const header = (
+    <View className="gap-6 pb-4">
+      <NameField
+        name={name}
+        color={color}
+        icon={icon}
+        errorText={submitted ? issueText(nameIssue, t) : undefined}
+        onChangeName={setName}
+      />
+      <AppearanceCard color={color} icon={icon} onChangeColor={setColor} />
+      <View className="gap-1">
+        <View className="flex-row items-baseline justify-between">
+          <Text variant="section" accessibilityRole="header">
+            {t('preset.steps')}
+          </Text>
+          <Text variant="small" tone="muted">
+            {t('preset.reorderHint')}
+          </Text>
+        </View>
+        {stepsIssueText ? (
+          <Text variant="small" tone="destructive">
+            {stepsIssueText}
+          </Text>
+        ) : null}
+      </View>
+    </View>
+  );
+
+  return (
+    <View className="flex-1 bg-page">
+      <Stack.Screen
+        options={{
+          title: isNew ? t('preset.newTitle') : t('preset.editTitle'),
+          headerBackVisible: false,
+          gestureEnabled: !dirty,
+          headerLeft: renderCancel,
+          headerRight: renderSave,
+        }}
+      />
+      <ReorderableList
+        data={steps}
+        keyExtractor={getStepKey}
+        renderItem={renderStep}
+        onReorder={handleReorder}
+        ListHeaderComponent={header}
+        contentContainerStyle={LIST_CONTENT_STYLE}
+        style={LIST_STYLE}
+        keyboardShouldPersistTaps="handled"
+        automaticallyAdjustKeyboardInsets
+      />
+      <BottomBar
+        count={steps.length}
+        totalMs={draftTotalMs(steps)}
+        canAddStep={steps.length < PRESET_LIMITS.maxSteps}
+        canTest
+        testing={testing}
+        onAction={handleAddAction}
+        onWait={handleAddWait}
+        onTest={handleTestPress}
+      />
+    </View>
+  );
+};
+
+const PresetEditorScreen = () => {
+  const { t } = useTranslation();
+  const router = useRouter();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const existing = usePresetsStore((state) => state.presets.find((preset) => preset.id === id));
+  const load = useDraftStore((state) => state.load);
+  const reset = useDraftStore((state) => state.reset);
+  const sourceId = useDraftStore((state) => state.sourceId);
+
+  const handleClosePress = useCallback(() => router.back(), [router]);
+
+  useEffect(() => {
+    if (sourceId !== id) load(existing, id);
+  }, [existing, id, load, sourceId]);
+
+  useEffect(() => reset, [reset]);
+
+  if (id !== 'new' && !existing) {
+    return (
+      <EmptyState
+        icon={WarningCircleIcon}
+        title={t('preset.notFound')}
+        actionLabel={t('common.close')}
+        onActionPress={handleClosePress}
+      />
+    );
+  }
+
+  return sourceId === id ? <PresetEditorContent presetId={existing?.id} /> : null;
+};
+
+export default PresetEditorScreen;
