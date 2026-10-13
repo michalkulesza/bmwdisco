@@ -82,7 +82,12 @@ Session machine: `idle → connecting → identifying → ready ⇄ running → 
 - Whether `2F 45 01 00 FE` cancels `2E D5 42` aggregate writes; meaning of the D542 time field.
 - `ATFCSD` argument order (medium confidence); Thor adapter init/firmware behaviour.
 - Keepalive `3E FF` vs `3E 80` semantics and cadence; whether the KOMBI routine `31 01 F0 12 01 FC 21` is required.
-- IO-control response matcher should check channel, not only DID (prototype weakness).
+- IO-control response matcher: for FEM-style `2F 45 01 03 <ch> <st>` the channel is compared only when the ECU echoes it (a bare `6F 45 01 03` is accepted; the reply layout of FEM_20 is unverified). FRM3-style requests carry the channel in the DID, which is always compared.
+- Timeout policy: any request timeout fails the link (late replies cannot be told apart from new ones); the session layer must reconnect and restore.
+- ELM: `NO DATA` after the last frame is surfaced as `AdapterError('no-data')`; 0x78 on ELM is followed with `ATMA` monitoring (unverified on hardware); `ATH1` frame lines are assumed to look like `640F1...` (id + data, no spaces).
+- ENET discovery packet (type `0x11`) and `DIAGADR..BMWMAC..BMWVIN..` announcement format are from memory of the ENET spec, not from the app evidence.
+- `react-native-udp` was last published 2025-10 (4.1.7) and is not maintained for Expo SDK 57, so `discoverEnet()` takes an injectable `createSocket` and returns `[]` without one; a UDP socket must be wired later (or a manual IP entered).
+- `react-native-ble-plx` 3.5.1 is an old-architecture bridge module; confirm it runs under RN 0.86 (interop layer) on a dev build before M7.
 
 ## Milestones & progress
 
@@ -92,7 +97,7 @@ Status: ☐ todo · ◐ in progress · ☑ done
 | --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------ |
 | M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `CLAUDE.md` overrides, this plan            | ☑      |
 | M1  | Data pipeline: F-series data → `data/bimmerlight/`, zod schemas, codegen, byte-snapshot tests                                            | ☐      |
-| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☐      |
+| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☑      |
 | M3  | Simulator + Demo link with fault injection                                                                                               | ☐      |
 | M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☐      |
 | M5  | Design canvas: connecting, error, empty states, Library, Cable list → **user checkpoint**                                                | ☐      |
@@ -105,6 +110,7 @@ Status: ☐ todo · ◐ in progress · ☑ done
 
 - 2026-10-13 — Grill session complete; plan written. M0 started.
 - 2026-10-13 — M0 done: Expo SDK 57 (expo 57.0.28, RN 0.86.3, React 19.2.3, expo-router 57.0.26, TypeScript 6.0.3) scaffolded at repo root with `app/` routes and `src/` skeleton; ESLint 9 + eslint-config-expo + react-hooks + import/order, Prettier 3, jest-expo 57 (Jest 29) with per-dir 90% coverage thresholds activated once `src/protocol|link|domain` contain sources, Husky 9 + lint-staged, GitHub Actions CI, project `CLAUDE.md`. `expo-doctor` 21/21.
+- 2026-10-13 — M2 done: `src/transport` (Transport interface, TcpTransport, BleTransport + scan filtered to known adapter service UUIDs, private/link-local host validation), `src/protocol` (bytes, UDS matcher incl. IO-control channel, NRC enum, typed errors, HSFZ/Thor/ISO-TP/ELM codecs, CommandQueue with priority lane, 4 s/12 s timeouts, 0x78 extension and abort, KeepaliveScheduler), `src/link` (BaseLink, HsfzLink, ThorLink, ElmIsoTpLink, `discoverEnet` with injectable UDP). Added react-native-tcp-socket 6.4.3, react-native-ble-plx 3.5.1, buffer 6.0.3, BLE/local-network permission strings in app.json. Coverage on protocol and link above 90 %.
 
 ## How to resume
 
