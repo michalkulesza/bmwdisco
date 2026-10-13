@@ -1,0 +1,561 @@
+[
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "1. Schlusslicht links (innen)",
+    "command": "BOOTLID_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "SL_I_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "1. Schlusslicht rechts (innen)",
+    "command": "BOOTLID_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "SL_I_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "2. Schlusslicht links (aussen)",
+    "command": "REAR_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "SL_A_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "2. Schlusslicht rechts (aussen)",
+    "command": "REAR_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "SL_A_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Abblendlicht links",
+    "command": "LOW_BEAM_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "AL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Abblendlicht rechts",
+    "command": "LOW_BEAM_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "AL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Bremslicht links",
+    "command": "BRAKE_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "BL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Bremslicht mitte (CHMSL)",
+    "command": "BRAKE_CENTER",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "BL_M",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Bremslicht rechts",
+    "command": "BRAKE_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "BL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Klemme VA",
+    "command": "",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "KL_VA",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Innenbeleuchtung/Innenleuchte hinten",
+    "command": "INTERIOR_2",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "IB_IL_2",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Fernlicht links (Halogen)/ Abbiegelicht (Xenon)",
+    "command": "HIGH_BEAM_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "FL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Fernlicht rechts (Halogen)/ Abbiegelicht (Xenon)",
+    "command": "HIGH_BEAM_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "FL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Bi-Xenon-Klappe L+R",
+    "command": "BI_XENON",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "BI_XENON_L_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Kennzeichenleuchte",
+    "command": "LICENSE",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "KZL",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Nebelschlusslicht links",
+    "command": "FOG_REAR_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "NSL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Nebelschlusslicht rechts",
+    "command": "FOG_REAR_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "NSL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Nebelscheinwerfer links",
+    "command": "FOG_FRONT_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "NSW_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Nebelscheinwerfer rechts",
+    "command": "FOG_FRONT_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "NSW_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Positionslicht links (Halogen) / Tagfahrlicht (Xenon)",
+    "command": "DAYTIME_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "TFL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Positionslicht rechts (Halogen) / Tagfahrlicht (Xenon)",
+    "command": "DAYTIME_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "TFL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Positionslicht links",
+    "command": "POSITION_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "POS_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Positionslicht rechts",
+    "command": "POSITION_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "POS_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Rückfahrscheinwerfer links",
+    "command": "",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "RFL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Rückfahrscheinwerfer rechts",
+    "command": "",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "RFL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Sidemarker vorne links",
+    "command": "",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "SML_V_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Sidemarker vorne rechts",
+    "command": "",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "SML_V_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Fahrtrichtungsanzeiger hinten links",
+    "command": "INDICATOR_REAR_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "FRA_H_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Fahrtrichtungsanzeiger hinten rechts",
+    "command": "INDICATOR_REAR_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "FRA_H_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Fahrtrichtungsanzeiger vorne links",
+    "command": "INDICATOR_FRONT_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "FRA_V_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Fahrtrichtungsanzeiger vorne rechts",
+    "command": "INDICATOR_FRONT_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "FRA_V_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "LED Warnblinken",
+    "command": "LED_WARNLIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "LED_WBL",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Innenbeleuchtung/Innenleuchte",
+    "command": "INTERIOR",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "IB_IL",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Kl. 58G",
+    "command": "DIMMED_58G",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "KL_58G",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Vorfeldleuchte(n)",
+    "command": "WELCOME_LIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "VFB",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Colorswitch Ambiente 1",
+    "command": "AMBIENT_1",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "AMB1",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Colourswitch Ambiente 2",
+    "command": "AMBIENT_2",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "AMB2",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Versorgung TMS R",
+    "command": "",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "UBATT_TMS_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Türwarnleuchte",
+    "command": "TWL",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "TWL",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "2. Bremslicht links",
+    "command": "BRAKE_LEFT_2",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "BL_L_2",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "2. Bremslicht rechts",
+    "command": "BRAKE_RIGHT_2",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "BL_R_2",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Versorgung TMS L",
+    "command": "",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "UBATT_TMS_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "2. Blinkerausgang F12/13 vorne links",
+    "command": "INDICATOR_FRONT_LEFT_2",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "FRA_V_L_2",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "2. Blinkerausgang F12/13 vorne rechts",
+    "command": "INDICATOR_FRONT_RIGHT_2",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "FRA_V_R_2",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Abbiegelicht links (LED F12/13)",
+    "command": "CORNERING_LEFT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "ABBL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Abbiegelicht rechts (LED F12/13)",
+    "command": "CORNERING_RIGHT",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "ABBL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "unbekannte Leuchte",
+    "command": "",
+    "function": "STEUERN_DIGITAL_LICHT",
+    "args": [
+      "XX",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "ECUEXTDIAG"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "DEFAULT"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "COMMUNICATION_ON",
+    "command": "COMMUNICATION_ON",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "00",
+      "03"
+    ]
+  },
+  {
+    "sgbd": "FRM3",
+    "group": "FRM",
+    "description": "COMMUNICATION_OFF",
+    "command": "COMMUNICATION_OFF",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "02",
+      "01"
+    ]
+  }
+]

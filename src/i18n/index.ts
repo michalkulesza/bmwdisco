@@ -1,5 +1,5 @@
 import { getLocales } from 'expo-localization';
-import i18n from 'i18next';
+import i18n, { changeLanguage, use as registerPlugin } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import { useSettingsStore, type LanguageChoice } from '@/stores/settings';
@@ -20,7 +20,7 @@ export const resolveLanguage = (choice: LanguageChoice): AppLanguage => {
   return isAppLanguage(deviceCode) ? deviceCode : FALLBACK_LANGUAGE;
 };
 
-void i18n.use(initReactI18next).init({
+void registerPlugin(initReactI18next).init({
   resources: { en: { translation: en }, pl: { translation: pl } },
   lng: resolveLanguage(useSettingsStore.getState().language),
   fallbackLng: FALLBACK_LANGUAGE,
@@ -30,7 +30,7 @@ void i18n.use(initReactI18next).init({
 
 useSettingsStore.subscribe((state, previous) => {
   if (state.language === previous.language) return;
-  void i18n.changeLanguage(resolveLanguage(state.language));
+  void changeLanguage(resolveLanguage(state.language));
 });
 
 export default i18n;

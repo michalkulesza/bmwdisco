@@ -9,10 +9,20 @@
     "platforms": ["ios", "android"],
     "ios": {
       "bundleIdentifier": "com.michalkulesza.bimmerdisco",
-      "supportsTablet": false
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "BimmerDisco connects to your Bluetooth OBD adapter to control the lights of your car.",
+        "NSLocalNetworkUsageDescription": "BimmerDisco connects to your ENET or Wi-Fi OBD adapter on the local network to control the lights of your car."
+      }
     },
     "android": {
-      "package": "com.michalkulesza.bimmerdisco"
+      "package": "com.michalkulesza.bimmerdisco",
+      "permissions": [
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -29,7 +39,15 @@
         }
       ],
       "expo-localization",
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "react-native-ble-plx",
+        {
+          "isBackgroundEnabled": false,
+          "neverForLocation": true,
+          "bluetoothAlwaysPermission": "BimmerDisco connects to your Bluetooth OBD adapter to control the lights of your car."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

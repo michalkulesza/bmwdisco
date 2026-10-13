@@ -1,0 +1,1161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`module BDC matches the byte snapshot 1`] = `
+{
+  "address": "40",
+  "commands": {
+    "BIXENON_LEFT_OFF": "2F 45 01 03 12 00",
+    "BIXENON_LEFT_ON": "2F 45 01 03 12 01",
+    "BIXENON_RIGHT_OFF": "2F 45 01 03 13 00",
+    "BIXENON_RIGHT_ON": "2F 45 01 03 13 01",
+    "COMMUNICATION_OFF": "28 02 01",
+    "COMMUNICATION_ON": "28 00 03",
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+    "LCI_0_OFF": "2F 45 01 03 27 00",
+    "LCI_0_ON": "2F 45 01 03 27 01",
+    "LCI_1_OFF": "2F 45 01 03 28 00",
+    "LCI_1_ON": "2F 45 01 03 28 01",
+    "LCI_2_OFF": "2F 45 01 03 29 00",
+    "LCI_2_ON": "2F 45 01 03 29 01",
+    "LCI_7_OFF": "2F 45 01 03 2E 00",
+    "LCI_7_ON": "2F 45 01 03 2E 01",
+    "LCI_8_OFF": "2F 45 01 03 2F 00",
+    "LCI_8_ON": "2F 45 01 03 2F 01",
+    "RETURN_CONTROL": "2F 45 01 00 FE",
+    "SPECIAL_FUNCTION_1_LED_OFF": "2F 45 01 03 42 00",
+    "SPECIAL_FUNCTION_1_LED_ON": "2F 45 01 03 42 01",
+  },
+  "elements": {
+    "allOutputs": {
+      "off": "2F 45 01 03 FE 00",
+      "on": "2F 45 01 03 FE 01",
+      "response": "6F 45 01",
+    },
+    "ambient": {
+      "off": "2F 45 01 03 2D 00",
+      "on": "2F 45 01 03 2D 01",
+      "response": "6F 45 01",
+    },
+    "brakeAll": {
+      "off": "2E D5 42 00 0C 00 00",
+      "on": "2E D5 42 00 0C 00 64",
+      "response": "6E D5 42",
+    },
+    "brakeCenter": {
+      "off": "2F 45 01 03 23 00",
+      "on": "2F 45 01 03 23 01",
+      "response": "6F 45 01",
+    },
+    "brakeForceDisplay": {
+      "off": "2E D5 42 00 0D 00 00",
+      "on": "2E D5 42 00 0D 00 64",
+      "response": "6E D5 42",
+    },
+    "brakeForceDisplayLeft": {
+      "off": "2F 45 01 03 1A 00",
+      "on": "2F 45 01 03 1A 01",
+      "response": "6F 45 01",
+    },
+    "brakeForceDisplayRight": {
+      "off": "2F 45 01 03 1B 00",
+      "on": "2F 45 01 03 1B 01",
+      "response": "6F 45 01",
+    },
+    "brakeLeft": {
+      "off": "2F 45 01 03 18 00",
+      "on": "2F 45 01 03 18 01",
+      "response": "6F 45 01",
+    },
+    "brakeRight": {
+      "off": "2F 45 01 03 19 00",
+      "on": "2F 45 01 03 19 01",
+      "response": "6F 45 01",
+    },
+    "corneringLeft": {
+      "off": "2E D5 42 00 09 00 00",
+      "on": "2E D5 42 00 09 00 64",
+      "response": "6E D5 42",
+    },
+    "corneringRight": {
+      "off": "2E D5 42 00 0A 00 00",
+      "on": "2E D5 42 00 0A 00 64",
+      "response": "6E D5 42",
+    },
+    "daytimeAll": {
+      "off": "2E D5 42 00 04 00 00",
+      "on": "2E D5 42 00 04 00 64",
+      "response": "6E D5 42",
+    },
+    "daytimeLeft": {
+      "off": "2F 45 01 03 03 00",
+      "on": "2F 45 01 03 03 01",
+      "response": "6F 45 01",
+    },
+    "daytimeRight": {
+      "off": "2F 45 01 03 04 00",
+      "on": "2F 45 01 03 04 01",
+      "response": "6F 45 01",
+    },
+    "doorHandle": {
+      "off": "2F 45 01 03 2C 00",
+      "on": "2F 45 01 03 2C 01",
+      "response": "6F 45 01",
+    },
+    "footwellFront": {
+      "off": "2F 45 01 03 2A 00",
+      "on": "2F 45 01 03 2A 01",
+      "response": "6F 45 01",
+    },
+    "footwellRear": {
+      "off": "2F 45 01 03 2B 00",
+      "on": "2F 45 01 03 2B 01",
+      "response": "6F 45 01",
+    },
+    "frontFogBoth": {
+      "off": "2E D5 42 00 08 00 00",
+      "on": "2E D5 42 00 08 00 64",
+      "response": "6E D5 42",
+    },
+    "frontFogLeft": {
+      "off": "2F 45 01 03 0B 00",
+      "on": "2F 45 01 03 0B 01",
+      "response": "6F 45 01",
+    },
+    "frontFogRight": {
+      "off": "2F 45 01 03 0C 00",
+      "on": "2F 45 01 03 0C 01",
+      "response": "6F 45 01",
+    },
+    "frontLeftIndicator": {
+      "off": "2F 45 01 03 0D 00",
+      "on": "2F 45 01 03 0D 01",
+      "response": "6F 45 01",
+    },
+    "frontRightIndicator": {
+      "off": "2F 45 01 03 0E 00",
+      "on": "2F 45 01 03 0E 01",
+      "response": "6F 45 01",
+    },
+    "hazard": {
+      "off": "2E D5 42 00 12 00 00",
+      "on": "2E D5 42 00 12 00 64",
+      "response": "6E D5 42",
+    },
+    "hazardLed": {
+      "off": "2F 45 01 03 26 00",
+      "on": "2F 45 01 03 26 01",
+      "response": "6F 45 01",
+    },
+    "highBeamAll": {
+      "off": "2E D5 42 00 05 00 00",
+      "on": "2E D5 42 00 05 00 64",
+      "response": "6E D5 42",
+    },
+    "highBeamLeft": {
+      "off": "2F 45 01 03 07 00",
+      "on": "2F 45 01 03 07 01",
+      "response": "6F 45 01",
+    },
+    "highBeamRight": {
+      "off": "2F 45 01 03 08 00",
+      "on": "2F 45 01 03 08 01",
+      "response": "6F 45 01",
+    },
+    "indicatorLeftAll": {
+      "off": "2E D5 42 00 06 00 00",
+      "on": "2E D5 42 00 06 00 64",
+      "response": "6E D5 42",
+    },
+    "indicatorRightAll": {
+      "off": "2E D5 42 00 07 00 00",
+      "on": "2E D5 42 00 07 00 64",
+      "response": "6E D5 42",
+    },
+    "interiorFront": {
+      "off": "2E D5 42 00 13 00 00",
+      "on": "2E D5 42 00 13 00 64",
+      "response": "6E D5 42",
+    },
+    "licensePlate": {
+      "off": "2F 45 01 03 22 00",
+      "on": "2F 45 01 03 22 01",
+      "response": "6F 45 01",
+    },
+    "lowBeamAll": {
+      "off": "2E D5 42 00 03 00 00",
+      "on": "2E D5 42 00 03 00 64",
+      "response": "6E D5 42",
+    },
+    "lowBeamLeft": {
+      "off": "2F 45 01 03 01 00",
+      "on": "2F 45 01 03 01 01",
+      "response": "6F 45 01",
+    },
+    "lowBeamRight": {
+      "off": "2F 45 01 03 02 00",
+      "on": "2F 45 01 03 02 01",
+      "response": "6F 45 01",
+    },
+    "parkLightLeft": {
+      "off": "2E D5 42 00 10 00 00",
+      "on": "2E D5 42 00 10 00 64",
+      "response": "6E D5 42",
+    },
+    "parkLightRight": {
+      "off": "2E D5 42 00 11 00 00",
+      "on": "2E D5 42 00 11 00 64",
+      "response": "6E D5 42",
+    },
+    "parkingLights": {
+      "off": "2E D5 42 00 01 00 00",
+      "on": "2E D5 42 00 01 00 64",
+      "response": "6E D5 42",
+    },
+    "positionEs": {
+      "off": "2E D5 42 00 02 00 00",
+      "on": "2E D5 42 00 02 00 64",
+      "response": "6E D5 42",
+    },
+    "positionLeft": {
+      "off": "2F 45 01 03 09 00",
+      "on": "2F 45 01 03 09 01",
+      "response": "6F 45 01",
+    },
+    "positionRight": {
+      "off": "2F 45 01 03 0A 00",
+      "on": "2F 45 01 03 0A 01",
+      "response": "6F 45 01",
+    },
+    "rearFogBoth": {
+      "off": "2E D5 42 00 0E 00 00",
+      "on": "2E D5 42 00 0E 00 64",
+      "response": "6E D5 42",
+    },
+    "rearFogLeft": {
+      "off": "2F 45 01 03 1C 00",
+      "on": "2F 45 01 03 1C 01",
+      "response": "6F 45 01",
+    },
+    "rearFogRight": {
+      "off": "2F 45 01 03 1D 00",
+      "on": "2F 45 01 03 1D 01",
+      "response": "6F 45 01",
+    },
+    "rearLeftIndicator": {
+      "off": "2F 45 01 03 20 00",
+      "on": "2F 45 01 03 20 01",
+      "response": "6F 45 01",
+    },
+    "rearRightIndicator": {
+      "off": "2F 45 01 03 21 00",
+      "on": "2F 45 01 03 21 01",
+      "response": "6F 45 01",
+    },
+    "reverseBoth": {
+      "off": "2E D5 42 00 0F 00 00",
+      "on": "2E D5 42 00 0F 00 64",
+      "response": "6E D5 42",
+    },
+    "reverseLeft": {
+      "off": "2F 45 01 03 1E 00",
+      "on": "2F 45 01 03 1E 01",
+      "response": "6F 45 01",
+    },
+    "reverseRight": {
+      "off": "2F 45 01 03 1F 00",
+      "on": "2F 45 01 03 1F 01",
+      "response": "6F 45 01",
+    },
+    "sideIndicatorLeft": {
+      "off": "2F 45 01 03 10 00",
+      "on": "2F 45 01 03 10 01",
+      "response": "6F 45 01",
+    },
+    "sideIndicatorRight": {
+      "off": "2F 45 01 03 11 00",
+      "on": "2F 45 01 03 11 01",
+      "response": "6F 45 01",
+    },
+    "sideMarkerFrontLeft": {
+      "off": "2F 45 01 03 05 00",
+      "on": "2F 45 01 03 05 01",
+      "response": "6F 45 01",
+    },
+    "sideMarkerFrontRight": {
+      "off": "2F 45 01 03 06 00",
+      "on": "2F 45 01 03 06 01",
+      "response": "6F 45 01",
+    },
+    "tailInnerLeft": {
+      "off": "2F 45 01 03 16 00",
+      "on": "2F 45 01 03 16 01",
+      "response": "6F 45 01",
+    },
+    "tailInnerRight": {
+      "off": "2F 45 01 03 17 00",
+      "on": "2F 45 01 03 17 01",
+      "response": "6F 45 01",
+    },
+    "tailLeft": {
+      "off": "2F 45 01 03 14 00",
+      "on": "2F 45 01 03 14 01",
+      "response": "6F 45 01",
+    },
+    "tailRight": {
+      "off": "2F 45 01 03 15 00",
+      "on": "2F 45 01 03 15 01",
+      "response": "6F 45 01",
+    },
+  },
+  "identity": [
+    "F15 62 F1 50 0F 19 C0",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [
+    "2F 45 01 00 FE",
+  ],
+  "sgbd": "BDC",
+}
+`;
+
+exports[`module FEM_20 matches the byte snapshot 1`] = `
+{
+  "address": "40",
+  "commands": {
+    "BIXENON_LEFT_OFF": "2F 45 01 03 12 00",
+    "BIXENON_LEFT_ON": "2F 45 01 03 12 01",
+    "BIXENON_RIGHT_OFF": "2F 45 01 03 13 00",
+    "BIXENON_RIGHT_ON": "2F 45 01 03 13 01",
+    "COMMUNICATION_OFF": "28 02 01",
+    "COMMUNICATION_ON": "28 00 03",
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+    "LCI_0_OFF": "2F 45 01 03 27 00",
+    "LCI_0_ON": "2F 45 01 03 27 01",
+    "LCI_1_OFF": "2F 45 01 03 28 00",
+    "LCI_1_ON": "2F 45 01 03 28 01",
+    "LCI_2_OFF": "2F 45 01 03 29 00",
+    "LCI_2_ON": "2F 45 01 03 29 01",
+    "LCI_7_OFF": "2F 45 01 03 2E 00",
+    "LCI_7_ON": "2F 45 01 03 2E 01",
+    "LCI_8_OFF": "2F 45 01 03 2F 00",
+    "LCI_8_ON": "2F 45 01 03 2F 01",
+    "RETURN_CONTROL": "2F 45 01 00 FE",
+  },
+  "elements": {
+    "allOutputs": {
+      "off": "2F 45 01 03 FE 00",
+      "on": "2F 45 01 03 FE 01",
+      "response": "6F 45 01",
+    },
+    "ambient": {
+      "off": "2F 45 01 03 2D 00",
+      "on": "2F 45 01 03 2D 01",
+      "response": "6F 45 01",
+    },
+    "brakeAll": {
+      "off": "2E D5 42 00 0C 00 00",
+      "on": "2E D5 42 00 0C 00 64",
+      "response": "6E D5 42",
+    },
+    "brakeForceDisplay": {
+      "off": "2E D5 42 00 0D 00 00",
+      "on": "2E D5 42 00 0D 00 64",
+      "response": "6E D5 42",
+    },
+    "corneringLeft": {
+      "off": "2E D5 42 00 09 00 00",
+      "on": "2E D5 42 00 09 00 64",
+      "response": "6E D5 42",
+    },
+    "corneringRight": {
+      "off": "2E D5 42 00 0A 00 00",
+      "on": "2E D5 42 00 0A 00 64",
+      "response": "6E D5 42",
+    },
+    "daytimeAll": {
+      "off": "2E D5 42 00 04 00 00",
+      "on": "2E D5 42 00 04 00 64",
+      "response": "6E D5 42",
+    },
+    "daytimeLeft": {
+      "off": "2F 45 01 03 03 00",
+      "on": "2F 45 01 03 03 01",
+      "response": "6F 45 01",
+    },
+    "daytimeRight": {
+      "off": "2F 45 01 03 04 00",
+      "on": "2F 45 01 03 04 01",
+      "response": "6F 45 01",
+    },
+    "doorHandle": {
+      "off": "2F 45 01 03 2C 00",
+      "on": "2F 45 01 03 2C 01",
+      "response": "6F 45 01",
+    },
+    "footwellFront": {
+      "off": "2F 45 01 03 2A 00",
+      "on": "2F 45 01 03 2A 01",
+      "response": "6F 45 01",
+    },
+    "footwellRear": {
+      "off": "2F 45 01 03 2B 00",
+      "on": "2F 45 01 03 2B 01",
+      "response": "6F 45 01",
+    },
+    "frontFogBoth": {
+      "off": "2E D5 42 00 08 00 00",
+      "on": "2E D5 42 00 08 00 64",
+      "response": "6E D5 42",
+    },
+    "frontFogLeft": {
+      "off": "2F 45 01 03 0B 00",
+      "on": "2F 45 01 03 0B 01",
+      "response": "6F 45 01",
+    },
+    "frontFogRight": {
+      "off": "2F 45 01 03 0C 00",
+      "on": "2F 45 01 03 0C 01",
+      "response": "6F 45 01",
+    },
+    "frontLeftIndicator": {
+      "off": "2F 45 01 03 0D 00",
+      "on": "2F 45 01 03 0D 01",
+      "response": "6F 45 01",
+    },
+    "frontRightIndicator": {
+      "off": "2F 45 01 03 0E 00",
+      "on": "2F 45 01 03 0E 01",
+      "response": "6F 45 01",
+    },
+    "hazard": {
+      "off": "2E D5 42 00 12 00 00",
+      "on": "2E D5 42 00 12 00 64",
+      "response": "6E D5 42",
+    },
+    "hazardLed": {
+      "off": "2F 45 01 03 26 00",
+      "on": "2F 45 01 03 26 01",
+      "response": "6F 45 01",
+    },
+    "highBeamAll": {
+      "off": "2E D5 42 00 05 00 00",
+      "on": "2E D5 42 00 05 00 64",
+      "response": "6E D5 42",
+    },
+    "highBeamLeft": {
+      "off": "2F 45 01 03 07 00",
+      "on": "2F 45 01 03 07 01",
+      "response": "6F 45 01",
+    },
+    "highBeamRight": {
+      "off": "2F 45 01 03 08 00",
+      "on": "2F 45 01 03 08 01",
+      "response": "6F 45 01",
+    },
+    "indicatorLeftAll": {
+      "off": "2E D5 42 00 06 00 00",
+      "on": "2E D5 42 00 06 00 64",
+      "response": "6E D5 42",
+    },
+    "indicatorRightAll": {
+      "off": "2E D5 42 00 07 00 00",
+      "on": "2E D5 42 00 07 00 64",
+      "response": "6E D5 42",
+    },
+    "interiorFront": {
+      "off": "2E D5 42 00 13 00 00",
+      "on": "2E D5 42 00 13 00 64",
+      "response": "6E D5 42",
+    },
+    "lowBeamAll": {
+      "off": "2E D5 42 00 03 00 00",
+      "on": "2E D5 42 00 03 00 64",
+      "response": "6E D5 42",
+    },
+    "lowBeamLeft": {
+      "off": "2F 45 01 03 01 00",
+      "on": "2F 45 01 03 01 01",
+      "response": "6F 45 01",
+    },
+    "lowBeamRight": {
+      "off": "2F 45 01 03 02 00",
+      "on": "2F 45 01 03 02 01",
+      "response": "6F 45 01",
+    },
+    "parkLightLeft": {
+      "off": "2E D5 42 00 10 00 00",
+      "on": "2E D5 42 00 10 00 64",
+      "response": "6E D5 42",
+    },
+    "parkLightRight": {
+      "off": "2E D5 42 00 11 00 00",
+      "on": "2E D5 42 00 11 00 64",
+      "response": "6E D5 42",
+    },
+    "parkingLights": {
+      "off": "2E D5 42 00 01 00 00",
+      "on": "2E D5 42 00 01 00 64",
+      "response": "6E D5 42",
+    },
+    "positionEs": {
+      "off": "2E D5 42 00 02 00 00",
+      "on": "2E D5 42 00 02 00 64",
+      "response": "6E D5 42",
+    },
+    "positionLeft": {
+      "off": "2F 45 01 03 09 00",
+      "on": "2F 45 01 03 09 01",
+      "response": "6F 45 01",
+    },
+    "positionRight": {
+      "off": "2F 45 01 03 0A 00",
+      "on": "2F 45 01 03 0A 01",
+      "response": "6F 45 01",
+    },
+    "rearFogBoth": {
+      "off": "2E D5 42 00 0E 00 00",
+      "on": "2E D5 42 00 0E 00 64",
+      "response": "6E D5 42",
+    },
+    "reverseBoth": {
+      "off": "2E D5 42 00 0F 00 00",
+      "on": "2E D5 42 00 0F 00 64",
+      "response": "6E D5 42",
+    },
+    "sideIndicatorLeft": {
+      "off": "2F 45 01 03 10 00",
+      "on": "2F 45 01 03 10 01",
+      "response": "6F 45 01",
+    },
+    "sideIndicatorRight": {
+      "off": "2F 45 01 03 11 00",
+      "on": "2F 45 01 03 11 01",
+      "response": "6F 45 01",
+    },
+    "sideMarkerFrontLeft": {
+      "off": "2F 45 01 03 05 00",
+      "on": "2F 45 01 03 05 01",
+      "response": "6F 45 01",
+    },
+    "sideMarkerFrontRight": {
+      "off": "2F 45 01 03 06 00",
+      "on": "2F 45 01 03 06 01",
+      "response": "6F 45 01",
+    },
+  },
+  "identity": [
+    "F20 62 F1 50 0F 16 B0",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [
+    "2F 45 01 00 FE",
+  ],
+  "sgbd": "FEM_20",
+}
+`;
+
+exports[`module FLE02_L matches the byte snapshot 1`] = `
+{
+  "address": "43",
+  "commands": {
+    "CC_00_01": "28 00 01",
+    "CC_00_02": "28 00 02",
+    "CC_00_03": "28 00 03",
+    "CC_01_01": "28 01 01",
+    "CC_01_02": "28 01 02",
+    "CC_01_03": "28 01 03",
+    "CC_02_01": "28 02 01",
+    "CC_02_02": "28 02 02",
+    "CC_02_03": "28 02 03",
+    "CC_03_01": "28 03 01",
+    "CC_03_02": "28 03 02",
+    "CC_03_03": "28 03 03",
+    "COMMUNICATION_OFF": "28 02 01",
+    "COMMUNICATION_ON": "28 00 03",
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+    "STOP_ROUTINE": "31 02 A5 43",
+  },
+  "elements": {
+    "ledHeadlightLeft1": {
+      "off": "31 02 A5 43 01",
+      "on": "31 01 A5 43 01",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft10": {
+      "off": "31 02 A5 43 0A",
+      "on": "31 01 A5 43 0A",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft2": {
+      "off": "31 02 A5 43 02",
+      "on": "31 01 A5 43 02",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft3": {
+      "off": "31 02 A5 43 03",
+      "on": "31 01 A5 43 03",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft4": {
+      "off": "31 02 A5 43 04",
+      "on": "31 01 A5 43 04",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft5": {
+      "off": "31 02 A5 43 05",
+      "on": "31 01 A5 43 05",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft6": {
+      "off": "31 02 A5 43 06",
+      "on": "31 01 A5 43 06",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft7": {
+      "off": "31 02 A5 43 07",
+      "on": "31 01 A5 43 07",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft8": {
+      "off": "31 02 A5 43 08",
+      "on": "31 01 A5 43 08",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeft9": {
+      "off": "31 02 A5 43 09",
+      "on": "31 01 A5 43 09",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightLeftAll": {
+      "off": "31 02 A5 43 FF",
+      "on": "31 01 A5 43 FF",
+      "response": "71 01 A5 43",
+    },
+  },
+  "identity": [
+    "F20 62 F1 50 0F 1E 28",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [],
+  "sgbd": "FLE02_L",
+}
+`;
+
+exports[`module FLE02_R matches the byte snapshot 1`] = `
+{
+  "address": "44",
+  "commands": {
+    "CC_00_01": "28 00 01",
+    "CC_00_02": "28 00 02",
+    "CC_00_03": "28 00 03",
+    "CC_01_01": "28 01 01",
+    "CC_01_02": "28 01 02",
+    "CC_01_03": "28 01 03",
+    "CC_02_01": "28 02 01",
+    "CC_02_02": "28 02 02",
+    "CC_02_03": "28 02 03",
+    "CC_03_01": "28 03 01",
+    "CC_03_02": "28 03 02",
+    "CC_03_03": "28 03 03",
+    "COMMUNICATION_OFF": "28 02 01",
+    "COMMUNICATION_ON": "28 00 03",
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+    "STOP_ROUTINE": "31 02 A5 43",
+  },
+  "elements": {
+    "ledHeadlightRight1": {
+      "off": "31 02 A5 43 01",
+      "on": "31 01 A5 43 01",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight10": {
+      "off": "31 02 A5 43 0A",
+      "on": "31 01 A5 43 0A",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight2": {
+      "off": "31 02 A5 43 02",
+      "on": "31 01 A5 43 02",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight3": {
+      "off": "31 02 A5 43 03",
+      "on": "31 01 A5 43 03",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight4": {
+      "off": "31 02 A5 43 04",
+      "on": "31 01 A5 43 04",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight5": {
+      "off": "31 02 A5 43 05",
+      "on": "31 01 A5 43 05",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight6": {
+      "off": "31 02 A5 43 06",
+      "on": "31 01 A5 43 06",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight7": {
+      "off": "31 02 A5 43 07",
+      "on": "31 01 A5 43 07",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight8": {
+      "off": "31 02 A5 43 08",
+      "on": "31 01 A5 43 08",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRight9": {
+      "off": "31 02 A5 43 09",
+      "on": "31 01 A5 43 09",
+      "response": "71 01 A5 43",
+    },
+    "ledHeadlightRightAll": {
+      "off": "31 02 A5 43 FF",
+      "on": "31 01 A5 43 FF",
+      "response": "71 01 A5 43",
+    },
+  },
+  "identity": [
+    "F20 62 F1 50 0F 1E 38",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [],
+  "sgbd": "FLE02_R",
+}
+`;
+
+exports[`module FRM3 matches the byte snapshot 1`] = `
+{
+  "address": "72",
+  "commands": {
+    "BI_XENON_OFF": "2F 01 0D 03 00",
+    "BI_XENON_ON": "2F 01 0D 03 64",
+    "COMMUNICATION_OFF": "28 02 01",
+    "COMMUNICATION_ON": "28 00 03",
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+  },
+  "elements": {
+    "ambient1": {
+      "off": "2F 01 26 03 00",
+      "on": "2F 01 26 03 64",
+      "response": "6F 01 26",
+    },
+    "ambient2": {
+      "off": "2F 01 27 03 00",
+      "on": "2F 01 27 03 64",
+      "response": "6F 01 27",
+    },
+    "brakeCenter": {
+      "off": "2F 01 07 03 00",
+      "on": "2F 01 07 03 64",
+      "response": "6F 01 07",
+    },
+    "brakeLeft": {
+      "off": "2F 01 06 03 00",
+      "on": "2F 01 06 03 64",
+      "response": "6F 01 06",
+    },
+    "brakeRight": {
+      "off": "2F 01 08 03 00",
+      "on": "2F 01 08 03 64",
+      "response": "6F 01 08",
+    },
+    "daytimeLeft": {
+      "off": "2F 01 13 03 00",
+      "on": "2F 01 13 03 64",
+      "response": "6F 01 13",
+    },
+    "daytimeRight": {
+      "off": "2F 01 14 03 00",
+      "on": "2F 01 14 03 64",
+      "response": "6F 01 14",
+    },
+    "doorWarning": {
+      "off": "2F 01 32 03 00",
+      "on": "2F 01 32 03 64",
+      "response": "6F 01 32",
+    },
+    "frontFogLeft": {
+      "off": "2F 01 11 03 00",
+      "on": "2F 01 11 03 64",
+      "response": "6F 01 11",
+    },
+    "frontFogRight": {
+      "off": "2F 01 12 03 00",
+      "on": "2F 01 12 03 64",
+      "response": "6F 01 12",
+    },
+    "frontLeftIndicator": {
+      "off": "2F 01 1C 03 00",
+      "on": "2F 01 1C 03 64",
+      "response": "6F 01 1C",
+    },
+    "frontLeftIndicator2": {
+      "off": "2F 01 36 03 00",
+      "on": "2F 01 36 03 64",
+      "response": "6F 01 36",
+    },
+    "frontRightIndicator": {
+      "off": "2F 01 1D 03 00",
+      "on": "2F 01 1D 03 64",
+      "response": "6F 01 1D",
+    },
+    "frontRightIndicator2": {
+      "off": "2F 01 37 03 00",
+      "on": "2F 01 37 03 64",
+      "response": "6F 01 37",
+    },
+    "hazardLed": {
+      "off": "2F 01 1E 03 00",
+      "on": "2F 01 1E 03 64",
+      "response": "6F 01 1E",
+    },
+    "highBeamLeft": {
+      "off": "2F 01 0B 03 00",
+      "on": "2F 01 0B 03 64",
+      "response": "6F 01 0B",
+    },
+    "highBeamRight": {
+      "off": "2F 01 0C 03 00",
+      "on": "2F 01 0C 03 64",
+      "response": "6F 01 0C",
+    },
+    "interiorFront": {
+      "off": "2F 01 1F 03 00",
+      "on": "2F 01 1F 03 64",
+      "response": "6F 01 1F",
+    },
+    "interiorRear": {
+      "off": "2F 01 0A 03 00",
+      "on": "2F 01 0A 03 64",
+      "response": "6F 01 0A",
+    },
+    "licensePlate": {
+      "off": "2F 01 0E 03 00",
+      "on": "2F 01 0E 03 64",
+      "response": "6F 01 0E",
+    },
+    "lowBeamLeft": {
+      "off": "2F 01 04 03 00",
+      "on": "2F 01 04 03 64",
+      "response": "6F 01 04",
+    },
+    "lowBeamRight": {
+      "off": "2F 01 05 03 00",
+      "on": "2F 01 05 03 64",
+      "response": "6F 01 05",
+    },
+    "positionLeft": {
+      "off": "2F 01 13 03 00",
+      "on": "2F 01 13 03 64",
+      "response": "6F 01 13",
+    },
+    "positionRight": {
+      "off": "2F 01 14 03 00",
+      "on": "2F 01 14 03 64",
+      "response": "6F 01 14",
+    },
+    "rearFogLeft": {
+      "off": "2F 01 0F 03 00",
+      "on": "2F 01 0F 03 64",
+      "response": "6F 01 0F",
+    },
+    "rearFogRight": {
+      "off": "2F 01 10 03 00",
+      "on": "2F 01 10 03 64",
+      "response": "6F 01 10",
+    },
+    "rearLeftIndicator": {
+      "off": "2F 01 1A 03 00",
+      "on": "2F 01 1A 03 64",
+      "response": "6F 01 1A",
+    },
+    "rearRightIndicator": {
+      "off": "2F 01 1B 03 00",
+      "on": "2F 01 1B 03 64",
+      "response": "6F 01 1B",
+    },
+    "reverseLeft": {
+      "off": "2F 01 15 03 00",
+      "on": "2F 01 15 03 64",
+      "response": "6F 01 15",
+    },
+    "reverseRight": {
+      "off": "2F 01 16 03 00",
+      "on": "2F 01 16 03 64",
+      "response": "6F 01 16",
+    },
+    "sideMarkerFrontLeft": {
+      "off": "2F 01 17 03 00",
+      "on": "2F 01 17 03 64",
+      "response": "6F 01 17",
+    },
+    "sideMarkerFrontRight": {
+      "off": "2F 01 18 03 00",
+      "on": "2F 01 18 03 64",
+      "response": "6F 01 18",
+    },
+    "tailInnerRight": {
+      "off": "2F 01 01 03 00",
+      "on": "2F 01 01 03 64",
+      "response": "6F 01 01",
+    },
+    "tailLeft": {
+      "off": "2F 01 02 03 00",
+      "on": "2F 01 02 03 64",
+      "response": "6F 01 02",
+    },
+    "tailRight": {
+      "off": "2F 01 03 03 00",
+      "on": "2F 01 03 03 64",
+      "response": "6F 01 03",
+    },
+    "terminal58g": {
+      "off": "2F 01 20 03 00",
+      "on": "2F 01 20 03 64",
+      "response": "6F 01 20",
+    },
+    "welcome": {
+      "off": "2F 01 22 03 00",
+      "on": "2F 01 22 03 64",
+      "response": "6F 01 22",
+    },
+  },
+  "identity": [
+    "F01 62 F1 50 0F 10 D0",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [],
+  "sgbd": "FRM3",
+}
+`;
+
+exports[`module KOMB01 matches the byte snapshot 1`] = `
+{
+  "address": "60",
+  "commands": {
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+    "KOMBI_OFF": "31 01 F0 12 01 FC 00",
+    "KOMBI_ON": "31 01 F0 12 01 FC 21",
+  },
+  "elements": {
+    "clusterFeedback": {
+      "off": "31 01 F0 12 01 FC 00",
+      "on": "31 01 F0 12 01 FC 21",
+      "response": "71 01 F0 12",
+    },
+  },
+  "identity": [
+    "F01 62 F1 50 0F 11 60",
+    "F01 62 F1 50 0F 20 70",
+    "I12 62 F1 50 0F 20 80",
+    "F30 62 F1 50 0F 25 E0",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [],
+  "sgbd": "KOMB01",
+}
+`;
+
+exports[`module KOMB25 matches the byte snapshot 1`] = `
+{
+  "address": "60",
+  "commands": {
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+    "KOMBI_OFF": "31 01 F0 12 01 FC 00",
+    "KOMBI_ON": "31 01 F0 12 01 FC 21",
+  },
+  "elements": {
+    "clusterFeedback": {
+      "off": "31 01 F0 12 01 FC 00",
+      "on": "31 01 F0 12 01 FC 21",
+      "response": "71 01 F0 12",
+    },
+  },
+  "identity": [
+    "F25 62 F1 50 0F 16 30",
+    "F20 62 F1 50 0F 16 34",
+    "F20 62 F1 50 0F 16 38",
+    "F80 62 F1 50 0F 16 3C",
+    "I01 62 F1 50 0F 1C 30",
+    "F56 62 F1 50 0F 24 40",
+    "F56 62 F1 50 0F 24 50",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [],
+  "sgbd": "KOMB25",
+}
+`;
+
+exports[`module LHM2_L matches the byte snapshot 1`] = `
+{
+  "address": "43",
+  "commands": {
+    "CC_00_01": "28 00 01",
+    "CC_00_02": "28 00 02",
+    "CC_00_03": "28 00 03",
+    "CC_01_01": "28 01 01",
+    "CC_01_02": "28 01 02",
+    "CC_01_03": "28 01 03",
+    "CC_02_01": "28 02 01",
+    "CC_02_02": "28 02 02",
+    "CC_02_03": "28 02 03",
+    "CC_03_01": "28 03 01",
+    "CC_03_02": "28 03 02",
+    "CC_03_03": "28 03 03",
+    "COMMUNICATION_OFF": "28 02 01",
+    "COMMUNICATION_ON": "28 00 03",
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+  },
+  "elements": {},
+  "identity": [
+    "F01 62 F1 50 0F 1B 20",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [],
+  "sgbd": "LHM2_L",
+}
+`;
+
+exports[`module LHM2_R matches the byte snapshot 1`] = `
+{
+  "address": "44",
+  "commands": {
+    "CC_00_01": "28 00 01",
+    "CC_00_02": "28 00 02",
+    "CC_00_03": "28 00 03",
+    "CC_01_01": "28 01 01",
+    "CC_01_02": "28 01 02",
+    "CC_01_03": "28 01 03",
+    "CC_02_01": "28 02 01",
+    "CC_02_02": "28 02 02",
+    "CC_02_03": "28 02 03",
+    "CC_03_01": "28 03 01",
+    "CC_03_02": "28 03 02",
+    "CC_03_03": "28 03 03",
+    "COMMUNICATION_OFF": "28 02 01",
+    "COMMUNICATION_ON": "28 00 03",
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+  },
+  "elements": {},
+  "identity": [
+    "F01 62 F1 50 0F 1B 30",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [],
+  "sgbd": "LHM2_R",
+}
+`;
+
+exports[`module REM_20 matches the byte snapshot 1`] = `
+{
+  "address": "72",
+  "commands": {
+    "COMMUNICATION_OFF": "28 02 01",
+    "COMMUNICATION_ON": "28 00 03",
+    "DIAGNOSE_MODE_OFF": "10 01",
+    "DIAGNOSE_MODE_ON": "10 03",
+  },
+  "elements": {
+    "brakeCenter": {
+      "off": "2E 45 01 23 00",
+      "on": "2E 45 01 23 01",
+      "response": "6E 45 01",
+    },
+    "brakeForceDisplayLeft": {
+      "off": "2E 45 01 1A 00",
+      "on": "2E 45 01 1A 01",
+      "response": "6E 45 01",
+    },
+    "brakeForceDisplayRight": {
+      "off": "2E 45 01 1B 00",
+      "on": "2E 45 01 1B 01",
+      "response": "6E 45 01",
+    },
+    "brakeLeft": {
+      "off": "2E 45 01 18 00",
+      "on": "2E 45 01 18 01",
+      "response": "6E 45 01",
+    },
+    "brakeRight": {
+      "off": "2E 45 01 19 00",
+      "on": "2E 45 01 19 01",
+      "response": "6E 45 01",
+    },
+    "licensePlate": {
+      "off": "2E 45 01 22 00",
+      "on": "2E 45 01 22 01",
+      "response": "6E 45 01",
+    },
+    "rearFogLeft": {
+      "off": "2E 45 01 1C 00",
+      "on": "2E 45 01 1C 01",
+      "response": "6E 45 01",
+    },
+    "rearFogRight": {
+      "off": "2E 45 01 1D 00",
+      "on": "2E 45 01 1D 01",
+      "response": "6E 45 01",
+    },
+    "rearLeftIndicator": {
+      "off": "2E 45 01 20 00",
+      "on": "2E 45 01 20 01",
+      "response": "6E 45 01",
+    },
+    "rearRightIndicator": {
+      "off": "2E 45 01 21 00",
+      "on": "2E 45 01 21 01",
+      "response": "6E 45 01",
+    },
+    "reverseLeft": {
+      "off": "2E 45 01 1E 00",
+      "on": "2E 45 01 1E 01",
+      "response": "6E 45 01",
+    },
+    "reverseRight": {
+      "off": "2E 45 01 1F 00",
+      "on": "2E 45 01 1F 01",
+      "response": "6E 45 01",
+    },
+    "tailInnerLeft": {
+      "off": "2E 45 01 16 00",
+      "on": "2E 45 01 16 01",
+      "response": "6E 45 01",
+    },
+    "tailInnerRight": {
+      "off": "2E 45 01 17 00",
+      "on": "2E 45 01 17 01",
+      "response": "6E 45 01",
+    },
+    "tailLeft": {
+      "off": "2E 45 01 14 00",
+      "on": "2E 45 01 14 01",
+      "response": "6E 45 01",
+    },
+    "tailRight": {
+      "off": "2E 45 01 15 00",
+      "on": "2E 45 01 15 01",
+      "response": "6E 45 01",
+    },
+  },
+  "identity": [
+    "F20 62 F1 50 0F 16 C0",
+  ],
+  "keepalive": "3E FF",
+  "returnControl": [],
+  "sgbd": "REM_20",
+}
+`;

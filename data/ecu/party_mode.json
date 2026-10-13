@@ -1,0 +1,5482 @@
+{
+  "title": "Party Mode",
+  "description": "Alternating light patterns for shows",
+  "sgbds": [
+    "BCP_SP21",
+    "BDC",
+    "BDC_G05",
+    "BDC_G11",
+    "FEM_20",
+    "FLE02_L",
+    "FLE02_R",
+    "FLE_L",
+    "FLE_R",
+    "FLM01_L",
+    "FLM01_R",
+    "FLM02X_L",
+    "FLM02X_R",
+    "FLM02_L",
+    "FLM02_R",
+    "FLM03_L",
+    "FLM03_R",
+    "FLM2_1_L",
+    "FLM2_1_R",
+    "FRM3",
+    "FRM_70",
+    "FRM_87",
+    "KOMB01",
+    "KOMB25",
+    "KOMBSP18",
+    "KOMB_G11",
+    "KOMB_SP21",
+    "LCM",
+    "LCM_A",
+    "LCM_II",
+    "LCM_III",
+    "LCM_IV",
+    "LHM2_L",
+    "LHM2_R",
+    "LM2_83",
+    "LME38",
+    "LM_60",
+    "LM_AHL",
+    "LM_AHL_2",
+    "LM_E65_2",
+    "LSZ",
+    "LSZ_2",
+    "REM_20",
+    "RLM2_1L",
+    "RLM2_1R",
+    "RLM2_2L",
+    "RLM2_2R",
+    "RLM_1L",
+    "RLM_1R",
+    "RLM_2L",
+    "RLM_2R"
+  ],
+  "icon": "party.popper",
+  "group": 2,
+  "index": 4,
+  "column_count": 2,
+  "file_name": "party_mode",
+  "actions": [
+    {
+      "title": "Bounce",
+      "icon": "arrow.left.and.right",
+      "color": "systemCyan",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "DAYTIME_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "DAYTIME_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "DAYTIME_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "DAYTIME_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "HIGH_BEAM_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "HIGH_BEAM_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_2_LEFT",
+          "group": [
+            "LHM_L"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "group": [
+            "LHM_R"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_1_LEFT",
+          "group": [
+            "LHM_L"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "group": [
+            "LHM_R"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "COMMUNICATION_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        }
+      ],
+      "section": "Exterior"
+    },
+    {
+      "title": "Center Burst",
+      "icon": "arrow.up.left.and.arrow.down.right",
+      "color": "systemOrange",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_CENTER",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_CENTER",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BOOTLID_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BOOTLID_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BOOTLID_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BOOTLID_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        }
+      ],
+      "section": "Exterior"
+    },
+    {
+      "title": "Front to Back",
+      "icon": "arrow.right",
+      "color": "systemBlue",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "DAYTIME_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "DAYTIME_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "INDICATOR_SIDE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "INDICATOR_SIDE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "INDICATOR_SIDE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "INDICATOR_SIDE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "HIGH_BEAM_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "HIGH_BEAM_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "DAYTIME_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "DAYTIME_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LM"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "INDICATOR_SIDE_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "INDICATOR_SIDE_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "REAR_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "REAR_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_1_LEFT",
+          "group": [
+            "LHM_L"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "group": [
+            "LHM_R"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_2_LEFT",
+          "group": [
+            "LHM_L"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "group": [
+            "LHM_R"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "COMMUNICATION_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        }
+      ],
+      "section": "Exterior"
+    },
+    {
+      "title": "Cascade Wave",
+      "icon": "water.waves",
+      "color": "systemBlue",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "INDICATOR_SIDE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "INDICATOR_SIDE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "INDICATOR_SIDE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "INDICATOR_SIDE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "group": [
+            "LHM_L"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "group": [
+            "LHM_R"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_2_LEFT",
+          "group": [
+            "LHM_L"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "group": [
+            "LHM_R"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "INDICATOR_SIDE_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "INDICATOR_SIDE_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LM",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "REAR_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "REAR_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "COMMUNICATION_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        }
+      ],
+      "section": "Exterior"
+    },
+    {
+      "title": "Build Up",
+      "icon": "chart.bar.fill",
+      "color": "systemBlue",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_2_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "REAR_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LCM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LM"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LME38"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "LSZ"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "LED_1_LEFT",
+          "group": [
+            "LHM_L"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_1_RIGHT",
+          "group": [
+            "LHM_R"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_2_LEFT",
+          "group": [
+            "LHM_L"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "LED_2_RIGHT",
+          "group": [
+            "LHM_R"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "FOG_FRONT_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "FOG_FRONT_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "REAR_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "REAR_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "BRAKE_LEFT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "BRAKE_RIGHT",
+          "group": [
+            "CAS",
+            "FRM",
+            "LCM",
+            "LM",
+            "LME38",
+            "LSZ"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "COMMUNICATION_ON",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "COMMUNICATION_ON",
+          "group": [
+            "LHM_R"
+          ]
+        },
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_OFF",
+          "group": [
+            "LHM_L"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_OFF",
+          "group": [
+            "LHM_R"
+          ]
+        }
+      ],
+      "section": "Exterior"
+    },
+    {
+      "title": "Interior Glow",
+      "icon": "house.fill",
+      "color": "systemTeal",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "INTERIOR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "INTERIOR_2",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "INTERIOR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "INTERIOR_2",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_FRONT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_REAR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "LIGHT_CARPET_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "LIGHT_CARPET_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_FRONT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_REAR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DOOR_HANDLE",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "LIGHT_CARPET_LEFT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "LIGHT_CARPET_RIGHT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DOOR_HANDLE",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        }
+      ],
+      "section": "Exterior"
+    },
+    {
+      "title": "Foot Well Swap",
+      "icon": "shoeprints.fill",
+      "color": "systemCyan",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_FRONT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_FRONT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_REAR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_REAR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_FRONT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_FRONT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_REAR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "FOOT_WELL_DOOR_REAR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        }
+      ],
+      "section": "Interior"
+    },
+    {
+      "title": "Interior Strobe",
+      "icon": "lightbulb.max.fill",
+      "color": "systemYellow",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "FRM"
+          ]
+        },
+        {
+          "command": "INTERIOR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "INTERIOR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "INTERIOR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "INTERIOR",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS",
+            "FRM"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        }
+      ],
+      "section": "Interior"
+    },
+    {
+      "title": "Door Handle Wink",
+      "icon": "door.left.hand.open",
+      "color": "systemYellow",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DOOR_HANDLE",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DOOR_HANDLE",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DOOR_HANDLE",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DOOR_HANDLE",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        }
+      ],
+      "section": "Interior"
+    },
+    {
+      "title": "Ambient Pulse",
+      "icon": "circle.dotted",
+      "color": "systemTeal",
+      "align": "center",
+      "sequence": [
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_ON",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          }
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STR",
+            "param_aktion": "1",
+            "param_aktion_einaus": "ein",
+            "param_zeit": "100",
+            "param_lhm_zeit": "100",
+            "param_lhm_pwm": "100",
+            "param_lhm2_pwm": "250",
+            "param_rlm_strom_ausgang_wert": "100"
+          },
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "AMBIENT",
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          },
+          "group": [
+            "CAS"
+          ]
+        }
+      ],
+      "disable": [
+        {
+          "command": "RETURN_CONTROL",
+          "group": [
+            "CAS"
+          ]
+        },
+        {
+          "command": "DIAGNOSE_MODE_ON",
+          "group": [
+            "KOMBI"
+          ]
+        },
+        {
+          "command": "KOMBI_OFF",
+          "group": [
+            "KOMBI"
+          ],
+          "params": {
+            "param_steuern_io": "STA",
+            "param_steuern_routine": "STPR",
+            "param_aktion": "0",
+            "param_aktion_einaus": "aus",
+            "param_zeit": "0",
+            "param_lhm_zeit": "0",
+            "param_lhm_pwm": "0",
+            "param_lhm2_pwm": "0",
+            "param_rlm_strom_ausgang_wert": "0"
+          }
+        }
+      ],
+      "section": "Interior"
+    }
+  ]
+}
