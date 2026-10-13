@@ -1,4 +1,4 @@
-# BMW Lights
+# BimmerDisco
 
 Expo (SDK 57) app that controls BMW F-series lights over UDS. Read `docs/PLAN.md` first: it holds all decisions, the architecture and the milestone progress. Update its milestone row and Log after every task. `PROTO/` is gitignored reference material only.
 

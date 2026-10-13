@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const HomeScreen = () => (
   <View style={styles.container}>
-    <Text>BMW Lights</Text>
+    <Text>BimmerDisco</Text>
   </View>
 );
 
