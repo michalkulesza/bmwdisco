@@ -46,7 +46,7 @@ describe('Tile', () => {
 
     expect(sessionActions.stop).toHaveBeenCalledTimes(1);
     expect(sessionActions.run).not.toHaveBeenCalled();
-    expect(screen.queryByRole('button', { name: 'More options for Double flash' })).toBeNull();
+    expect(screen.getByRole('button', { name: 'More options for Double flash' })).toBeTruthy();
   });
 
   it('shows the finished state after a run', async () => {

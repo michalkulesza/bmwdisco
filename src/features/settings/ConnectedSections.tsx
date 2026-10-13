@@ -1,12 +1,11 @@
 import { CarProfile, Cpu, PlugsConnected } from 'phosphor-react-native';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, View } from 'react-native';
+import { Alert, Pressable, View } from 'react-native';
 
 import type { DetectedCar } from '@/domain';
 import { adapterChoiceOf, chassisLabel, maskVin } from '@/features/connect/helpers';
 import { useSessionActions, useSessionPhase, useSessionSelector } from '@/session';
-import Button from '@/ui/Button';
 import IconBadge from '@/ui/IconBadge';
 import ListGroup from '@/ui/ListGroup';
 import SectionHeader from '@/ui/SectionHeader';
@@ -45,6 +44,25 @@ const ModuleRow = ({ sgbd }: { sgbd: ModuleSgbd }) => {
       left={<Cpu size={22} color={accent} />}
       right={<View className="size-2 rounded-pill bg-connected" />}
     />
+  );
+};
+
+const DisconnectRow = ({ onPress }: { onPress: () => void }) => {
+  const { t } = useTranslation();
+  const destructive = useColorToken('destructive');
+
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={t('settings.disconnect')}
+      onPress={onPress}
+      className="min-h-14 flex-row items-center gap-3 pl-4 pr-3 active:opacity-60"
+    >
+      <PlugsConnected size={22} color={destructive} />
+      <Text variant="bodyMedium" tone="destructive">
+        {t('settings.disconnect')}
+      </Text>
+    </Pressable>
   );
 };
 
@@ -111,7 +129,11 @@ const ConnectedSections = () => {
           <InfoRow label={t('settings.status.label')} right={<StatusValue />} />
           <InfoRow label={t('settings.adapter')} value={adapter} />
           <InfoRow label={t('settings.latency')} value={latency} />
+          <DisconnectRow onPress={handleDisconnectPress} />
         </ListGroup>
+        <Text variant="small" tone="muted" className="mx-1">
+          {t('settings.disconnectHint')}
+        </Text>
       </View>
       {car ? (
         <View className="gap-3">
@@ -119,17 +141,6 @@ const ConnectedSections = () => {
           <CarCard car={car} />
         </View>
       ) : null}
-      <View className="gap-3">
-        <Button
-          label={t('settings.disconnect')}
-          icon={PlugsConnected}
-          variant="destructive"
-          onPress={handleDisconnectPress}
-        />
-        <Text variant="small" tone="muted" className="mx-1">
-          {t('settings.disconnectHint')}
-        </Text>
-      </View>
     </>
   );
 };
