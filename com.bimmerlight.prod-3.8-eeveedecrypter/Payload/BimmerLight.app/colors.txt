@@ -1,7 +1,0 @@
-black                             :000000
-white                             :ffffff
-lightGray                         :0a0a0a
-darkGray                          :242428
-orange                            :FF4500
-red                               :FF0000
-yellow                            :FFEF00
