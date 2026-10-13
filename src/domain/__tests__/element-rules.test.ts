@@ -1,5 +1,6 @@
 import { loadEffects, loadModule } from '@/data/generated';
 import type { ElementId } from '@/data/types';
+import { hasElementWarning } from '@/domain/registry/rules';
 import { buildElementTargets, sourcesOf } from '@/domain/registry/targets';
 import type { DetectedModule } from '@/domain/registry/types';
 import { ControlLedger } from '@/domain/runner/ledger';
@@ -171,13 +172,14 @@ describe('brake substitution', () => {
 });
 
 describe('LED headlight availability', () => {
-  it('hides the FEM per-side headlight outputs when FLE02 is present', async () => {
+  it('keeps and warns about FEM per-side headlight outputs when FLE02 is present', async () => {
     const { car } = await detect('F32', true);
 
     for (const element of PER_SIDE_HEADLIGHTS) {
-      expect(car.elementSources.has(element)).toBe(false);
-      expect(car.elementTargets.has(element)).toBe(false);
-      expect(car.selectableElements).not.toContain(element);
+      expect(car.elementSources.has(element)).toBe(true);
+      expect(hasElementWarning(car.modules, element)).toBe(true);
+      expect(car.elementTargets.has(element)).toBe(true);
+      expect(car.selectableElements).toContain(element);
     }
   });
 
@@ -194,6 +196,7 @@ describe('LED headlight availability', () => {
 
     for (const element of PER_SIDE_HEADLIGHTS) {
       expect(car.elementSources.get(element)!.map((module) => module.sgbd)).toEqual(['FEM_20']);
+      expect(hasElementWarning(car.modules, element)).toBe(false);
     }
   });
 
@@ -201,8 +204,10 @@ describe('LED headlight availability', () => {
     const one = buildElementTargets([detected('FEM_20'), detected('FLE02_R')]);
     const bdc = buildElementTargets([detected('BDC'), detected('FLE02_L')]);
 
-    expect(one.has('lowBeamLeft')).toBe(false);
-    expect(bdc.has('highBeamRight')).toBe(false);
+    expect(one.has('lowBeamLeft')).toBe(true);
+    expect(hasElementWarning([detected('FEM_20'), detected('FLE02_R')], 'lowBeamLeft')).toBe(true);
+    expect(bdc.has('highBeamRight')).toBe(true);
+    expect(hasElementWarning([detected('BDC'), detected('FLE02_L')], 'highBeamRight')).toBe(true);
     expect(bdc.has('lowBeamAll')).toBe(true);
   });
 
@@ -212,22 +217,13 @@ describe('LED headlight availability', () => {
     expect(targets.get('lowBeamLeft')![0]!.module.sgbd).toBe('FRM3');
   });
 
-  it('drops exactly the per-side flash effects and the party effects that need them', async () => {
+  it('keeps the per-side flash effects and party effects', async () => {
     const plain = (await detect('F32', false)).car;
     const led = (await detect('F32', true)).car;
 
     const ledIds = new Set(led.effects.map((effect) => effect.id));
     const gone = plain.effects.filter((effect) => !ledIds.has(effect.id)).map((e) => e.id);
-    expect(gone.sort()).toEqual(
-      [
-        'flash.daytimeLeft',
-        'flash.daytimeRight',
-        'flash.highBeamLeft',
-        'flash.highBeamRight',
-        'flash.lowBeamLeft',
-        'flash.lowBeamRight',
-      ].sort(),
-    );
+    expect(gone).toEqual([]);
     expect(led.effects.map((effect) => effect.id)).toEqual(
       expect.arrayContaining(['flash.lowBeam', 'flash.highBeam', 'flash.daytime', 'flash.brake']),
     );
@@ -235,11 +231,11 @@ describe('LED headlight availability', () => {
       ['party_mode.bounce', 'party_mode.frontToBack'].includes(effect.id),
     );
     expect(partyOnLedBefore).toHaveLength(2);
-    expect(ledIds.has('party_mode.bounce')).toBe(false);
-    expect(ledIds.has('party_mode.frontToBack')).toBe(false);
+    expect(ledIds.has('party_mode.bounce')).toBe(true);
+    expect(ledIds.has('party_mode.frontToBack')).toBe(true);
   });
 
-  it('skips unavailable per-side steps in a preset instead of sending them', async () => {
+  it('sends warned per-side steps when included in a preset', async () => {
     jest.useRealTimers();
     const { link, car } = await detect('F32', true);
     const events: unknown[] = [];
@@ -265,6 +261,6 @@ describe('LED headlight availability', () => {
     );
     jest.useRealTimers();
 
-    expect(events).toContainEqual({ type: 'elementSkipped', element: 'lowBeamLeft' });
+    expect(events).not.toContainEqual({ type: 'elementSkipped', element: 'lowBeamLeft' });
   });
 });

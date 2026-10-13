@@ -72,5 +72,10 @@ export const isEffectAvailable = (
   );
   const steps = [...effect.steps, ...(effect.offSteps ?? [])];
 
-  return hasModule && steps.every((step) => sources.has(step.element));
+  return (
+    hasModule &&
+    (effect.id === 'ghost.fullOFF'
+      ? steps.some((step) => sources.has(step.element))
+      : steps.every((step) => sources.has(step.element)))
+  );
 };

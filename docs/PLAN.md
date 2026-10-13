@@ -106,18 +106,18 @@ Session machine: `idle → connecting → identifying → ready ⇄ running → 
 
 Status: ☐ todo · ◐ in progress · ☑ done
 
-| #   | Milestone                                                                                                                                | Status                       |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `CLAUDE.md` overrides, this plan            | ☑                            |
-| M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☑                            |
-| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☑                            |
-| M3  | Simulator + Demo link with fault injection                                                                                               | ☑                            |
-| M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☑                            |
-| M5  | Design canvas: connecting, error, empty states, Library, Cable list → **user checkpoint**                                                | ☑                            |
-| M6  | UI foundation: gluestack + NativeWind theme from E4 tokens, Geist, Phosphor, i18n EN/PL, navigation skeleton                             | ☑                            |
-| M7  | Screens: Connect, Settings, Cable, Home, Library, tile menu, favourites edit, preset editor, add step, icon picker → **user checkpoint** | ◐ (M7a connection side done) |
-| M8  | Motion: Skia tiles, sweep, wiggle, reorder, haptics, reduced motion                                                                      | ☐                            |
-| M9  | Hardening: Maestro E2E, coverage gate, security review, code review, performance pass                                                    | ☐                            |
+| #   | Milestone                                                                                                                                | Status                                            |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `CLAUDE.md` overrides, this plan            | ☑                                                 |
+| M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☑                                                 |
+| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☑                                                 |
+| M3  | Simulator + Demo link with fault injection                                                                                               | ☑                                                 |
+| M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☑                                                 |
+| M5  | Design canvas: connecting, error, empty states, Library, Cable list → **user checkpoint**                                                | ☑                                                 |
+| M6  | UI foundation: gluestack + NativeWind theme from E4 tokens, Geist, Phosphor, i18n EN/PL, navigation skeleton                             | ☑                                                 |
+| M7  | Screens: Connect, Settings, Cable, Home, Library, tile menu, favourites edit, preset editor, add step, icon picker → **user checkpoint** | ◐ (M7a/b done; FLE warnings and Ghost Mode added) |
+| M8  | Motion: Skia tiles, sweep, wiggle, reorder, haptics, reduced motion                                                                      | ☐                                                 |
+| M9  | Hardening: Maestro E2E, coverage gate, security review, code review, performance pass                                                    | ☐                                                 |
 
 ### Log
 
@@ -140,6 +140,8 @@ Status: ☐ todo · ◐ in progress · ☑ done
 - 2026-10-13 — Merged the UDP module; a failing discovery socket (for example iOS blocking broadcast without the multicast entitlement) now ends in the "No ENET gateway found" error instead of a raw socket error. Kotlin side still uncompiled (no Android SDK on this Mac).
 - 2026-10-13 — Car test: manual ENET IP connects and works; auto-discovery finds nothing. Parked pending the iOS multicast entitlement (user decision); code stays, an empty host ends in "No ENET gateway found — enter its IP address".
 - 2026-10-13 — Car test on an F32 with adaptive LED headlights (USB-C ENET): every tile answered "Done", but FEM_20 low beam, high beam and DRL per-side outputs (`2F 45 01 03 <01..08>`) lit nothing (the headlights are driven by FLE02_L/R), and the FEM `2E D5 42 00 0C 00 64` whole brake light lit nothing while REM_20 `brakeLeft/Right` did. Fog, cornering, parking, the `LEUCHTEN_FUNKTION` pair functions and all REM_20 outputs worked. Rules now in `src/domain/registry/rules.ts` (applied by `targets.ts`, exposed as `DetectedCar.elementTargets`): (1) with REM_20 present `brakeAll` resolves to REM_20 `brakeLeft`+`brakeRight`+`brakeCenter` (the runner, ledger and cleanup work on these resolved targets, so restore sends exactly their off commands and REM return control); (2) with FLE02_L or FLE02_R present, FEM_20/BDC `lowBeam/highBeam/daytime` Left/Right are unavailable, which hides the six `flash.<those>` effects, `party_mode.bounce` and `party_mode.frontToBack` on such cars (pair functions untouched). The simulator mirrors both (`src/simulator/dead-outputs.ts`: positive reply, nothing lit); `withoutLedHeadlights(chassis)` gives the classic profile used by most tests. Debug log already records `identified <sgbd list>` at connect.
+
+- 2026-10-13 — M7 feedback: keep FLE02-affected per-side outputs and all eight effects selectable; preset blocks and the light picker show tappable warning triangles explaining the no-light response. Ghost Mode Full OFF now generates its supported F-series light commands, omitting legacy-only commands; it appears in Library and runs available outputs with normal runner restoration. Validation: TypeScript, lint and all 882 tests pass.
 
 ## How to resume
 

@@ -37,3 +37,14 @@ export const UNAVAILABILITY_RULES: readonly UnavailabilityRule[] = [
     ],
   },
 ];
+
+export const hasElementWarning = (
+  modules: readonly { sgbd: ModuleSgbd }[],
+  element: ElementId,
+): boolean =>
+  UNAVAILABILITY_RULES.some(
+    (rule) =>
+      rule.elements.includes(element) &&
+      modules.some((module) => rule.whenAnyPresent.includes(module.sgbd)) &&
+      modules.some((module) => rule.modules.includes(module.sgbd)),
+  );

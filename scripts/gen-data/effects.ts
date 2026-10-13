@@ -195,7 +195,13 @@ const buildOneShotEffects = (
 
   for (const action of file.actions) {
     const parsed = parseAction(action, provided);
-    const reason = dropReasonOf(parsed);
+    // Full OFF spans legacy ECUs too; retain the supported F-series light commands.
+    const reason =
+      pack === 'ghost' && action.title === 'Full OFF'
+        ? parsed.steps.length === 0
+          ? 'empty'
+          : null
+        : dropReasonOf(parsed);
 
     if (reason) {
       const commands = [...new Set(parsed.missing.map((item) => item.command))];

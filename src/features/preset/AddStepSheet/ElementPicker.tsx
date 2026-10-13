@@ -10,6 +10,7 @@ import { useColorToken } from '@/ui/theme';
 import { translateKey } from '@/ui/tile/helpers';
 
 import { categoryAppearance } from '../category-appearance';
+import ElementWarning from '../ElementWarning';
 
 import type { ElementListRow } from './helpers';
 
@@ -51,6 +52,7 @@ const ElementOption = memo(({ id, selected, onSelect }: ElementOptionProps) => {
       <Text variant="body" className="flex-1">
         {translateKey(t, `elements.${id}`)}
       </Text>
+      <ElementWarning elements={[id]} />
       {selected ? <CheckIcon size={18} weight="bold" color={check} /> : null}
     </Pressable>
   );
@@ -103,6 +105,7 @@ const ElementPicker = ({ rows, selected, open, onToggle, onSelect }: ElementPick
             </Text>
           ) : null}
         </View>
+        <ElementWarning elements={selected ? [selected] : []} />
         <CaretDownIcon size={16} color={muted} />
       </Pressable>
       {open ? (

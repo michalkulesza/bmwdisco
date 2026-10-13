@@ -53,6 +53,10 @@ describe('effects', () => {
 
     expect(ids).toContain('flash.lowBeamLeft');
     expect(ids).toContain('toggle.hazard');
+    expect(ids).toContain('ghost.fullOFF');
+    expect(
+      effects.find((effect) => effect.id === 'ghost.fullOFF')?.steps.every((step) => !step.on),
+    ).toBe(true);
     expect(ids).not.toContain('flash.bixenonLeft');
     expect(ids.some((id) => id.startsWith('taillight_flash.'))).toBe(false);
     expect(ids).not.toContain('toggle.followMeHome');
