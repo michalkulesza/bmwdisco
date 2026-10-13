@@ -1,0 +1,9 @@
+PROTO
+node_modules
+ios
+android
+dist
+coverage
+.expo
+package-lock.json
+src/data/generated

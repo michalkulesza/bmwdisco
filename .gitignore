@@ -3,3 +3,21 @@ __pycache__/
 
 PROTO/
 .DS_Store
+
+node_modules/
+.expo/
+dist/
+web-build/
+ios/
+android/
+coverage/
+expo-env.d.ts
+*.log
+.env*.local
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+npm-debug.*
