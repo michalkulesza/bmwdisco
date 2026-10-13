@@ -19,6 +19,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@xstate/react": "^6.1.0",
     "buffer": "^6.0.3",
     "expo": "~57.0.28",
     "expo-constants": "~57.0.21",
@@ -33,6 +34,7 @@
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
     "react-native-tcp-socket": "^6.4.3",
+    "xstate": "^5.33.2",
     "zod": "^4.6.7"
   },
   "devDependencies": {
