@@ -1,3 +1,4 @@
+import { ArrowClockwiseIcon } from 'phosphor-react-native/src/icons/ArrowClockwise';
 import { PlayIcon } from 'phosphor-react-native/src/icons/Play';
 import { PlusIcon } from 'phosphor-react-native/src/icons/Plus';
 import { StopIcon } from 'phosphor-react-native/src/icons/Stop';
@@ -13,10 +14,12 @@ interface BottomBarProps {
   count: number;
   totalMs: number;
   canAddStep: boolean;
+  canAddLoop: boolean;
   canTest: boolean;
   testing: boolean;
   onAction: () => void;
   onWait: () => void;
+  onLoop: () => void;
   onTest: () => void;
 }
 
@@ -24,10 +27,12 @@ const BottomBar = ({
   count,
   totalMs,
   canAddStep,
+  canAddLoop,
   canTest,
   testing,
   onAction,
   onWait,
+  onLoop,
   onTest,
 }: BottomBarProps) => {
   const { t } = useTranslation();
@@ -63,6 +68,16 @@ const BottomBar = ({
           onPress={onWait}
           className="flex-1"
         />
+        <Button
+          label={t('preset.loop.label')}
+          icon={ArrowClockwiseIcon}
+          variant="secondary"
+          disabled={!canAddLoop}
+          onPress={onLoop}
+          className="flex-1"
+        />
+      </View>
+      <View>
         <Button
           label={testing ? t('preset.stop') : t('preset.test')}
           icon={testing ? StopIcon : PlayIcon}

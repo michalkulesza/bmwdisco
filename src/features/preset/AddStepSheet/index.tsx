@@ -17,6 +17,7 @@ import { useDraftStore } from '../draft-store';
 import DurationField from './DurationField';
 import ElementPicker from './ElementPicker';
 import {
+  DEFAULT_DURATION_MS,
   buildStepFromForm,
   formFromStep,
   groupElements,
@@ -145,7 +146,31 @@ const AddStepSheet = () => {
           </View>
         </>
       ) : null}
-      <DurationField value={form.durationMs} onChange={handleDurationChange} />
+      {form.type === 'set' ? (
+        <View className="gap-2">
+          <SegmentedControl
+            value={form.immediate ? 'immediate' : 'delay'}
+            onChange={(mode) =>
+              setForm((current) => ({
+                ...current,
+                immediate: mode === 'immediate',
+                durationMs: current.durationMs ?? DEFAULT_DURATION_MS,
+              }))
+            }
+            accessibilityLabel={t('preset.step.timing')}
+            options={[
+              { value: 'delay', label: t('preset.step.delay') },
+              { value: 'immediate', label: t('preset.step.untilChanged') },
+            ]}
+          />
+          <Text variant="small" tone="muted">
+            {t('preset.step.stateHint')}
+          </Text>
+        </View>
+      ) : null}
+      {form.type === 'wait' || !form.immediate ? (
+        <DurationField value={form.durationMs} onChange={handleDurationChange} />
+      ) : null}
       <Button
         label={isEditing ? t('preset.step.update') : t('preset.step.add')}
         onPress={handleSubmitPress}

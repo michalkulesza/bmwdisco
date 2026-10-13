@@ -1,3 +1,4 @@
+import { ArrowClockwiseIcon } from 'phosphor-react-native/src/icons/ArrowClockwise';
 import { CaretDownIcon } from 'phosphor-react-native/src/icons/CaretDown';
 import { TimerIcon } from 'phosphor-react-native/src/icons/Timer';
 import { memo, useCallback, useMemo } from 'react';
@@ -75,6 +76,7 @@ const ElementHeader = ({ step, onPress }: ElementHeaderProps) => {
 
 const StepRow = ({ step, number, issue, onChange, onRemove, onEditElement }: StepRowProps) => {
   const { t } = useTranslation();
+  const loopColor = useColorToken('primary');
   const stateOptions: SegmentedOption<StepState>[] = useMemo(
     () => [
       { value: 'on', label: t('preset.on') },
@@ -88,6 +90,26 @@ const StepRow = ({ step, number, issue, onChange, onRemove, onEditElement }: Ste
 
   const handleRemove = useCallback(() => onRemove(step.key), [onRemove, step.key]);
   const handleEditElement = useCallback(() => onEditElement(step.key), [onEditElement, step.key]);
+
+  if (step.type === 'loop') {
+    return (
+      <StepCard
+        number={number}
+        errorText={errorText}
+        onRemove={handleRemove}
+        header={
+          <View className="flex-row items-center gap-2">
+            <ArrowClockwiseIcon size={20} color={loopColor} />
+            <Text variant="bodyMedium">{t('preset.loop.label')}</Text>
+          </View>
+        }
+      >
+        <Text variant="small" tone="muted" className="flex-1">
+          {t('preset.loop.hint')}
+        </Text>
+      </StepCard>
+    );
+  }
 
   if (step.type === 'wait') {
     return (
@@ -124,15 +146,33 @@ const StepRow = ({ step, number, issue, onChange, onRemove, onEditElement }: Ste
         accessibilityLabel={t('preset.state')}
         className="w-28"
       />
-      <MsInput
-        value={step.durationMs}
-        onChange={(durationMs) => onChange({ ...step, durationMs })}
-        accessibilityLabel={t('preset.durationLabel')}
-        invalid={issue !== undefined}
-      />
-      <Text variant="meta" tone="muted">
-        {t('preset.ms')}
-      </Text>
+      <View className="flex-1 gap-1">
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t('preset.step.timing')}
+          onPress={() =>
+            onChange({ ...step, durationMs: step.durationMs === undefined ? 100 : undefined })
+          }
+          className="min-h-touch justify-center active:opacity-60"
+        >
+          <Text variant="small" tone="muted">
+            {step.durationMs === undefined ? t('preset.step.untilChanged') : t('preset.step.delay')}
+          </Text>
+        </Pressable>
+        {step.durationMs !== undefined ? (
+          <View className="flex-row items-center gap-2">
+            <MsInput
+              value={step.durationMs}
+              onChange={(durationMs) => onChange({ ...step, durationMs: durationMs ?? 0 })}
+              accessibilityLabel={t('preset.durationLabel')}
+              invalid={issue !== undefined}
+            />
+            <Text variant="meta" tone="muted">
+              {t('preset.ms')}
+            </Text>
+          </View>
+        ) : null}
+      </View>
     </StepCard>
   );
 };

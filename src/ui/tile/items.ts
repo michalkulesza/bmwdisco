@@ -12,7 +12,13 @@ export const presetSummary = (preset: Preset, t: TFunction): string => {
   const steps = t('tile.steps', { count: preset.steps.length });
   const duration = t('tile.duration', { value: formatSeconds(totalDurationMs(preset.steps)) });
 
-  return `${steps} · ${duration}`;
+  const looping = preset.steps.some((step) => step.type === 'loop');
+  const mode = looping
+    ? ` · ${t('preset.loop.label')}`
+    : preset.playback && preset.playback !== 'once'
+      ? ` · ${t(`preset.playback.${preset.playback}`)}`
+      : '';
+  return `${steps} · ${duration}${mode}`;
 };
 
 export const presetItem = (preset: Preset, t: TFunction, connected: boolean): TileItem => ({

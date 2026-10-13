@@ -30,10 +30,14 @@ const waitStepSchema = z.strictObject({
   ms: durationSchema,
 });
 
-const stepSchema = z.discriminatedUnion('type', [setStepSchema, waitStepSchema]);
+const stepSchema = z.discriminatedUnion('type', [
+  setStepSchema,
+  waitStepSchema,
+  z.strictObject({ type: z.literal('loop') }),
+]);
 
 export const stepDurationMs = (step: PresetStep): number =>
-  step.type === 'wait' ? step.ms : (step.durationMs ?? 0);
+  step.type === 'wait' ? step.ms : step.type === 'set' ? (step.durationMs ?? 0) : 0;
 
 export const totalDurationMs = (steps: readonly PresetStep[]): number =>
   steps.reduce((total, step) => total + stepDurationMs(step), 0);
@@ -44,8 +48,19 @@ export const presetSchema = z
     name: z.string().trim().min(1).max(PRESET_LIMITS.maxNameLength),
     color: z.string().regex(COLOR_PATTERN),
     icon: z.string().regex(ICON_PATTERN),
+    playback: z.enum(['once', 'hold']).optional(),
     steps: z.array(stepSchema).min(1).max(PRESET_LIMITS.maxSteps),
   })
+  .refine(
+    (preset) =>
+      preset.steps.every(
+        (step, index) => step.type !== 'loop' || (index === preset.steps.length - 1 && index > 0),
+      ),
+    {
+      message: 'Loop must be the final block, after at least one action',
+      path: ['steps'],
+    },
+  )
   .refine((preset) => totalDurationMs(preset.steps) <= PRESET_LIMITS.maxTotalMs, {
     message: 'total duration exceeds the limit',
     path: ['steps'],

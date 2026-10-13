@@ -54,6 +54,68 @@ describe('PresetEditorScreen', () => {
     usePresetsStore.setState({ presets: [...SEED_PRESETS] });
   });
 
+  it('saves the hold final state choice', async () => {
+    await openEditor('new');
+    await fireEvent.changeText(screen.getByLabelText('Name'), 'Continuous');
+    await addLightStep();
+    await fireEvent.press(screen.getByRole('radio', { name: 'Hold final state' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Save' }));
+    const saved = usePresetsStore.getState().presets.find((preset) => preset.name === 'Continuous');
+    expect(saved?.playback).toBe('hold');
+  });
+
+  it('tests an unnamed draft without changing its name and still requires a name to save', async () => {
+    await openEditor('new');
+    await addLightStep();
+    await fireEvent.press(screen.getByRole('button', { name: 'Test' }));
+    expect(sessionActions.run).toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'Preset preview' }),
+    );
+    expect(useDraftStore.getState().name).toBe('');
+    expect(screen.queryByText('Enter a name')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: 'Save' }));
+    expect(screen.getByText('Enter a name')).toBeTruthy();
+    expect(usePresetsStore.getState().presets).toHaveLength(SEED_PRESETS.length);
+  });
+
+  it('warns before adding Loop without a Wait, and adds it only after confirmation', async () => {
+    await openEditor('new');
+    await addLightStep();
+    await fireEvent.press(screen.getByRole('button', { name: 'Loop' }));
+    expect(alertSpy).toHaveBeenCalledWith(
+      'Loop without a pause?',
+      expect.any(String),
+      expect.any(Array),
+    );
+    expect(useDraftStore.getState().steps.some((step) => step.type === 'loop')).toBe(false);
+    const buttons = alertSpy.mock.calls[0]![2]!;
+    await act(async () => buttons.find((button) => button.text === 'Add Loop anyway')!.onPress!());
+    expect(useDraftStore.getState().steps.at(-1)?.type).toBe('loop');
+    expect(screen.queryByRole('radio', { name: 'Run once' })).toBeNull();
+    expect(screen.getByRole('button', { name: 'Loop' }).props.accessibilityState.disabled).toBe(
+      true,
+    );
+  });
+
+  it('adds Loop after a Wait without a warning and saves the block', async () => {
+    await openEditor('new');
+    await fireEvent.changeText(screen.getByLabelText('Name'), 'Repeating');
+    await addLightStep();
+    await act(async () =>
+      useDraftStore.getState().addStep({ key: newStepKey(), type: 'wait', ms: 500 }),
+    );
+    await fireEvent.press(screen.getByRole('button', { name: 'Loop' }));
+    expect(alertSpy).not.toHaveBeenCalled();
+    expect(useDraftStore.getState().steps.at(-1)?.type).toBe('loop');
+    await fireEvent.press(screen.getByRole('button', { name: 'Save' }));
+    expect(
+      usePresetsStore
+        .getState()
+        .presets.find((preset) => preset.name === 'Repeating')
+        ?.steps.at(-1),
+    ).toEqual({ type: 'loop' });
+  });
+
   it('shows inline errors and does not save an empty preset', async () => {
     await openEditor('new');
 

@@ -231,7 +231,8 @@
       "stepTooShort": "Minimum is {{min}} ms",
       "tooLong": "Total duration can be at most {{max}} ms",
       "saveFailed": "Could not save the preset",
-      "limit": "You have reached the limit of {{max}} presets."
+      "limit": "You have reached the limit of {{max}} presets.",
+      "loopPosition": "Place Loop at the end, after at least one action."
     },
     "step": {
       "editTitle": "Edit step",
@@ -242,7 +243,11 @@
       "decrease": "Decrease by 50 ms",
       "increase": "Increase by 50 ms",
       "add": "Add to preset",
-      "update": "Save step"
+      "update": "Save step",
+      "timing": "Block timing",
+      "delay": "Delay after",
+      "untilChanged": "Until changed",
+      "stateHint": "The light stays in this state until a later block changes it or the preset stops."
     },
     "transfer": {
       "imported": "Imported presets: {{count}}",
@@ -259,7 +264,23 @@
       }
     },
     "outputWarning": "Light output warning",
-    "outputWarningDetail": "This output may report Done without lighting anything on cars with FLE02 headlight modules."
+    "outputWarningDetail": "This output may report Done without lighting anything on cars with FLE02 headlight modules.",
+    "playback": {
+      "label": "Playback",
+      "once": "Run once",
+      "hold": "Hold final state",
+      "onceHint": "Run the blocks once, then restore the lights.",
+      "holdHint": "Run once and keep the final light states until Stop. Leaving the app or losing the connection restores control."
+    },
+    "loop": {
+      "label": "Loop",
+      "hint": "Restart from the first block. Repeats until Stop.",
+      "warningTitle": "Loop without a pause?",
+      "warningMessage": "Add a Wait block before Loop to pause between repeats. Without one, the preset restarts as soon as the last action finishes.",
+      "goBack": "Go back",
+      "addAnyway": "Add Loop anyway"
+    },
+    "previewName": "Preset preview"
   },
   "iconPicker": {
     "title": "Icon",

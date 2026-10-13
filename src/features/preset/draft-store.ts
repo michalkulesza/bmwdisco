@@ -9,12 +9,19 @@ export interface DraftSnapshot {
   color: string;
   icon: string;
   steps: EditorStep[];
+  playback: NonNullable<Preset['playback']>;
 }
 
-const EMPTY_DRAFT: DraftSnapshot = { name: '', color: 'blue', icon: 'Lightning', steps: [] };
+const EMPTY_DRAFT: DraftSnapshot = {
+  name: '',
+  color: 'blue',
+  icon: 'Lightning',
+  steps: [],
+  playback: 'once',
+};
 
-const serialize = ({ name, color, icon, steps }: DraftSnapshot): string =>
-  JSON.stringify({ name, color, icon, steps: stripKeys(steps) });
+const serialize = ({ name, color, icon, steps, playback }: DraftSnapshot): string =>
+  JSON.stringify({ name, color, icon, steps: stripKeys(steps), playback });
 
 interface DraftState extends DraftSnapshot {
   baseline: string;
@@ -24,6 +31,7 @@ interface DraftState extends DraftSnapshot {
   setName: (name: string) => void;
   setColor: (color: string) => void;
   setIcon: (icon: string) => void;
+  setPlayback: (playback: NonNullable<Preset['playback']>) => void;
   setSteps: (steps: EditorStep[]) => void;
   addStep: (step: EditorStep) => void;
   updateStep: (key: string, step: EditorStep) => void;
@@ -44,6 +52,7 @@ export const useDraftStore = create<DraftState>()((set) => ({
           color: preset.color,
           icon: preset.icon,
           steps: toEditorSteps(preset.steps),
+          playback: preset.playback ?? 'once',
         }
       : EMPTY_DRAFT;
     set({ ...snapshot, baseline: serialize(snapshot), sourceId });
@@ -52,8 +61,15 @@ export const useDraftStore = create<DraftState>()((set) => ({
   setName: (name) => set({ name }),
   setColor: (color) => set({ color }),
   setIcon: (icon) => set({ icon }),
+  setPlayback: (playback) => set({ playback }),
   setSteps: (steps) => set({ steps }),
-  addStep: (step) => set((state) => ({ steps: [...state.steps, step] })),
+  addStep: (step) =>
+    set((state) => ({
+      steps:
+        state.steps.at(-1)?.type === 'loop' && step.type !== 'loop'
+          ? [...state.steps.slice(0, -1), step, state.steps.at(-1)!]
+          : [...state.steps, step],
+    })),
   updateStep: (key, step) =>
     set((state) => ({
       steps: state.steps.map((existing) => (existing.key === key ? step : existing)),
