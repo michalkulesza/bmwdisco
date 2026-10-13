@@ -413,6 +413,39 @@ describe('toggles', () => {
   });
 });
 
+describe('continuous preset safety', () => {
+  it.each([
+    ['hold', 'STOP'],
+    ['hold', 'APP_BACKGROUND'],
+    ['hold', 'DISCONNECT'],
+    ['loop', 'STOP'],
+    ['loop', 'APP_BACKGROUND'],
+    ['loop', 'DISCONNECT'],
+  ] as const)(
+    'restores a %s preset on %s and keeps sessions alive while running',
+    async (playback, termination) => {
+      const rig = await startReady();
+      run(rig, {
+        ...holdPreset(),
+        ...(playback === 'hold' ? { playback } : {}),
+        steps: [
+          { type: 'set', elements: ['lowBeamLeft'], state: 'on', durationMs: 100 },
+          ...(playback === 'loop' ? [{ type: 'loop' as const }] : []),
+        ],
+      });
+      await advanceUntil(() => rig.vehicle.getLitElements().length > 0);
+      await jest.advanceTimersByTimeAsync(6000);
+      expect(rig.phase()).toBe('running');
+      expect(wireLog(rig.vehicle).some((entry) => entry.endsWith(':3eff'))).toBe(true);
+      rig.actor.send({ type: termination });
+      await rig.waitFor(termination === 'DISCONNECT' ? 'disconnected' : 'ready');
+      expect(rig.vehicle.getLitElements()).toEqual([]);
+      expect(rig.context().ledger.hasPending).toBe(false);
+      rig.actor.stop();
+    },
+  );
+});
+
 describe('safety invariant: every termination path ends with nothing forced', () => {
   const terminations: [string, (rig: SessionRig) => Promise<void>][] = [
     [

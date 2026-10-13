@@ -62,7 +62,7 @@ export const planInputOf = (item: RunnableItem): PlanInput => {
 const unique = <T>(values: readonly T[]): T[] => [...new Set(values)];
 
 const sendsFor = (step: PresetStep, car: DetectedCar, skipped: Set<ElementId>): PlannedSend[] => {
-  if (step.type === 'wait') return [];
+  if (step.type !== 'set') return [];
 
   const sends = step.elements.flatMap((element) => {
     const targets = car.elementTargets.get(element);

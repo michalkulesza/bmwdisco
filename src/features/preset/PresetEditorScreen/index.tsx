@@ -10,6 +10,7 @@ import { toHeaderItems } from '@/features/navigation/headerItems';
 import { useSessionActions, useSessionSelector } from '@/session';
 import { createPresetId, usePresetsStore } from '@/stores/presets';
 import EmptyState from '@/ui/EmptyState';
+import SegmentedControl from '@/ui/SegmentedControl';
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
 import { translateKey } from '@/ui/tile/helpers';
@@ -21,6 +22,7 @@ import {
   draftTotalMs,
   ISSUE_PARAMS,
   moveItem,
+  newStepKey,
   validateDraft,
   type DraftIssue,
   type EditorStep,
@@ -58,23 +60,30 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
   const name = useDraftStore((state) => state.name);
   const color = useDraftStore((state) => state.color);
   const icon = useDraftStore((state) => state.icon);
+  const playback = useDraftStore((state) => state.playback);
+  const setPlayback = useDraftStore((state) => state.setPlayback);
   const steps = useDraftStore((state) => state.steps);
   const setName = useDraftStore((state) => state.setName);
   const setColor = useDraftStore((state) => state.setColor);
   const setSteps = useDraftStore((state) => state.setSteps);
   const updateStep = useDraftStore((state) => state.updateStep);
+  const addStep = useDraftStore((state) => state.addStep);
   const removeStep = useDraftStore((state) => state.removeStep);
   const dirty = useDraftStore(isDraftDirty);
   const [submitted, setSubmitted] = useState(false);
+  const [previewTried, setPreviewTried] = useState(false);
 
   const isNew = presetId === undefined;
   const testId = presetId ?? DRAFT_TEST_ID;
   const testing = runningItemId === testId;
-  const draft = useMemo(() => ({ name, color, icon, steps }), [name, color, icon, steps]);
+  const draft = useMemo(
+    () => ({ name, color, icon, steps, playback }),
+    [name, color, icon, steps, playback],
+  );
   const issues = useMemo(() => validateDraft(draft), [draft]);
   const nameIssue = issues.find((issue) => issue.scope === 'name');
   const stepsIssue = issues.find(
-    (issue) => issue.scope === 'steps' && (submitted || issue.code !== 'noSteps'),
+    (issue) => issue.scope === 'steps' && (submitted || previewTried || issue.code !== 'noSteps'),
   );
   const stepIssues = useMemo(
     () =>
@@ -127,8 +136,16 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
       return;
     }
 
-    setSubmitted(true);
-    const parsed = presetSchema.safeParse(buildPresetPayload(draft, testId));
+    setPreviewTried(true);
+    const parsed = presetSchema.safeParse(
+      buildPresetPayload(
+        {
+          ...draft,
+          name: draft.name.trim() || t('preset.previewName'),
+        },
+        testId,
+      ),
+    );
     if (!parsed.success) return;
 
     if (!car) {
@@ -148,6 +165,18 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
     () => router.push({ pathname: '/preset/add-step', params: { type: 'wait' } }),
     [router],
   );
+  const appendLoop = useCallback(() => addStep({ key: newStepKey(), type: 'loop' }), [addStep]);
+  const handleAddLoop = useCallback(() => {
+    if (steps.at(-1)?.type === 'wait') {
+      appendLoop();
+      return;
+    }
+    Alert.alert(t('preset.loop.warningTitle'), t('preset.loop.warningMessage'), [
+      { text: t('preset.loop.goBack'), style: 'cancel' },
+      { text: t('preset.loop.addAnyway'), onPress: appendLoop },
+    ]);
+  }, [appendLoop, steps, t]);
+
   const handleEditElement = useCallback(
     (key: string) => router.push({ pathname: '/preset/add-step', params: { key } }),
     [router],
@@ -201,6 +230,25 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
         onChangeName={setName}
       />
       <AppearanceCard color={color} icon={icon} onChangeColor={setColor} />
+      {!steps.some((step) => step.type === 'loop') ? (
+        <View className="gap-2">
+          <Text variant="meta" tone="muted">
+            {t('preset.playback.label')}
+          </Text>
+          <SegmentedControl
+            value={playback}
+            onChange={setPlayback}
+            accessibilityLabel={t('preset.playback.label')}
+            options={[
+              { value: 'once', label: t('preset.playback.once') },
+              { value: 'hold', label: t('preset.playback.hold') },
+            ]}
+          />
+          <Text variant="small" tone="muted">
+            {t(`preset.playback.${playback}Hint`)}
+          </Text>
+        </View>
+      ) : null}
       <View className="gap-1">
         <View className="flex-row items-baseline justify-between">
           <Text variant="section" accessibilityRole="header">
@@ -246,10 +294,16 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
         count={steps.length}
         totalMs={draftTotalMs(steps)}
         canAddStep={steps.length < PRESET_LIMITS.maxSteps}
+        canAddLoop={
+          steps.length > 0 &&
+          steps.length < PRESET_LIMITS.maxSteps &&
+          !steps.some((step) => step.type === 'loop')
+        }
         canTest
         testing={testing}
         onAction={handleAddAction}
         onWait={handleAddWait}
+        onLoop={handleAddLoop}
         onTest={handleTestPress}
       />
     </View>

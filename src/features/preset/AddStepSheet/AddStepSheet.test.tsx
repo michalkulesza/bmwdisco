@@ -60,6 +60,15 @@ describe('AddStepSheet', () => {
     });
   });
 
+  it('adds an until-changed block without a delay', async () => {
+    await renderScreen(<AddStepSheet />);
+    await chooseLight('Tail light left');
+    await fireEvent.press(screen.getByRole('radio', { name: 'Until changed' }));
+    expect(screen.queryByLabelText('Duration in milliseconds')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: 'Add to preset' }));
+    expect(steps()).toEqual([{ type: 'set', elements: ['tailLeft'], state: 'on' }]);
+  });
+
   it('only offers lights the car can drive, grouped by category', async () => {
     await renderScreen(<AddStepSheet />);
 

@@ -18,6 +18,7 @@ export interface StepFormValues {
   element: ElementId | undefined;
   state: 'on' | 'off';
   durationMs: number | undefined;
+  immediate?: boolean;
 }
 
 export const groupElements = (ids: readonly ElementId[]): ElementListRow[] =>
@@ -41,14 +42,17 @@ export const stepDuration = (current: number | undefined, delta: number): number
 export const isFormValid = (form: StepFormValues): boolean => {
   const durationOk = form.durationMs !== undefined && form.durationMs >= PRESET_LIMITS.minStepMs;
 
-  return durationOk && (form.type === 'wait' || form.element !== undefined);
+  return (
+    (durationOk || (form.type === 'set' && form.immediate === true)) &&
+    (form.type === 'wait' || form.element !== undefined)
+  );
 };
 
 export const formFromStep = (
   step: EditorStep | undefined,
   fallbackType: StepType,
 ): StepFormValues => {
-  if (!step) {
+  if (!step || step.type === 'loop') {
     return { type: fallbackType, element: undefined, state: 'on', durationMs: DEFAULT_DURATION_MS };
   }
 
@@ -61,6 +65,7 @@ export const formFromStep = (
     element: step.elements[0],
     state: step.state,
     durationMs: step.durationMs,
+    immediate: step.durationMs === undefined,
   };
 };
 
@@ -72,5 +77,11 @@ export const buildStepFromForm = (
   if (form.type === 'wait') return { key, type: 'wait', ms: durationMs };
   if (!form.element) return undefined;
 
-  return { key, type: 'set', elements: [form.element], state: form.state, durationMs };
+  return {
+    key,
+    type: 'set',
+    elements: [form.element],
+    state: form.state,
+    ...(form.immediate ? {} : { durationMs }),
+  };
 };

@@ -3,7 +3,7 @@ import { toError } from '@/protocol/errors';
 
 import { systemClock } from '../clock';
 import { RunLimitError } from '../errors';
-import { MAX_RUN_MS } from '../preset/limits';
+import { MAX_RUN_MS, PRESET_LIMITS } from '../preset/limits';
 
 import { createCleanupSend, restoreControl, type RestoreOptions } from './cleanup';
 import { buildPlan, planInputOf, type PlannedSend, type RunPlan } from './plan';
@@ -64,10 +64,13 @@ export class PresetRunner {
   async execute(item: RunnableItem, signal?: AbortSignal): Promise<ExecutionResult> {
     const limit = new AbortController();
     const forwardAbort = () => limit.abort(signal?.reason);
-    const timer = this.clock.setTimeout(
-      () => limit.abort(new RunLimitError(MAX_RUN_MS)),
-      MAX_RUN_MS,
-    );
+    const playback =
+      item.kind === 'preset'
+        ? item.preset.steps.some((step) => step.type === 'loop')
+          ? 'loop'
+          : (item.preset.playback ?? 'once')
+        : 'once';
+    let timer = this.clock.setTimeout(() => limit.abort(new RunLimitError(MAX_RUN_MS)), MAX_RUN_MS);
     if (signal?.aborted) forwardAbort();
     else signal?.addEventListener('abort', forwardAbort, { once: true });
 
@@ -82,7 +85,23 @@ export class PresetRunner {
 
       this.warnIfTooFast(plan);
       await this.prepare(plan);
-      await this.play(plan, limit.signal);
+      do {
+        const cycleStart = this.clock.now();
+        await this.play(plan, limit.signal);
+        if (playback !== 'loop' || limit.signal.aborted) break;
+        // Even an all-immediate loop must yield, so Stop and keepalives can run.
+        await this.waitUntil(cycleStart + PRESET_LIMITS.minStepMs, limit.signal);
+        this.clock.clearTimeout(timer);
+        timer = this.clock.setTimeout(() => limit.abort(new RunLimitError(MAX_RUN_MS)), MAX_RUN_MS);
+      } while (!limit.signal.aborted);
+
+      if (playback === 'hold' && !limit.signal.aborted) {
+        this.clock.clearTimeout(timer);
+        await new Promise<void>((resolve) => {
+          if (limit.signal.aborted) resolve();
+          else limit.signal.addEventListener('abort', () => resolve(), { once: true });
+        });
+      }
 
       return {
         status: this.statusOf(limit.signal),

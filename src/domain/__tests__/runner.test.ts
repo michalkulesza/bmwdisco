@@ -355,6 +355,64 @@ describe('PresetRunner failures', () => {
     expect(vehicle.getLitElements()).toEqual([]);
   });
 
+  it.each(['hold', 'loop'] as const)(
+    'runs %s beyond 90 seconds and restores on Stop',
+    async (playback) => {
+      const { runner, vehicle, ledger } = await harness();
+      const controller = new AbortController();
+      const preset = parsePreset({
+        id: 'continuous',
+        name: 'Continuous',
+        color: 'blue',
+        icon: 'Car',
+        ...(playback === 'hold' ? { playback } : {}),
+        steps: [
+          { type: 'set', elements: ['lowBeamLeft'], state: 'on', durationMs: 60_000 },
+          ...(playback === 'loop' ? [{ type: 'loop' }] : []),
+        ],
+      });
+      let finished = false;
+      const pending = runner.run({ kind: 'preset', preset }, controller.signal).then((result) => {
+        finished = true;
+        return result;
+      });
+      await jest.advanceTimersByTimeAsync(95_000);
+      expect(finished).toBe(false);
+      expect(litIds(vehicle)).toEqual(['FEM_20:lowBeamLeft']);
+      const onCommands = wireLog(vehicle).filter(
+        (entry) => entry === `40:${bytes(fem.elements.lowBeamLeft!.on)}`,
+      );
+      expect(onCommands).toHaveLength(playback === 'loop' ? 2 : 1);
+      controller.abort();
+      const result = await settle(pending);
+      expect(result.status).toBe('aborted');
+      expect(result.cleanup.restored).toBe(true);
+      expect(ledger.hasPending).toBe(false);
+      expect(vehicle.getLitElements()).toEqual([]);
+    },
+  );
+
+  it('yields during a loop with only immediate blocks so Stop can interrupt it', async () => {
+    const { runner, vehicle } = await harness();
+    const controller = new AbortController();
+    const preset = parsePreset({
+      id: 'immediate-loop',
+      name: 'Immediate loop',
+      color: 'blue',
+      icon: 'Car',
+      steps: [{ type: 'set', elements: ['lowBeamLeft'], state: 'on' }, { type: 'loop' }],
+    });
+    const pending = runner.run({ kind: 'preset', preset }, controller.signal);
+    await jest.advanceTimersByTimeAsync(200);
+    expect(
+      wireLog(vehicle).filter((entry) => entry === `40:${bytes(fem.elements.lowBeamLeft!.on)}`)
+        .length,
+    ).toBeGreaterThan(1);
+    controller.abort();
+    expect((await settle(pending)).cleanup.restored).toBe(true);
+    expect(vehicle.getLitElements()).toEqual([]);
+  });
+
   it('cancels between steps, restores and reports aborted', async () => {
     const { runner, vehicle } = await harness();
     const controller = new AbortController();

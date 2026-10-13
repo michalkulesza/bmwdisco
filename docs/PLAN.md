@@ -62,7 +62,7 @@ Session machine: `idle → connecting → identifying → ready ⇄ running → 
 1. Forced control is always undone: off for every touched element → return-control → `10 01`. Runs on stop, completion, error, disconnect, and app backgrounding.
 2. App going to background stops and restores immediately (iOS suspends sockets/BLE).
 3. Identification fails closed: no known F module answering `22 F1 50` → presets locked with explanation.
-4. Limits: 90 s per run, 50 ms minimum step; command rate throttled to the adapter's measured RTT.
+4. Limits: 90 s per one-shot run or loop cycle; explicitly chosen Hold and Loop presets run until Stop, with restoration on background/disconnect/error. Light blocks can apply state without a delay; timed steps have a 50 ms minimum; command rate throttled to the adapter's measured RTT.
 5. Error UX tiers: inline tile error (shake + red edge + reason, e.g. NRC 0x22 "stop the car / ignition on") → toast (transient) → full-screen state (adapter unreachable, Bluetooth off/denied, car not responding, connection lost while running).
 6. Auto-reconnect: 3 attempts with backoff; if anything was under forced control, restore immediately after reconnect.
 
@@ -106,18 +106,18 @@ Session machine: `idle → connecting → identifying → ready ⇄ running → 
 
 Status: ☐ todo · ◐ in progress · ☑ done
 
-| #   | Milestone                                                                                                                                | Status                                                           |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `CLAUDE.md` overrides, this plan            | ☑                                                                |
-| M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☑                                                                |
-| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☑                                                                |
-| M3  | Simulator + Demo link with fault injection                                                                                               | ☑                                                                |
-| M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☑                                                                |
-| M5  | Design canvas: connecting, error, empty states, Library, Cable list → **user checkpoint**                                                | ☑                                                                |
-| M6  | UI foundation: gluestack + NativeWind theme from E4 tokens, Geist, Phosphor, i18n EN/PL, navigation skeleton                             | ☑                                                                |
-| M7  | Screens: Connect, Settings, Cable, Home, Library, tile menu, favourites edit, preset editor, add step, icon picker → **user checkpoint** | ◐ (M7a/b done; FLE warnings, Ghost Mode and step defaults added) |
-| M8  | Motion: Skia tiles, sweep, wiggle, reorder, haptics, reduced motion                                                                      | ☐                                                                |
-| M9  | Hardening: Maestro E2E, coverage gate, security review, code review, performance pass                                                    | ☐                                                                |
+| #   | Milestone                                                                                                                                | Status                                                       |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `CLAUDE.md` overrides, this plan            | ☑                                                            |
+| M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☑                                                            |
+| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☑                                                            |
+| M3  | Simulator + Demo link with fault injection                                                                                               | ☑                                                            |
+| M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☑                                                            |
+| M5  | Design canvas: connecting, error, empty states, Library, Cable list → **user checkpoint**                                                | ☑                                                            |
+| M6  | UI foundation: gluestack + NativeWind theme from E4 tokens, Geist, Phosphor, i18n EN/PL, navigation skeleton                             | ☑                                                            |
+| M7  | Screens: Connect, Settings, Cable, Home, Library, tile menu, favourites edit, preset editor, add step, icon picker → **user checkpoint** | ◐ (M7a/b done; held states, looping and step defaults added) |
+| M8  | Motion: Skia tiles, sweep, wiggle, reorder, haptics, reduced motion                                                                      | ☐                                                            |
+| M9  | Hardening: Maestro E2E, coverage gate, security review, code review, performance pass                                                    | ☐                                                            |
 
 ### Log
 
@@ -144,6 +144,8 @@ Status: ☐ todo · ◐ in progress · ☑ done
 - 2026-10-13 — M7 feedback: keep FLE02-affected per-side outputs and all eight effects selectable; preset blocks and the light picker show tappable warning triangles explaining the no-light response. Ghost Mode Full OFF now generates its supported F-series light commands, omitting legacy-only commands; it appears in Library and runs available outputs with normal runner restoration. Validation: TypeScript, lint and all 882 tests pass.
 
 - 2026-10-13 — M7 preset QoL: new light blocks inherit the latest light block’s selection, state and duration (across waits); the picker opens at the selected light. Existing-step editing and explicit wait defaults stay independent. Validation: TypeScript, lint and all nine add-step tests pass.
+
+- 2026-10-13 — M7 preset playback: Until changed blocks set light state without a delay; preset playback supports Run once and Hold final state, while a final Loop building block restarts the preset. Adding Loop without a preceding Wait shows an advisory confirmation. Unnamed drafts can be tested with a temporary preview name; saving still requires a name. Hold/Loop continue until Stop with existing background, connection-loss and error restoration, keepalives and command serialization. The 90 s limit applies to one-shot runs and individual loop cycles rather than the entire continuous run. EN/PL labels and saved/imported/exported playback included. Validation: TypeScript and lint pass; all 901 tests and coverage gates pass, plus 19 final editor checks.
 
 ## How to resume
 

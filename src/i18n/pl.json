@@ -231,7 +231,8 @@
       "stepTooShort": "Minimum to {{min}} ms",
       "tooLong": "Łączny czas może wynosić maksymalnie {{max}} ms",
       "saveFailed": "Nie udało się zapisać presetu",
-      "limit": "Osiągnięto limit {{max}} presetów."
+      "limit": "Osiągnięto limit {{max}} presetów.",
+      "loopPosition": "Umieść Pętlę na końcu, po co najmniej jednej akcji."
     },
     "step": {
       "editTitle": "Edytuj krok",
@@ -242,7 +243,11 @@
       "decrease": "Zmniejsz o 50 ms",
       "increase": "Zwiększ o 50 ms",
       "add": "Dodaj do presetu",
-      "update": "Zapisz krok"
+      "update": "Zapisz krok",
+      "timing": "Czas bloku",
+      "delay": "Opóźnienie po",
+      "untilChanged": "Do zmiany",
+      "stateHint": "Światło zachowuje ten stan, aż zmieni go kolejny blok lub preset zostanie zatrzymany."
     },
     "transfer": {
       "imported": "Zaimportowane presety: {{count}}",
@@ -259,7 +264,23 @@
       }
     },
     "outputWarning": "Ostrzeżenie o wyjściu światła",
-    "outputWarningDetail": "To wyjście może zgłosić wykonanie bez włączenia światła w autach ze sterownikami reflektorów FLE02."
+    "outputWarningDetail": "To wyjście może zgłosić wykonanie bez włączenia światła w autach ze sterownikami reflektorów FLE02.",
+    "playback": {
+      "label": "Odtwarzanie",
+      "once": "Jeden raz",
+      "hold": "Zachowaj stan",
+      "onceHint": "Wykonaj bloki jeden raz, a następnie przywróć światła.",
+      "holdHint": "Wykonaj raz i zachowaj końcowy stan świateł do zatrzymania. Opuszczenie aplikacji lub utrata połączenia przywraca sterowanie."
+    },
+    "loop": {
+      "label": "Pętla",
+      "hint": "Wróć do pierwszego bloku. Powtarzaj do zatrzymania.",
+      "warningTitle": "Pętla bez przerwy?",
+      "warningMessage": "Dodaj blok Czekaj przed Pętlą, aby zrobić przerwę między powtórzeniami. Bez niego preset rozpocznie się ponownie zaraz po ostatniej akcji.",
+      "goBack": "Wróć",
+      "addAnyway": "Dodaj Pętlę mimo to"
+    },
+    "previewName": "Podgląd presetu"
   },
   "iconPicker": {
     "title": "Ikona",
