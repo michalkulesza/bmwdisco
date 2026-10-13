@@ -30,7 +30,7 @@ module.exports = defineConfig([
     },
   },
   {
-    files: ['**/*.test.{ts,tsx}', 'e2e/**'],
+    files: ['**/*.test.{ts,tsx}', 'e2e/**', 'jest.setup.js'],
     languageOptions: {
       globals: {
         jest: 'readonly',
