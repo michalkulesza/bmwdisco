@@ -31,3 +31,24 @@ npm run gen:data:check
 - Rear light modules (RLM/RLM2) are not in scope, so all `taillight_flash` actions are dropped.
 - The F32 chassis has no row in `ecu_modules.json` (FEM_20 is listed under F20); `SERIES_HINTS` is therefore sparse and only a hint.
 - Pack actions carry no timing. Steps are ordered ticks; the show runner decides the interval.
+
+## Dropped effect actions (not available on F modules)
+
+Eight toggle pairs and three flash actions are dropped on purpose. Their commands exist only in the G-series modules BCP_SP21, BDC_G05 and BDC_G11, never in the ten F modules in this folder, so there is nothing to map to an `ElementId` and no bytes to take from the data:
+
+| Command | Function id (`2E D5 42 <id>`) | Modules carrying it | Used by |
+| --- | --- | --- | --- |
+| `LOCATOR_AND_FUNCTIONAL_LIGHTING` | `0x15` | BDC_G05, BDC_G11 | toggle Locator Light |
+| `FOLLOW_ME_HOME` | `0x16` | BCP_SP21, BDC_G05 | toggle Follow Me Home |
+| `ANNOUNCEMENT_INDICATOR_LIGHT` | `0x17` | BCP_SP21, BDC_G05 | toggle Announcement Indicator |
+| `MANEUVRING_LIGHT` | `0x18` | BCP_SP21, BDC_G05 | toggle Maneuvring Light |
+| `OVT` | `0x19` | BCP_SP21, BDC_G05, BDC_G11 | flash Ovt |
+| `REMOTE_LIGHT` | `0x1A` | BCP_SP21, BDC_G05 | toggle Remote Light |
+| `REVERSING_FLASH` | `0x1B` | BCP_SP21, BDC_G05 | flash Reversing Flash |
+| `SPECIAL_FUNCTION_FLASHING` | `0x1C` | BCP_SP21, BDC_G05 | toggle Special Function |
+| `GOODBYE_LIGHT` | `0x1E` | BCP_SP21, BDC_G05 | toggle Goodbye Light |
+| `BUNCH_LIGHT` | `0x1F` | BCP_SP21, BDC_G05 | toggle Bunch Light, flash Bunch |
+
+On FEM_20 and BDC the `TAB_LAMPEN_FUNKTION` enum used by `LEUCHTEN_FUNKTION` (`D542`) ends at `0x13` (Innenbeleuchtung), then `0xFF`. The ids above are undefined there, so sending them would be guessing. Keeping them as direct module commands was rejected for the same reason: the F modules have no row for them. The packs also address them to the CAS group, which only G-series BDC/BCP rows define. If an F module's data ever gains these rows, add them to `ELEMENT_MAP` with a category.
+
+Kept toggle pairs: Hazard (`0x12`), Brake Force (`0x0D`) and Welcome Light (FRM3 `VFB`), all present in the F modules.
