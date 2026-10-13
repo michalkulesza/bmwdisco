@@ -17,5 +17,6 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run lint
+      - run: npm run gen:data:check
       - run: npm test -- --coverage
       - run: npm audit --omit=dev --audit-level=critical

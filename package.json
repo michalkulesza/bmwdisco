@@ -13,6 +13,9 @@
     "format:check": "prettier --check .",
     "test": "jest",
     "test:coverage": "jest --coverage",
+    "gen:data": "tsx scripts/gen-data.ts",
+    "gen:data:check": "tsx scripts/gen-data.ts --check",
+    "sync:data": "tsx scripts/sync-ecu-data.ts",
     "prepare": "husky"
   },
   "dependencies": {
@@ -26,11 +29,13 @@
     "react-dom": "19.2.3",
     "react-native": "0.86.3",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0"
+    "react-native-screens": "~4.26.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@testing-library/react-native": "^14.1.0",
     "@types/jest": "^29.5.14",
+    "@types/node": "^24.19.2",
     "@types/react": "~19.2.2",
     "eslint": "^9.39.5",
     "eslint-config-expo": "^57.0.2",
@@ -43,6 +48,7 @@
     "lint-staged": "^17.6.0",
     "prettier": "^3.9.10",
     "react-test-renderer": "^19.2.3",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3"
   }
 }

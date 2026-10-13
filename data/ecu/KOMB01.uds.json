@@ -1,0 +1,8307 @@
+{
+  "sgbd": "komb01",
+  "addr": "60",
+  "jobs": {
+    "IDENT": "22f150",
+    "FS_LESEN": "19020c",
+    "FS_LESEN_EXPERT": "19020c",
+    "FS_LESEN_DETAIL": "1909ffffff",
+    "FS_LOESCHEN": "14ffffff",
+    "PRUEFSTEMPEL_LESEN": "221000",
+    "PRUEFSTEMPEL_SCHREIBEN": "2e1000000000",
+    "SVK_LESEN": "22f101",
+    "STATUS_LESEN": "22",
+    "STEUERN": "2e",
+    "SERIENNUMMER_LESEN": "22f18c",
+    "STEUERN_IO": "2f",
+    "STEUERN_ROUTINE": "31",
+    "FS_SPERREN": "8502",
+    "IS_LESEN": "222000",
+    "IS_LESEN_DETAIL": "222000",
+    "IS_LOESCHEN": "31010f06",
+    "HERSTELLINFO_LESEN": "22f18a",
+    "DIAGNOSE_AUFRECHT": "3eff",
+    "DIAGNOSE_MODE": "1001",
+    "SLEEP_MODE": "1104",
+    "ENERGIESPARMODE": "31010f0cff",
+    "STATUS_ENERGIESPARMODE": "22100a",
+    "STEUERGERAETE_RESET": "1101",
+    "CBS_DATEN_LESEN": "221001",
+    "CBS_RESET": "2e10010100641f80000fff0f3fff00",
+    "STEUERN_ROE_PERSISTENT_STOP": "31010f0bff0003864002",
+    "STEUERN_ROE_PERSISTENT_START": "31010f0bff0003864502",
+    "CPS_LESEN": "2237fe",
+    "DIAG_SESSION_LESEN": "22f186",
+    "FLASH_TP_LESEN": "222504",
+    "PROG_ZAEHLER_LESEN": "222502",
+    "PROG_MAX_LESEN": "222503",
+    "STEUERN_LEUCHTEN": "2fd11b",
+    "KOMBI_UHRZEIT_DATUM_STELLEN": "2ed113",
+    "STATUS_GWSZ_ANZEIGE": "22d10d",
+    "STATUS_DREHZAHLGRENZE": "226012",
+    "STATUS_TACHOGRENZE": "226010",
+    "_STATUS_FGN_CODIERT": "22300a",
+    "_STATUS_FGN_RDA_KOPIE": "22401f",
+    "STATUS_CHECK_CONTROL_HISTORY": "22d10b",
+    "_STATUS_SERVICE_SCHLUESSELDATEN": "31011006",
+    "_STATUS_READDATABYIDENTIFIER": "22",
+    "STATUS_CBS_SERVICE_AKTIVIERUNG": "226210",
+    "STEUERN_CBS_SERVICE_AKTIVIERUNG": "2ed120",
+    "STATUS_ABILITY_TO_WAKE": "221719",
+    "STATUS_AVERAGE_MESSAGE_RECEPTION_RATE": "221730",
+    "STATUS_MOST_3DB": "3103020a",
+    "STATUS_VERSION_MOST_CONTROLLER": "22171c",
+    "STATUS_VERSORGUNGSSPANNUNG": "22170c",
+    "STATUS_WAKEUP_STATUS": "22171a",
+    "STEUERN_ABILITY_TO_WAKE": "2e171900",
+    "STEUERN_MOST_3DB": "3101020a",
+    "STEUERN_WATCHDOG_TRIGGER_STOP": "3101f020",
+    "STEUERN_GWSZ_OFFSET": "22d10d",
+    "_STATUS_EERAMDATEN": "23240002ffffffff",
+    "_STEUERN_DCC_HERSTELLDATENKORREKTUR": "2e60113014012c03200514070808fc00000c441849244e30530114",
+    "STATUS_LEUCHTEN": "222520",
+    "_STATUS_ECO_MODE_AUSTRITT": "224204",
+    "_DET_LOESCHEN": "2e402c",
+    "_GSS_LOESCHEN": "2e402e",
+    "_STATUS_GSS_ERROR_LESEN": "22402d",
+    "STATUS_VCM_BACKUP_ISTUFE_LESEN": "22100b",
+    "STATUS_VCM_BACKUP_FAHRZEUGAUFTRAG_LESEN": "223f1c",
+    "STATUS_BMW_CC_DATENSAETZE_LESEN": "22d12d",
+    "STATUS_HU_CC_DATENSAETZE_LESEN": "3101a10a",
+    "STATUS_HU_ZEITSTAEMPEL_LESEN": "22d12c",
+    "STATUS_HUD_VERBAU_LESEN": "22f101",
+    "SEGMENTDATEN_SPEICHER": "22d12f",
+    "TIMER_KLIMATISIERUNG": "22d121",
+    "TEST_TIMER_STATUS": "22f101",
+    "_STATUS_HW_VARIANTE_ERW": "22f18a",
+    "_STATUS_TANK_MAX": "223005",
+    "_SEGMENTDATEN_SPEICHER": "22d12f",
+    "_STATUS_READMEMORYBYADDRESS": "2324000200000001",
+    "STEUERN_GWSZ_OFFSET_1KM": "22d10d"
+  },
+  "fns": [
+    {
+      "n": "STEUERN_SELBSTTEST",
+      "s": 49,
+      "id": "0F04"
+    },
+    {
+      "n": "START_SYSTIME",
+      "s": 49,
+      "id": "1005"
+    },
+    {
+      "n": "STATUS_SYSTIME",
+      "s": 34,
+      "id": "1725",
+      "p": "raw"
+    },
+    {
+      "n": "_TWSZ",
+      "s": 34,
+      "id": "4010",
+      "a": [
+        [
+          "TWSZ",
+          4,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ],
+      "r": [
+        [
+          "STAT_TWSZ_WERT",
+          4,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "_TWSZ",
+      "s": 46,
+      "id": "4010",
+      "a": [
+        [
+          "TWSZ",
+          4,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "REICHWEITE_GEWONNENER_KRAFTSTOFF",
+      "s": 34,
+      "id": "4200",
+      "r": [
+        [
+          "STAT_PRW_WERT",
+          2
+        ],
+        [
+          "STAT_CRW_WERT",
+          2
+        ],
+        [
+          "STAT_BCRW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_GRW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_GK_WERT",
+          4,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCHSERHOEHUNG_ALPHA",
+      "s": 34,
+      "id": "4201",
+      "r": [
+        [
+          "STAT_AKKUM_ABS_VERBR_ERH_WERT",
+          4
+        ],
+        [
+          "STAT_VERBR_ERH_VERZOEGERUNG_WERT",
+          4
+        ],
+        [
+          "STAT_VERBR_ERH_MSA_WERT",
+          4
+        ],
+        [
+          "STAT_V_REF_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_V_IST_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_FWP_AKT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              40,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLS_VERZOEGERUNG",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLS_VERZOEGERUNG",
+                "0x03",
+                "TAB_BLS_VERZOEGERUNG"
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCHSERHOEHUNG_PI",
+      "s": 34,
+      "id": "4202",
+      "r": [
+        [
+          "STAT_PI_PROZ_VERBR_ERH_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_PI_VERBR_ERH_GW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_PI_VERBR_ERH_GESCHW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_PI_VERBR_ERH_BESCHL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_PI_VERBR_ERH_KOMF_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "MEHRVERBRAUCH_MV_REF",
+      "s": 34,
+      "id": "4203",
+      "r": [
+        [
+          "STAT_MV_AKT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_30_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_70_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_100_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_MAX_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_GESAMT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ECO_MODE_AUSTRITT",
+      "s": 34,
+      "id": "4204",
+      "r": [
+        [
+          "STAT_ECO_MODE_AUSTRITT",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_AUSTRITT",
+                "0x01"
+              ],
+              [
+                "STAT_LAST",
+                "0x02"
+              ],
+              [
+                "STAT_GESCHWINDIGKEIT",
+                "0x04"
+              ],
+              [
+                "STAT_VERZOEGERUNG",
+                "0x08"
+              ],
+              [
+                "STAT_GANGWAHL",
+                "0x10"
+              ],
+              [
+                "STAT_GWS",
+                "0x20"
+              ],
+              [
+                "STAT_KUP",
+                "0x40"
+              ],
+              [
+                "STAT_VZA",
+                "0x80"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_ECO_TIPP_ANZ",
+          1,
+          {
+            "e": "TAB_ECO_TIPP_ANZ"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAEUCHE_SKALIERUNG_X",
+      "s": 34,
+      "id": "4205",
+      "r": [
+        [
+          "STAT_DURCHSCHNITTSWERT_8_SKAL_X_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITTSWERT_16_SKAL_X_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VERBRAUCH_SEG1_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG1_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG1_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG1_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG2_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG2_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG2_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG2_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG3_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG3_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG3_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG3_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG4_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG4_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG4_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG4_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG5_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG5_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG5_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG5_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG6_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG6_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG6_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG6_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG7_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG7_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG7_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG7_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG8_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG8_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG8_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG8_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG9_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG9_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG9_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG9_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG10_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG10_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG10_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG10_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG11_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG11_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG11_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG11_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG12_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG12_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG12_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG12_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG13_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG13_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG13_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG13_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG14_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG14_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG14_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG14_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG15_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG15_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG15_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG15_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG16_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG16_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG16_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG16_SKAL_X_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAEUCHE_SKALIERUNG_Y",
+      "s": 34,
+      "id": "4206",
+      "r": [
+        [
+          "STAT_DURCHSCHNITTSWERT_8_SKAL_Y_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITTSWERT_16_SKAL_Y_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VERBRAUCH_SEG1_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG1_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG1_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG1_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG2_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG2_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG2_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG2_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG3_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG3_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG3_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG3_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG4_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG4_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG4_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG4_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG5_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG5_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG5_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG5_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG6_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG6_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG6_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG6_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG7_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG7_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG7_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG7_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG8_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG8_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG8_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG8_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG9_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG9_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG9_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG9_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG10_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG10_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG10_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG10_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG11_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG11_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG11_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG11_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG12_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG12_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG12_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG12_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG13_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG13_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG13_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG13_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG14_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG14_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG14_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG14_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG15_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG15_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG15_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG15_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG16_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG16_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG16_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG16_SKAL_Y_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAEUCHE_SKALIERUNG_Z",
+      "s": 34,
+      "id": "4207",
+      "r": [
+        [
+          "STAT_DURCHSCHNITTSWERT_8_SKAL_Z_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITTSWERT_16_SKAL_Z_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VERBRAUCH_SEG1_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG1_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG1_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG1_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG2_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG2_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG2_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG2_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG3_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG3_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG3_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG3_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG4_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG4_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG4_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG4_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG5_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG5_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG5_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG5_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG6_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG6_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG6_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG6_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG7_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG7_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG7_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG7_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG8_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG8_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG8_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG8_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG9_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG9_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG9_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG9_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG10_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG10_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG10_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG10_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG11_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG11_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG11_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG11_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG12_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG12_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG12_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG12_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG13_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG13_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG13_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG13_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG14_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG14_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG14_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG14_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG15_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG15_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG15_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG15_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG16_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG16_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG16_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG16_SKAL_Z_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAEUCHE_SKALIERUNG_A",
+      "s": 34,
+      "id": "4208",
+      "r": [
+        [
+          "STAT_DURCHSCHNITTSWERT_8_SKAL_A_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITTSWERT_16_SKAL_A_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VERBRAUCH_SEG1_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG1_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG1_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG1_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG2_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG2_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG2_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG2_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG3_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG3_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG3_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG3_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG4_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG4_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG4_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG4_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG5_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG5_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG5_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG5_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG6_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG6_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG6_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG6_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG7_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG7_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG7_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG7_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG8_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG8_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG8_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG8_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG9_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG9_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG9_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG9_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG10_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG10_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG10_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG10_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG11_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG11_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG11_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG11_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG12_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG12_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG12_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG12_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG13_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG13_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG13_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG13_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG14_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG14_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG14_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG14_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG15_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG15_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG15_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG15_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG16_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG16_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG16_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG16_SKAL_A_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCHSVORTEIL_HYBRID_AKT_SEGMENT",
+      "s": 34,
+      "id": "4209",
+      "r": [
+        [
+          "STAT_DURCHSCHNITT_AKT_BERECH_SEGMENTS_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITT_HYBRID_RUECKGEW_AKT_SEGM_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCH_CHARAKTERISTIK_ECO",
+      "s": 34,
+      "id": "4230",
+      "r": [
+        [
+          "STAT_STUETZSTELLE1_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE2_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE3_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE4_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE5_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE6_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE7_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE8_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE9_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE10_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE11_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCH_CHARAKTERISTIK_NORMAL",
+      "s": 34,
+      "id": "4231",
+      "r": [
+        [
+          "STAT_STUETZSTELLE1_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE2_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE3_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE4_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE5_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE6_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE7_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE8_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE9_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE10_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STUETZSTELLE11_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCH_CHARAKTERISTIK_LERNFAKTOR",
+      "s": 34,
+      "id": "4232",
+      "r": [
+        [
+          "STAT_LERNFAKTOR1_ECO_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LERNFAKTOR2_ECO_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LERNFAKTOR3_ECO_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LERNFAKTOR4_ECO_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LERNFAKTOR1_NORMAL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LERNFAKTOR2_NORMAL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LERNFAKTOR3_NORMAL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_LERNFAKTOR4_NORMAL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCH_CHARAKTERISTIK_FAKTOR",
+      "s": 34,
+      "id": "4233",
+      "r": [
+        [
+          "STAT_DELTA_RATIO_ECO_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VB_INTERPOLIERT_ECO_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DELTA_RATIO_NORMAL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VB_INTERPOLIERT_NORMAL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "_HW_AENDERUNGSINDEX",
+      "s": 34,
+      "id": "4400",
+      "a": [
+        [
+          "HW_HAUPTINDEX",
+          1
+        ],
+        [
+          "HW_UNTERINDEX",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_HAUPTINDEX_WERT",
+          1
+        ],
+        [
+          "STAT_UNTERINDEX_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "_HW_AENDERUNGSINDEX",
+      "s": 46,
+      "id": "4400",
+      "a": [
+        [
+          "HW_HAUPTINDEX",
+          1
+        ],
+        [
+          "HW_UNTERINDEX",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_LOGBUCH",
+      "s": 34,
+      "id": "4800",
+      "r": [
+        [
+          "STAT_HUD_OPERATION_HOURS_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_OPERATION_MINUTES_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LED_OPERATION_HOURS_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_LED_OPERATION_MINUTES_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LED_REPEAT_TIME_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_TEMP_THRESHOLD_01_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_TEMP_THRESHOLD_02_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_TEMP_THRESHOLD_03_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_TEMP_THRESHOLD_04_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_TEMP1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_LOGTIME_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_DIM_THRESHOLD_01_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_DIM_THRESHOLD_02_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_DIM_THRESHOLD_03_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_DIM_THRESHOLD_04_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_ZONE_1_DIM1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_1_DIM2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_1_DIM3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_1_DIM4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_1_DIM5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_2_DIM1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_2_DIM2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_2_DIM3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_2_DIM4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_2_DIM5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_3_DIM1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_3_DIM2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_3_DIM3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_3_DIM4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_3_DIM5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_4_DIM1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_4_DIM2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_4_DIM3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_4_DIM4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ZONE_4_DIM5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_HEIGHT_ADJUSTMENT_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ROTATION_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ACTIVATION_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_ENVIRONMENTAL_COND_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_PIA",
+      "s": 34,
+      "id": "4801",
+      "r": [
+        [
+          "STAT_HUD_USER0_BRIGHT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER0_HEIGHT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER0_ROTATION_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER0_FUNKTION_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_USER1_BRIGHT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER1_HEIGHT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER1_ROTATION_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER1_FUNKTION_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_USER2_BRIGHT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER2_HEIGHT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER2_ROTATION_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_USER2_FUNKTION_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_GUEST_BRIGHT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_GUEST_HEIGHT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_GUEST_ROTATION_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_GUEST_FUNKTION_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "HUD_SYSTEMDATENEINBLENDUNG",
+      "s": 46,
+      "id": "4802",
+      "a": [
+        [
+          "ACTIVATION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_NO_SIGNAL_SCREEN",
+      "s": 47,
+      "id": "4803"
+    },
+    {
+      "n": "HUD_START_UP_SCREEN",
+      "s": 47,
+      "id": "4804"
+    },
+    {
+      "n": "HUD_PROCESS_VERSION_READ",
+      "s": 34,
+      "id": "4805",
+      "p": "raw"
+    },
+    {
+      "n": "HUD_REGISTER_SCHREIBEN",
+      "s": 46,
+      "id": "4806",
+      "a": [
+        [
+          "REGISTERADRESSE",
+          4
+        ],
+        [
+          "REGISTERLAENGE",
+          1
+        ],
+        [
+          "REGISTERWERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "HUD_REGISTER_LESEN",
+      "s": 47,
+      "id": "4807",
+      "a": [
+        [
+          "REGISTERADRESSE",
+          4
+        ],
+        [
+          "REGISTERLAENGE",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_BILDPOSITION_MIKROSCHRITTE",
+      "s": 47,
+      "id": "4808",
+      "a": [
+        [
+          "POSITION",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_TESTBITMAP_KOMBI_HUD",
+      "s": 49,
+      "id": "A102",
+      "a": [
+        [
+          "BILD",
+          1
+        ],
+        [
+          "ROT",
+          1
+        ],
+        [
+          "GRUEN",
+          1
+        ],
+        [
+          "BLAU",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_WARPING",
+      "s": 49,
+      "id": "A103",
+      "a": [
+        [
+          "AKTION",
+          1,
+          "TAB_WARPING_AKTION"
+        ],
+        [
+          "MODE",
+          1,
+          "TAB_WARPING"
+        ],
+        [
+          "RICHTUNG",
+          1,
+          "TAB_WARPING_RICHTUNG"
+        ],
+        [
+          "DELTA",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SELBSTTEST_HUD",
+      "s": 49,
+      "id": "A104"
+    },
+    {
+      "n": "STEUERN_BLINKER",
+      "s": 49,
+      "id": "A105",
+      "a": [
+        [
+          "AKTION_BLINKER",
+          1,
+          "TAB_KOMBI_BLINKER"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_WARPLISTE",
+      "s": 49,
+      "id": "A106",
+      "a": [
+        [
+          "WARPLISTE",
+          1,
+          "TAB_WARPLISTE"
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_HUD_BILDPOSITION_RELATIV",
+      "s": 49,
+      "id": "A107",
+      "a": [
+        [
+          "MODUS",
+          1,
+          "TAB_HUD_BILDPOSITION"
+        ],
+        [
+          "HOEHE_RICHTUNG",
+          1,
+          "TAB_HUD_RICHTUNG"
+        ],
+        [
+          "SCHRITTZAHL",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "HUD_SHOWMODE",
+      "s": 49,
+      "id": "AA00"
+    },
+    {
+      "n": "HUD_LOGBUCH_RESET",
+      "s": 49,
+      "id": "AA01"
+    },
+    {
+      "n": "HUD_BILDHOEHE",
+      "s": 47,
+      "id": "D08D",
+      "a": [
+        [
+          "KEY",
+          1
+        ],
+        [
+          "POSITION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_BILDROTATION",
+      "s": 47,
+      "id": "D08E",
+      "a": [
+        [
+          "KEY",
+          1
+        ],
+        [
+          "POSITION",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_AKTIVIERUNG",
+      "s": 46,
+      "id": "D090",
+      "a": [
+        [
+          "AKTIVIERUNG",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "DREHZAHL_WERT",
+      "s": 34,
+      "id": "D106",
+      "p": "raw"
+    },
+    {
+      "n": "TACHO_WERT",
+      "s": 34,
+      "id": "D107",
+      "p": "raw"
+    },
+    {
+      "n": "CBS_KM_PRO_JAHR",
+      "s": 34,
+      "id": "D10A",
+      "a": [
+        [
+          "KM_LEISTUNG",
+          1
+        ]
+      ],
+      "r": [
+        [
+          "STAT_KM_LEISTUNG_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "CBS_KM_PRO_JAHR",
+      "s": 46,
+      "id": "D10A",
+      "a": [
+        [
+          "KM_LEISTUNG",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "GWSZ_ABSOLUT_WERT",
+      "s": 34,
+      "id": "D10D",
+      "r": [
+        [
+          "STAT_ABSOLUT_GWSZ_RAM_WERT",
+          4
+        ],
+        [
+          "STAT_ABSOLUT_GWSZ_EEP_WERT",
+          4
+        ]
+      ]
+    },
+    {
+      "n": "LSS_TASTE",
+      "s": 34,
+      "id": "D10E",
+      "p": "raw"
+    },
+    {
+      "n": "KOMBI_REICHWEITE_BEV_PHEV",
+      "s": 34,
+      "id": "D111",
+      "r": [
+        [
+          "STAT_ELECTRIC_RANGE_CURRENT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_ELECTRIC_RANGE_MAXIMUM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_FUEL_RANGE_CURRENT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_FUEL_RANGE_MAXIMUM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_RANGE_CONSUMPTION_ELECTRIC_WERT",
+          2,
+          {
+            "s": [
+              1,
+              1000,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_NEBENVERBRAUCHERLEISTUNG_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "A_TEMP_WERT",
+      "s": 34,
+      "id": "D112",
+      "r": [
+        [
+          "STAT_A_TEMP_ANZEIGE_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_A_TEMP_ROHWERT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              -40
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_UHRZEIT_DATUM",
+      "s": 34,
+      "id": "D113",
+      "r": [
+        [
+          "STAT_KOMBI_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_KOMBI_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_KOMBI_SEKUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_KOMBI_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_KOMBI_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_KOMBI_JAHR_WERT",
+          2
+        ],
+        [
+          "STAT_KOMBI_ZEIT_FORMAT",
+          1,
+          {
+            "e": "TAB_KOMBI_FORMAT_UHRZEIT"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "GWSZ_RESET",
+      "s": 34,
+      "id": "D114",
+      "p": "raw"
+    },
+    {
+      "n": "STEUERN_ACC_ZEIGER",
+      "s": 47,
+      "id": "D115",
+      "a": [
+        [
+          "GESCHWINDIGKEIT_ACC",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STARTWERTESPEICHER",
+      "s": 34,
+      "id": "D116",
+      "a": [
+        [
+          "NEBENVERBRAUCHERLEISTUNG",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_1",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_1",
+          2
+        ],
+        [
+          "MO_FR_SPEED_1",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_2",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_2",
+          2
+        ],
+        [
+          "MO_FR_SPEED_2",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_3",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_3",
+          2
+        ],
+        [
+          "MO_FR_SPEED_3",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_4",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_4",
+          2
+        ],
+        [
+          "MO_FR_SPEED_4",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_5",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_5",
+          2
+        ],
+        [
+          "MO_FR_SPEED_5",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_6",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_6",
+          2
+        ],
+        [
+          "MO_FR_SPEED_6",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_7",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_7",
+          2
+        ],
+        [
+          "MO_FR_SPEED_7",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_1",
+          2
+        ],
+        [
+          "SA_COUNTER_1",
+          2
+        ],
+        [
+          "SA_SPEED_1",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_2",
+          2
+        ],
+        [
+          "SA_COUNTER_2",
+          2
+        ],
+        [
+          "SA_SPEED_2",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_3",
+          2
+        ],
+        [
+          "SA_COUNTER_3",
+          2
+        ],
+        [
+          "SA_SPEED_3",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_4",
+          2
+        ],
+        [
+          "SA_COUNTER_4",
+          2
+        ],
+        [
+          "SA_SPEED_4",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_5",
+          2
+        ],
+        [
+          "SA_COUNTER_5",
+          2
+        ],
+        [
+          "SA_SPEED_5",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_6",
+          2
+        ],
+        [
+          "SA_COUNTER_6",
+          2
+        ],
+        [
+          "SA_SPEED_6",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_7",
+          2
+        ],
+        [
+          "SA_COUNTER_7",
+          2
+        ],
+        [
+          "SA_SPEED_7",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_1",
+          2
+        ],
+        [
+          "SO_COUNTER_1",
+          2
+        ],
+        [
+          "SO_SPEED_1",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_2",
+          2
+        ],
+        [
+          "SO_COUNTER_2",
+          2
+        ],
+        [
+          "SO_SPEED_2",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_3",
+          2
+        ],
+        [
+          "SO_COUNTER_3",
+          2
+        ],
+        [
+          "SO_SPEED_3",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_4",
+          2
+        ],
+        [
+          "SO_COUNTER_4",
+          2
+        ],
+        [
+          "SO_SPEED_4",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_5",
+          2
+        ],
+        [
+          "SO_COUNTER_5",
+          2
+        ],
+        [
+          "SO_SPEED_5",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_6",
+          2
+        ],
+        [
+          "SO_COUNTER_6",
+          2
+        ],
+        [
+          "SO_SPEED_6",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_7",
+          2
+        ],
+        [
+          "SO_COUNTER_7",
+          2
+        ],
+        [
+          "SO_SPEED_7",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ],
+      "r": [
+        [
+          "STAT_NEBENVERBRAUCHERLEISTUNG_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MO_FR_CONSUMPTION_1_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_COUNTER_1_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_SPEED_1_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MO_FR_CONSUMPTION_2_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_COUNTER_2_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_SPEED_2_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MO_FR_CONSUMPTION_3_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_COUNTER_3_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_SPEED_3_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MO_FR_CONSUMPTION_4_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_COUNTER_4_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_SPEED_4_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MO_FR_CONSUMPTION_5_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_COUNTER_5_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_SPEED_5_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MO_FR_CONSUMPTION_6_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_COUNTER_6_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_SPEED_6_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MO_FR_CONSUMPTION_7_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_COUNTER_7_WERT",
+          2
+        ],
+        [
+          "STAT_MO_FR_SPEED_7_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SA_CONSUMPTION_1_WERT",
+          2
+        ],
+        [
+          "STAT_SA_COUNTER_1_WERT",
+          2
+        ],
+        [
+          "STAT_SA_SPEED_1_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SA_CONSUMPTION_2_WERT",
+          2
+        ],
+        [
+          "STAT_SA_COUNTER_2_WERT",
+          2
+        ],
+        [
+          "STAT_SA_SPEED_2_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SA_CONSUMPTION_3_WERT",
+          2
+        ],
+        [
+          "STAT_SA_COUNTER_3_WERT",
+          2
+        ],
+        [
+          "STAT_SA_SPEED_3_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SA_CONSUMPTION_4_WERT",
+          2
+        ],
+        [
+          "STAT_SA_COUNTER_4_WERT",
+          2
+        ],
+        [
+          "STAT_SA_SPEED_4_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SA_CONSUMPTION_5_WERT",
+          2
+        ],
+        [
+          "STAT_SA_COUNTER_5_WERT",
+          2
+        ],
+        [
+          "STAT_SA_SPEED_5_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SA_CONSUMPTION_6_WERT",
+          2
+        ],
+        [
+          "STAT_SA_COUNTER_6_WERT",
+          2
+        ],
+        [
+          "STAT_SA_SPEED_6_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SA_CONSUMPTION_7_WERT",
+          2
+        ],
+        [
+          "STAT_SA_COUNTER_7_WERT",
+          2
+        ],
+        [
+          "STAT_SA_SPEED_7_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SO_CONSUMPTION_1_WERT",
+          2
+        ],
+        [
+          "STAT_SO_COUNTER_1_WERT",
+          2
+        ],
+        [
+          "STAT_SO_SPEED_1_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SO_CONSUMPTION_2_WERT",
+          2
+        ],
+        [
+          "STAT_SO_COUNTER_2_WERT",
+          2
+        ],
+        [
+          "STAT_SO_SPEED_2_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SO_CONSUMPTION_3_WERT",
+          2
+        ],
+        [
+          "STAT_SO_COUNTER_3_WERT",
+          2
+        ],
+        [
+          "STAT_SO_SPEED_3_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SO_CONSUMPTION_4_WERT",
+          2
+        ],
+        [
+          "STAT_SO_COUNTER_4_WERT",
+          2
+        ],
+        [
+          "STAT_SO_SPEED_4_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SO_CONSUMPTION_5_WERT",
+          2
+        ],
+        [
+          "STAT_SO_COUNTER_5_WERT",
+          2
+        ],
+        [
+          "STAT_SO_SPEED_5_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SO_CONSUMPTION_6_WERT",
+          2
+        ],
+        [
+          "STAT_SO_COUNTER_6_WERT",
+          2
+        ],
+        [
+          "STAT_SO_SPEED_6_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SO_CONSUMPTION_7_WERT",
+          2
+        ],
+        [
+          "STAT_SO_COUNTER_7_WERT",
+          2
+        ],
+        [
+          "STAT_SO_SPEED_7_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STARTWERTESPEICHER",
+      "s": 46,
+      "id": "D116",
+      "a": [
+        [
+          "NEBENVERBRAUCHERLEISTUNG",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_1",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_1",
+          2
+        ],
+        [
+          "MO_FR_SPEED_1",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_2",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_2",
+          2
+        ],
+        [
+          "MO_FR_SPEED_2",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_3",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_3",
+          2
+        ],
+        [
+          "MO_FR_SPEED_3",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_4",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_4",
+          2
+        ],
+        [
+          "MO_FR_SPEED_4",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_5",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_5",
+          2
+        ],
+        [
+          "MO_FR_SPEED_5",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_6",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_6",
+          2
+        ],
+        [
+          "MO_FR_SPEED_6",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "MO_FR_CONSUMPTION_7",
+          2
+        ],
+        [
+          "MO_FR_COUNTER_7",
+          2
+        ],
+        [
+          "MO_FR_SPEED_7",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_1",
+          2
+        ],
+        [
+          "SA_COUNTER_1",
+          2
+        ],
+        [
+          "SA_SPEED_1",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_2",
+          2
+        ],
+        [
+          "SA_COUNTER_2",
+          2
+        ],
+        [
+          "SA_SPEED_2",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_3",
+          2
+        ],
+        [
+          "SA_COUNTER_3",
+          2
+        ],
+        [
+          "SA_SPEED_3",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_4",
+          2
+        ],
+        [
+          "SA_COUNTER_4",
+          2
+        ],
+        [
+          "SA_SPEED_4",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_5",
+          2
+        ],
+        [
+          "SA_COUNTER_5",
+          2
+        ],
+        [
+          "SA_SPEED_5",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_6",
+          2
+        ],
+        [
+          "SA_COUNTER_6",
+          2
+        ],
+        [
+          "SA_SPEED_6",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SA_CONSUMPTION_7",
+          2
+        ],
+        [
+          "SA_COUNTER_7",
+          2
+        ],
+        [
+          "SA_SPEED_7",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_1",
+          2
+        ],
+        [
+          "SO_COUNTER_1",
+          2
+        ],
+        [
+          "SO_SPEED_1",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_2",
+          2
+        ],
+        [
+          "SO_COUNTER_2",
+          2
+        ],
+        [
+          "SO_SPEED_2",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_3",
+          2
+        ],
+        [
+          "SO_COUNTER_3",
+          2
+        ],
+        [
+          "SO_SPEED_3",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_4",
+          2
+        ],
+        [
+          "SO_COUNTER_4",
+          2
+        ],
+        [
+          "SO_SPEED_4",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_5",
+          2
+        ],
+        [
+          "SO_COUNTER_5",
+          2
+        ],
+        [
+          "SO_SPEED_5",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_6",
+          2
+        ],
+        [
+          "SO_COUNTER_6",
+          2
+        ],
+        [
+          "SO_SPEED_6",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "SO_CONSUMPTION_7",
+          2
+        ],
+        [
+          "SO_COUNTER_7",
+          2
+        ],
+        [
+          "SO_SPEED_7",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_DREHZAHL",
+      "s": 47,
+      "id": "D117",
+      "a": [
+        [
+          "DREHZAHL",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "STARTWERT_ZEITEN",
+      "s": 34,
+      "id": "D118",
+      "r": [
+        [
+          "STAT_ANZAHL_KODIERTE_STARTZEITEN_WERT",
+          1
+        ],
+        [
+          "STAT_STARTZEIT_ANFANG_1_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ANFANG_2_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ANFANG_3_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ANFANG_4_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ANFANG_5_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ANFANG_6_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ANFANG_7_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ENDE_1_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ENDE_2_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ENDE_3_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ENDE_4_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ENDE_5_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ENDE_6_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_STARTZEIT_ENDE_7_WERT",
+          1,
+          {
+            "s": [
+              15,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_TACHO",
+      "s": 47,
+      "id": "D11A",
+      "a": [
+        [
+          "GESCHWINDIGKEIT",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_KVA_OELTEMPERATUR",
+      "s": 47,
+      "id": "D11C",
+      "a": [
+        [
+          "VERBRAUCH",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_POWER_RESERVE",
+      "s": 34,
+      "id": "D11D",
+      "a": [
+        [
+          "POWER_RESERVE",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ],
+      "r": [
+        [
+          "STAT_POWER_RESERVE_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_POWER_RESERVE",
+      "s": 47,
+      "id": "D11D",
+      "a": [
+        [
+          "POWER_RESERVE",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "STEUERN_TANKANZEIGE",
+      "s": 47,
+      "id": "D11E",
+      "a": [
+        [
+          "TANKINHALT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "TANKINHALT",
+      "s": 34,
+      "id": "D11F",
+      "r": [
+        [
+          "STAT_TANKKAMMER_RECHTS_WERT",
+          2,
+          {
+            "s": [
+              1,
+              128,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_TANKKAMMER_LINKS_WERT",
+          2,
+          {
+            "s": [
+              1,
+              128,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_SUMMENWERT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              128,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_GEDAEMPFT_ANZ_WERT",
+          2,
+          {
+            "s": [
+              1,
+              128,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_TANKPHASE",
+          1,
+          {
+            "e": "TAB_KOMBI_TANKPHASE"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "TIMER_KLIMATISIERUNG",
+      "s": 34,
+      "id": "D121",
+      "r": [
+        [
+          "STAT_T1_ID_FUNKTION_BEDIENUNG_TIMER_WERT",
+          2
+        ],
+        [
+          "STAT_T1_ID_BEDIENUNG_TIMER_WERT",
+          1
+        ],
+        [
+          "STAT_T1_BEDIENUNG_TIMER_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_T1_BEDIENUNG_TIMER_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_T1_BEDIENUNG_DATA",
+          2
+        ],
+        [
+          "STAT_T1_BEDIENUNG_AUSWAHL_WOCHENTAG_WERT",
+          1
+        ],
+        [
+          "STAT_T2_ID_FUNKTION_BEDIENUNG_TIMER_WERT",
+          2
+        ],
+        [
+          "STAT_T2_ID_BEDIENUNG_TIMER_WERT",
+          1
+        ],
+        [
+          "STAT_T2_BEDIENUNG_TIMER_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_T2_BEDIENUNG_TIMER_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_T2_BEDIENUNG_DATA",
+          2
+        ],
+        [
+          "STAT_T2_BEDIENUNG_AUSWAHL_WOCHENTAG_WERT",
+          1
+        ],
+        [
+          "STAT_T3_ID_FUNKTION_BEDIENUNG_TIMER_WERT",
+          2
+        ],
+        [
+          "STAT_T3_ID_BEDIENUNG_TIMER_WERT",
+          1
+        ],
+        [
+          "STAT_T3_BEDIENUNG_TIMER_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_T3_BEDIENUNG_TIMER_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_T3_BEDIENUNG_DATA",
+          2
+        ],
+        [
+          "STAT_T3_BEDIENUNG_AUSWAHL_WOCHENTAG_WERT",
+          1
+        ],
+        [
+          "STAT_T4_ID_FUNKTION_BEDIENUNG_TIMER_WERT",
+          2
+        ],
+        [
+          "STAT_T4_ID_BEDIENUNG_TIMER_WERT",
+          1
+        ],
+        [
+          "STAT_T4_BEDIENUNG_TIMER_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_T4_BEDIENUNG_TIMER_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_T4_BEDIENUNG_DATA",
+          2
+        ],
+        [
+          "STAT_T4_BEDIENUNG_AUSWAHL_WOCHENTAG_WERT",
+          1
+        ],
+        [
+          "STAT_T5_ID_FUNKTION_BEDIENUNG_TIMER_WERT",
+          2
+        ],
+        [
+          "STAT_T5_ID_BEDIENUNG_TIMER_WERT",
+          1
+        ],
+        [
+          "STAT_T5_BEDIENUNG_TIMER_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_T5_BEDIENUNG_TIMER_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_T5_BEDIENUNG_DATA",
+          2
+        ],
+        [
+          "STAT_T5_BEDIENUNG_AUSWAHL_WOCHENTAG_WERT",
+          1
+        ],
+        [
+          "STAT_T6_ID_FUNKTION_BEDIENUNG_TIMER_WERT",
+          2
+        ],
+        [
+          "STAT_T6_ID_BEDIENUNG_TIMER_WERT",
+          1
+        ],
+        [
+          "STAT_T6_BEDIENUNG_TIMER_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_T6_BEDIENUNG_TIMER_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_T6_BEDIENUNG_DATA",
+          2
+        ],
+        [
+          "STAT_T6_BEDIENUNG_AUSWAHL_WOCHENTAG_WERT",
+          1
+        ],
+        [
+          "STAT_T7_ID_FUNKTION_BEDIENUNG_TIMER_WERT",
+          2
+        ],
+        [
+          "STAT_T7_ID_BEDIENUNG_TIMER_WERT",
+          1
+        ],
+        [
+          "STAT_T7_BEDIENUNG_TIMER_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_T7_BEDIENUNG_TIMER_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_T7_BEDIENUNG_DATA",
+          2
+        ],
+        [
+          "STAT_T7_BEDIENUNG_AUSWAHL_WOCHENTAG_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_BC_DSV_L_KM",
+      "s": 46,
+      "id": "D125",
+      "a": [
+        [
+          "EWIGER_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "10000KM_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "33KM_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_BC_DSV_L_KM",
+      "s": 34,
+      "id": "D125",
+      "a": [
+        [
+          "EWIGER_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "10000KM_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "33KM_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              100,
+              1,
+              0
+            ]
+          }
+        ]
+      ],
+      "r": [
+        [
+          "STAT_EWIGER_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_10000KM_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_33KM_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_BC_BCW_L_KM",
+      "s": 34,
+      "id": "D126",
+      "r": [
+        [
+          "STAT_BC_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BC_DSG_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BC_MVERB_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BC_RW_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_BC_RBC_L_KM",
+      "s": 34,
+      "id": "D127",
+      "r": [
+        [
+          "STAT_RBC_DSV_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_RBC_DSG_L_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_RBC_ABFAHRT_L_KM_WERT",
+          2
+        ],
+        [
+          "STAT_RBC_DAUER_L_KM_WERT",
+          2
+        ],
+        [
+          "STAT_RBC_STRECKE_L_KM_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_BC_DSV_KWH_KM",
+      "s": 34,
+      "id": "D128",
+      "a": [
+        [
+          "EWIGER_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "10000KM_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "33KM_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ],
+      "r": [
+        [
+          "STAT_EWIGER_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_10000KM_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_33KM_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_BC_DSV_KWH_KM",
+      "s": 46,
+      "id": "D128",
+      "a": [
+        [
+          "EWIGER_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "10000KM_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ],
+        [
+          "33KM_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              10,
+              1,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_BC_BCW_KWH_KM",
+      "s": 34,
+      "id": "D129",
+      "r": [
+        [
+          "STAT_BC_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BC_DSG_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BC_MVERB_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BC_RW_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "KOMBI_BC_RBC_KWH_KM",
+      "s": 34,
+      "id": "D12A",
+      "r": [
+        [
+          "STAT_RBC_DSV_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_RBC_DSG_KWH_KM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_RBC_ABFAHRT_KWH_KM_WERT",
+          2
+        ],
+        [
+          "STAT_RBC_DAUER_KWH_KM_WERT",
+          2
+        ],
+        [
+          "STAT_RBC_STRECKE_KWH_KM_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "UMSATZRATEN_SPEICHER",
+      "s": 34,
+      "id": "D12B",
+      "a": [
+        [
+          "GESCHWINDIGKEIT_1",
+          1
+        ],
+        [
+          "ENERGIE_1",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_2",
+          1
+        ],
+        [
+          "ENERGIE_2",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_3",
+          1
+        ],
+        [
+          "ENERGIE_3",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_4",
+          1
+        ],
+        [
+          "ENERGIE_4",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_5",
+          1
+        ],
+        [
+          "ENERGIE_5",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_6",
+          1
+        ],
+        [
+          "ENERGIE_6",
+          2
+        ]
+      ],
+      "r": [
+        [
+          "STAT_GESCHWINDIGKEIT_1_WERT",
+          1
+        ],
+        [
+          "STAT_ENERGIE_1_WERT",
+          2
+        ],
+        [
+          "STAT_GESCHWINDIGKEIT_2_WERT",
+          1
+        ],
+        [
+          "STAT_ENERGIE_2_WERT",
+          2
+        ],
+        [
+          "STAT_GESCHWINDIGKEIT_3_WERT",
+          1
+        ],
+        [
+          "STAT_ENERGIE_3_WERT",
+          2
+        ],
+        [
+          "STAT_GESCHWINDIGKEIT_4_WERT",
+          1
+        ],
+        [
+          "STAT_ENERGIE_4_WERT",
+          2
+        ],
+        [
+          "STAT_GESCHWINDIGKEIT_5_WERT",
+          1
+        ],
+        [
+          "STAT_ENERGIE_5_WERT",
+          2
+        ],
+        [
+          "STAT_GESCHWINDIGKEIT_6_WERT",
+          1
+        ],
+        [
+          "STAT_ENERGIE_6_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "UMSATZRATEN_SPEICHER",
+      "s": 46,
+      "id": "D12B",
+      "a": [
+        [
+          "GESCHWINDIGKEIT_1",
+          1
+        ],
+        [
+          "ENERGIE_1",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_2",
+          1
+        ],
+        [
+          "ENERGIE_2",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_3",
+          1
+        ],
+        [
+          "ENERGIE_3",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_4",
+          1
+        ],
+        [
+          "ENERGIE_4",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_5",
+          1
+        ],
+        [
+          "ENERGIE_5",
+          2
+        ],
+        [
+          "GESCHWINDIGKEIT_6",
+          1
+        ],
+        [
+          "ENERGIE_6",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "ZEITSTEMPEL_HU_ABFRAGEN",
+      "s": 34,
+      "id": "D12C",
+      "r": [
+        [
+          "STAT_SEKUNDENZAEHLER_WERT",
+          4
+        ],
+        [
+          "STAT_GWSZ_TEXT",
+          3
+        ],
+        [
+          "STAT_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_JAHR_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "KLIMA_TIMER_SCHREIBEN",
+      "s": 46,
+      "id": "D12E",
+      "a": [
+        [
+          "T_ID_FUNKTION_BEDIENUNG_TIMER",
+          2
+        ],
+        [
+          "T_ID_BEDIENUNG_TIMER",
+          1
+        ],
+        [
+          "T_BEDIENUNG_TIMER_STUNDE",
+          1
+        ],
+        [
+          "T_BEDIENUNG_TIMER_MINUTEN",
+          1
+        ],
+        [
+          "T_BEDIENUNG_DATA",
+          2
+        ],
+        [
+          "T_BEDIENUNG_AUSWAHL_WOCHENTAG",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "SEGMENTDATEN_SPEICHER",
+      "s": 34,
+      "id": "D12F",
+      "r": [
+        [
+          "STAT_BLOCK_01_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_01_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_01_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_01_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_01_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_01_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_01_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_01_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_01_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_01_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_01_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_01_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_01_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_01_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_01_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_01_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_01_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_01_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_02_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_02_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_02_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_02_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_02_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_02_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_02_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_02_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_02_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_02_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_02_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_02_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_02_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_02_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_02_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_02_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_02_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_02_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_03_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_03_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_03_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_03_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_03_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_03_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_03_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_03_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_03_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_03_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_03_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_03_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_03_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_03_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_03_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_03_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_03_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_03_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_04_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_04_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_04_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_04_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_04_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_04_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_04_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_04_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_04_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_04_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_04_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_04_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_04_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_04_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_04_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_04_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_04_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_04_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_05_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_05_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_05_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_05_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_05_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_05_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_05_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_05_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_05_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_05_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_05_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_05_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_05_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_05_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_05_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_05_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_05_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_05_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_06_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_06_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_06_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_06_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_06_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_06_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_06_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_06_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_06_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_06_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_06_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_06_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_06_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_06_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_06_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_06_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_06_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_06_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_07_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_07_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_07_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_07_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_07_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_07_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_07_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_07_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_07_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_07_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_07_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_07_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_07_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_07_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_07_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_07_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_07_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_07_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_08_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_08_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_08_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_08_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_08_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_08_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_08_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_08_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_08_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_08_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_08_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_08_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_08_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_08_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_08_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_08_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_08_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_08_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_09_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_09_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_09_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_09_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_09_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_09_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_09_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_09_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_09_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_09_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_09_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_09_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_09_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_09_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_09_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_09_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_09_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_09_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_10_SEGMENT_ID_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_10_TAG_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_10_MONAT_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_10_JAHR_WERT",
+          1,
+          {
+            "s": [
+              1,
+              1,
+              2000
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_10_STUNDE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_10_MINUTE_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_10_MILE_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_10_A_TEMP_WERT",
+          1,
+          {
+            "s": [
+              0.5,
+              1,
+              -40
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_10_AKT_DAUER_ECO_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_10_AKT_DAUER_ECOPLUS_SPORT_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_10_SOC_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_10_VERBRAUCH_DATA",
+          3
+        ],
+        [
+          "STAT_BLOCK_10_REKUPERATION_WERT",
+          1
+        ],
+        [
+          "STAT_BLOCK_10_EFAHREN_VS_VERBRENNER_WERT",
+          1,
+          {
+            "s": [
+              1,
+              2,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLOCK_10_VERBRAUCHTER_KRAFTSTOFF_DATA",
+          2
+        ],
+        [
+          "BF_BLOCK_10_STERNE",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLOCK_10_STERNE_BESCHLEUNIGUNG",
+                "0x05",
+                "TAB_STERNE_BESCHLEUNIGUNG"
+              ],
+              [
+                "STAT_BLOCK_10_STERNE_BREMSEN",
+                "0x38",
+                "TAB_STERNE_BREMSEN"
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "REICHWEITE_GEWONNENER_KRAFTSTOFF",
+      "s": 34,
+      "id": "D1D0",
+      "r": [
+        [
+          "STAT_PRW_WERT",
+          2
+        ],
+        [
+          "STAT_CRW_WERT",
+          2
+        ],
+        [
+          "STAT_BCRW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_GRW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_GK_WERT",
+          4,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCHSERHOEHUNG_ALPHA",
+      "s": 34,
+      "id": "D1D1",
+      "r": [
+        [
+          "STAT_AKKUM_ABS_VERBR_ERH_WERT",
+          4
+        ],
+        [
+          "STAT_VERBR_ERH_VERZOEGERUNG_WERT",
+          4
+        ],
+        [
+          "STAT_VERBR_ERH_MSA_WERT",
+          4
+        ],
+        [
+          "STAT_V_REF_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_V_IST_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_FWP_AKT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              40,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_BLS_VERZOEGERUNG",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_BLS_VERZOEGERUNG",
+                "0x03",
+                "TAB_BLS_VERZOEGERUNG"
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCHSERHOEHUNG_PI",
+      "s": 34,
+      "id": "D1D2",
+      "r": [
+        [
+          "STAT_PI_PROZ_VERBR_ERH_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_PI_VERBR_ERH_GW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_PI_VERBR_ERH_GESCHW_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_PI_VERBR_ERH_BESCHL_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_PI_VERBR_ERH_KOMF_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "MEHRVERBRAUCH_MV_REF",
+      "s": 34,
+      "id": "D1D3",
+      "r": [
+        [
+          "STAT_MV_AKT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_30_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_70_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_100_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_MAX_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_MV_REF_GESAMT_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "n": "ECO_MODE_AUSTRITT",
+      "s": 34,
+      "id": "D1D4",
+      "r": [
+        [
+          "STAT_ECO_MODE_AUSTRITT",
+          1,
+          {
+            "bf": [
+              [
+                "STAT_AUSTRITT",
+                "0x01"
+              ],
+              [
+                "STAT_LAST",
+                "0x02"
+              ],
+              [
+                "STAT_GESCHWINDIGKEIT",
+                "0x04"
+              ],
+              [
+                "STAT_VERZOEGERUNG",
+                "0x08"
+              ],
+              [
+                "STAT_GANGWAHL",
+                "0x10"
+              ],
+              [
+                "STAT_GWS",
+                "0x20"
+              ],
+              [
+                "STAT_KUP",
+                "0x40"
+              ],
+              [
+                "STAT_VZA",
+                "0x80"
+              ]
+            ]
+          }
+        ],
+        [
+          "STAT_ECO_TIPP_ANZ",
+          1,
+          {
+            "e": "TAB_ECO_TIPP_ANZ"
+          }
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAEUCHE_SKALIERUNG_X",
+      "s": 34,
+      "id": "D1D5",
+      "r": [
+        [
+          "STAT_DURCHSCHNITTSWERT_8_SKAL_X_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITTSWERT_16_SKAL_X_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VERBRAUCH_SEG1_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG1_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG1_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG1_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG2_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG2_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG2_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG2_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG3_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG3_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG3_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG3_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG4_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG4_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG4_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG4_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG5_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG5_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG5_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG5_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG6_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG6_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG6_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG6_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG7_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG7_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG7_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG7_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG8_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG8_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG8_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG8_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG9_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG9_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG9_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG9_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG10_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG10_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG10_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG10_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG11_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG11_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG11_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG11_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG12_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG12_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG12_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG12_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG13_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG13_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG13_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG13_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG14_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG14_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG14_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG14_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG15_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG15_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG15_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG15_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG16_SKAL_X_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG16_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG16_SKAL_X_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG16_SKAL_X_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAEUCHE_SKALIERUNG_Y",
+      "s": 34,
+      "id": "D1D6",
+      "r": [
+        [
+          "STAT_DURCHSCHNITTSWERT_8_SKAL_Y_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITTSWERT_16_SKAL_Y_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VERBRAUCH_SEG1_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG1_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG1_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG1_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG2_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG2_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG2_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG2_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG3_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG3_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG3_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG3_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG4_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG4_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG4_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG4_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG5_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG5_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG5_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG5_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG6_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG6_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG6_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG6_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG7_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG7_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG7_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG7_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG8_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG8_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG8_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG8_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG9_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG9_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG9_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG9_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG10_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG10_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG10_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG10_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG11_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG11_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG11_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG11_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG12_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG12_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG12_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG12_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG13_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG13_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG13_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG13_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG14_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG14_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG14_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG14_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG15_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG15_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG15_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG15_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG16_SKAL_Y_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG16_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG16_SKAL_Y_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG16_SKAL_Y_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAEUCHE_SKALIERUNG_Z",
+      "s": 34,
+      "id": "D1D7",
+      "r": [
+        [
+          "STAT_DURCHSCHNITTSWERT_8_SKAL_Z_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITTSWERT_16_SKAL_Z_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VERBRAUCH_SEG1_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG1_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG1_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG1_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG2_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG2_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG2_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG2_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG3_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG3_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG3_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG3_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG4_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG4_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG4_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG4_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG5_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG5_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG5_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG5_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG6_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG6_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG6_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG6_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG7_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG7_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG7_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG7_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG8_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG8_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG8_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG8_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG9_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG9_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG9_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG9_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG10_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG10_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG10_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG10_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG11_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG11_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG11_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG11_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG12_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG12_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG12_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG12_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG13_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG13_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG13_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG13_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG14_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG14_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG14_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG14_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG15_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG15_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG15_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG15_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG16_SKAL_Z_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG16_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG16_SKAL_Z_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG16_SKAL_Z_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAEUCHE_SKALIERUNG_A",
+      "s": 34,
+      "id": "D1D8",
+      "r": [
+        [
+          "STAT_DURCHSCHNITTSWERT_8_SKAL_A_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITTSWERT_16_SKAL_A_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_VERBRAUCH_SEG1_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG1_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG1_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG1_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG2_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG2_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG2_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG2_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG3_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG3_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG3_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG3_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG4_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG4_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG4_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG4_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG5_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG5_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG5_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG5_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG6_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG6_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG6_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG6_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG7_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG7_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG7_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG7_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG8_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG8_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG8_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG8_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG9_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG9_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG9_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG9_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG10_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG10_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG10_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG10_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG11_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG11_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG11_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG11_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG12_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG12_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG12_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG12_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG13_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG13_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG13_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG13_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG14_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG14_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG14_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG14_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG15_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG15_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG15_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG15_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_VERBRAUCH_SEG16_SKAL_A_WERT",
+          2
+        ],
+        [
+          "STAT_VERBRAUCHVORTEIL_SEG16_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_ZAEHLER_SEG16_SKAL_A_WERT",
+          1
+        ],
+        [
+          "STAT_FDS_FU_SEG16_SKAL_A_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "VERBRAUCHSVORTEIL_HYBRID_AKT_SEGMENT",
+      "s": 34,
+      "id": "D1D9",
+      "r": [
+        [
+          "STAT_DURCHSCHNITT_AKT_BERECH_SEGMENTS_WERT",
+          2,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_DURCHSCHNITT_HYBRID_RUECKGEW_AKT_SEGM_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "AKTIVE_WARPLISTE",
+      "s": 34,
+      "id": "DA00",
+      "p": "raw"
+    },
+    {
+      "n": "STATUS_HUD_BILDPOSITION_SCHRITTE",
+      "s": 34,
+      "id": "DA0A",
+      "p": "raw"
+    },
+    {
+      "n": "STEUERN_HUD_HELLIGKEIT",
+      "s": 47,
+      "id": "DA0C",
+      "a": [
+        [
+          "PWM_PORT",
+          1
+        ],
+        [
+          "PWM_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "STATUS_HUD_LOGBUCH",
+      "s": 34,
+      "id": "DA0E",
+      "r": [
+        [
+          "STAT_HUD_LED_BETRIEBSSTUNDENZAEHLER_STUNDEN_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_LED_BETRIEBSSTUNDENZAEHLER_MINUTEN_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LOGTIME_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_TEMP1_BRIGHT1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP1_BRIGHT2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP1_BRIGHT3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP1_BRIGHT4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP1_BRIGHT5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP2_BRIGHT1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP2_BRIGHT2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP2_BRIGHT3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP2_BRIGHT4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP2_BRIGHT5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP3_BRIGHT1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP3_BRIGHT2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP3_BRIGHT3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP3_BRIGHT4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP3_BRIGHT5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP4_BRIGHT1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP4_BRIGHT2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP4_BRIGHT3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP4_BRIGHT4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP4_BRIGHT5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP5_BRIGHT1_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP5_BRIGHT2_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP5_BRIGHT3_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP5_BRIGHT4_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_TEMP5_BRIGHT5_WERT",
+          2
+        ],
+        [
+          "STAT_HUD_SCHWELLWERT_TEMP1_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_SCHWELLWERT_TEMP2_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_SCHWELLWERT_TEMP3_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_SCHWELLWERT_TEMP4_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_SCHWELLWERT_HELLIGKEIT1_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_SCHWELLWERT_HELLIGKEIT2_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_SCHWELLWERT_HELLIGKEIT3_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_SCHWELLWERT_HELLIGKEIT4_WERT",
+          1
+        ],
+        [
+          "STAT_RESERVED_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "STATUS_HUD_BILDROTATION_SCHRITTE",
+      "s": 34,
+      "id": "DA0F",
+      "p": "raw"
+    },
+    {
+      "n": "HUD_PORTS_LESEN",
+      "s": 34,
+      "id": "DA43",
+      "r": [
+        [
+          "STAT_HUD_AD_TEMP_BL_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_AD_KL30_WERT",
+          1,
+          {
+            "s": [
+              1,
+              10,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_HUD_LED_DRV_CUR_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LED_DRV_SPG_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LED_DRV_FET1_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LED_DRV_FET2_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LED_DRV_OV_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LED_DRV_FAULT_WERT",
+          1
+        ],
+        [
+          "STAT_HUD_LED_PWM_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_HUD_LED_PWM_INV_WERT",
+          2,
+          {
+            "s": [
+              1,
+              100,
+              0
+            ]
+          }
+        ],
+        [
+          "STAT_HUD_SMC_FLAGS_WERT",
+          1
+        ],
+        [
+          "STAT_RESERVE1_WERT",
+          1
+        ],
+        [
+          "STAT_RESERVE2_WERT",
+          1
+        ],
+        [
+          "STAT_RESERVE3_WERT",
+          1
+        ],
+        [
+          "STAT_RESERVE4_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_SW_VERSION_LESEN",
+      "s": 34,
+      "id": "DA44",
+      "r": [
+        [
+          "STAT_SW_VERSION_MAIN_WERT",
+          1
+        ],
+        [
+          "STAT_SW_VERSION_MINOR_WERT",
+          1
+        ],
+        [
+          "STAT_SW_VERSION_PATCH_WERT",
+          1
+        ]
+      ]
+    },
+    {
+      "n": "HUD_SENSOREN_IDENT_LESEN_ERWEITERT",
+      "s": 34,
+      "id": "DA46",
+      "r": [
+        [
+          "STAT_SENSOR_VERBAUORT_NR_WERT",
+          2
+        ],
+        [
+          "STAT_SENSOR_BMW_TEILE_NR_WERT",
+          4
+        ],
+        [
+          "STAT_SENSOR_HERSTELLER_NR_WERT",
+          2
+        ],
+        [
+          "STAT_SENSOR_SERIEN_NR_WERT",
+          4
+        ],
+        [
+          "STAT_SENSOR_PROD_DATUM_YEAR_WERT",
+          1
+        ],
+        [
+          "STAT_SENSOR_PROD_DATUM_MONTH_WERT",
+          1
+        ],
+        [
+          "STAT_SENSOR_PROD_DATUM_DAY_WERT",
+          1
+        ],
+        [
+          "STAT_SENSOR_HW_VERSION_NR_WERT",
+          2
+        ],
+        [
+          "STAT_SENSOR_OPTIK_VERSION_NR_WERT",
+          2
+        ],
+        [
+          "STAT_SENSOR_MECHANIK_VERSION_NR_WERT",
+          2
+        ],
+        [
+          "STAT_SENSOR_FLASH_VERSION_NR_WERT",
+          2
+        ]
+      ]
+    },
+    {
+      "n": "CC_MELDUNGSSPEICHER_LOESCHEN",
+      "s": 49,
+      "id": "F010"
+    },
+    {
+      "n": "HUD_M_SHOWMODE",
+      "s": 49,
+      "id": "F018"
+    },
+    {
+      "n": "FLASHDATEN_APIX_DOWNLOAD",
+      "s": 49,
+      "id": "F120",
+      "a": [
+        [
+          "INTERFACE",
+          1,
+          "TAB_INTERFACE"
+        ]
+      ]
+    }
+  ],
+  "enums": {
+    "TAB_BLS_VERZOEGERUNG": {
+      "Keine Bremsung": 0,
+      "Bremskreis 1 aktiv": 1,
+      "Bremskreis 2 aktiv": 2,
+      "Nicht definiert": 3
+    },
+    "TAB_ECO_TIPP_ANZ": {
+      "Kein Tipp": 0,
+      "Langsamer beschleunigen": 1,
+      "Geschwindigkeit reduzieren": 2,
+      "Vorrausschauender Bremsen": 3,
+      "Empfohlenen Gang wählen": 4,
+      "Gangwahlschalter in D-Mode bewegen": 5,
+      "Im Stand Leerlauf einlegen Kupplung schließen": 6,
+      "Im Stand Bremse betätigen": 7,
+      "Vom Gas gehen wegen Geschwindigkeitsbegrenzung": 8,
+      "Vom Gas gehen wegen Geschwindigkeitsbegrenzung, Einheit km/h": 9,
+      "Vom Gas gehen wegen Geschwindigkeitsbegrenzung, Einheit mph": 10,
+      "Vom Gas gehen wegen Straßenverlauf": 11,
+      "Vom Gas gehen wegen Kreisverkehr": 12,
+      "Vom Gas gehen wegen Kreisverkehr, Linksverkehr": 13,
+      "Vom Gas gehen wegen Kreisverkehr, Rechtsverkehr": 14,
+      "Vom Gas gehen wegen Abbiegemöglichkeit": 15,
+      "Infotafel bei Aktivierung ECO-Tipps in MMI": 16,
+      "Fenster schließen wegen hohe Geschwindigkeit": 17,
+      "Fenster schließen wegen Klimaanlage an": 18,
+      "Signal ungültig": 63
+    },
+    "TAB_WARPING_AKTION": {
+      "ABBRECHEN": 0,
+      "ANZEIGEN": 1,
+      "VERAENDERN": 2,
+      "SPEICHERN": 3
+    },
+    "TAB_WARPING": {
+      "KEINE_AENDERUNG": 0,
+      "TRAPEZ": 1,
+      "RHOMBUS": 2,
+      "KISSEN": 3,
+      "SMILE": 4,
+      "HOEHE": 5,
+      "BREITE": 6,
+      "H_SHIFT": 8
+    },
+    "TAB_WARPING_RICHTUNG": {
+      "KEINE_AENDERUNG": 0,
+      "HOCH": 1,
+      "RUNTER": 2,
+      "LINKS": 3,
+      "RECHTS": 4
+    },
+    "TAB_KOMBI_BLINKER": {
+      "Vorgabe beenden (AUS)": 0,
+      "Nomalblinken links": 17,
+      "Nomalblinken rechts": 18,
+      "Nomalblinken links und rechts": 19,
+      "Defektblinken links": 33,
+      "Defektblinken rechts": 34,
+      "Defektblinken rechts und links": 35,
+      "Doppelblinken links": 49,
+      "Doppelblinken rechts": 50,
+      "Doppelblinken rechts und links": 51,
+      "Blinker statisch links EIN": 65,
+      "Blinker statisch rechts EIN": 66,
+      "Blinker statisch links und rechts EIN": 67
+    },
+    "TAB_WARPLISTE": {
+      "CAF": 1,
+      "Messtechnik": 2,
+      "Service": 3
+    },
+    "TAB_HUD_BILDPOSITION": {
+      "ShortPeriod": 1,
+      "Continuation": 2,
+      "Bildrotation": 3
+    },
+    "TAB_HUD_RICHTUNG": {
+      "hoch bzw. rechtsdrehend": 1,
+      "runter bzw. linksdrehend": 2
+    },
+    "TAB_KOMBI_FORMAT_UHRZEIT": {
+      "24h, dd.mm.yyyy": 0,
+      "12h, dd.mm.yyyy": 1,
+      "keine Vorgabe Uhrzeitformat (beibehlten), dd.mm.yyyy": 8,
+      "24h, mm/dd/yyyy": 16,
+      "12h, mm/dd/yyyy": 17,
+      "keine Vorgabe Uhrzeitformat (beibehlten),  mm/dd/yyyy": 24,
+      "Datumsformat beibehalten, 24h": 128,
+      "Datumsformat beibehalten, 12h": 129,
+      "keine Vorgabe Uhrzeitformat (beibehlten), allgemein": 136
+    },
+    "TAB_KOMBI_TANKPHASE": {
+      "i.O": 1,
+      "mind. 1 Hebelgeber n.i.O": 2,
+      "mind. 1 Hebelgeber n.i.O und zusätzlich kein Verbrauchssignal": 3
+    },
+    "TAB_STERNE_BESCHLEUNIGUNG": {
+      "0 Sterne": 0,
+      "1 Stern": 1,
+      "2 Sterne": 2,
+      "3 Sterne": 3,
+      "4 Sterne": 4,
+      "5 Sterne": 5
+    },
+    "TAB_STERNE_BREMSEN": {
+      "0 Sterne": 0,
+      "1 Stern": 8,
+      "2 Sterne": 16,
+      "3 Sterne": 24,
+      "4 Sterne": 32,
+      "5 Sterne": 40
+    },
+    "TAB_INTERFACE": {
+      "Kombi Frontend": 0,
+      "Head-Op Display": 1
+    }
+  }
+}
