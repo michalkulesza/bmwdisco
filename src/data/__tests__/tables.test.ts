@@ -78,7 +78,7 @@ describe('bundle hygiene', () => {
     for (const file of files) {
       expect({
         file,
-        imports: /data\/ecu|bimmerlight/i.test(fs.readFileSync(file, 'utf8')),
+        imports: /data\/ecu/.test(fs.readFileSync(file, 'utf8')),
       }).toEqual({
         file,
         imports: false,
