@@ -287,4 +287,28 @@ describe('HsfzLink', () => {
 
     await expect(link.open()).rejects.toBeInstanceOf(CancelledError);
   });
+
+  it('keeps the link open after a probe timeout and discards the late reply', async () => {
+    const { transport, link } = await setup();
+
+    await expect(
+      link.request(0x41, fromHex('22 F1 50'), { probe: true, timeoutMs: 20, totalMs: 20 }),
+    ).rejects.toBeInstanceOf(TimeoutError);
+    expect(link.state).toBe('open');
+
+    transport.push(reply('62 F1 50 DE AD', 0x41));
+    transport.onWrite = () => transport.push(reply('62 F1 50 0F 16 B0'));
+
+    expect(await link.request(ECU, fromHex('22 F1 50'))).toEqual(fromHex('62 F1 50 0F 16 B0'));
+    expect(link.state).toBe('open');
+  });
+
+  it('still fails the link when a non-probe request times out', async () => {
+    const { link } = await setup();
+
+    await expect(
+      link.request(ECU, fromHex('22 F1 50'), { timeoutMs: 20, totalMs: 20 }),
+    ).rejects.toBeInstanceOf(TimeoutError);
+    expect(link.state).toBe('failed');
+  });
 });

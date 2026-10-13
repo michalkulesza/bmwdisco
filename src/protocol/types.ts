@@ -11,6 +11,7 @@ export interface RequestOptions {
   timeoutMs?: number;
   totalMs?: number;
   expectResponse?: boolean;
+  probe?: boolean;
 }
 
 export const DEFAULT_TIMEOUT_MS = 4000;
