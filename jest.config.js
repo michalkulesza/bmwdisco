@@ -16,8 +16,8 @@ const activeDirs = COVERED_DIRS.filter(hasSources);
 
 module.exports = {
   preset: 'jest-expo',
-  testPathIgnorePatterns: ['/node_modules/', '/PROTO/', '/e2e/'],
-  modulePathIgnorePatterns: ['<rootDir>/PROTO/'],
+  testPathIgnorePatterns: ['/node_modules/', '/PROTO/', '/e2e/', '/.claude/'],
+  modulePathIgnorePatterns: ['<rootDir>/PROTO/', '<rootDir>/.claude/'],
   moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' },
   collectCoverageFrom: [
     ...COVERED_DIRS.map((dir) => `${dir}/**/*.{ts,tsx}`),

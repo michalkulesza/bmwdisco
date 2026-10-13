@@ -82,7 +82,12 @@ Session machine: `idle → connecting → identifying → ready ⇄ running → 
 - Whether `2F 45 01 00 FE` cancels `2E D5 42` aggregate writes; meaning of the D542 time field.
 - `ATFCSD` argument order (medium confidence); Thor adapter init/firmware behaviour.
 - Keepalive `3E FF` vs `3E 80` semantics and cadence; whether the KOMBI routine `31 01 F0 12 01 FC 21` is required.
-- IO-control response matcher should check channel, not only DID (prototype weakness).
+- IO-control response matcher should check channel, not only DID (prototype weakness); generated `expectedResponsePrefix` covers service and DID only because the data does not say whether the channel is echoed.
+- LHM2_L/R: the channel routine writes a 14-field record but each mapping row names one field, so no LHM2 element is generated (FLE02 covers F20 headlights). FRM3 `SL_I_L` has an empty channel list (`tailInnerLeft` not generated); FRM3 `BL_L_2/R_2` and `ABBL_L/R` have no channels (not generated).
+- Pack actions contain no timing: steps are ordered ticks and the runner picks the interval. Toggle ON/OFF actions are merged into one effect with `offSteps`.
+- FLE02 `STOP_ROUTINE` (`31 02 A5 43`) is kept as a command only; unverified that it stops every LED routine, so it is not treated as return control. COMMUNICATION_OFF (`28 02 01`) is required by headlight LED effects (`silenceCommunication`) and must be restored with `28 00 03`.
+- F32 has no row in the identification table (FEM_20 `0F16B0` is listed under F20), so chassis-to-module hints are sparse; identification relies on `22 F1 50`.
+- F10 `positionLeft`/`positionRight` alias `daytimeLeft`/`daytimeRight` (same channels); F10 has no `ambient`, only `ambient1`/`ambient2`.
 
 ## Milestones & progress
 
@@ -91,7 +96,7 @@ Status: ☐ todo · ◐ in progress · ☑ done
 | #   | Milestone                                                                                                                                | Status |
 | --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------ |
 | M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `CLAUDE.md` overrides, this plan            | ☑      |
-| M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☐      |
+| M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☑      |
 | M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☐      |
 | M3  | Simulator + Demo link with fault injection                                                                                               | ☐      |
 | M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☐      |
@@ -105,6 +110,7 @@ Status: ☐ todo · ◐ in progress · ☑ done
 
 - 2026-10-13 — Grill session complete; plan written. M0 started.
 - 2026-10-13 — M0 done: Expo SDK 57 (expo 57.0.28, RN 0.86.3, React 19.2.3, expo-router 57.0.26, TypeScript 6.0.3) scaffolded at repo root with `app/` routes and `src/` skeleton; ESLint 9 + eslint-config-expo + react-hooks + import/order, Prettier 3, jest-expo 57 (Jest 29) with per-dir 90% coverage thresholds activated once `src/protocol|link|domain` contain sources, Husky 9 + lint-staged, GitHub Actions CI, project `CLAUDE.md`. `expo-doctor` 21/21.
+- 2026-10-13 — M1 done: `data/ecu/` holds 10 modules (20 files), `ecu_modules.json`, 9 effect packs and `chassis_info.json` filtered to 1906 of 5894 F-series rows; `npm run gen:data` (zod-validated, Prettier-formatted) emits `src/data/generated` and `i18n-keys.json`, `gen:data:check` runs in CI after lint. Elements per module: FEM_20 40, BDC 56, REM_20 16, FRM3 37, FLE02_L/R 11 each, KOMB01/KOMB25 1 each (cluster feedback), LHM2_L/R 0 (see uncertainties); 87 distinct element ids. Effects kept/total: flash 58/68, headlight_flash 22/36, headlight_show 15/15, one_side 16/16, taillight_flash 0/100 (rear-light modules out of scope), taillight_show 7/7, party_mode 9/10, ghost 9/11, toggle 3/11 pairs (139 effects). Generated size about 193 KB (effects 85 KB, vehicles 57 KB, modules 39 KB). Prototype F32/FEM_20 (32) and F10/FRM3 (26) payloads reproduced byte for byte.
 
 ## How to resume
 

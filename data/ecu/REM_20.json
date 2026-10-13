@@ -1,0 +1,231 @@
+[
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "SL_L",
+    "command": "REAR_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "SL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "SL_R",
+    "command": "REAR_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "SL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "SL_2_L",
+    "command": "BOOTLID_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "SL_2_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "SL_2_R",
+    "command": "BOOTLID_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "SL_2_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "BL_L",
+    "command": "BRAKE_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "BL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "BL_R",
+    "command": "BRAKE_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "BL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "BFD_L",
+    "command": "BRAKE_FORCE_DISPLAY_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "BFD_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "BFD_R",
+    "command": "BRAKE_FORCE_DISPLAY_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "BFD_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "NSL_L",
+    "command": "FOG_REAR_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "NSL_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "NSL_R",
+    "command": "FOG_REAR_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "NSL_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "RFS_L",
+    "command": "REVERSE_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "RFS_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "RFS_R",
+    "command": "REVERSE_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "RFS_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "FRA_H_L",
+    "command": "INDICATOR_REAR_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "FRA_H_L",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "FRA_H_R",
+    "command": "INDICATOR_REAR_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "FRA_H_R",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "KZL",
+    "command": "LICENSE",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "KZL",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "BL_M",
+    "command": "BRAKE_CENTER",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "BL_M",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "INV",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "INV",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "ECUEXTDIAG"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "DEFAULT"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "COMMUNICATION_ON",
+    "command": "COMMUNICATION_ON",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "00",
+      "03"
+    ]
+  },
+  {
+    "sgbd": "REM_20",
+    "group": "FRM",
+    "description": "COMMUNICATION_OFF",
+    "command": "COMMUNICATION_OFF",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "02",
+      "01"
+    ]
+  }
+]

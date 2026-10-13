@@ -6,6 +6,7 @@ const reactHooks = require('eslint-plugin-react-hooks');
 module.exports = defineConfig([
   globalIgnores([
     'PROTO/**',
+    '.claude/**',
     'dist/**',
     'coverage/**',
     'ios/**',
