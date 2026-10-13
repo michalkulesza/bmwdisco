@@ -11,6 +11,7 @@ import { CONNECTION_DEFAULTS as defaults, useVehicle } from '../src/vehicle-cont
 
 const colors = { text: '#F2F6FF', muted: '#9BAAC1', blue: '#79B6FF', card: '#121F33', border: '#24344D' };
 const card = { backgroundColor: colors.card, borderRadius: 22, borderCurve: 'continuous' as const, padding: 20, gap: 16, borderWidth: 1, borderColor: colors.border };
+const connectedCard = { ...card, backgroundColor: '#123A2E', borderColor: '#2F8A63' };
 const label = { color: colors.muted, fontSize: 12, fontWeight: '600' as const, letterSpacing: 1.6 };
 const modeLabels: Record<Mode, string> = { demo: 'Demo', enet: 'ENET', thor: 'THOR', icar: 'BLE' };
 const field = { color: colors.text, backgroundColor: '#0A1424', borderColor: colors.border, borderWidth: 1, borderRadius: 12, padding: 14, fontSize: 16, fontVariant: ['tabular-nums'] as ('tabular-nums')[] };
@@ -23,6 +24,7 @@ export default function Home() {
   const ready = state.connected && state.verified && !state.busy;
   const vehicleLabel = profileLabel(state.vehicle);
   const ecuName = state.vehicle?.ecu ?? 'ECU';
+  const connectionCardStyle = state.connected ? connectedCard : card;
 
   useEffect(() => {
     if (mode !== 'icar' || state.busy) return;
@@ -52,7 +54,7 @@ export default function Home() {
       <Text style={{ color: colors.muted, fontSize: 15, lineHeight: 22 }}>Connect, identify the ECU, then run your light sequences.</Text>
     </View>
 
-    <View style={card}>
+    <View style={connectionCardStyle}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
         <Text style={label}>01 / CONNECTION</Text>
         <View style={{ backgroundColor: state.connected ? '#183B36' : '#26334A', borderRadius: 20, paddingHorizontal: 10, paddingVertical: 5 }}>
