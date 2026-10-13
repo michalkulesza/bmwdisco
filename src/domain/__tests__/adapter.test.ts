@@ -4,7 +4,6 @@ import { ElmIsoTpLink } from '@/link/elm-isotp-link';
 import { HsfzLink } from '@/link/hsfz-link';
 import { SimLink } from '@/link/sim-link';
 import { ThorLink } from '@/link/thor-link';
-import { AdapterError } from '@/protocol/errors';
 import { makeVehicle } from '@/test-utils/domain-sim';
 import { FakeTransport } from '@/test-utils/fake-transport';
 
@@ -70,11 +69,13 @@ describe('createLink', () => {
 
   it('uses discoverEnet with the injected UDP socket factory by default', async () => {
     const createUdpSocket = jest.fn(async () => {
-      throw new AdapterError('no-adapter');
+      throw new Error('EHOSTUNREACH');
     });
     const { deps } = makeDeps({ createUdpSocket });
 
-    await expect(createLink({ adapter: 'enet' }, deps)).rejects.toBeInstanceOf(AdapterError);
+    await expect(createLink({ adapter: 'enet' }, deps)).rejects.toMatchObject({
+      code: 'no-adapter',
+    });
     expect(createUdpSocket).toHaveBeenCalled();
   });
 

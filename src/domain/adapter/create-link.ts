@@ -40,7 +40,7 @@ const resolveEnetHost = async (
     deps.discover ??
     ((discoverySignal?: AbortSignal) =>
       discoverEnet({ createSocket: deps.createUdpSocket, signal: discoverySignal }));
-  const [gateway] = await discover(signal);
+  const [gateway] = await discover(signal).catch((): EnetGateway[] => []);
   if (!gateway) throw new AdapterError('no-adapter', 'No ENET gateway found; enter its IP address');
 
   return gateway.host;

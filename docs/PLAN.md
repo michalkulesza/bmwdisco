@@ -136,6 +136,7 @@ Status: ☐ todo · ◐ in progress · ☑ done
 - 2026-10-13 — M7 feedback: Home large title is now "BimmerDisco" (EN and PL); the faint background icon stays visible on running/on tiles (page colour, no scrim).
 - 2026-10-13 — M7 feedback: tile three-dot menu stays visible while running and uses the text colour on filled tiles; Settings Disconnect moved into the Connection group as a destructive row (hint below the group).
 - 2026-10-13 — M7 visual QA (confirmed manually by the user on the simulator): custom header items (`headerItems.ts`, Phosphor icons without the iOS 26 glass background), sheet detents for add-step (0.8/1) and icon picker (0.94), native header background left to the system, 8 px top padding on non-inset screens; Maestro flows `e2e/demo-connect.yaml` and `e2e/screens-tour.yaml` with `npm run e2e:ios` (output in gitignored `e2e/output/`).
+- 2026-10-13 — Merged the UDP module; a failing discovery socket (for example iOS blocking broadcast without the multicast entitlement) now ends in the "No ENET gateway found" error instead of a raw socket error. Kotlin side still uncompiled (no Android SDK on this Mac).
 
 ## How to resume
 
