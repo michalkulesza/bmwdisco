@@ -40,9 +40,19 @@ const AddStepSheet = () => {
     (snapshot) => snapshot.context.car?.selectableElements ?? ELEMENT_IDS,
   );
   const [form, setForm] = useState<StepFormValues>(() => {
-    const initial = formFromStep(editedStep, type === 'wait' ? 'wait' : 'set');
+    const previousLight = useDraftStore.getState().steps.findLast((step) => step.type === 'set');
+    const initial = formFromStep(
+      editedStep ?? (type === 'wait' ? undefined : previousLight),
+      type === 'wait' ? 'wait' : 'set',
+    );
 
-    return { ...initial, element: initial.element ?? selectable[0] };
+    return {
+      ...initial,
+      element:
+        initial.element && (editedStep || selectable.includes(initial.element))
+          ? initial.element
+          : selectable[0],
+    };
   });
   const [pickerOpen, setPickerOpen] = useState(false);
 

@@ -1,6 +1,6 @@
 import { CaretDownIcon } from 'phosphor-react-native/src/icons/CaretDown';
 import { CheckIcon } from 'phosphor-react-native/src/icons/Check';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, View, type ListRenderItemInfo } from 'react-native';
 
@@ -46,7 +46,7 @@ const ElementOption = memo(({ id, selected, onSelect }: ElementOptionProps) => {
       accessibilityLabel={translateKey(t, `elements.${id}`)}
       accessibilityState={{ checked: selected }}
       onPress={handlePress}
-      className="min-h-11 flex-row items-center gap-3 px-3 active:opacity-60"
+      className="h-12 flex-row items-center gap-3 px-3 active:opacity-60"
     >
       <IconComponent size={20} color={color} />
       <Text variant="body" className="flex-1">
@@ -69,10 +69,34 @@ const ElementPicker = ({ rows, selected, open, onToggle, onSelect }: ElementPick
     ? translateKey(t, `elements.${selected}`)
     : t('preset.step.chooseLight');
 
+  const layouts = useMemo(
+    () =>
+      rows.reduce<{ length: number; offset: number; index: number }[]>((result, row, index) => {
+        const previous = result.at(-1);
+        return [
+          ...result,
+          {
+            length: row.type === 'group' ? 36 : 48,
+            offset: previous ? previous.offset + previous.length : 0,
+            index,
+          },
+        ];
+      }, []),
+    [rows],
+  );
+  const getItemLayout = useCallback(
+    (_data: ArrayLike<ElementListRow> | null | undefined, index: number) => layouts[index]!,
+    [layouts],
+  );
+  const selectedIndex = Math.max(
+    0,
+    rows.findIndex((row) => row.type === 'item' && row.id === selected),
+  );
+
   const renderRow = useCallback(
     ({ item }: ListRenderItemInfo<ElementListRow>) =>
       item.type === 'group' ? (
-        <Text variant="tag" tone="muted" className="px-3 pb-1 pt-3 uppercase">
+        <Text variant="tag" tone="muted" className="h-9 px-3 pb-1 pt-3 uppercase">
           {translateKey(t, `categories.${item.category}`)}
         </Text>
       ) : (
@@ -112,6 +136,8 @@ const ElementPicker = ({ rows, selected, open, onToggle, onSelect }: ElementPick
         <View className="overflow-hidden rounded-card border border-card-border bg-card">
           <FlatList
             data={rows}
+            initialScrollIndex={selectedIndex}
+            getItemLayout={getItemLayout}
             keyExtractor={getRowKey}
             renderItem={renderRow}
             style={LIST_STYLE}

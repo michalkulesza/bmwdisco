@@ -39,6 +39,27 @@ describe('AddStepSheet', () => {
     expect(routerMock.back).toHaveBeenCalledTimes(1);
   });
 
+  it('continues from the previous light after a wait and can switch it off directly', async () => {
+    useDraftStore.getState().setSteps([
+      { key: 'light', type: 'set', elements: ['tailLeft'], state: 'on', durationMs: 250 },
+      { key: 'wait', type: 'wait', ms: 100 },
+    ]);
+    await renderScreen(<AddStepSheet />);
+
+    expect(screen.getByRole('button', { name: 'Light' }).props.accessibilityValue.text).toBe(
+      'Tail light left',
+    );
+    expect(screen.getByLabelText('Duration in milliseconds').props.value).toBe('250');
+    await fireEvent.press(screen.getByRole('radio', { name: 'Off' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Add to preset' }));
+    expect(steps().at(-1)).toEqual({
+      type: 'set',
+      elements: ['tailLeft'],
+      state: 'off',
+      durationMs: 250,
+    });
+  });
+
   it('only offers lights the car can drive, grouped by category', async () => {
     await renderScreen(<AddStepSheet />);
 
