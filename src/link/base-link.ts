@@ -22,6 +22,8 @@ export abstract class BaseLink implements DiagnosticLink {
   private readonly states = new Emitter<[LinkState, Error | undefined]>();
   private unsubscribers: Unsubscribe[] = [];
 
+  protected readonly survivesProbeTimeout: boolean = false;
+
   constructor(protected readonly transport: Transport) {}
 
   get state(): LinkState {
@@ -88,7 +90,9 @@ export abstract class BaseLink implements DiagnosticLink {
 
     return this.queue.run(job, options).catch((error: unknown) => {
       const failure = mapTransportError(error);
-      if (failure instanceof TimeoutError || error instanceof TransportError) this.fail(failure);
+      const harmlessProbe = options.probe === true && this.survivesProbeTimeout;
+      const timedOut = failure instanceof TimeoutError && !harmlessProbe;
+      if (timedOut || error instanceof TransportError) this.fail(failure);
       throw failure;
     });
   }
