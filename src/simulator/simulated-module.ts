@@ -71,6 +71,7 @@ export class SimulatedModule {
     private readonly identityResponse: Bytes,
     private readonly vin: Uint8Array,
     private readonly onChange: () => void,
+    private readonly deadOutputs: ReadonlySet<ElementId> = new Set(),
   ) {
     this.actions = buildActions(module);
   }
@@ -175,6 +176,8 @@ export class SimulatedModule {
   }
 
   private setLit(id: ElementId, on: boolean): void {
+    if (this.deadOutputs.has(id)) return;
+
     const changed = on ? !this.lit.has(id) : this.lit.has(id);
     if (on) this.lit.add(id);
     else this.lit.delete(id);

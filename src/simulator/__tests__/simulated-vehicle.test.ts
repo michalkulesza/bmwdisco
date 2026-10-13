@@ -3,7 +3,7 @@ import type { ElementId } from '@/data/types';
 import { fromHex } from '@/protocol/bytes';
 import { matchUdsResponse } from '@/protocol/uds';
 
-import { createProfile, defaultModulesFor, knownChassis } from '../profiles';
+import { createProfile, defaultModulesFor, knownChassis, withoutLedHeadlights } from '../profiles';
 import { SimulatedVehicle } from '../simulated-vehicle';
 import { makeVin } from '../vin';
 
@@ -248,7 +248,7 @@ describe.each(MODULE_SGBDS)('%s elements', (sgbd) => {
 
 describe('observability', () => {
   it('notifies listeners only when the lit set changes', () => {
-    const vehicle = extended(new SimulatedVehicle({ profile: 'F20' }), FEM);
+    const vehicle = extended(new SimulatedVehicle({ profile: withoutLedHeadlights('F20') }), FEM);
     const listener = jest.fn();
     const unsubscribe = vehicle.onStateChange(listener);
     const on = Uint8Array.from(loadModule('FEM_20').elements.lowBeamLeft!.on);
@@ -288,5 +288,56 @@ describe('observability', () => {
     vehicle.clearLog();
 
     expect(vehicle.requestLog).toEqual([]);
+  });
+});
+
+describe('outputs that reply positively but drive nothing (F32 car test)', () => {
+  const femCommand = (element: ElementId, state: 'on' | 'off' = 'on') =>
+    Uint8Array.from(loadModule('FEM_20').elements[element]![state]);
+  const press = (vehicle: SimulatedVehicle, element: ElementId) =>
+    vehicle.handle(FEM, femCommand(element));
+
+  it.each([
+    'lowBeamLeft',
+    'lowBeamRight',
+    'highBeamLeft',
+    'highBeamRight',
+    'daytimeLeft',
+    'daytimeRight',
+    'brakeAll',
+  ] as const)('FEM %s is accepted but stays dark on the default F32', (element) => {
+    const vehicle = extended(new SimulatedVehicle({ profile: 'F32' }), FEM);
+
+    const response = press(vehicle, element)!;
+
+    expect(matchUdsResponse(femCommand(element), response).kind).toBe('positive');
+    expect(vehicle.getLitElements()).toEqual([]);
+  });
+
+  it('keeps the wired FEM outputs working next to the dead ones', () => {
+    const vehicle = extended(new SimulatedVehicle({ profile: 'F32' }), FEM);
+
+    press(vehicle, 'frontFogLeft');
+
+    expect(vehicle.getLitElements()).toEqual([{ sgbd: 'FEM_20', element: 'frontFogLeft' }]);
+  });
+
+  it('lights the per-side headlights on a car without FLE02', () => {
+    const vehicle = extended(new SimulatedVehicle({ profile: withoutLedHeadlights('F32') }), FEM);
+
+    press(vehicle, 'lowBeamLeft');
+
+    expect(vehicle.getLitElements()).toEqual([{ sgbd: 'FEM_20', element: 'lowBeamLeft' }]);
+  });
+
+  it('lights the FEM brake function when REM_20 is absent', () => {
+    const vehicle = extended(
+      new SimulatedVehicle({ profile: { chassis: 'F32', modules: ['FEM_20'] } }),
+      FEM,
+    );
+
+    press(vehicle, 'brakeAll');
+
+    expect(vehicle.getLitElements()).toEqual([{ sgbd: 'FEM_20', element: 'brakeAll' }]);
   });
 });

@@ -9,12 +9,18 @@ export interface DetectedModule {
   chassis: string;
 }
 
+export interface ElementTarget {
+  module: DetectedModule;
+  element: ElementId;
+}
+
 export interface DetectedCar {
   vin?: string;
   chassis?: string;
   chassisCandidates: readonly string[];
   modules: readonly DetectedModule[];
   elementSources: ReadonlyMap<ElementId, readonly DetectedModule[]>;
+  elementTargets: ReadonlyMap<ElementId, readonly ElementTarget[]>;
   selectableElements: readonly ElementId[];
   effects: readonly Effect[];
 }

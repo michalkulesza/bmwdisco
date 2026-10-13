@@ -35,8 +35,12 @@ const connect = async (rig: SessionRig) => {
   await rig.waitFor('ready');
 };
 
-const startReady = async (faults?: Parameters<typeof makeVehicle>[1], chassis = 'F20') => {
-  const rig = createRig(makeVehicle(chassis, faults));
+const startReady = async (
+  faults?: Parameters<typeof makeVehicle>[1],
+  chassis = 'F20',
+  ledHeadlights = false,
+) => {
+  const rig = createRig(makeVehicle(chassis, faults, 1, ledHeadlights));
   await connect(rig);
 
   return rig;
@@ -77,7 +81,7 @@ afterEach(() => {
 
 describe('connecting and identifying', () => {
   it('reaches ready with the detected car, adapter and measured RTT', async () => {
-    const rig = await startReady();
+    const rig = await startReady(undefined, 'F20', true);
 
     const context = rig.context();
     expect(context.adapter).toBe('demo');
@@ -529,7 +533,7 @@ describe('safety invariant: every termination path ends with nothing forced', ()
   });
 
   it('restores communication silenced for headlight LED effects when stopped', async () => {
-    const rig = await startReady();
+    const rig = await startReady(undefined, 'F20', true);
     const effect = rig
       .context()
       .car!.effects.find(

@@ -6,7 +6,6 @@ import { abortReason } from '@/protocol/errors';
 import { CarNotRespondingError, UnsupportedVehicleError } from '../errors';
 
 import {
-  buildElementSources,
   isEffectAvailable,
   matchIdentity,
   parseVin,
@@ -15,6 +14,7 @@ import {
   selectableElementsOf,
   toDetectedModule,
 } from './helpers';
+import { buildElementTargets, sourcesOf } from './targets';
 
 import type { DetectedCar, DetectedModule, DetectOptions, LinkProvider } from './types';
 
@@ -80,7 +80,8 @@ export const detectCar = async (
 
   if (responded.length === 0) throw new CarNotRespondingError();
 
-  const elementSources = buildElementSources(modules);
+  const elementTargets = buildElementTargets(modules);
+  const elementSources = sourcesOf(elementTargets);
   const selectableElements = selectableElementsOf(elementSources);
   if (selectableElements.length === 0) throw new UnsupportedVehicleError(responded);
 
@@ -98,6 +99,7 @@ export const detectCar = async (
     chassisCandidates,
     modules,
     elementSources,
+    elementTargets,
     selectableElements,
     effects,
   };

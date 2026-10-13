@@ -59,20 +59,6 @@ export const rankChassis = (modules: readonly DetectedModule[]): string[] => {
   return [...scores.entries()].sort((a, b) => b[1] - a[1]).map(([chassis]) => chassis);
 };
 
-export const buildElementSources = (
-  modules: readonly DetectedModule[],
-): Map<ElementId, DetectedModule[]> => {
-  const sources = new Map<ElementId, DetectedModule[]>();
-
-  for (const detected of modules) {
-    for (const element of Object.keys(detected.module.elements) as ElementId[]) {
-      sources.set(element, [...(sources.get(element) ?? []), detected]);
-    }
-  }
-
-  return sources;
-};
-
 export const selectableElementsOf = (sources: ReadonlyMap<ElementId, unknown>): ElementId[] =>
   ELEMENT_IDS.filter((element) => sources.has(element) && categoryOf(element) !== 'cluster');
 
