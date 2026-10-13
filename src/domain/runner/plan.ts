@@ -64,24 +64,30 @@ const unique = <T>(values: readonly T[]): T[] => [...new Set(values)];
 const sendsFor = (step: PresetStep, car: DetectedCar, skipped: Set<ElementId>): PlannedSend[] => {
   if (step.type === 'wait') return [];
 
-  return step.elements.flatMap((element) => {
-    const sources = car.elementSources.get(element);
-    if (!sources) {
+  const sends = step.elements.flatMap((element) => {
+    const targets = car.elementTargets.get(element);
+    if (!targets) {
       skipped.add(element);
 
       return [];
     }
 
-    return sources.map((module) => {
-      const commands = module.module.elements[element]!;
+    return targets.map((target) => {
+      const commands = target.module.module.elements[target.element]!;
 
       return {
-        module,
-        element,
+        module: target.module,
+        element: target.element,
         payload: Uint8Array.from(step.state === 'on' ? commands.on : commands.off),
       };
     });
   });
+
+  return sends.filter(
+    (send, index) =>
+      sends.findIndex((other) => other.module === send.module && other.element === send.element) ===
+      index,
+  );
 };
 
 export const buildPlan = (input: PlanInput, car: DetectedCar): RunPlan => {

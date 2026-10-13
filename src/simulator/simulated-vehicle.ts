@@ -3,6 +3,7 @@ import type { ElementId, Module } from '@/data/types';
 import { asciiToBytes } from '@/protocol/bytes';
 import type { Unsubscribe } from '@/transport/types';
 
+import { deadOutputsOf } from './dead-outputs';
 import { FaultInjector } from './faults';
 import { createProfile, type VehicleProfile } from './profiles';
 import { SimulatedModule } from './simulated-module';
@@ -54,6 +55,7 @@ export class SimulatedVehicle {
         identityFor(module, this.profile.chassis),
         vin,
         () => this.notify(),
+        deadOutputsOf(sgbd, this.profile.modules),
       );
       this.modules.set(module.address, simulated);
     }

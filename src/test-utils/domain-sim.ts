@@ -5,12 +5,19 @@ import { SimLink } from '@/link/sim-link';
 import type { DiagnosticLink } from '@/link/types';
 import { hex } from '@/protocol/bytes';
 import type { FaultOptions } from '@/simulator/faults';
+import { withoutLedHeadlights } from '@/simulator/profiles';
 import { SimulatedVehicle } from '@/simulator/simulated-vehicle';
 
 export const PROBE_TIMEOUT_MS = 30;
 
-export const makeVehicle = (chassis: string, faults?: FaultOptions, seed = 1): SimulatedVehicle => {
-  const vehicle = new SimulatedVehicle({ profile: chassis, seed });
+export const makeVehicle = (
+  chassis: string,
+  faults?: FaultOptions,
+  seed = 1,
+  ledHeadlights = false,
+): SimulatedVehicle => {
+  const profile = ledHeadlights ? chassis : withoutLedHeadlights(chassis);
+  const vehicle = new SimulatedVehicle({ profile, seed });
   if (faults) vehicle.faults.configure(faults);
 
   return vehicle;

@@ -31,10 +31,10 @@ interface Harness {
 
 const harness = async (
   chassis = 'F20',
-  options: { rttMs?: number | null; trace?: boolean } = {},
+  options: { rttMs?: number | null; trace?: boolean; led?: boolean } = {},
 ): Promise<Harness> => {
   jest.useRealTimers();
-  const vehicle = makeVehicle(chassis);
+  const vehicle = makeVehicle(chassis, undefined, 1, options.led);
   const { link, car } = await detectOnSim(vehicle);
   if (options.rttMs !== undefined) {
     Object.defineProperty(link, 'measuredRttMs', { get: () => options.rttMs });
@@ -128,7 +128,7 @@ describe('PresetRunner bytes and order', () => {
   });
 
   it('silences communication before headlight LED effects and restores it with 28 00 03', async () => {
-    const { runner, car, vehicle } = await harness();
+    const { runner, car, vehicle } = await harness('F20', { led: true });
     const effect = car.effects.find(
       (candidate) =>
         candidate.silenceCommunication && candidate.id.startsWith('headlight_flash.leftHeadlight'),
@@ -150,7 +150,7 @@ describe('PresetRunner bytes and order', () => {
   });
 
   it('cleans up in the documented order: off, return control, communication, default session', async () => {
-    const { runner, car, vehicle } = await harness();
+    const { runner, car, vehicle } = await harness('F20', { led: true });
     const effect = car.effects.find((candidate) => candidate.silenceCommunication)!;
 
     await settle(runner.run({ kind: 'effect', effect }));

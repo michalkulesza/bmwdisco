@@ -54,3 +54,9 @@ export const createProfile = (
 
   return { chassis, modules };
 };
+
+export const withoutLedHeadlights = (chassis: string): VehicleProfile =>
+  createProfile(
+    chassis,
+    defaultModulesFor(chassis).filter((sgbd) => sgbd !== 'FLE02_L' && sgbd !== 'FLE02_R'),
+  );

@@ -8,6 +8,7 @@ import {
   TimeoutError,
 } from '@/protocol/errors';
 import { LATENCY_PRESETS } from '@/simulator/faults';
+import { withoutLedHeadlights } from '@/simulator/profiles';
 import { SimulatedVehicle } from '@/simulator/simulated-vehicle';
 
 import { DEMO_ADAPTER_ID, SimLink } from '../sim-link';
@@ -23,7 +24,7 @@ const RETURN_CONTROL = Uint8Array.from(fem.returnControl[0]!);
 const FAST = { timeoutMs: 40 };
 
 const setup = async (seed?: number) => {
-  const vehicle = new SimulatedVehicle({ profile: 'F20', seed });
+  const vehicle = new SimulatedVehicle({ profile: withoutLedHeadlights('F20'), seed });
   const link = new SimLink(vehicle);
   await link.open();
 

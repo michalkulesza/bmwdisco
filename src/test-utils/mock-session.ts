@@ -43,6 +43,7 @@ export const fakeCar = (
   chassisCandidates: ['F32'],
   modules: [],
   elementSources: new Map(),
+  elementTargets: new Map(),
   selectableElements,
   effects: loadEffects().filter((effect) => !effectIds || effectIds.includes(effect.id)),
 });

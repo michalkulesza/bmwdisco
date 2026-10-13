@@ -52,7 +52,7 @@ const detectOnStub = (link: DiagnosticLink, addresses?: number[]) =>
 
 describe('detectCar', () => {
   it.each(knownChassis())('identifies the default simulator profile for %s', async (chassis) => {
-    const vehicle = makeVehicle(chassis);
+    const vehicle = makeVehicle(chassis, undefined, 1, true);
     const { car } = await detectOnSim(vehicle);
 
     const expected = [...createProfile(chassis).modules].sort();
