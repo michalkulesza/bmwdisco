@@ -7,3 +7,4 @@ coverage
 .expo
 package-lock.json
 src/data/generated
+data/ecu

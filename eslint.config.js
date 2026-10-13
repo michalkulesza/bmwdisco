@@ -6,6 +6,7 @@ const reactHooks = require('eslint-plugin-react-hooks');
 module.exports = defineConfig([
   globalIgnores([
     'PROTO/**',
+    '.claude/**',
     'dist/**',
     'coverage/**',
     'ios/**',
@@ -29,7 +30,7 @@ module.exports = defineConfig([
     },
   },
   {
-    files: ['**/*.test.{ts,tsx}', 'e2e/**'],
+    files: ['**/*.test.{ts,tsx}', 'e2e/**', 'jest.setup.js'],
     languageOptions: {
       globals: {
         jest: 'readonly',

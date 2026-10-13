@@ -1,0 +1,922 @@
+[
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "AL_L",
+    "command": "LOW_BEAM_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x01",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "AL_R",
+    "command": "LOW_BEAM_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x02",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "TFL_L",
+    "command": "DAYTIME_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x03",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "TFL_R",
+    "command": "DAYTIME_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x04",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "SML_L",
+    "command": "SIDEMARKER_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x05",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "SML_R",
+    "command": "SIDEMARKER_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x06",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "FL_L",
+    "command": "HIGH_BEAM_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x07",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "FL_R",
+    "command": "HIGH_BEAM_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x08",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "POL_L",
+    "command": "POSITION_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x09",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "POL_R",
+    "command": "POSITION_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x0A",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "NSW_L",
+    "command": "FOG_FRONT_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x0B",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "NSW_R",
+    "command": "FOG_FRONT_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x0C",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "FRA_V_L",
+    "command": "INDICATOR_FRONT_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x0D",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "FRA_V_R",
+    "command": "INDICATOR_FRONT_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x0E",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "FRA_Z_L",
+    "command": "INDICATOR_SIDE_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x10",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "FRA_Z_R",
+    "command": "INDICATOR_SIDE_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x11",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "BIX_L",
+    "command": "BIXENON_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x12",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "BIX_R",
+    "command": "BIXENON_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x13",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "SL_L",
+    "command": "REAR_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x14",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "SL_R",
+    "command": "REAR_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x15",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "SL_2_L",
+    "command": "BOOTLID_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x16",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "SL_2_R",
+    "command": "BOOTLID_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x17",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "BL_L",
+    "command": "BRAKE_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x18",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "BL_R",
+    "command": "BRAKE_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x19",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "BFD_L",
+    "command": "BRAKE_FORCE_DISPLAY_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x1A",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "BFD_R",
+    "command": "BRAKE_FORCE_DISPLAY_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x1B",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "NSL_L",
+    "command": "FOG_REAR_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x1C",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "NSL_R",
+    "command": "FOG_REAR_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x1D",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "RFS_L",
+    "command": "REVERSE_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x1E",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "RFS_R",
+    "command": "REVERSE_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x1F",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "FRA_H_L",
+    "command": "INDICATOR_REAR_LEFT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x20",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "FRA_H_R",
+    "command": "INDICATOR_REAR_RIGHT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x21",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "KZL",
+    "command": "LICENSE",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x22",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "BL_M",
+    "command": "BRAKE_CENTER",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x23",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "WBL_LED",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x26",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_0",
+    "command": "LCI_0",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x27",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_1",
+    "command": "LCI_1",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x28",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_2",
+    "command": "LCI_2",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x29",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_3",
+    "command": "FOOT_WELL_DOOR_FRONT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x2A",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_4",
+    "command": "FOOT_WELL_DOOR_REAR",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x2B",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_5",
+    "command": "DOOR_HANDLE",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x2C",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_6",
+    "command": "AMBIENT",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x2D",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_7",
+    "command": "LCI_7",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x2E",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "LCI_8",
+    "command": "LCI_8",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x2F",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "TMS_LEUCHTRING_L",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x30",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "TMS_LEUCHTRING_R",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x31",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "TMS_SML_L",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x32",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "TMS_SML_R",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x33",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "TMS_DESIGN_L",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x34",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "TMS_DESIGN_R",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x35",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "PDC_LED",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x40",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "HDC_LED",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x41",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "SPECIAL_FUNKTION_1_LED",
+    "command": "SPECIAL_FUNCTION_1_LED",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0x42",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "ALLE",
+    "command": "ALL",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0xFE",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "UNKNOWN",
+    "command": "",
+    "function": "STEUERN_LEUCHTENAUSGANG_DIGITAL",
+    "args": [
+      "0xFF",
+      "{param_aktion}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Keine Leuchte",
+    "command": "NONE",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x00",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Standlicht",
+    "command": "POSITION",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x01",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Standlicht ES",
+    "command": "POSITION_ES",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x02",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Abblendlicht",
+    "command": "LOW_BEAM",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x03",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Tagfahrlicht",
+    "command": "DAYTIME",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x04",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Fernlicht",
+    "command": "HIGH_BEAM",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x05",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Blinker links",
+    "command": "INDICATOR_LEFT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x06",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Blinker rechts",
+    "command": "INDICATOR_RIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x07",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Nebellicht vorne",
+    "command": "FOG_FRONT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x08",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Abbiegelicht vorne links",
+    "command": "CORNERING_LEFT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x09",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Abbiegelicht vorne rechts",
+    "command": "CORNERING_RIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0A",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Bremslicht",
+    "command": "BRAKE",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0C",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "BFD / ESS",
+    "command": "BRAKE_FORCE_DISPLAY",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0D",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Nebelschlusslicht",
+    "command": "FOG_REAR",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0E",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Rückfahrlicht",
+    "command": "REVERSE",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x0F",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Parklicht links",
+    "command": "PARK_LEFT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x10",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Parklicht rechts",
+    "command": "PARK_RIGHT",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x11",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Warnblinken",
+    "command": "HAZARD",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x12",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Innenbeleuchtung",
+    "command": "INTERIOR",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0x13",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "ungültiger Wert",
+    "command": "INVALID",
+    "function": "STEUERN",
+    "args": [
+      "ARG",
+      "LEUCHTEN_FUNKTION",
+      "0xFF",
+      "{param_zeit}"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Activate diagnose mode",
+    "command": "DIAGNOSE_MODE_ON",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "ECUEXTDIAG"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Disable diagnose mode",
+    "command": "DIAGNOSE_MODE_OFF",
+    "function": "DIAGNOSE_MODE",
+    "args": [
+      "DEFAULT"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "COMMUNICATION_ON",
+    "command": "COMMUNICATION_ON",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "00",
+      "03"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "COMMUNICATION_OFF",
+    "command": "COMMUNICATION_OFF",
+    "function": "COMMUNICATION_CONTROL",
+    "args": [
+      "02",
+      "01"
+    ]
+  },
+  {
+    "sgbd": "BDC",
+    "group": "CAS",
+    "description": "Return all light outputs to ECU (returnControlToECU)",
+    "command": "RETURN_CONTROL",
+    "function": "IO_RETURN_CONTROL",
+    "args": [
+      "45",
+      "01",
+      "00",
+      "FE"
+    ]
+  }
+]
