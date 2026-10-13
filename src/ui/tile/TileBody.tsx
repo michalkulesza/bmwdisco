@@ -37,19 +37,17 @@ const TileBody = ({ item, size, visual, tag }: TileBodyProps) => {
 
   return (
     <View className="flex-1 justify-between" style={{ padding }}>
+      <View pointerEvents="none" style={getGhostStyle(size)}>
+        <IconComponent size={isLarge ? 240 : 190} weight="thin" color={accent} />
+      </View>
       {filled ? null : (
-        <>
-          <View pointerEvents="none" style={getGhostStyle(size)}>
-            <IconComponent size={isLarge ? 240 : 190} weight="thin" color={hue} />
-          </View>
-          <LinearGradient
-            pointerEvents="none"
-            colors={scrimColors}
-            start={SCRIM_START}
-            end={SCRIM_END}
-            style={StyleSheet.absoluteFill}
-          />
-        </>
+        <LinearGradient
+          pointerEvents="none"
+          colors={scrimColors}
+          start={SCRIM_START}
+          end={SCRIM_END}
+          style={StyleSheet.absoluteFill}
+        />
       )}
       <IconComponent size={getIconSize(size)} color={accent} />
       <View className="gap-1">
