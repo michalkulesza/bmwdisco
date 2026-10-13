@@ -1,0 +1,163 @@
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
+@import 'nativewind/theme';
+
+@layer theme {
+  :root {
+    --page: #f2f3f5;
+    --card: #ffffff;
+    --card-border: #e3e5e9;
+    --tile: #ffffff;
+    --sheet: #ffffff;
+    --raised: #eceef1;
+    --border: #d5d9e0;
+    --dashed: #c4c9d1;
+    --text: #0e1013;
+    --text-soft: #3a3f47;
+    --text-muted: #5b616b;
+    --chevron: #8a909a;
+    --grip: #9aa1ab;
+    --radio-off: #c4c9d1;
+    --primary: #0e1013;
+    --on-primary: #ffffff;
+    --destructive: #be123c;
+    --destructive-bg: #fff1f2;
+    --destructive-border: #fecdd3;
+    --connected: #15803d;
+    --connected-soft: #166534;
+    --connected-bg: #f0fdf4;
+    --connected-border: #bbf7d0;
+    --blue: #2563eb;
+    --amber: #b45309;
+    --teal: #0f766e;
+    --lime: #4d7c0f;
+    --rose: #be123c;
+    --violet: #7c3aed;
+    --lilac: #6d28d9;
+    --neutral: #3a3f47;
+    --overlay: rgba(14, 16, 19, 0.4);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #0a0b0d;
+      --card: #111317;
+      --card-border: #1c1f25;
+      --tile: #101215;
+      --sheet: #121418;
+      --raised: #181b20;
+      --border: #22262d;
+      --dashed: #2a2e35;
+      --text: #f7f8fa;
+      --text-soft: #c9cfd7;
+      --text-muted: #9aa1ab;
+      --chevron: #6b7079;
+      --grip: #5b6068;
+      --radio-off: #3a3f47;
+      --primary: #f7f8fa;
+      --on-primary: #0a0b0d;
+      --destructive: #f87171;
+      --destructive-bg: #160d0f;
+      --destructive-border: #3b1d21;
+      --connected: #22c55e;
+      --connected-soft: #86efac;
+      --connected-bg: #0c1a11;
+      --connected-border: #16351f;
+      --blue: #8ec5ff;
+      --amber: #f5a524;
+      --teal: #5eead4;
+      --lime: #bef264;
+      --rose: #fda4af;
+      --violet: #c4b5fd;
+      --lilac: #e9d5ff;
+      --neutral: #e5e7eb;
+      --overlay: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --font-*: initial;
+  --radius-*: initial;
+  --text-*: initial;
+  --tracking-*: initial;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-tile: var(--tile);
+  --color-sheet: var(--sheet);
+  --color-raised: var(--raised);
+  --color-line: var(--border);
+  --color-dashed: var(--dashed);
+  --color-ink: var(--text);
+  --color-ink-soft: var(--text-soft);
+  --color-ink-muted: var(--text-muted);
+  --color-chevron: var(--chevron);
+  --color-grip: var(--grip);
+  --color-radio-off: var(--radio-off);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-destructive: var(--destructive);
+  --color-destructive-bg: var(--destructive-bg);
+  --color-destructive-border: var(--destructive-border);
+  --color-connected: var(--connected);
+  --color-connected-soft: var(--connected-soft);
+  --color-connected-bg: var(--connected-bg);
+  --color-connected-border: var(--connected-border);
+  --color-hue-blue: var(--blue);
+  --color-hue-amber: var(--amber);
+  --color-hue-teal: var(--teal);
+  --color-hue-lime: var(--lime);
+  --color-hue-rose: var(--rose);
+  --color-hue-violet: var(--violet);
+  --color-hue-lilac: var(--lilac);
+  --color-hue-neutral: var(--neutral);
+  --color-overlay: var(--overlay);
+}
+
+@theme {
+  --font-geist: Geist-Regular;
+  --font-geist-medium: Geist-Medium;
+  --font-geist-semibold: Geist-SemiBold;
+  --font-geist-bold: Geist-Bold;
+  --font-geist-mono: GeistMono-Regular;
+
+  --radius-pill: 999px;
+  --radius-sheet: 28px;
+  --radius-tile-lg: 24px;
+  --radius-tile: 22px;
+  --radius-tile-sm: 18px;
+  --radius-card: 14px;
+  --radius-button: 14px;
+  --radius-segmented: 12px;
+  --radius-segmented-item: 9px;
+
+  --text-title: 34px;
+  --text-title--line-height: 40px;
+  --text-section: 20px;
+  --text-section--line-height: 26px;
+  --text-heading: 17px;
+  --text-heading--line-height: 22px;
+  --text-body: 16px;
+  --text-body--line-height: 22px;
+  --text-label: 15px;
+  --text-label--line-height: 20px;
+  --text-meta: 14px;
+  --text-meta--line-height: 20px;
+  --text-small: 13px;
+  --text-small--line-height: 18px;
+  --text-tag: 12px;
+  --text-tag--line-height: 16px;
+
+  --tracking-title: -1px;
+  --tracking-section: -0.2px;
+  --tracking-normal: 0px;
+
+  --spacing-touch: 44px;
+}
