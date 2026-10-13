@@ -257,7 +257,9 @@
         "invalidFormat": "This is not a BimmerDisco presets file",
         "invalidPreset": "The file contains an invalid preset"
       }
-    }
+    },
+    "outputWarning": "Light output warning",
+    "outputWarningDetail": "This output may report Done without lighting anything on cars with FLE02 headlight modules."
   },
   "iconPicker": {
     "title": "Icon",
@@ -607,7 +609,8 @@
       "licensePlateOFF": "Ghost licence plate light",
       "rearLightsOFF": "Ghost rear lights",
       "reverseOFF": "Ghost reversing lights",
-      "sidemarkerOFF": "Ghost side markers"
+      "sidemarkerOFF": "Ghost side markers",
+      "fullOFF": "Ghost Mode · All lights off"
     },
     "taillightShow": {
       "brakePulse": "Brake pulse",

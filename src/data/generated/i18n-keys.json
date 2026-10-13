@@ -109,6 +109,7 @@
     "packs.toggle"
   ],
   "sections": [
+    "effects.sections.all",
     "effects.sections.beams",
     "effects.sections.bothSides",
     "effects.sections.brake",
@@ -187,6 +188,7 @@
     "effects.ghost.daytimeOFF",
     "effects.ghost.doorHandleOFF",
     "effects.ghost.fogLightsOFF",
+    "effects.ghost.fullOFF",
     "effects.ghost.indicatorsOFF",
     "effects.ghost.licensePlateOFF",
     "effects.ghost.rearLightsOFF",

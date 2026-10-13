@@ -89,9 +89,13 @@ export const detectCar = async (
   await ensureOpen(provider);
 
   const chassisCandidates = rankChassis(modules);
-  const effects = loadEffects().filter((effect) =>
-    isEffectAvailable(effect, modules, elementSources),
-  );
+  const effects = loadEffects()
+    .map((effect) =>
+      effect.id === 'ghost.fullOFF'
+        ? { ...effect, steps: effect.steps.filter((step) => elementSources.has(step.element)) }
+        : effect,
+    )
+    .filter((effect) => isEffectAvailable(effect, modules, elementSources));
 
   return {
     vin,

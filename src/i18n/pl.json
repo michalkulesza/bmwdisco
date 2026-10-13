@@ -257,7 +257,9 @@
         "invalidFormat": "To nie jest plik presetów BimmerDisco",
         "invalidPreset": "Plik zawiera nieprawidłowy preset"
       }
-    }
+    },
+    "outputWarning": "Ostrzeżenie o wyjściu światła",
+    "outputWarningDetail": "To wyjście może zgłosić wykonanie bez włączenia światła w autach ze sterownikami reflektorów FLE02."
   },
   "iconPicker": {
     "title": "Ikona",
@@ -607,7 +609,8 @@
       "licensePlateOFF": "Duch: tablica rejestracyjna",
       "rearLightsOFF": "Duch: światła tylne",
       "reverseOFF": "Duch: światła cofania",
-      "sidemarkerOFF": "Duch: obrysówki"
+      "sidemarkerOFF": "Duch: obrysówki",
+      "fullOFF": "Tryb ducha · Wszystkie światła wyłączone"
     },
     "taillightShow": {
       "brakePulse": "Puls świateł stop",

@@ -11,6 +11,7 @@ import { useColorToken } from '@/ui/theme';
 import { translateKey } from '@/ui/tile/helpers';
 
 import { categoryAppearance } from '../category-appearance';
+import ElementWarning from '../ElementWarning';
 import { ISSUE_PARAMS, type DraftIssueCode, type EditorStep } from '../helpers';
 import MsInput from '../MsInput';
 
@@ -66,6 +67,7 @@ const ElementHeader = ({ step, onPress }: ElementHeaderProps) => {
       <Text variant="bodyMedium" numberOfLines={1} className="shrink">
         {label}
       </Text>
+      <ElementWarning elements={step.elements} />
       <CaretDownIcon size={14} color={muted} />
     </Pressable>
   );

@@ -1,11 +1,8 @@
 import type { ElementId } from '@/data/elements';
 
-import { SUBSTITUTION_RULES, UNAVAILABILITY_RULES } from './rules';
+import { SUBSTITUTION_RULES } from './rules';
 
 import type { DetectedModule, ElementTarget } from './types';
-
-const isPresent = (modules: readonly DetectedModule[], sgbd: string): boolean =>
-  modules.some((module) => module.sgbd === sgbd);
 
 const addTarget = (targets: Map<ElementId, ElementTarget[]>, target: ElementTarget): void => {
   targets.set(target.element, [...(targets.get(target.element) ?? []), target]);
@@ -14,18 +11,10 @@ const addTarget = (targets: Map<ElementId, ElementTarget[]>, target: ElementTarg
 export const buildElementTargets = (
   modules: readonly DetectedModule[],
 ): Map<ElementId, ElementTarget[]> => {
-  const activeRules = UNAVAILABILITY_RULES.filter((rule) =>
-    rule.whenAnyPresent.some((sgbd) => isPresent(modules, sgbd)),
-  );
-  const isUnavailable = (module: DetectedModule, element: ElementId): boolean =>
-    activeRules.some(
-      (rule) => rule.modules.includes(module.sgbd) && rule.elements.includes(element),
-    );
-
   const targets = new Map<ElementId, ElementTarget[]>();
   for (const module of modules) {
     for (const element of Object.keys(module.module.elements) as ElementId[]) {
-      if (!isUnavailable(module, element)) addTarget(targets, { module, element });
+      addTarget(targets, { module, element });
     }
   }
 
