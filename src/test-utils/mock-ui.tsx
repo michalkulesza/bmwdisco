@@ -27,15 +27,20 @@ export const resetRouter = () => {
   Object.keys(searchParams).forEach((key) => delete searchParams[key]);
 };
 
+interface CustomHeaderItem {
+  type: 'custom';
+  element: ReactNode;
+}
+
 interface StackScreenOptions {
-  headerLeft?: () => ReactNode;
-  headerRight?: () => ReactNode;
+  unstable_headerLeftItems?: () => CustomHeaderItem[];
+  unstable_headerRightItems?: () => CustomHeaderItem[];
 }
 
 const StackScreen = ({ options }: { options?: StackScreenOptions }) => (
   <>
-    {options?.headerLeft?.()}
-    {options?.headerRight?.()}
+    {options?.unstable_headerLeftItems?.().map((item) => item.element)}
+    {options?.unstable_headerRightItems?.().map((item) => item.element)}
   </>
 );
 

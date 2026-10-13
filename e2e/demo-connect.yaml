@@ -1,0 +1,17 @@
+appId: com.michalkulesza.bimmerdisco
+---
+- launchApp
+- extendedWaitUntil:
+    visible: Settings
+    timeout: 30000
+- tapOn: Settings
+- tapOn: Cable
+- tapOn: Demo
+- tapOn: Car
+- tapOn: "F32.*"
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn: Connect
+- extendedWaitUntil:
+    visible: BimmerDisco
+    timeout: 20000

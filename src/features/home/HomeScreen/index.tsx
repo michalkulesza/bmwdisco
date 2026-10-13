@@ -5,6 +5,7 @@ import { FlatList, useWindowDimensions, type ListRenderItemInfo } from 'react-na
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { loadEffects } from '@/data/generated';
+import { toHeaderItems } from '@/features/navigation/headerItems';
 import { useSessionSelector } from '@/session';
 import { useFavouritesStore } from '@/stores/favourites';
 import { usePresetsStore } from '@/stores/presets';
@@ -14,7 +15,7 @@ import HomeRowView, { SCREEN_PADDING } from './HomeRowView';
 import SettingsButton from './SettingsButton';
 import { useHomeHandlers } from './useHomeHandlers';
 
-const renderSettingsButton = () => <SettingsButton />;
+const settingsHeaderItems = toHeaderItems(<SettingsButton />);
 
 const getRowKey = (row: HomeRow) => row.key;
 
@@ -47,7 +48,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <Stack.Screen options={{ headerRight: renderSettingsButton }} />
+      <Stack.Screen options={{ unstable_headerRightItems: settingsHeaderItems }} />
       <FlatList
         data={rows}
         keyExtractor={getRowKey}

@@ -18,7 +18,8 @@
     "gen:data": "tsx scripts/gen-data.ts",
     "gen:data:check": "tsx scripts/gen-data.ts --check",
     "sync:data": "tsx scripts/sync-ecu-data.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "e2e:ios": "maestro test --test-output-dir e2e/output e2e/demo-connect.yaml e2e/screens-tour.yaml"
   },
   "dependencies": {
     "@gluestack-ui/core": "^5.0.15",

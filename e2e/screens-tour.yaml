@@ -1,0 +1,118 @@
+appId: com.michalkulesza.bimmerdisco
+---
+- launchApp
+- extendedWaitUntil:
+    visible: Settings
+    timeout: 30000
+- takeScreenshot: 01-not-connected
+
+- tapOn: Settings
+- tapOn: Cable
+- extendedWaitUntil:
+    visible: Demo
+- takeScreenshot: 02-cable
+
+# An unreachable ENET adapter exercises the connecting view and the error screen
+- tapOn: ENET
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn: Connect
+- takeScreenshot: 03-connecting
+- extendedWaitUntil:
+    visible: Adapter not reachable
+    timeout: 60000
+- takeScreenshot: 04-connect-error
+- tapOn: Back
+
+- tapOn: Settings
+- tapOn: Cable
+- tapOn: Demo
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn: Connect
+- extendedWaitUntil:
+    visible: BimmerDisco
+    timeout: 20000
+- takeScreenshot: 05-home-connected
+
+- scrollUntilVisible:
+    element: My presets
+- takeScreenshot: 06-home-presets
+- scrollUntilVisible:
+    element: "Knight Rider.*"
+    direction: UP
+- tapOn: "Knight Rider.*"
+- takeScreenshot: 07-tile-running
+- tapOn: "Stop Knight Rider"
+
+- scrollUntilVisible:
+    element: "More options for Double flash"
+    direction: UP
+- tapOn: "More options for Double flash"
+- extendedWaitUntil:
+    visible: Duplicate
+- takeScreenshot: 08-tile-menu
+- tapOn: Cancel
+
+- scrollUntilVisible:
+    element: Edit
+    direction: UP
+- tapOn: Edit
+- extendedWaitUntil:
+    visible: Edit favourites
+- takeScreenshot: 09-favourites-edit
+- tapOn: Done
+
+- scrollUntilVisible:
+    element: See all
+- tapOn: See all
+- extendedWaitUntil:
+    visible: Search lights
+- takeScreenshot: 10-library
+- tapOn: Search lights
+- inputText: fog
+- takeScreenshot: 11-library-search
+- runFlow: subflows/back.yaml
+
+- scrollUntilVisible:
+    element: New preset
+- tapOn: New preset
+- extendedWaitUntil:
+    visible: New preset
+- takeScreenshot: 12-preset-editor-new
+- tapOn: Action
+- extendedWaitUntil:
+    visible: Add step
+- takeScreenshot: 13-add-step
+- tapOn: Close
+- tapOn: Icon
+- extendedWaitUntil:
+    visible: Close
+- takeScreenshot: 14-icon-picker
+- tapOn: Close
+- tapOn: Cancel
+- tapOn:
+    text: Discard
+    optional: true
+
+- tapOn: Settings
+- extendedWaitUntil:
+    visible: Connected
+- takeScreenshot: 15-settings-connected
+- scrollUntilVisible:
+    element: Disconnect
+- tapOn: Disconnect
+- takeScreenshot: 16-disconnect-confirm
+- tapOn: Cancel
+
+- tapOn: Light
+- runFlow: subflows/back.yaml
+- scrollUntilVisible:
+    element: Favourites
+    direction: UP
+- takeScreenshot: 17-home-light-theme
+- tapOn: Settings
+- scrollUntilVisible:
+    element: System
+- tapOn: System
+- runFlow: subflows/back.yaml

@@ -17,7 +17,7 @@ const Screen = ({
   keyboardAware = false,
 }: ScreenProps) => {
   const insets = useSafeAreaInsets();
-  const insetStyle = { paddingTop: topInset ? insets.top : 0, paddingBottom: insets.bottom };
+  const insetStyle = { paddingTop: topInset ? insets.top : 8, paddingBottom: insets.bottom };
 
   if (!scroll) {
     return (

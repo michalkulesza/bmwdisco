@@ -34,10 +34,8 @@ export const useStackScreenOptions = () => {
 
   return useMemo(
     () => ({
-      headerStyle: { backgroundColor: page },
       headerTintColor: text,
       headerTitleStyle: { color: text, fontFamily: semibold },
-      headerLargeStyle: { backgroundColor: page },
       headerLargeTitleStyle: { color: text, fontFamily: bold },
       headerShadowVisible: false,
       headerLargeTitleShadowVisible: false,
