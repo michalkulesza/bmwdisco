@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "BMW Lights",
-    "slug": "bmw-lights",
+    "name": "BimmerDisco",
+    "slug": "bimmerdisco",
     "version": "0.1.0",
-    "scheme": "bmwlights",
+    "scheme": "bimmerdisco",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "platforms": ["ios", "android"],
     "ios": {
-      "bundleIdentifier": "com.michalkulesza.bmwlights",
+      "bundleIdentifier": "com.michalkulesza.bimmerdisco",
       "supportsTablet": false
     },
     "android": {
-      "package": "com.michalkulesza.bmwlights"
+      "package": "com.michalkulesza.bimmerdisco"
     },
     "plugins": ["expo-router"],
     "experiments": {
