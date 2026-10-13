@@ -73,7 +73,7 @@ Session machine: `idle → connecting → identifying → ready ⇄ running → 
 - No raw wire logs in release builds; debug log behind a hidden developer toggle.
 - No analytics, no network calls; App Privacy "no data collected".
 - BLE connects only to devices exposing known adapter service UUIDs.
-- Pinned dependencies, `npm audit` in CI.
+- Pinned dependencies, `npm audit --omit=dev --audit-level=critical` in CI (remaining highs are transitive in the Expo build toolchain, not shipped code).
 
 ## Known protocol uncertainties
 
