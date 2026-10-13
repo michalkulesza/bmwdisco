@@ -13,8 +13,81 @@
   "connect": {
     "title": "Connect",
     "notConnected": "Not connected",
-    "subtitle": "Choose an adapter to connect to your car.",
-    "settings": "Settings"
+    "subtitle": "Plug the cable into the car's OBD port, then tap Connect.",
+    "settings": "Settings",
+    "appName": "BimmerDisco",
+    "connect": "Connect",
+    "cable": "Cable:",
+    "connecting": "Connecting",
+    "progress": "Connection progress",
+    "openSettings": "Open Settings",
+    "adapterShort": {
+      "enet": "USB-C Ethernet",
+      "thor": "Wi-Fi",
+      "vgate": "Bluetooth",
+      "demo": "Simulated"
+    },
+    "steps": {
+      "reaching": {
+        "title": "Reaching adapter",
+        "detail": "Opening the connection",
+        "status": "Reaching adapter…"
+      },
+      "identifying": {
+        "title": "Identifying car",
+        "detail": "Reading VIN",
+        "status": "Identifying car…"
+      },
+      "loading": {
+        "title": "Loading modules",
+        "detail": "Light control units",
+        "status": "Loading modules…"
+      }
+    },
+    "errors": {
+      "adapterUnreachable": {
+        "title": "Adapter not reachable",
+        "description": "Check that the cable is plugged in and the adapter is powered, then try again."
+      },
+      "bluetoothOff": {
+        "title": "Bluetooth is off",
+        "description": "BimmerDisco needs Bluetooth to reach your Vgate iCar adapter. Turn it on, or allow access, in Settings."
+      },
+      "bluetoothDenied": {
+        "title": "Bluetooth access denied",
+        "description": "Allow Bluetooth access for BimmerDisco in Settings to reach your adapter."
+      },
+      "carNotResponding": {
+        "title": "Car not responding",
+        "description": "The adapter is connected but the car did not answer. Switch the ignition on and try again."
+      },
+      "unsupportedVehicle": {
+        "title": "Car not supported",
+        "description": "No supported F-series light module was found. BimmerDisco works with BMW F-series cars only."
+      },
+      "connectionLost": {
+        "title": "Connection lost",
+        "description": "We could not reconnect to the adapter. Check the cable and try again."
+      }
+    },
+    "lost": {
+      "banner": "Connection lost",
+      "attempt": "Attempt {{attempt}} of {{max}}",
+      "attemptShort": "attempt {{attempt}} of {{max}}",
+      "title": "Connection lost",
+      "titleRunning": "Connection lost while running",
+      "lightsOn": "Lights may still be on.",
+      "reconnecting": "Reconnecting…",
+      "reconnect": "Reconnect & restore",
+      "disconnect": "Disconnect"
+    },
+    "devices": {
+      "title": "Bluetooth adapter",
+      "description": "Choose your Vgate iCar adapter. Plug it into the OBD port first.",
+      "scanning": "Searching for adapters…",
+      "found": "Searching…",
+      "unknown": "Unnamed adapter"
+    }
   },
   "settings": {
     "title": "Settings",
@@ -33,6 +106,30 @@
       "system": "System",
       "en": "English",
       "pl": "Polski"
+    },
+    "adapter": "Adapter",
+    "latency": "Latency",
+    "latencyValue": "{{ms}} ms",
+    "disconnect": "Disconnect",
+    "disconnectTitle": "Disconnect from the car?",
+    "disconnectMessage": "Any light under control will be restored before the connection closes.",
+    "disconnectHint": "Disconnect to change the cable.",
+    "demoChassis": "Demo car",
+    "status": {
+      "label": "Status",
+      "connected": "Connected",
+      "reconnecting": "Reconnecting"
+    },
+    "fields": {
+      "enetHost": "Gateway address (optional)",
+      "enetHostPlaceholder": "Detect automatically",
+      "thorHost": "Adapter address",
+      "thorPort": "Port",
+      "hostInvalid": "Enter a private IPv4 address, for example 192.168.0.10.",
+      "portInvalid": "Enter a port between 1 and 65535.",
+      "device": "Adapter",
+      "deviceNone": "Choose",
+      "car": "Car"
     }
   },
   "cable": {
@@ -84,5 +181,24 @@
   "ui": {
     "dismiss": "Dismiss",
     "placeholder": "Coming soon"
+  },
+  "car": {
+    "title": "Car",
+    "detected": "Detected automatically",
+    "unknownChassis": "Unknown F-series car",
+    "vin": "VIN {{vin}}",
+    "modulesTitle": "Detected modules",
+    "modules": {
+      "FEM_20": "Front electronics module",
+      "REM_20": "Rear electronics module",
+      "FRM3": "Footwell module",
+      "BDC": "Body domain controller",
+      "FLE02_L": "Left headlight unit",
+      "FLE02_R": "Right headlight unit",
+      "LHM2_L": "Left light module",
+      "LHM2_R": "Right light module",
+      "KOMB01": "Instrument cluster",
+      "KOMB25": "Instrument cluster"
+    }
   }
 }

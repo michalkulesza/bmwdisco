@@ -22,6 +22,8 @@ interface InFlight {
 export abstract class FramedLink extends BaseLink {
   private inFlight?: InFlight;
 
+  protected readonly survivesProbeTimeout = true;
+
   protected abstract readonly testerAddress: number;
 
   protected abstract encodeRequest(ecu: number, payload: Uint8Array): Uint8Array;

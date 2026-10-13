@@ -7,9 +7,15 @@ interface ScreenProps {
   children: ReactNode;
   scroll?: boolean;
   topInset?: boolean;
+  keyboardAware?: boolean;
 }
 
-const Screen = ({ children, scroll = true, topInset = false }: ScreenProps) => {
+const Screen = ({
+  children,
+  scroll = true,
+  topInset = false,
+  keyboardAware = false,
+}: ScreenProps) => {
   const insets = useSafeAreaInsets();
   const insetStyle = { paddingTop: topInset ? insets.top : 0, paddingBottom: insets.bottom };
 
@@ -28,6 +34,7 @@ const Screen = ({ children, scroll = true, topInset = false }: ScreenProps) => {
       contentContainerStyle={insetStyle}
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
+      automaticallyAdjustKeyboardInsets={keyboardAware}
     >
       {children}
     </ScrollView>

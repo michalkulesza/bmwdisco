@@ -139,21 +139,21 @@
   --radius-segmented-item: 9px;
 
   --text-title: 34px;
-  --text-title--line-height: 40px;
+  --text-title--line-height: 1.1765;
   --text-section: 20px;
-  --text-section--line-height: 26px;
+  --text-section--line-height: 1.3;
   --text-heading: 17px;
-  --text-heading--line-height: 22px;
+  --text-heading--line-height: 1.2941;
   --text-body: 16px;
-  --text-body--line-height: 22px;
+  --text-body--line-height: 1.375;
   --text-label: 15px;
-  --text-label--line-height: 20px;
+  --text-label--line-height: 1.3333;
   --text-meta: 14px;
-  --text-meta--line-height: 20px;
+  --text-meta--line-height: 1.4286;
   --text-small: 13px;
-  --text-small--line-height: 18px;
+  --text-small--line-height: 1.3846;
   --text-tag: 12px;
-  --text-tag--line-height: 16px;
+  --text-tag--line-height: 1.3333;
 
   --tracking-title: -1px;
   --tracking-section: -0.2px;

@@ -57,6 +57,7 @@ const waitForAbort = (signal: AbortSignal): Promise<never> =>
   });
 
 export class SimLink extends BaseLink {
+  protected readonly survivesProbeTimeout = true;
   private dropTimer?: ReturnType<typeof setTimeout>;
   private openedAt = 0;
   private stopWatchingFaults: () => void = noop;

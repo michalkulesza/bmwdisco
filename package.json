@@ -6,7 +6,9 @@
   "scripts": {
     "start": "expo start",
     "ios": "expo run:ios",
+    "ios:dev": "expo run:ios",
     "android": "expo run:android",
+    "prebuild": "expo prebuild --clean",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -28,6 +30,7 @@
     "clsx": "^2.1.1",
     "expo": "~57.0.28",
     "expo-constants": "~57.0.21",
+    "expo-dev-client": "~57.0.20",
     "expo-font": "~57.0.4",
     "expo-haptics": "~57.0.3",
     "expo-linking": "~57.0.12",
