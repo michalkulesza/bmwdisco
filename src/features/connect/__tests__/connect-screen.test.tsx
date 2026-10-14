@@ -4,6 +4,7 @@ import { Linking } from 'react-native';
 import { AdapterError } from '@/protocol/errors';
 import { useSettingsStore } from '@/stores/settings';
 import { makeDeps, renderWithSession, unsupportedVehicleDeps } from '@/test-utils/session-ui';
+import { successHaptic } from '@/ui/haptics';
 
 import ConnectScreen from '../ConnectScreen';
 
@@ -163,4 +164,19 @@ describe('ConnectScreen', () => {
 
     expect(screen.queryByRole('button', { name: 'Connect' })).toBeNull();
   });
+
+  it('shows what each step found, then redirects home after the summary', async () => {
+    await renderWithSession(<ConnectScreen />);
+    await connectDemo();
+
+    expect(await screen.findByText('Demo found', {}, { timeout: 4000 })).toBeTruthy();
+    expect(await screen.findByText(/^F\d{2} · .*VIN/, {}, { timeout: 4000 })).toBeTruthy();
+    expect(await screen.findByText('Connected', {}, { timeout: 6000 })).toBeTruthy();
+    expect(screen.getByText(/FEM_20 · .*KOMB25/)).toBeTruthy();
+
+    await waitFor(() => expect(mockRouter.replace).toHaveBeenCalledWith('/home'), {
+      timeout: 4000,
+    });
+    expect(successHaptic).toHaveBeenCalledTimes(1);
+  }, 15000);
 });

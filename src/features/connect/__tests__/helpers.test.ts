@@ -4,10 +4,11 @@ import {
   adapterChoiceOf,
   chassisLabel,
   chassisOptions,
-  connectSteps,
   isHostValid,
   maskVin,
   parsePort,
+  reachedSteps,
+  stepStates,
   toAdapterConfig,
   toErrorReason,
 } from '../helpers';
@@ -66,10 +67,13 @@ describe('helpers', () => {
   });
 
   it('maps phases to step states', () => {
-    expect(connectSteps('connecting')).toEqual(['active', 'pending', 'pending']);
-    expect(connectSteps('identifying')).toEqual(['done', 'active', 'pending']);
-    expect(connectSteps('ready')).toEqual(['done', 'done', 'done']);
-    expect(connectSteps('idle')).toEqual(['pending', 'pending', 'pending']);
+    expect(reachedSteps('connecting')).toBe(0);
+    expect(reachedSteps('identifying')).toBe(1);
+    expect(reachedSteps('ready')).toBe(3);
+    expect(reachedSteps('idle')).toBe(0);
+    expect(stepStates(0)).toEqual(['active', 'pending', 'pending']);
+    expect(stepStates(1)).toEqual(['done', 'active', 'pending']);
+    expect(stepStates(3)).toEqual(['done', 'done', 'done']);
   });
 
   it('masks the VIN except the last seven characters', () => {

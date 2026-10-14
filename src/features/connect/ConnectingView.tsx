@@ -1,17 +1,21 @@
+import { router } from 'expo-router';
 import { Check, PlugsConnected } from 'phosphor-react-native';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, View } from 'react-native';
 
 import type { SessionPhase } from '@/domain';
-import { useSessionActions } from '@/session';
+import { useSessionActions, useSessionSelector } from '@/session';
 import { useSettingsStore } from '@/stores/settings';
 import Button from '@/ui/Button';
+import { successHaptic } from '@/ui/haptics';
 import Screen from '@/ui/Screen';
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
 
 import CableFooter from './CableFooter';
-import { connectSteps, type StepState } from './helpers';
+import { chassisLabel, isOnlinePhase, maskVin, stepStates, type StepState } from './helpers';
+import { usePacedSteps } from './usePacedSteps';
 
 const STEP_KEYS = ['reaching', 'identifying', 'loading'] as const;
 
@@ -37,10 +41,23 @@ interface StepRowProps {
 const StepRow = ({ step, state }: StepRowProps) => {
   const { t } = useTranslation();
   const adapter = useSettingsStore((settings) => settings.adapter);
-  const detail =
+  const car = useSessionSelector((snapshot) => snapshot.context.car);
+  const adapterName = t(`cable.adapters.${adapter}.name`);
+  const adapterDescription = t(`cable.adapters.${adapter}.description`);
+  const chassis = car?.chassis ? chassisLabel(car.chassis) : t('car.unknownChassis');
+  const vin = car?.vin ? t('car.vin', { vin: maskVin(car.vin) }) : undefined;
+  const carDetail = [chassis, vin].filter(Boolean).join(' · ');
+  const modulesDetail = car?.modules.map((module) => module.sgbd).join(' · ');
+  const pendingDetail =
     step === 'reaching'
-      ? `${t(`cable.adapters.${adapter}.name`)} · ${t(`cable.adapters.${adapter}.description`)}`
+      ? `${adapterName} · ${adapterDescription}`
       : t(`connect.steps.${step}.detail`);
+  const foundDetails: Record<(typeof STEP_KEYS)[number], string | undefined> = {
+    reaching: t('connect.steps.reaching.found', { adapter: adapterName }),
+    identifying: carDetail,
+    loading: modulesDetail,
+  };
+  const detail = (state === 'done' && foundDetails[step]) || pendingDetail;
 
   return (
     <View
@@ -69,9 +86,20 @@ interface ConnectingViewProps {
 const ConnectingView = ({ phase }: ConnectingViewProps) => {
   const { t } = useTranslation();
   const accent = useColorToken('blue');
-  const { cancel } = useSessionActions();
-  const steps = connectSteps(phase);
-  const status = phase === 'connecting' ? 'reaching' : 'identifying';
+  const { cancel, disconnect } = useSessionActions();
+  const { shown, settled } = usePacedSteps(phase);
+  const steps = stepStates(shown);
+  const allDone = shown >= STEP_KEYS.length;
+  const activeStep = STEP_KEYS[Math.min(shown, STEP_KEYS.length - 1)]!;
+  const status = allDone ? t('connect.done') : t(`connect.steps.${activeStep}.status`);
+  const handleCancelPress = isOnlinePhase(phase) ? disconnect : cancel;
+
+  useEffect(() => {
+    if (!settled || phase !== 'ready') return;
+
+    successHaptic();
+    router.replace('/home');
+  }, [settled, phase]);
 
   return (
     <Screen scroll={false} topInset>
@@ -84,7 +112,7 @@ const ConnectingView = ({ phase }: ConnectingViewProps) => {
             {t('connect.connecting')}
           </Text>
           <Text variant="meta" tone="muted" accessibilityLiveRegion="polite">
-            {t(`connect.steps.${status}.status`)}
+            {status}
           </Text>
         </View>
         <View
@@ -100,7 +128,7 @@ const ConnectingView = ({ phase }: ConnectingViewProps) => {
         </View>
       </View>
       <View className="gap-3">
-        <Button label={t('common.cancel')} variant="secondary" onPress={cancel} />
+        <Button label={t('common.cancel')} variant="secondary" onPress={handleCancelPress} />
         <CableFooter />
       </View>
     </Screen>

@@ -76,13 +76,21 @@ export const toAdapterConfig = (settings: AdapterSettings): AdapterConfig | unde
   }
 };
 
-export const connectSteps = (phase: SessionPhase): [StepState, StepState, StepState] => {
-  if (phase === 'connecting') return ['active', 'pending', 'pending'];
-  if (phase === 'identifying') return ['done', 'active', 'pending'];
-  if (isOnlinePhase(phase)) return ['done', 'done', 'done'];
+export const CONNECT_STEP_COUNT = 3;
 
-  return ['pending', 'pending', 'pending'];
+export const reachedSteps = (phase: SessionPhase): number => {
+  if (phase === 'identifying') return 1;
+  if (isOnlinePhase(phase)) return CONNECT_STEP_COUNT;
+
+  return 0;
 };
+
+export const stepStates = (shown: number): StepState[] =>
+  Array.from({ length: CONNECT_STEP_COUNT }, (_, index) => {
+    if (index < shown) return 'done';
+
+    return index === shown ? 'active' : 'pending';
+  });
 
 export const maskVin = (vin: string): string => {
   const hidden = Math.max(0, vin.length - VIN_VISIBLE_CHARS);

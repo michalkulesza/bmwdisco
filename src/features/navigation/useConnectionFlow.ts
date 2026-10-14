@@ -25,8 +25,7 @@ export const useConnectionFlow = () => {
     previousPhase.current = phase;
 
     if (phase === 'ready' && CONNECTING_PHASES.includes(before)) {
-      successHaptic();
-      if (pathname === '/') router.replace('/home');
+      if (pathname !== '/') successHaptic();
 
       return;
     }
