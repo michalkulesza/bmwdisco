@@ -28,6 +28,7 @@ const syncStorage: StateStorage = {
 export interface AdapterSettings {
   adapter: AdapterChoice;
   enetHost: string;
+  lastEnetHost: string;
   thorHost: string;
   thorPort: string;
   icarDevice: BleDevice | null;
@@ -41,6 +42,7 @@ interface SettingsState extends AdapterSettings {
   setLanguage: (language: LanguageChoice) => void;
   setAdapter: (adapter: AdapterChoice) => void;
   setEnetHost: (enetHost: string) => void;
+  setLastEnetHost: (lastEnetHost: string) => void;
   setThorHost: (thorHost: string) => void;
   setThorPort: (thorPort: string) => void;
   setIcarDevice: (icarDevice: BleDevice | null) => void;
@@ -50,6 +52,7 @@ interface SettingsState extends AdapterSettings {
 export const selectAdapterSettings = ({
   adapter,
   enetHost,
+  lastEnetHost,
   thorHost,
   thorPort,
   icarDevice,
@@ -57,6 +60,7 @@ export const selectAdapterSettings = ({
 }: SettingsState): AdapterSettings => ({
   adapter,
   enetHost,
+  lastEnetHost,
   thorHost,
   thorPort,
   icarDevice,
@@ -70,6 +74,7 @@ export const useSettingsStore = create<SettingsState>()(
       language: 'system',
       adapter: 'enet',
       enetHost: '',
+      lastEnetHost: '',
       thorHost: DEFAULT_THOR_HOST,
       thorPort: DEFAULT_THOR_PORT,
       icarDevice: null,
@@ -78,6 +83,7 @@ export const useSettingsStore = create<SettingsState>()(
       setLanguage: (language) => set({ language }),
       setAdapter: (adapter) => set({ adapter }),
       setEnetHost: (enetHost) => set({ enetHost }),
+      setLastEnetHost: (lastEnetHost) => set({ lastEnetHost }),
       setThorHost: (thorHost) => set({ thorHost }),
       setThorPort: (thorPort) => set({ thorPort }),
       setIcarDevice: (icarDevice) => set({ icarDevice }),

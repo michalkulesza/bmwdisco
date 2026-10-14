@@ -19,7 +19,7 @@ const KEEPALIVE_TIMEOUT_MS = 1500;
 
 const closeQuietly = (link: DiagnosticLink): Promise<void> => link.close().catch(() => undefined);
 
-export const openNewLink = async (
+const openLink = async (
   deps: SessionDeps,
   config: AdapterConfig,
   signal?: AbortSignal,
@@ -41,6 +41,29 @@ export const openNewLink = async (
   return link;
 };
 
+export const pinResolvedHost = (config: AdapterConfig, link: DiagnosticLink): AdapterConfig =>
+  config.adapter === 'enet' && !config.host && link.host
+    ? { adapter: 'enet', preferredHost: link.host }
+    : config;
+
+export const openNewLink = async (
+  deps: SessionDeps,
+  config: AdapterConfig,
+  signal?: AbortSignal,
+): Promise<DiagnosticLink> => {
+  if (config.adapter !== 'enet' || config.host || !config.preferredHost) {
+    return openLink(deps, config, signal);
+  }
+
+  try {
+    return await openLink(deps, { adapter: 'enet', host: config.preferredHost }, signal);
+  } catch (error) {
+    if (signal?.aborted) throw error;
+
+    return openLink(deps, { adapter: 'enet' }, signal);
+  }
+};
+
 export interface IdentifyInput {
   deps: SessionDeps;
   config: AdapterConfig;
@@ -57,7 +80,9 @@ export const identifyCar = async (
   { deps, config, link, addresses }: IdentifyInput,
   signal: AbortSignal,
 ): Promise<IdentifyOutput> => {
-  const provider = createLinkProvider(link, () => openNewLink(deps, config, signal));
+  const provider = createLinkProvider(link, () =>
+    openNewLink(deps, pinResolvedHost(config, link), signal),
+  );
 
   try {
     const car = await detectCar(provider, {

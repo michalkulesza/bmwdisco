@@ -33,6 +33,7 @@ beforeEach(() => {
   useSettingsStore.setState({
     adapter: 'enet',
     enetHost: '',
+    lastEnetHost: '',
     thorHost: '192.168.0.10',
     thorPort: '23',
     icarDevice: null,
@@ -48,6 +49,20 @@ describe('CableScreen', () => {
       expect(screen.getByRole('radio', { name })).toBeTruthy();
     }
     expect(screen.getByRole('radio', { name: 'ENET', checked: true })).toBeTruthy();
+  });
+
+  it('shows the last working IP in the placeholder when the field is empty', async () => {
+    useSettingsStore.setState({ lastEnetHost: '169.254.10.20' });
+
+    await renderCable();
+
+    expect(screen.getByPlaceholderText('Detect automatically (last: 169.254.10.20)')).toBeTruthy();
+  });
+
+  it('keeps the plain placeholder without a last working IP', async () => {
+    await renderCable();
+
+    expect(screen.getByPlaceholderText('Detect automatically')).toBeTruthy();
   });
 
   it('persists the selected adapter', async () => {

@@ -9,6 +9,7 @@ export interface DiagnosticLink {
   readonly state: LinkState;
   readonly busy: boolean;
   readonly measuredRttMs: number | null;
+  readonly host?: string;
   open(signal?: AbortSignal): Promise<void>;
   request(ecu: number, payload: Uint8Array, options?: RequestOptions): Promise<Uint8Array>;
   close(): Promise<void>;

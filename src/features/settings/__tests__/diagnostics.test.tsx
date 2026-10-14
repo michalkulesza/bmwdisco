@@ -5,6 +5,7 @@ import { Alert, Pressable, Text } from 'react-native';
 import { loadEffects } from '@/data/generated';
 import type { SessionContext } from '@/domain';
 import { useSessionActions, useSessionPhase } from '@/session';
+import { useSettingsStore } from '@/stores/settings';
 import { DEMO_CONFIG, renderWithSession } from '@/test-utils/session-ui';
 
 import { formatDiagnosticLog } from '../diagnostic-log';
@@ -52,6 +53,20 @@ it('exports metadata and timestamped entries while omitting the VIN and connecti
   expect(output).toContain('1970-01-01T00:00:00.000Z test [VIN omitted]');
   expect(output).not.toContain(vin);
   expect(output).not.toContain('169.254.1.1');
+});
+
+it('omits the last working ENET host and the connected host from the log', () => {
+  useSettingsStore.setState({ lastEnetHost: '169.254.8.8' });
+  const context = {
+    adapter: 'enet',
+    link: { host: '169.254.9.9' },
+    log: [{ at: 0, message: 'open 169.254.8.8 then 169.254.9.9' }],
+  } as unknown as SessionContext;
+
+  const output = formatDiagnosticLog(context, 'ready');
+
+  expect(output).toContain('open [host omitted] then [host omitted]');
+  useSettingsStore.setState({ lastEnetHost: '' });
 });
 
 it('explains how to capture an empty log', async () => {
