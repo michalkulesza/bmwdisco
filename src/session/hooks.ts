@@ -14,6 +14,8 @@ import type { SnapshotFrom } from 'xstate';
 
 export type SessionSnapshot = SnapshotFrom<SessionMachine>;
 
+export const useSessionActor = () => SessionContext.useActorRef();
+
 export const useSessionSelector = <T>(selector: (snapshot: SessionSnapshot) => T): T =>
   SessionContext.useSelector(selector);
 
@@ -24,6 +26,8 @@ export const useSessionActions = () => {
 
   return useMemo(
     () => ({
+      setDiagnostics: (enabled: boolean) => actor.send({ type: 'SET_DIAGNOSTICS', enabled }),
+      clearDiagnostics: () => actor.send({ type: 'CLEAR_DIAGNOSTICS' }),
       connect: (config: AdapterConfig) => actor.send({ type: 'CONNECT', config }),
       cancel: () => actor.send({ type: 'CANCEL' }),
       disconnect: () => actor.send({ type: 'DISCONNECT' }),

@@ -413,6 +413,28 @@ describe('toggles', () => {
   });
 });
 
+describe('diagnostic recording', () => {
+  it('can enable recording on an existing session, capture replies and cleanup, then disable and clear it', async () => {
+    const rig = await startReady();
+    expect(rig.context().diagnosticsEnabled).toBe(false);
+    expect(rig.context().log).toEqual([]);
+    rig.actor.send({ type: 'SET_DIAGNOSTICS', enabled: true });
+    run(rig, holdPreset(100));
+    await rig.waitFor('ready');
+    const messages = rig.context().log.map((entry) => entry.message);
+    expect(messages.some((message) => message.startsWith('-> 40'))).toBe(true);
+    expect(messages.some((message) => message.startsWith('<- 40'))).toBe(true);
+    expect(messages).toContain('restored=true');
+    rig.actor.send({ type: 'SET_DIAGNOSTICS', enabled: false });
+    const before = [...rig.context().log];
+    run(rig, holdPreset(100));
+    await rig.waitFor('ready');
+    expect(rig.context().log).toEqual(before);
+    rig.actor.send({ type: 'CLEAR_DIAGNOSTICS' });
+    expect(rig.context().log).toEqual([]);
+  });
+});
+
 describe('continuous preset safety', () => {
   it.each([
     ['hold', 'STOP'],
@@ -615,6 +637,100 @@ describe('link loss and reconnecting', () => {
     expect(rig.context().lightsMayBeOn).toBe(false);
     expect(rig.context().lastError).toBeUndefined();
     await expectDefaultSession(rig.vehicle);
+  });
+
+  it.each([
+    ['flash.indicatorLeft', 0x06, 'indicatorLeftAll'],
+    ['flash.indicatorRight', 0x07, 'indicatorRightAll'],
+  ] as const)(
+    'recovers from repeated command failures in %s and can run hazards afterwards',
+    async (id, command, element) => {
+      const vehicle = makeVehicle('F32');
+      const broken = { value: true };
+      const rig = createRig(vehicle, {
+        debug: true,
+        createLink: async () => {
+          const link = new SimLink(vehicle);
+          const request = link.request.bind(link);
+          link.request = async (ecu, payload, options) => {
+            if (
+              broken.value &&
+              payload[0] === 0x2e &&
+              payload[1] === 0xd5 &&
+              payload[4] === command
+            ) {
+              await link.close();
+            }
+            return request(ecu, payload, options);
+          };
+          return link;
+        },
+      });
+      await connect(rig);
+      run(rig, effectOf(rig, id));
+      await rig.waitFor('error');
+      expect(
+        rig
+          .context()
+          .log.some((entry) => entry.message.includes(`command failed FEM_20 ${element}`)),
+      ).toBe(true);
+      expect(rig.context().lightsMayBeOn).toBe(true);
+      broken.value = false;
+      rig.actor.send({ type: 'CONNECT', config: DEMO_CONFIG });
+      await rig.waitFor('ready');
+      expect(rig.context().ledger.hasPending).toBe(false);
+      rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: true });
+      await rig.waitFor('ready');
+      expect(litIds(vehicle)).toContain('FEM_20:hazard');
+      rig.actor.send({ type: 'STOP' });
+      await rig.waitFor('ready');
+      expect(vehicle.getLitElements()).toEqual([]);
+    },
+  );
+
+  it('lets a manual reconnect interrupt the retry delay and restores before returning ready', async () => {
+    const rig = await startReady();
+    await startHold(rig);
+    await rig.context().link!.close();
+    await rig.waitFor('reconnecting');
+    rig.actor.send({ type: 'CONNECT', config: DEMO_CONFIG });
+    expect(rig.phase()).toBe('connecting');
+    await rig.waitFor('ready');
+    expect(rig.vehicle.getLitElements()).toEqual([]);
+    expect(rig.context().ledger.hasPending).toBe(false);
+  });
+
+  it('bounds link losses during cleanup and allows recovery without restarting the app', async () => {
+    const vehicle = makeVehicle('F20');
+    const broken = { value: true };
+    const rig = createRig(vehicle, {
+      createLink: async () => {
+        const link = new SimLink(vehicle);
+        const request = link.request.bind(link);
+        link.request = async (ecu, payload, options) => {
+          if (broken.value && payload[0] === 0x2f && payload[payload.length - 1] === 0) {
+            await link.close();
+          }
+          return request(ecu, payload, options);
+        };
+        return link;
+      },
+    });
+    await connect(rig);
+    await startHold(rig);
+    rig.actor.send({ type: 'STOP' });
+    await rig.waitFor('error');
+    expect(rig.context().restoreFailures).toBe(3);
+    expect(rig.context().lightsMayBeOn).toBe(true);
+    const failures = rig.context().restoreFailures;
+    await jest.advanceTimersByTimeAsync(10_000);
+    expect(rig.phase()).toBe('error');
+    expect(rig.context().restoreFailures).toBe(failures);
+    broken.value = false;
+    rig.actor.send({ type: 'CONNECT', config: DEMO_CONFIG });
+    await rig.waitFor('ready');
+    expect(vehicle.getLitElements()).toEqual([]);
+    expect(rig.context().ledger.hasPending).toBe(false);
   });
 
   it('keeps lights-may-be-on and restores first when the car comes back on a later session', async () => {

@@ -315,7 +315,10 @@ describe('PresetRunner element resolution', () => {
       traced.runner.run(presetItem([{ type: 'set', elements: ['lowBeamLeft'], state: 'on' }])),
     );
 
-    expect(quiet.events.some((event) => event.type === 'request')).toBe(false);
+    expect(
+      quiet.events.some((event) => event.type === 'request' || event.type === 'response'),
+    ).toBe(false);
+    expect(traced.events.some((event) => event.type === 'response')).toBe(true);
     expect(traced.events.filter((event) => event.type === 'request').length).toBeGreaterThan(3);
   });
 });

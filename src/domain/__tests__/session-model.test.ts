@@ -13,7 +13,7 @@ const ALLOWED_TRANSITIONS: Record<SessionPhase, readonly SessionPhase[]> = {
   running: ['ready', 'restoring', 'reconnecting', 'disconnecting'],
   restoring: ['ready', 'reconnecting', 'disconnecting', 'error'],
   disconnecting: ['disconnected'],
-  reconnecting: ['restoring', 'ready', 'error', 'disconnected'],
+  reconnecting: ['connecting', 'restoring', 'ready', 'error', 'disconnected'],
   disconnected: ['connecting'],
   error: ['connecting', 'disconnected'],
 };

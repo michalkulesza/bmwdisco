@@ -39,9 +39,15 @@ export class PresetRunner {
   private restoring?: Promise<CleanupReport>;
   private tooFastReported = false;
   private previousRestoreFailed = false;
+  private tracing: boolean;
 
   constructor(private readonly deps: RunnerDeps) {
     this.clock = deps.clock ?? systemClock;
+    this.tracing = deps.trace ?? false;
+  }
+
+  setTrace(enabled: boolean): void {
+    this.tracing = enabled;
   }
 
   get ledger(): ControlLedger {
@@ -122,7 +128,15 @@ export class PresetRunner {
     if (this.deps.ledger.hasPending) this.emit({ type: 'restoring' });
     const send = createCleanupSend(
       this.deps.link,
-      this.deps.trace ? (ecu, payload) => this.emit({ type: 'request', ecu, payload }) : undefined,
+      (ecu, payload) => {
+        if (this.tracing) this.emit({ type: 'request', ecu, payload });
+      },
+      (ecu, payload) => {
+        if (this.tracing) this.emit({ type: 'response', ecu, payload });
+      },
+      (ecu, error) => {
+        if (this.tracing) this.emit({ type: 'requestFailed', ecu, error });
+      },
     );
     const pending = restoreControl(this.deps.link, this.deps.ledger, send, {
       reenterSession: options.reenterSession || this.previousRestoreFailed,
@@ -155,10 +169,18 @@ export class PresetRunner {
     return signal.reason instanceof RunLimitError ? signal.reason : undefined;
   }
 
-  private send(module: DetectedModule, payload: Uint8Array): Promise<Uint8Array> {
-    if (this.deps.trace) this.emit({ type: 'request', ecu: module.address, payload });
+  private async send(module: DetectedModule, payload: Uint8Array): Promise<Uint8Array> {
+    if (this.tracing) this.emit({ type: 'request', ecu: module.address, payload });
 
-    return this.deps.link.request(module.address, payload);
+    try {
+      const response = await this.deps.link.request(module.address, payload);
+      if (this.tracing) this.emit({ type: 'response', ecu: module.address, payload: response });
+      return response;
+    } catch (error) {
+      if (this.tracing)
+        this.emit({ type: 'requestFailed', ecu: module.address, error: toError(error) });
+      throw error;
+    }
   }
 
   private warnIfTooFast(plan: RunPlan): void {
@@ -231,7 +253,12 @@ export class PresetRunner {
 
   private async sendPlanned({ module, element, payload }: PlannedSend): Promise<void> {
     this.deps.ledger.touch(module.module, element);
-    await this.send(module, payload);
+    try {
+      await this.send(module, payload);
+    } catch (error) {
+      this.emit({ type: 'commandFailed', sgbd: module.sgbd, element, error: toError(error) });
+      throw error;
+    }
   }
 
   private waitUntil(targetMs: number, signal: AbortSignal): Promise<number | undefined> {

@@ -71,11 +71,14 @@ export interface SessionContext {
   disconnectRequested: boolean;
   notices: RunnerNotice[];
   log: LogEntry[];
+  diagnosticsEnabled: boolean;
 }
 
 export type RunInput = Preset | Effect;
 
 export type SessionEvent =
+  | { type: 'SET_DIAGNOSTICS'; enabled: boolean }
+  | { type: 'CLEAR_DIAGNOSTICS' }
   | { type: 'CONNECT'; config: AdapterConfig }
   | { type: 'CANCEL' }
   | { type: 'DISCONNECT' }

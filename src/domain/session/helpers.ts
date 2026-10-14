@@ -31,7 +31,7 @@ export const findToggle = (car: DetectedCar | undefined, effectId: string): Effe
   car?.effects.find((effect) => effect.id === effectId && effect.kind === 'toggle');
 
 export const appendLog = (context: SessionContext, message: string): LogEntry[] => {
-  if (!context.deps.debug) return context.log;
+  if (!(context.diagnosticsEnabled ?? context.deps.debug)) return context.log;
 
   const at = (context.deps.clock?.now ?? Date.now)();
 
@@ -48,12 +48,23 @@ export const describeRunnerEvent = (event: RunnerEvent): string => {
       return `faster than adapter: needs ${event.requiredMs} ms`;
     case 'clusterFeedbackFailed':
       return `cluster feedback failed: ${event.error.message}`;
+    case 'commandFailed':
+      return `command failed ${event.sgbd} ${event.element}: ${event.error.message}`;
+    case 'response':
+      return `<- ${event.ecu.toString(16)} ${hex(event.payload)}`;
+    case 'requestFailed':
+      return `request failed ${event.ecu.toString(16)}: ${event.error.message}`;
     case 'request':
       return `-> ${event.ecu.toString(16)} ${hex(event.payload)}`;
     case 'restoring':
       return 'restoring';
     case 'restored':
-      return `restored=${event.report.restored}`;
+      return `restored=${event.report.restored}${event.report.failures
+        .map(
+          (failure) =>
+            `; ${failure.sgbd} ${failure.step}${failure.element ? ` ${failure.element}` : ''}: ${failure.error.message}`,
+        )
+        .join('')}`;
   }
 };
 
