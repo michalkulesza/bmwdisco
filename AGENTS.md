@@ -19,8 +19,8 @@ Routes live in `app/` (thin). Code lives in `src/` (`transport`, `link`, `protoc
 
 ## Commands
 
-`npm run typecheck`, `npm run lint`, `npm test`, `npm run test:coverage`. Pre-commit runs lint-staged (eslint, prettier, tsc).
+Package manager: pnpm (`lightningcss` is pinned via `overrides` in `pnpm-workspace.yaml`; never add an npm lockfile). `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm test:coverage`. Pre-commit runs lint-staged (eslint, prettier, tsc).
 
 ## Safety
 
-Forced control must always be undone (see Safety policy in `docs/PLAN.md`). No analytics, no network calls.
+Forced control must always be undone (see Safety policy in `docs/PLAN.md`). Sentry is the only network use (user-initiated problem reports plus crash reports), with no other analytics.
