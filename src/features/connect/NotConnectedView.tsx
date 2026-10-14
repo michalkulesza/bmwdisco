@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Lightning, PlugsConnected, Sliders } from 'phosphor-react-native';
+import { PlugsConnected, Sliders } from 'phosphor-react-native';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -7,6 +7,7 @@ import Svg, { Circle } from 'react-native-svg';
 
 import Button from '@/ui/Button';
 import Copyright from '@/ui/Copyright';
+import Logo from '@/ui/Logo';
 import Screen from '@/ui/Screen';
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
@@ -42,12 +43,11 @@ const Rings = () => {
 
 const Brand = () => {
   const { t } = useTranslation();
-  const accent = useColorToken('blue');
 
   return (
     <View className="items-center gap-7">
       <View className="size-[132px] items-center justify-center rounded-pill border border-line bg-card">
-        <Lightning size={56} weight="fill" color={accent} />
+        <Logo size={120} />
       </View>
       <View className="items-center gap-3">
         <Text variant="title" accessibilityRole="header">

@@ -5,6 +5,7 @@
     "version": "0.1.0",
     "scheme": "bimmerdisco",
     "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "platforms": ["ios", "android"],
     "ios": {
@@ -17,6 +18,10 @@
     },
     "android": {
       "package": "com.michalkulesza.bimmerdisco",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0B0D"
+      },
       "permissions": [
         "android.permission.BLUETOOTH_SCAN",
         "android.permission.BLUETOOTH_CONNECT",
@@ -48,7 +53,15 @@
           "bluetoothAlwaysPermission": "BimmerDisco connects to your Bluetooth OBD adapter to control the lights of your car."
         }
       ],
-      "@sentry/react-native"
+      "@sentry/react-native",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "backgroundColor": "#0A0B0D",
+          "imageWidth": 200
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
