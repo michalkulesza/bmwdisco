@@ -9,13 +9,17 @@ import { toHeaderItems } from '@/features/navigation/headerItems';
 import { useSessionSelector } from '@/session';
 import { useFavouritesStore } from '@/stores/favourites';
 import { usePresetsStore } from '@/stores/presets';
+import Copyright from '@/ui/Copyright';
+import { SCREEN_TOP_PADDING } from '@/ui/layout';
 
+import HeaderButtons from './HeaderButtons';
 import { buildHomeRows, type HomeRow } from './helpers';
 import HomeRowView, { SCREEN_PADDING } from './HomeRowView';
-import SettingsButton from './SettingsButton';
 import { useHomeHandlers } from './useHomeHandlers';
 
-const settingsHeaderItems = toHeaderItems(<SettingsButton />);
+const headerItems = toHeaderItems(<HeaderButtons />);
+
+const FOOTER_STYLE = { paddingTop: 32 };
 
 const getRowKey = (row: HomeRow) => row.key;
 
@@ -35,24 +39,30 @@ const HomeScreen = () => {
     [presets, favouriteIds, size, effects, car, t],
   );
   const contentStyle = useMemo(
-    () => ({ paddingHorizontal: SCREEN_PADDING, paddingBottom: insets.bottom + 24 }),
+    () => ({
+      paddingHorizontal: SCREEN_PADDING,
+      paddingTop: SCREEN_TOP_PADDING,
+      paddingBottom: insets.bottom + 24,
+    }),
     [insets.bottom],
   );
 
   const renderRow = useCallback(
-    ({ item }: ListRenderItemInfo<HomeRow>) => (
-      <HomeRowView row={item} width={width} handlers={handlers} />
+    ({ item, index }: ListRenderItemInfo<HomeRow>) => (
+      <HomeRowView row={item} width={width} handlers={handlers} isFirst={index === 0} />
     ),
     [width, handlers],
   );
 
   return (
     <>
-      <Stack.Screen options={{ unstable_headerRightItems: settingsHeaderItems }} />
+      <Stack.Screen options={{ unstable_headerRightItems: headerItems }} />
       <FlatList
         data={rows}
         keyExtractor={getRowKey}
         renderItem={renderRow}
+        ListFooterComponent={Copyright}
+        ListFooterComponentStyle={FOOTER_STYLE}
         contentContainerStyle={contentStyle}
         contentInsetAdjustmentBehavior="automatic"
         className="flex-1 bg-page"
