@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
 import ConnectionLostOverlay from '@/features/connect/ConnectionLostOverlay';
+import ReportProblemModal from '@/features/report/ReportProblemModal';
 
 import { useConnectionFlow } from './useConnectionFlow';
 import { useNavigationTheme, useSheetOptions, useStackScreenOptions } from './useNavigationOptions';
@@ -65,6 +66,7 @@ const RootNavigator = () => {
         <Stack.Screen name="tile-menu" options={sheetOptions} />
       </Stack>
       <ConnectionLostOverlay />
+      <ReportProblemModal />
     </ThemeProvider>
   );
 };
