@@ -67,6 +67,15 @@ describe('preset editor helpers', () => {
     expect(parseMs('99999999')).toBe(PRESET_LIMITS.maxTotalMs);
   });
 
+  it('serialises a cleared duration as an until-changed step', () => {
+    const payload = buildPresetPayload(draft([light('a', undefined)]), 'x');
+
+    expect(JSON.parse(JSON.stringify(payload.steps))).toEqual([
+      { type: 'set', elements: ['hazard'], state: 'on' },
+    ]);
+    expect(validateDraft(draft([light('a', undefined)]))).toEqual([]);
+  });
+
   it('moves items', () => {
     expect(moveItem(['a', 'b', 'c'], 0, 2)).toEqual(['b', 'c', 'a']);
     expect(moveItem(['a'], 5, 0)).toEqual(['a']);

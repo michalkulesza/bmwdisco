@@ -1,87 +1,75 @@
-import { categoryOf, type ElementCategory, type ElementId } from '@/data/elements';
+import { type ElementId } from '@/data/elements';
 import { PRESET_LIMITS } from '@/domain';
 
-import { CATEGORY_ORDER } from '../category-appearance';
 import { newStepKey, type EditorStep } from '../helpers';
 
-export const DURATION_STEP_MS = 50;
+export const DURATION_STEP_MS = 100;
 export const DURATION_CHIPS: readonly number[] = [50, 100, 250, 500];
 export const DEFAULT_DURATION_MS = 100;
 
 export type StepType = 'set' | 'wait';
-
-export type ElementListRow =
-  { type: 'group'; category: ElementCategory } | { type: 'item'; id: ElementId };
 
 export interface StepFormValues {
   type: StepType;
   element: ElementId | undefined;
   state: 'on' | 'off';
   durationMs: number | undefined;
-  immediate?: boolean;
 }
-
-export const groupElements = (ids: readonly ElementId[]): ElementListRow[] =>
-  CATEGORY_ORDER.flatMap((category) => {
-    const items = ids.filter((id) => categoryOf(id) === category);
-
-    return items.length === 0
-      ? []
-      : [
-          { type: 'group' as const, category },
-          ...items.map((id) => ({ type: 'item' as const, id })),
-        ];
-  });
 
 export const clampDuration = (value: number): number =>
   Math.min(Math.max(value, PRESET_LIMITS.minStepMs), PRESET_LIMITS.maxTotalMs);
 
-export const stepDuration = (current: number | undefined, delta: number): number =>
-  clampDuration((current ?? 0) + delta);
+export const stepDuration = (
+  current: number | undefined,
+  delta: number,
+  allowEmpty = false,
+): number | undefined => {
+  const base = current ?? 0;
+  const size = Math.abs(delta);
+  const next =
+    delta > 0 ? Math.floor(base / size) * size + size : Math.ceil(base / size) * size - size;
+  if (allowEmpty && next < PRESET_LIMITS.minStepMs) return undefined;
+
+  return clampDuration(next);
+};
+
+export const isDurationTooShort = (durationMs: number | undefined): boolean =>
+  durationMs !== undefined && durationMs < PRESET_LIMITS.minStepMs;
 
 export const isFormValid = (form: StepFormValues): boolean => {
   const durationOk = form.durationMs !== undefined && form.durationMs >= PRESET_LIMITS.minStepMs;
 
-  return (
-    (durationOk || (form.type === 'set' && form.immediate === true)) &&
-    (form.type === 'wait' || form.element !== undefined)
-  );
+  if (form.type === 'wait') return durationOk;
+
+  return form.element !== undefined && (form.durationMs === undefined || durationOk);
 };
 
-export const formFromStep = (
-  step: EditorStep | undefined,
-  fallbackType: StepType,
+export const initialForm = (
+  type: StepType,
+  steps: readonly EditorStep[],
+  selectable: readonly ElementId[],
 ): StepFormValues => {
-  if (!step || step.type === 'loop') {
-    return { type: fallbackType, element: undefined, state: 'on', durationMs: DEFAULT_DURATION_MS };
+  const previous = type === 'set' ? steps.findLast((step) => step.type === 'set') : undefined;
+  const previousElement = previous?.type === 'set' ? previous.elements[0] : undefined;
+  const element =
+    previousElement && selectable.includes(previousElement) ? previousElement : selectable[0];
+
+  if (previous?.type !== 'set') {
+    return { type, element, state: 'on', durationMs: DEFAULT_DURATION_MS };
   }
 
-  if (step.type === 'wait') {
-    return { type: 'wait', element: undefined, state: 'on', durationMs: step.ms };
-  }
-
-  return {
-    type: 'set',
-    element: step.elements[0],
-    state: step.state,
-    durationMs: step.durationMs,
-    immediate: step.durationMs === undefined,
-  };
+  return { type, element, state: previous.state, durationMs: previous.durationMs };
 };
 
-export const buildStepFromForm = (
-  form: StepFormValues,
-  key = newStepKey(),
-): EditorStep | undefined => {
-  const durationMs = form.durationMs ?? 0;
-  if (form.type === 'wait') return { key, type: 'wait', ms: durationMs };
+export const buildStepFromForm = (form: StepFormValues): EditorStep | undefined => {
+  if (form.type === 'wait') return { key: newStepKey(), type: 'wait', ms: form.durationMs ?? 0 };
   if (!form.element) return undefined;
 
   return {
-    key,
+    key: newStepKey(),
     type: 'set',
     elements: [form.element],
     state: form.state,
-    ...(form.immediate ? {} : { durationMs }),
+    ...(form.durationMs === undefined ? {} : { durationMs: form.durationMs }),
   };
 };

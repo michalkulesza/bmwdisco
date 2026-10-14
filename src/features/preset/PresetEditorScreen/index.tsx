@@ -177,11 +177,6 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
     ]);
   }, [appendLoop, steps, t]);
 
-  const handleEditElement = useCallback(
-    (key: string) => router.push({ pathname: '/preset/add-step', params: { key } }),
-    [router],
-  );
-
   const handleReorder = useCallback(
     ({ from, to }: ReorderableListReorderEvent) => {
       setSteps(moveItem(steps, from, to));
@@ -202,10 +197,9 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
         issue={stepIssues[item.key]}
         onChange={handleStepChange}
         onRemove={removeStep}
-        onEditElement={handleEditElement}
       />
     ),
-    [handleEditElement, handleStepChange, removeStep, stepIssues],
+    [handleStepChange, removeStep, stepIssues],
   );
 
   const cancelHeaderItems = useMemo(

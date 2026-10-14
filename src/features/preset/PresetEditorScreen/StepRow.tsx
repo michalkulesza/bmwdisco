@@ -5,7 +5,8 @@ import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 
-import { categoryOf } from '@/data/elements';
+import { categoryOf, type ElementId } from '@/data/elements';
+import { type PopoverTriggerProps } from '@/ui/Popover';
 import SegmentedControl, { type SegmentedOption } from '@/ui/SegmentedControl';
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
@@ -14,6 +15,7 @@ import { translateKey } from '@/ui/tile/helpers';
 import { categoryAppearance } from '../category-appearance';
 import ElementWarning from '../ElementWarning';
 import { ISSUE_PARAMS, type DraftIssueCode, type EditorStep } from '../helpers';
+import LightPicker from '../LightPicker';
 import MsInput from '../MsInput';
 
 import StepCard from './StepCard';
@@ -26,7 +28,6 @@ interface StepRowProps {
   issue: DraftIssueCode | undefined;
   onChange: (step: EditorStep) => void;
   onRemove: (key: string) => void;
-  onEditElement: (key: string) => void;
 }
 
 const WaitHeader = () => {
@@ -41,12 +42,14 @@ const WaitHeader = () => {
   );
 };
 
+type SetStep = Extract<EditorStep, { type: 'set' }>;
+
 interface ElementHeaderProps {
-  step: Extract<EditorStep, { type: 'set' }>;
-  onPress: () => void;
+  step: SetStep;
+  onChange: (step: EditorStep) => void;
 }
 
-const ElementHeader = ({ step, onPress }: ElementHeaderProps) => {
+const ElementHeader = ({ step, onChange }: ElementHeaderProps) => {
   const { t } = useTranslation();
   const muted = useColorToken('text-muted');
   const [first, ...rest] = step.elements;
@@ -57,24 +60,34 @@ const ElementHeader = ({ step, onPress }: ElementHeaderProps) => {
     ? t('preset.moreElements', { name: elementName, count: rest.length })
     : elementName;
 
-  return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel={t('preset.editStepLight', { name: label })}
-      onPress={onPress}
-      className="min-h-touch flex-row items-center gap-2 active:opacity-60"
-    >
-      <IconComponent size={20} color={color} />
-      <Text variant="bodyMedium" numberOfLines={1} className="shrink">
-        {label}
-      </Text>
-      <ElementWarning elements={step.elements} />
-      <CaretDownIcon size={14} color={muted} />
-    </Pressable>
+  const handleSelect = useCallback(
+    (id: ElementId) => onChange({ ...step, elements: [id] }),
+    [onChange, step],
   );
+  const renderTrigger = useCallback(
+    (triggerProps: PopoverTriggerProps, { open }: { open: boolean }) => (
+      <Pressable
+        {...triggerProps}
+        accessibilityRole="button"
+        accessibilityLabel={t('preset.editStepLight', { name: label })}
+        accessibilityState={{ expanded: open }}
+        className="min-h-touch flex-row items-center gap-2 active:opacity-60"
+      >
+        <IconComponent size={20} color={color} />
+        <Text variant="bodyMedium" numberOfLines={1} className="shrink">
+          {label}
+        </Text>
+        <ElementWarning elements={step.elements} />
+        <CaretDownIcon size={14} color={muted} />
+      </Pressable>
+    ),
+    [IconComponent, color, label, muted, step.elements, t],
+  );
+
+  return <LightPicker value={first} onSelect={handleSelect} trigger={renderTrigger} />;
 };
 
-const StepRow = ({ step, number, issue, onChange, onRemove, onEditElement }: StepRowProps) => {
+const StepRow = ({ step, number, issue, onChange, onRemove }: StepRowProps) => {
   const { t } = useTranslation();
   const loopColor = useColorToken('primary');
   const stateOptions: SegmentedOption<StepState>[] = useMemo(
@@ -89,7 +102,6 @@ const StepRow = ({ step, number, issue, onChange, onRemove, onEditElement }: Ste
     : undefined;
 
   const handleRemove = useCallback(() => onRemove(step.key), [onRemove, step.key]);
-  const handleEditElement = useCallback(() => onEditElement(step.key), [onEditElement, step.key]);
 
   if (step.type === 'loop') {
     return (
@@ -135,7 +147,7 @@ const StepRow = ({ step, number, issue, onChange, onRemove, onEditElement }: Ste
   return (
     <StepCard
       number={number}
-      header={<ElementHeader step={step} onPress={handleEditElement} />}
+      header={<ElementHeader step={step} onChange={onChange} />}
       errorText={errorText}
       onRemove={handleRemove}
     >
@@ -146,33 +158,19 @@ const StepRow = ({ step, number, issue, onChange, onRemove, onEditElement }: Ste
         accessibilityLabel={t('preset.state')}
         className="w-28"
       />
-      <View className="flex-1 gap-1">
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t('preset.step.timing')}
-          onPress={() =>
-            onChange({ ...step, durationMs: step.durationMs === undefined ? 100 : undefined })
-          }
-          className="min-h-touch justify-center active:opacity-60"
-        >
-          <Text variant="small" tone="muted">
-            {step.durationMs === undefined ? t('preset.step.untilChanged') : t('preset.step.delay')}
-          </Text>
-        </Pressable>
-        {step.durationMs !== undefined ? (
-          <View className="flex-row items-center gap-2">
-            <MsInput
-              value={step.durationMs}
-              onChange={(durationMs) => onChange({ ...step, durationMs: durationMs ?? 0 })}
-              accessibilityLabel={t('preset.durationLabel')}
-              invalid={issue !== undefined}
-            />
-            <Text variant="meta" tone="muted">
-              {t('preset.ms')}
-            </Text>
-          </View>
-        ) : null}
-      </View>
+      <Text variant="meta" tone="muted">
+        {t('preset.step.for')}
+      </Text>
+      <MsInput
+        value={step.durationMs}
+        onChange={(durationMs) => onChange({ ...step, durationMs })}
+        accessibilityLabel={t('preset.durationLabel')}
+        invalid={issue !== undefined}
+        allowEmpty
+      />
+      <Text variant="meta" tone="muted">
+        {t('preset.ms')}
+      </Text>
     </StepCard>
   );
 };

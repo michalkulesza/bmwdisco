@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { CaretRightIcon } from 'phosphor-react-native/src/icons/CaretRight';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 
 import Text from '@/ui/Text';
 import { useColorToken, type HueToken } from '@/ui/theme';
@@ -56,11 +56,17 @@ const AppearanceCard = ({ color, icon, onChangeColor }: AppearanceCardProps) => 
     <View className="overflow-hidden rounded-card border border-card-border bg-card">
       <View className="gap-3 p-4">
         <Text variant="label">{t('preset.colour')}</Text>
-        <View accessibilityRole="radiogroup" className="flex-row flex-wrap gap-3">
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          accessibilityRole="radiogroup"
+          className="-mx-4 -my-1"
+          contentContainerClassName="gap-3 px-4 py-1"
+        >
           {HUE_TOKENS.map((token) => (
             <Swatch key={token} hue={token} selected={token === hue} onSelect={onChangeColor} />
           ))}
-        </View>
+        </ScrollView>
       </View>
       <View className="ml-4 h-px bg-card-border" />
       <Pressable

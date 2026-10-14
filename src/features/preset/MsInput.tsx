@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { TextInput } from 'react-native';
 
 import { useColorToken } from '@/ui/theme';
@@ -9,20 +10,35 @@ interface MsInputProps {
   onChange: (value: number | undefined) => void;
   accessibilityLabel: string;
   invalid?: boolean;
+  allowEmpty?: boolean;
 }
 
-const MsInput = ({ value, onChange, accessibilityLabel, invalid = false }: MsInputProps) => {
+const MsInput = ({
+  value,
+  onChange,
+  accessibilityLabel,
+  invalid = false,
+  allowEmpty = false,
+}: MsInputProps) => {
+  const { t } = useTranslation();
+  const muted = useColorToken('text-muted');
   const text = useColorToken('text');
   const destructive = useColorToken('destructive');
   const border = useColorToken('border');
 
   const handleChangeText = (next: string) => onChange(parseMs(next));
 
+  const showsInfinity = allowEmpty && value === undefined;
+  const accessibilityValue = showsInfinity ? { text: t('preset.step.untilChanged') } : undefined;
+
   return (
     <TextInput
       value={value === undefined ? '' : String(value)}
       onChangeText={handleChangeText}
       accessibilityLabel={accessibilityLabel}
+      accessibilityValue={accessibilityValue}
+      placeholder={allowEmpty ? '∞' : undefined}
+      placeholderTextColor={muted}
       keyboardType="number-pad"
       returnKeyType="done"
       autoCorrect={false}

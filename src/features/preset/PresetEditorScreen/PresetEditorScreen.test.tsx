@@ -179,6 +179,24 @@ describe('PresetEditorScreen', () => {
     expect(usePresetsStore.getState().presets[0]!.steps[0]).toMatchObject({ durationMs: 100 });
   });
 
+  it('lets a light step duration be cleared to until changed and typed again', async () => {
+    await openEditor('new');
+    await addLightStep();
+    const input = screen.getByLabelText('Duration in milliseconds');
+
+    expect(screen.getByText('for')).toBeTruthy();
+    expect(input.props.placeholder).toBe('∞');
+
+    await fireEvent.changeText(input, '');
+    expect(useDraftStore.getState().steps[0]!.type).toBe('set');
+    expect(useDraftStore.getState().steps[0]).toHaveProperty('durationMs', undefined);
+    expect(screen.getByLabelText('Duration in milliseconds').props.value).toBe('');
+    expect(screen.queryByText('Minimum is 50 ms')).toBeNull();
+
+    await fireEvent.changeText(screen.getByLabelText('Duration in milliseconds'), '350');
+    expect(useDraftStore.getState().steps[0]).toMatchObject({ durationMs: 350 });
+  });
+
   it('flags a total duration over the limit', async () => {
     await openEditor('seed-double-flash');
 
@@ -216,6 +234,63 @@ describe('PresetEditorScreen', () => {
       pathname: '/preset/add-step',
       params: { type: 'set' },
     });
+  });
+
+  it('changes a step light from the dropdown without navigating', async () => {
+    sessionState.car = fakeCar(undefined, ['lowBeamAll', 'highBeamAll', 'hazard']);
+    await openEditor('new');
+    await addLightStep();
+    const keyBefore = useDraftStore.getState().steps[0]!.key;
+
+    const trigger = screen.getByRole('button', { name: 'Light: Low beams' });
+    expect(trigger.props.accessibilityState).toMatchObject({ expanded: false });
+    await fireEvent.press(trigger);
+    expect(
+      screen.getByRole('button', { name: 'Light: Low beams' }).props.accessibilityState,
+    ).toMatchObject({
+      expanded: true,
+    });
+    expect(screen.queryByRole('radio', { name: 'Tail light left' })).toBeNull();
+    await fireEvent.press(screen.getByRole('radio', { name: 'High beams' }));
+
+    const [step] = useDraftStore.getState().steps;
+    expect(step).toEqual({
+      key: keyBefore,
+      type: 'set',
+      elements: ['highBeamAll'],
+      state: 'on',
+      durationMs: 200,
+    });
+    expect(screen.getByRole('button', { name: 'Light: High beams' })).toBeTruthy();
+    expect(routerMock.push).not.toHaveBeenCalled();
+  });
+
+  it('closes the dropdown from the full-screen backdrop and toggles on the trigger', async () => {
+    await openEditor('new');
+    await addLightStep();
+    const trigger = () => screen.getByRole('button', { name: 'Light: Low beams' });
+
+    await fireEvent.press(trigger());
+    expect(screen.getByTestId('popover-root')).toHaveStyle({ flex: 1 });
+    expect(screen.getByRole('radio', { name: 'High beams' })).toBeTruthy();
+    expect(trigger().props.accessibilityState).toMatchObject({ expanded: true });
+
+    await fireEvent.press(screen.getByTestId('popover-backdrop', { hidden: true }));
+
+    expect(screen.queryByRole('radio', { name: 'High beams' })).toBeNull();
+    expect(trigger().props.accessibilityState).toMatchObject({ expanded: false });
+    expect(useDraftStore.getState().steps[0]).toMatchObject({ elements: ['lowBeamAll'] });
+  });
+
+  it('edits a wait step duration inline', async () => {
+    await openEditor('new');
+    await act(async () => {
+      useDraftStore.getState().addStep({ key: 'w', type: 'wait', ms: 100 });
+    });
+
+    await fireEvent.changeText(screen.getByLabelText('Wait in milliseconds'), '450');
+
+    expect(useDraftStore.getState().steps[0]).toEqual({ key: 'w', type: 'wait', ms: 450 });
   });
 
   it('opens the icon picker', async () => {
