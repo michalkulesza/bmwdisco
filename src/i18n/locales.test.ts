@@ -1,3 +1,5 @@
+import i18nKeys from '@/data/generated/i18n-keys.json';
+
 import en from './en.json';
 import pl from './pl.json';
 
@@ -17,5 +19,14 @@ describe('locale files', () => {
     const missingInEn = plKeys.filter((key) => !enKeys.includes(key));
 
     expect({ missingInPl, missingInEn }).toEqual({ missingInPl: [], missingInEn: [] });
+  });
+
+  it('translate every key referenced by the generated ECU data', () => {
+    const enKeys = flattenKeys(en);
+    const missing = Object.values(i18nKeys)
+      .flat()
+      .filter((key) => !enKeys.includes(key));
+
+    expect(missing).toEqual([]);
   });
 });

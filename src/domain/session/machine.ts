@@ -56,6 +56,7 @@ const initialContext = ({ input }: { input: SessionDeps }): SessionContext => ({
   disconnectRequested: false,
   notices: [],
   log: [],
+  diagnosticsEnabled: input.debug ?? false,
 });
 
 const errorOf = (error: unknown, whileRunning = false): SessionError => {
@@ -80,7 +81,7 @@ const makeRunner = (
     car: output.car,
     ledger: context.ledger,
     clock: context.deps.clock,
-    trace: context.deps.debug,
+    trace: context.diagnosticsEnabled,
     onEvent: (event) => onEvent({ type: 'RUNNER_EVENT', event }),
   });
 
@@ -154,6 +155,12 @@ export const sessionMachine = setup({
     canRetryReconnect: ({ context }) => context.reconnectAttempt < MAX_RECONNECT_ATTEMPTS,
   },
   actions: {
+    setDiagnostics: assign(({ context, event }) => {
+      if (event.type !== 'SET_DIAGNOSTICS') return {};
+      context.runner?.setTrace(event.enabled);
+      return { diagnosticsEnabled: event.enabled };
+    }),
+    clearDiagnostics: assign({ log: [] }),
     logEvent: assign({
       log: ({ context, event }) =>
         event.type === 'RUNNER_EVENT'
@@ -348,7 +355,11 @@ export const sessionMachine = setup({
   context: initialContext,
   initial: 'idle',
   invoke: { src: 'appState', input: ({ context }) => ({ source: context.deps.appState }) },
-  on: { RUNNER_EVENT: { actions: 'logEvent' } },
+  on: {
+    RUNNER_EVENT: { actions: 'logEvent' },
+    SET_DIAGNOSTICS: { actions: 'setDiagnostics' },
+    CLEAR_DIAGNOSTICS: { actions: 'clearDiagnostics' },
+  },
   states: {
     idle: {
       on: { CONNECT: { target: 'connecting', actions: 'startConnect' } },
@@ -483,7 +494,10 @@ export const sessionMachine = setup({
         },
       ],
       on: {
-        LINK_LOST: 'reconnecting',
+        LINK_LOST: [
+          { guard: 'canRetryRestore', target: 'reconnecting', actions: 'markRestoreFailed' },
+          { target: 'error', actions: ['markRestoreFailed', 'closeLink'] },
+        ],
         DISCONNECT: 'disconnecting',
       },
     },
@@ -526,6 +540,7 @@ export const sessionMachine = setup({
         },
       },
       on: {
+        CONNECT: { target: 'connecting', actions: ['closeLink', 'startConnect'] },
         CANCEL: { target: 'disconnected', actions: 'markDisconnected' },
         DISCONNECT: { target: 'disconnected', actions: 'markDisconnected' },
       },

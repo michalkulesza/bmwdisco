@@ -18,15 +18,27 @@ export interface RestoreOptions {
 export type CleanupSend = (ecu: number, payload: Uint8Array) => Promise<unknown>;
 
 export const createCleanupSend =
-  (link: DiagnosticLink, trace?: (ecu: number, payload: Uint8Array) => void): CleanupSend =>
-  (ecu, payload) => {
+  (
+    link: DiagnosticLink,
+    trace?: (ecu: number, payload: Uint8Array) => void,
+    responseTrace?: (ecu: number, payload: Uint8Array) => void,
+    failureTrace?: (ecu: number, error: Error) => void,
+  ): CleanupSend =>
+  async (ecu, payload) => {
     trace?.(ecu, payload);
 
-    return link.request(ecu, payload, {
-      priority: 'high',
-      timeoutMs: CLEANUP_TIMEOUT_MS,
-      totalMs: CLEANUP_TIMEOUT_MS * 2,
-    });
+    try {
+      const response = await link.request(ecu, payload, {
+        priority: 'high',
+        timeoutMs: CLEANUP_TIMEOUT_MS,
+        totalMs: CLEANUP_TIMEOUT_MS * 2,
+      });
+      responseTrace?.(ecu, response);
+      return response;
+    } catch (error) {
+      failureTrace?.(ecu, toError(error));
+      throw error;
+    }
   };
 
 export const restoreControl = async (

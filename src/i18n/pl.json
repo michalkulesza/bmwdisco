@@ -3,6 +3,7 @@
     "back": "Wstecz",
     "cancel": "Anuluj",
     "close": "Zamknij",
+    "copyright": "© {{year}} KulaDajeFula Software",
     "done": "Gotowe",
     "edit": "Edytuj",
     "new": "Nowy",
@@ -19,6 +20,7 @@
     "connect": "Połącz",
     "cable": "Kabel:",
     "connecting": "Łączenie",
+    "done": "Połączono",
     "progress": "Postęp łączenia",
     "openSettings": "Otwórz Ustawienia",
     "adapterShort": {
@@ -31,7 +33,8 @@
       "reaching": {
         "title": "Łączenie z adapterem",
         "detail": "Otwieranie połączenia",
-        "status": "Łączenie z adapterem…"
+        "status": "Łączenie z adapterem…",
+        "found": "Znaleziono: {{adapter}}"
       },
       "identifying": {
         "title": "Rozpoznawanie samochodu",
@@ -113,7 +116,6 @@
     "disconnect": "Rozłącz",
     "disconnectTitle": "Rozłączyć się z samochodem?",
     "disconnectMessage": "Wszystkie sterowane światła zostaną przywrócone przed zamknięciem połączenia.",
-    "disconnectHint": "Rozłącz, aby zmienić kabel.",
     "demoChassis": "Samochód demo",
     "status": {
       "label": "Stan",
@@ -171,7 +173,8 @@
     "createPreset": "Utwórz preset",
     "notConnected": "Brak połączenia. Połącz się z autem, aby uruchamiać światła.",
     "connect": "Połącz",
-    "noPredefined": "Brak gotowych świateł dla Twojego auta."
+    "noPredefined": "Brak gotowych świateł dla Twojego auta.",
+    "reportProblem": "Zgłoś problem"
   },
   "library": {
     "title": "Biblioteka",
@@ -235,17 +238,14 @@
       "loopPosition": "Umieść Pętlę na końcu, po co najmniej jednej akcji."
     },
     "step": {
-      "editTitle": "Edytuj krok",
       "type": "Typ kroku",
       "lightAction": "Akcja światła",
       "wait": "Pauza",
       "chooseLight": "Wybierz światło",
-      "decrease": "Zmniejsz o 50 ms",
-      "increase": "Zwiększ o 50 ms",
+      "decrease": "Zmniejsz o 100 ms",
+      "increase": "Zwiększ o 100 ms",
       "add": "Dodaj do presetu",
-      "update": "Zapisz krok",
-      "timing": "Czas bloku",
-      "delay": "Opóźnienie po",
+      "for": "przez",
       "untilChanged": "Do zmiany",
       "stateHint": "Światło zachowuje ten stan, aż zmieni go kolejny blok lub preset zostanie zatrzymany."
     },
@@ -536,6 +536,7 @@
   },
   "effects": {
     "sections": {
+      "all": "Wszystkie światła",
       "beams": "Wiązki świateł",
       "bothSides": "Obie strony",
       "brake": "Stop",
@@ -631,7 +632,7 @@
       "rearLightsOFF": "Duch: światła tylne",
       "reverseOFF": "Duch: światła cofania",
       "sidemarkerOFF": "Duch: obrysówki",
-      "fullOFF": "Tryb ducha · Wszystkie światła wyłączone"
+      "fullOFF": "Tryb ducha"
     },
     "taillightShow": {
       "brakePulse": "Puls świateł stop",
@@ -707,5 +708,28 @@
       "sidemarkerRight": "Mignij obrysówką (prawa strona)",
       "tWL": "Mignij lampką otwartych drzwi"
     }
+  },
+  "diagnostics": {
+    "title": "Diagnostyka",
+    "record": "Zapisuj dziennik diagnostyczny",
+    "on": "Wł.",
+    "off": "Wył.",
+    "copy": "Kopiuj dziennik diagnostyczny",
+    "clear": "Wyczyść dziennik diagnostyczny",
+    "emptyTitle": "Brak dziennika diagnostycznego",
+    "emptyHint": "Włącz zapis dziennika diagnostycznego w Ustawieniach, a następnie połącz się i ponownie uruchom akcję.",
+    "copied": "Skopiowano dziennik diagnostyczny",
+    "copyFailed": "Nie udało się skopiować dziennika diagnostycznego"
+  },
+  "report": {
+    "title": "Zgłoś problem",
+    "description": "Napisz, co poszło nie tak. Wyślemy to razem z danymi technicznymi z aplikacji.",
+    "messageLabel": "Wiadomość",
+    "placeholder": "Wiadomość (opcjonalnie)",
+    "send": "Wyślij",
+    "sentTitle": "Zgłoszenie wysłane",
+    "sentBody": "Dziękujemy, to pomaga nam to naprawić.",
+    "errorNotConfigured": "Zgłaszanie nie jest skonfigurowane w tej wersji aplikacji.",
+    "errorFailed": "Nie udało się wysłać zgłoszenia. Sprawdź połączenie i spróbuj ponownie."
   }
 }

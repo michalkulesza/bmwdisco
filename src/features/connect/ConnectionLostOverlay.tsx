@@ -5,6 +5,7 @@ import { ActivityIndicator, Modal, Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { MAX_RECONNECT_ATTEMPTS } from '@/domain';
+import { useCopyDiagnosticLog } from '@/features/settings/useCopyDiagnosticLog';
 import { useSessionActions, useSessionPhase, useSessionSelector } from '@/session';
 import Button from '@/ui/Button';
 import IconBadge from '@/ui/IconBadge';
@@ -69,6 +70,7 @@ const ConnectionLostOverlay = () => {
   const reconnectAttempt = useSessionSelector((snapshot) => snapshot.context.reconnectAttempt);
   const { disconnect } = useSessionActions();
   const reconnect = useReconnect();
+  const copyDiagnosticLog = useCopyDiagnosticLog();
   const [dismissed, setDismissed] = useState(false);
 
   const reconnecting = phase === 'reconnecting';
@@ -110,6 +112,7 @@ const ConnectionLostOverlay = () => {
           {reconnecting ? <ProgressRow attempt={attempt} /> : null}
           <View className="gap-3">
             <Button label={t('connect.lost.reconnect')} icon={ArrowClockwise} onPress={reconnect} />
+            <Button label={t('diagnostics.copy')} variant="secondary" onPress={copyDiagnosticLog} />
             <Pressable
               accessibilityRole="button"
               accessibilityLabel={secondaryLabel}

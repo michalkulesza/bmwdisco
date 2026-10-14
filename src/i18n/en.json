@@ -3,6 +3,7 @@
     "back": "Back",
     "cancel": "Cancel",
     "close": "Close",
+    "copyright": "© {{year}} KulaDajeFula Software",
     "done": "Done",
     "edit": "Edit",
     "new": "New",
@@ -19,6 +20,7 @@
     "connect": "Connect",
     "cable": "Cable:",
     "connecting": "Connecting",
+    "done": "Connected",
     "progress": "Connection progress",
     "openSettings": "Open Settings",
     "adapterShort": {
@@ -31,7 +33,8 @@
       "reaching": {
         "title": "Reaching adapter",
         "detail": "Opening the connection",
-        "status": "Reaching adapter…"
+        "status": "Reaching adapter…",
+        "found": "{{adapter}} found"
       },
       "identifying": {
         "title": "Identifying car",
@@ -113,7 +116,6 @@
     "disconnect": "Disconnect",
     "disconnectTitle": "Disconnect from the car?",
     "disconnectMessage": "Any light under control will be restored before the connection closes.",
-    "disconnectHint": "Disconnect to change the cable.",
     "demoChassis": "Demo car",
     "status": {
       "label": "Status",
@@ -171,7 +173,8 @@
     "createPreset": "Create preset",
     "notConnected": "Not connected. Connect to your car to run lights.",
     "connect": "Connect",
-    "noPredefined": "No predefined lights for your car."
+    "noPredefined": "No predefined lights for your car.",
+    "reportProblem": "Report a problem"
   },
   "library": {
     "title": "Library",
@@ -235,17 +238,14 @@
       "loopPosition": "Place Loop at the end, after at least one action."
     },
     "step": {
-      "editTitle": "Edit step",
       "type": "Step type",
       "lightAction": "Light action",
       "wait": "Wait",
       "chooseLight": "Choose a light",
-      "decrease": "Decrease by 50 ms",
-      "increase": "Increase by 50 ms",
+      "decrease": "Decrease by 100 ms",
+      "increase": "Increase by 100 ms",
       "add": "Add to preset",
-      "update": "Save step",
-      "timing": "Block timing",
-      "delay": "Delay after",
+      "for": "for",
       "untilChanged": "Until changed",
       "stateHint": "The light stays in this state until a later block changes it or the preset stops."
     },
@@ -536,6 +536,7 @@
   },
   "effects": {
     "sections": {
+      "all": "All lights",
       "beams": "Beams",
       "bothSides": "Both sides",
       "brake": "Brake",
@@ -631,7 +632,7 @@
       "rearLightsOFF": "Ghost rear lights",
       "reverseOFF": "Ghost reversing lights",
       "sidemarkerOFF": "Ghost side markers",
-      "fullOFF": "Ghost Mode · All lights off"
+      "fullOFF": "Ghost Mode"
     },
     "taillightShow": {
       "brakePulse": "Brake pulse",
@@ -707,5 +708,28 @@
       "sidemarkerRight": "Flash side marker (right)",
       "tWL": "Flash door warning light"
     }
+  },
+  "diagnostics": {
+    "title": "Diagnostics",
+    "record": "Record diagnostic log",
+    "on": "On",
+    "off": "Off",
+    "copy": "Copy diagnostic log",
+    "clear": "Clear diagnostic log",
+    "emptyTitle": "No diagnostic log yet",
+    "emptyHint": "Turn on Record diagnostic log in Settings, then connect and run the action again.",
+    "copied": "Diagnostic log copied",
+    "copyFailed": "Could not copy the diagnostic log"
+  },
+  "report": {
+    "title": "Report a problem",
+    "description": "Tell us what went wrong. We’ll send it with technical details from the app.",
+    "messageLabel": "Message",
+    "placeholder": "Message (optional)",
+    "send": "Send",
+    "sentTitle": "Report sent",
+    "sentBody": "Thanks, this helps us fix it.",
+    "errorNotConfigured": "Reporting is not set up in this build.",
+    "errorFailed": "Could not send the report. Check your connection and try again."
   }
 }

@@ -27,13 +27,12 @@ export const useConnect = () => {
 export const useReconnect = () => {
   const settings = useSettingsStore(useShallow(selectAdapterSettings));
   const sessionConfig = useSessionSelector((snapshot) => snapshot.context.config);
-  const { connect, disconnect } = useSessionActions();
+  const { connect } = useSessionActions();
 
   return useCallback(() => {
     const config = sessionConfig ?? toAdapterConfig(settings);
     if (!config) return;
 
-    disconnect();
     connect(config);
-  }, [connect, disconnect, sessionConfig, settings]);
+  }, [connect, sessionConfig, settings]);
 };

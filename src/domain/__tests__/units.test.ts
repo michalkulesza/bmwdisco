@@ -65,7 +65,15 @@ describe('session helpers', () => {
     { type: 'elementSkipped', element: 'lowBeamLeft' },
     { type: 'tooFast', rttMs: 60, requiredMs: 120, availableMs: 50 },
     { type: 'clusterFeedbackFailed', error: new Error('nope') },
+    {
+      type: 'commandFailed',
+      sgbd: 'FEM_20',
+      element: 'indicatorLeftAll',
+      error: new Error('timed out'),
+    },
     { type: 'request', ecu: 0x40, payload: Uint8Array.of(0x10, 0x03) },
+    { type: 'response', ecu: 0x40, payload: Uint8Array.of(0x50, 0x03) },
+    { type: 'requestFailed', ecu: 0x40, error: new Error('timeout') },
     { type: 'restoring' },
     { type: 'restored', report: { restored: true, failures: [] } },
   ];
@@ -76,7 +84,10 @@ describe('session helpers', () => {
       'skipped lowBeamLeft',
       'faster than adapter: needs 120 ms',
       'cluster feedback failed: nope',
+      'command failed FEM_20 indicatorLeftAll: timed out',
       '-> 40 10 03',
+      '<- 40 50 03',
+      'request failed 40: timeout',
       'restoring',
       'restored=true',
     ]);

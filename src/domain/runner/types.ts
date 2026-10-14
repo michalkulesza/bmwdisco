@@ -37,7 +37,10 @@ export type RunnerEvent =
   | { type: 'elementSkipped'; element: ElementId }
   | { type: 'tooFast'; rttMs: number; requiredMs: number; availableMs: number }
   | { type: 'clusterFeedbackFailed'; error: Error }
+  | { type: 'commandFailed'; sgbd: string; element: ElementId; error: Error }
   | { type: 'request'; ecu: number; payload: Uint8Array }
+  | { type: 'response'; ecu: number; payload: Uint8Array }
+  | { type: 'requestFailed'; ecu: number; error: Error }
   | { type: 'restoring' }
   | { type: 'restored'; report: CleanupReport };
 
