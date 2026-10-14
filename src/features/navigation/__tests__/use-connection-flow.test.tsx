@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react-native';
 import { Pressable, Text } from 'react-native';
 
 import { AdapterError } from '@/protocol/errors';
@@ -50,13 +50,17 @@ beforeEach(() => {
 });
 
 describe('useConnectionFlow', () => {
-  it('replaces the connect screen with home once ready and fires a success haptic', async () => {
+  it('leaves the redirect and haptic to the connect screen when ready on it', async () => {
     await renderWithSession(<Harness />);
 
     await fireEvent.press(screen.getByLabelText('connect'));
 
-    await waitFor(() => expect(mockRouter.replace).toHaveBeenCalledWith('/home'));
-    expect(successHaptic).toHaveBeenCalledTimes(1);
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 300));
+    });
+
+    expect(mockRouter.replace).not.toHaveBeenCalled();
+    expect(successHaptic).not.toHaveBeenCalled();
   });
 
   it('does not navigate when the user is somewhere else', async () => {
@@ -70,11 +74,10 @@ describe('useConnectionFlow', () => {
   });
 
   it('returns to the connect screen after disconnecting', async () => {
+    mockPathname.current = '/home';
     await renderWithSession(<Harness />);
     await fireEvent.press(screen.getByLabelText('connect'));
-    await waitFor(() => expect(mockRouter.replace).toHaveBeenCalledWith('/home'));
-    mockPathname.current = '/home';
-    mockRouter.replace.mockClear();
+    await waitFor(() => expect(successHaptic).toHaveBeenCalled());
 
     await fireEvent.press(screen.getByLabelText('disconnect'));
 
