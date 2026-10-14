@@ -13,18 +13,18 @@ import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
 
 import { useDraftStore } from '../draft-store';
+import MsInput from '../MsInput';
 
 import DurationField from './DurationField';
-import ElementPicker from './ElementPicker';
 import {
-  DEFAULT_DURATION_MS,
   buildStepFromForm,
-  formFromStep,
-  groupElements,
+  initialForm,
+  isDurationTooShort,
   isFormValid,
   type StepFormValues,
   type StepType,
 } from './helpers';
+import LightField from './LightField';
 
 type StepState = 'on' | 'off';
 
@@ -33,31 +33,15 @@ const AddStepSheet = () => {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const close = useColorToken('text-muted');
-  const { key, type } = useLocalSearchParams<{ key?: string; type?: StepType }>();
+  const { type } = useLocalSearchParams<{ type?: StepType }>();
   const addStep = useDraftStore((state) => state.addStep);
-  const updateStep = useDraftStore((state) => state.updateStep);
-  const editedStep = useDraftStore((state) => state.steps.find((step) => step.key === key));
   const selectable = useSessionSelector(
     (snapshot) => snapshot.context.car?.selectableElements ?? ELEMENT_IDS,
   );
-  const [form, setForm] = useState<StepFormValues>(() => {
-    const previousLight = useDraftStore.getState().steps.findLast((step) => step.type === 'set');
-    const initial = formFromStep(
-      editedStep ?? (type === 'wait' ? undefined : previousLight),
-      type === 'wait' ? 'wait' : 'set',
-    );
+  const [form, setForm] = useState<StepFormValues>(() =>
+    initialForm(type === 'wait' ? 'wait' : 'set', useDraftStore.getState().steps, selectable),
+  );
 
-    return {
-      ...initial,
-      element:
-        initial.element && (editedStep || selectable.includes(initial.element))
-          ? initial.element
-          : selectable[0],
-    };
-  });
-  const [pickerOpen, setPickerOpen] = useState(false);
-
-  const rows = useMemo(() => groupElements(selectable), [selectable]);
   const typeOptions: SegmentedOption<StepType>[] = useMemo(
     () => [
       { value: 'set', label: t('preset.step.lightAction') },
@@ -72,7 +56,6 @@ const AddStepSheet = () => {
     ],
     [t],
   );
-  const isEditing = editedStep !== undefined;
 
   const handleTypeChange = useCallback((next: StepType) => {
     setForm((current) => ({ ...current, type: next }));
@@ -85,19 +68,16 @@ const AddStepSheet = () => {
   }, []);
   const handleElementSelect = useCallback((element: ElementId) => {
     setForm((current) => ({ ...current, element }));
-    setPickerOpen(false);
   }, []);
-  const handlePickerToggle = useCallback(() => setPickerOpen((open) => !open), []);
   const handleClosePress = useCallback(() => router.back(), [router]);
 
   const handleSubmitPress = useCallback(() => {
-    const step = buildStepFromForm(form, editedStep?.key);
+    const step = buildStepFromForm(form);
     if (!step) return;
 
-    if (editedStep) updateStep(editedStep.key, step);
-    else addStep(step);
+    addStep(step);
     router.back();
-  }, [addStep, editedStep, form, router, updateStep]);
+  }, [addStep, form, router]);
 
   return (
     <ScrollView
@@ -107,7 +87,7 @@ const AddStepSheet = () => {
     >
       <View className="flex-row items-center justify-between">
         <Text variant="section" accessibilityRole="header">
-          {isEditing ? t('preset.step.editTitle') : t('preset.addStepTitle')}
+          {t('preset.addStepTitle')}
         </Text>
         <Pressable
           accessibilityRole="button"
@@ -126,53 +106,49 @@ const AddStepSheet = () => {
       />
       {form.type === 'set' ? (
         <>
-          <ElementPicker
-            rows={rows}
-            selected={form.element}
-            open={pickerOpen}
-            onToggle={handlePickerToggle}
-            onSelect={handleElementSelect}
-          />
+          <LightField selected={form.element} onSelect={handleElementSelect} />
           <View className="gap-2">
             <Text variant="meta" tone="muted">
               {t('preset.state')}
             </Text>
-            <SegmentedControl
-              options={stateOptions}
-              value={form.state}
-              onChange={handleStateChange}
-              accessibilityLabel={t('preset.state')}
-            />
+            <View className="flex-row items-center gap-3">
+              <SegmentedControl
+                options={stateOptions}
+                value={form.state}
+                onChange={handleStateChange}
+                accessibilityLabel={t('preset.state')}
+                className="w-32"
+              />
+              <Text variant="meta" tone="muted">
+                {t('preset.step.for')}
+              </Text>
+              <MsInput
+                value={form.durationMs}
+                onChange={handleDurationChange}
+                accessibilityLabel={t('preset.durationLabel')}
+                allowEmpty
+                invalid={isDurationTooShort(form.durationMs)}
+              />
+              <Text variant="meta" tone="muted">
+                {t('preset.ms')}
+              </Text>
+            </View>
+            <Text variant="small" tone="muted">
+              {t('preset.step.stateHint')}
+            </Text>
           </View>
-        </>
-      ) : null}
-      {form.type === 'set' ? (
-        <View className="gap-2">
-          <SegmentedControl
-            value={form.immediate ? 'immediate' : 'delay'}
-            onChange={(mode) =>
-              setForm((current) => ({
-                ...current,
-                immediate: mode === 'immediate',
-                durationMs: current.durationMs ?? DEFAULT_DURATION_MS,
-              }))
-            }
-            accessibilityLabel={t('preset.step.timing')}
-            options={[
-              { value: 'delay', label: t('preset.step.delay') },
-              { value: 'immediate', label: t('preset.step.untilChanged') },
-            ]}
+          <DurationField
+            value={form.durationMs}
+            onChange={handleDurationChange}
+            allowEmpty
+            withInput={false}
           />
-          <Text variant="small" tone="muted">
-            {t('preset.step.stateHint')}
-          </Text>
-        </View>
-      ) : null}
-      {form.type === 'wait' || !form.immediate ? (
+        </>
+      ) : (
         <DurationField value={form.durationMs} onChange={handleDurationChange} />
-      ) : null}
+      )}
       <Button
-        label={isEditing ? t('preset.step.update') : t('preset.step.add')}
+        label={t('preset.step.add')}
         onPress={handleSubmitPress}
         disabled={!isFormValid(form)}
       />

@@ -14,6 +14,8 @@ import { DURATION_CHIPS, DURATION_STEP_MS, stepDuration } from './helpers';
 interface DurationFieldProps {
   value: number | undefined;
   onChange: (value: number | undefined) => void;
+  allowEmpty?: boolean;
+  withInput?: boolean;
 }
 
 interface ChipProps {
@@ -41,18 +43,61 @@ const Chip = ({ ms, selected, onSelect }: ChipProps) => {
   );
 };
 
-const DurationField = ({ value, onChange }: DurationFieldProps) => {
+const DurationField = ({
+  value,
+  onChange,
+  allowEmpty = false,
+  withInput = true,
+}: DurationFieldProps) => {
   const { t } = useTranslation();
   const icon = useColorToken('text');
 
   const handleDecrease = useCallback(
-    () => onChange(stepDuration(value, -DURATION_STEP_MS)),
-    [onChange, value],
+    () => onChange(stepDuration(value, -DURATION_STEP_MS, allowEmpty)),
+    [allowEmpty, onChange, value],
   );
   const handleIncrease = useCallback(
-    () => onChange(stepDuration(value, DURATION_STEP_MS)),
-    [onChange, value],
+    () => onChange(stepDuration(value, DURATION_STEP_MS, allowEmpty)),
+    [allowEmpty, onChange, value],
   );
+
+  const chips = (
+    <View className="flex-1 flex-row gap-2">
+      {DURATION_CHIPS.map((ms) => (
+        <Chip key={ms} ms={ms} selected={value === ms} onSelect={onChange} />
+      ))}
+    </View>
+  );
+  const minus = (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={t('preset.step.decrease')}
+      onPress={handleDecrease}
+      className="size-touch items-center justify-center rounded-card border border-card-border bg-card active:opacity-60"
+    >
+      <MinusIcon size={20} color={icon} />
+    </Pressable>
+  );
+  const plus = (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={t('preset.step.increase')}
+      onPress={handleIncrease}
+      className="size-touch items-center justify-center rounded-card border border-card-border bg-card active:opacity-60"
+    >
+      <PlusIcon size={20} color={icon} />
+    </Pressable>
+  );
+
+  if (!withInput) {
+    return (
+      <View className="flex-row items-center gap-2">
+        {minus}
+        {chips}
+        {plus}
+      </View>
+    );
+  }
 
   return (
     <View className="gap-3">
@@ -60,38 +105,21 @@ const DurationField = ({ value, onChange }: DurationFieldProps) => {
         {t('preset.duration')}
       </Text>
       <View className="flex-row items-center justify-between gap-3">
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t('preset.step.decrease')}
-          onPress={handleDecrease}
-          className="size-touch items-center justify-center rounded-card border border-card-border bg-card active:opacity-60"
-        >
-          <MinusIcon size={20} color={icon} />
-        </Pressable>
+        {minus}
         <View className="flex-row items-center gap-2">
           <MsInput
             value={value}
             onChange={onChange}
             accessibilityLabel={t('preset.durationLabel')}
+            allowEmpty={allowEmpty}
           />
           <Text variant="meta" tone="muted">
             {t('preset.ms')}
           </Text>
         </View>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={t('preset.step.increase')}
-          onPress={handleIncrease}
-          className="size-touch items-center justify-center rounded-card border border-card-border bg-card active:opacity-60"
-        >
-          <PlusIcon size={20} color={icon} />
-        </Pressable>
+        {plus}
       </View>
-      <View className="flex-row gap-2">
-        {DURATION_CHIPS.map((ms) => (
-          <Chip key={ms} ms={ms} selected={value === ms} onSelect={onChange} />
-        ))}
-      </View>
+      <View className="flex-row gap-2">{chips}</View>
     </View>
   );
 };
