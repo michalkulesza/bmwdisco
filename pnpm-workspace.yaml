@@ -1,0 +1,8 @@
+allowBuilds:
+  '@sentry/cli': true
+  '@shopify/react-native-skia': true
+  esbuild: true
+  unrs-resolver: true
+
+overrides:
+  lightningcss: 1.30.1

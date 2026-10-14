@@ -47,7 +47,8 @@
           "neverForLocation": true,
           "bluetoothAlwaysPermission": "BimmerDisco connects to your Bluetooth OBD adapter to control the lights of your car."
         }
-      ]
+      ],
+      "@sentry/react-native"
     ],
     "experiments": {
       "typedRoutes": true

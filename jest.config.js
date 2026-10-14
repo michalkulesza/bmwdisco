@@ -19,7 +19,7 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/PROTO/', '/e2e/', '/.claude/'],
   modulePathIgnorePatterns: ['<rootDir>/PROTO/', '<rootDir>/.claude/'],
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|react-native-svg|@gluestack-ui/.*|nativewind|react-native-css|tailwind-variants|phosphor-react-native|react-native-reanimated|react-native-worklets|react-native-gesture-handler))',
+    'node_modules/(?!(\\.pnpm|(jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|react-native-svg|@gluestack-ui/.*|nativewind|react-native-css|tailwind-variants|phosphor-react-native|react-native-reanimated|react-native-worklets|react-native-gesture-handler))',
   ],
   setupFiles: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' },
