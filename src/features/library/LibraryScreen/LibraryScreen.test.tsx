@@ -19,8 +19,7 @@ describe('LibraryScreen', () => {
   it('groups lights into pack sections', async () => {
     await renderScreen(<LibraryScreen />);
 
-    expect(screen.getByText('Flash')).toBeTruthy();
-    expect(screen.getByRole('button', { name: /^Flash position light \(left\)/ })).toBeTruthy();
+    expect(screen.getByText('Headlight shows')).toBeTruthy();
   });
 
   it('filters by the translated name, ignoring case and diacritics', async () => {

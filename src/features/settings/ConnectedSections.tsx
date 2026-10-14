@@ -20,16 +20,12 @@ const StatusValue = () => {
   const { t } = useTranslation();
   const reconnecting = useSessionPhase() === 'reconnecting';
   const label = reconnecting ? t('settings.status.reconnecting') : t('settings.status.connected');
-  const dotClass = reconnecting ? 'bg-hue-amber' : 'bg-connected';
   const textClass = reconnecting ? 'text-hue-amber' : 'text-connected-soft';
 
   return (
-    <View className="flex-row items-center gap-2">
-      <View className={`size-2 rounded-pill ${dotClass}`} />
-      <Text variant="meta" className={textClass}>
-        {label}
-      </Text>
-    </View>
+    <Text variant="meta" className={textClass}>
+      {label}
+    </Text>
   );
 };
 
@@ -42,7 +38,6 @@ const ModuleRow = ({ sgbd }: { sgbd: ModuleSgbd }) => {
       label={sgbd}
       value={t(`car.modules.${sgbd}`)}
       left={<Cpu size={22} color={accent} />}
-      right={<View className="size-2 rounded-pill bg-connected" />}
     />
   );
 };
@@ -131,9 +126,6 @@ const ConnectedSections = () => {
           <InfoRow label={t('settings.latency')} value={latency} />
           <DisconnectRow onPress={handleDisconnectPress} />
         </ListGroup>
-        <Text variant="small" tone="muted" className="mx-1">
-          {t('settings.disconnectHint')}
-        </Text>
       </View>
       {car ? (
         <View className="gap-3">

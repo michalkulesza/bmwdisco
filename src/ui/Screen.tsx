@@ -1,6 +1,8 @@
 import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { SCREEN_TOP_PADDING } from './layout';
+
 import type { ReactNode } from 'react';
 
 interface ScreenProps {
@@ -17,7 +19,10 @@ const Screen = ({
   keyboardAware = false,
 }: ScreenProps) => {
   const insets = useSafeAreaInsets();
-  const insetStyle = { paddingTop: topInset ? insets.top : 8, paddingBottom: insets.bottom };
+  const insetStyle = {
+    paddingTop: topInset ? insets.top : SCREEN_TOP_PADDING,
+    paddingBottom: insets.bottom,
+  };
 
   if (!scroll) {
     return (

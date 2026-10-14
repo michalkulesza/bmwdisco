@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { loadEffects } from '@/data/generated';
 import { useSessionSelector } from '@/session';
 import EmptyState from '@/ui/EmptyState';
+import { SCREEN_TOP_PADDING } from '@/ui/layout';
 import Text from '@/ui/Text';
 import type { TileItem } from '@/ui/tile/types';
 
@@ -43,7 +44,11 @@ const LibraryScreen = () => {
     [effects, car, query, t],
   );
   const contentStyle = useMemo(
-    () => ({ paddingHorizontal: 16, paddingBottom: insets.bottom + 24 }),
+    () => ({
+      paddingHorizontal: 16,
+      paddingTop: SCREEN_TOP_PADDING,
+      paddingBottom: insets.bottom + 24,
+    }),
     [insets.bottom],
   );
 

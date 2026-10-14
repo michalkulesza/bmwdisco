@@ -13,14 +13,14 @@ export interface LibrarySection {
 }
 
 const PACK_ORDER: readonly string[] = [
-  'flash',
-  'headlight_flash',
   'headlight_show',
   'taillight_show',
   'one_side',
   'party_mode',
   'ghost',
   'toggle',
+  'headlight_flash',
+  'flash',
 ];
 
 export const normalizeQuery = (text: string): string =>
