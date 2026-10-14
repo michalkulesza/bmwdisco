@@ -8,6 +8,7 @@ import type { TFunction } from 'i18next';
 
 export const CURATED_EFFECT_IDS: readonly string[] = [
   'toggle.hazard',
+  'ghost.fullOFF',
   'flash.highBeam',
   'flash.indicatorLeft',
   'flash.indicatorRight',

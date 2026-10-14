@@ -6,6 +6,7 @@ import { View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 
 import Button from '@/ui/Button';
+import Copyright from '@/ui/Copyright';
 import Screen from '@/ui/Screen';
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
@@ -82,6 +83,7 @@ const NotConnectedView = () => {
         />
         <CableFooter />
       </View>
+      <Copyright />
     </Screen>
   );
 };

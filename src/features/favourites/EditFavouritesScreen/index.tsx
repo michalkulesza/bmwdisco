@@ -1,4 +1,3 @@
-import { Stack } from 'expo-router';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -7,21 +6,19 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { loadEffects } from '@/data/generated';
 import { curatedEffects, resolveFavourites } from '@/features/home/HomeScreen/helpers';
-import { toHeaderItems } from '@/features/navigation/headerItems';
 import { moveItem } from '@/features/preset/helpers';
 import { useSessionSelector } from '@/session';
 import { FAVOURITE_SIZES, useFavouritesStore, type FavouriteSize } from '@/stores/favourites';
 import { usePresetsStore } from '@/stores/presets';
+import { SCREEN_TOP_PADDING } from '@/ui/layout';
+import SectionHeader from '@/ui/SectionHeader';
 import SegmentedControl, { type SegmentedOption } from '@/ui/SegmentedControl';
 import Text from '@/ui/Text';
 import type { TileItem } from '@/ui/tile/types';
 
 import AddFavouriteSection from './AddFavouriteSection';
 import FavouriteRow from './FavouriteRow';
-import HeaderDoneButton from './HeaderDoneButton';
 import { buildCandidates } from './helpers';
-
-const doneHeaderItems = toHeaderItems(<HeaderDoneButton />);
 
 const getItemKey = (item: TileItem) => item.id;
 
@@ -58,7 +55,11 @@ const EditFavouritesScreen = () => {
     label: t(`favourites.sizes.${value}`),
   }));
   const contentStyle = useMemo(
-    () => ({ paddingHorizontal: 16, paddingBottom: insets.bottom + 24 }),
+    () => ({
+      paddingHorizontal: 16,
+      paddingTop: SCREEN_TOP_PADDING,
+      paddingBottom: insets.bottom + 24,
+    }),
     [insets.bottom],
   );
 
@@ -76,16 +77,13 @@ const EditFavouritesScreen = () => {
 
   const header = (
     <View className="gap-3 pb-4">
-      <View className="flex-row items-center gap-3">
-        <Text variant="meta" tone="muted">
-          {t('favourites.tileSize')}
-        </Text>
+      <View className="gap-2">
+        <SectionHeader title={t('favourites.tileSize')} />
         <SegmentedControl
           options={sizeOptions}
           value={size}
           onChange={setSize}
           accessibilityLabel={t('favourites.tileSize')}
-          className="flex-1"
         />
       </View>
       <Text variant="small" tone="muted">
@@ -95,20 +93,17 @@ const EditFavouritesScreen = () => {
   );
 
   return (
-    <>
-      <Stack.Screen options={{ unstable_headerRightItems: doneHeaderItems }} />
-      <ReorderableList
-        data={items}
-        keyExtractor={getItemKey}
-        renderItem={renderItem}
-        onReorder={handleReorder}
-        ListHeaderComponent={header}
-        ListFooterComponent={<AddFavouriteSection candidates={candidates} onAdd={add} />}
-        contentContainerStyle={contentStyle}
-        contentInsetAdjustmentBehavior="automatic"
-        className="flex-1 bg-page"
-      />
-    </>
+    <ReorderableList
+      data={items}
+      keyExtractor={getItemKey}
+      renderItem={renderItem}
+      onReorder={handleReorder}
+      ListHeaderComponent={header}
+      ListFooterComponent={<AddFavouriteSection candidates={candidates} onAdd={add} />}
+      contentContainerStyle={contentStyle}
+      contentInsetAdjustmentBehavior="automatic"
+      className="flex-1 bg-page"
+    />
   );
 };
 

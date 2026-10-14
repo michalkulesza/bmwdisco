@@ -6,6 +6,7 @@ import { View } from 'react-native';
 import { isOnlinePhase } from '@/features/connect/helpers';
 import { useSessionPhase } from '@/session';
 import { THEME_MODES, useSettingsStore } from '@/stores/settings';
+import Copyright from '@/ui/Copyright';
 import ListGroup from '@/ui/ListGroup';
 import ListRow from '@/ui/ListRow';
 import Screen from '@/ui/Screen';
@@ -14,6 +15,7 @@ import SegmentedControl from '@/ui/SegmentedControl';
 import Text from '@/ui/Text';
 
 import ConnectedSections from './ConnectedSections';
+import DiagnosticsSection from './DiagnosticsSection';
 
 const CableSection = () => {
   const { t } = useTranslation();
@@ -93,6 +95,8 @@ const SettingsScreen = () => {
       {online ? <ConnectedSections /> : <CableSection />}
       <AppearanceSection />
       <LanguageSection />
+      <DiagnosticsSection />
+      <Copyright />
     </Screen>
   );
 };

@@ -18,7 +18,7 @@ const SectionHeader = ({ title, actionLabel, onActionPress }: SectionHeaderProps
         accessibilityRole="link"
         accessibilityLabel={actionLabel}
         onPress={onActionPress}
-        className="min-h-touch justify-center px-1 active:opacity-60"
+        className="-my-2 min-h-touch justify-center px-1 active:opacity-60"
       >
         <Text variant="label" tone="soft">
           {actionLabel}

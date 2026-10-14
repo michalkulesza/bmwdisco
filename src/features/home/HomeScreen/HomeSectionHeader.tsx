@@ -9,6 +9,7 @@ import type { HomeHandlers } from './useHomeHandlers';
 interface HomeSectionHeaderProps {
   section: SectionKey;
   handlers: HomeHandlers;
+  isFirst: boolean;
 }
 
 interface HeaderAction {
@@ -16,7 +17,7 @@ interface HeaderAction {
   onPress: () => void;
 }
 
-const HomeSectionHeader = ({ section, handlers }: HomeSectionHeaderProps) => {
+const HomeSectionHeader = ({ section, handlers, isFirst }: HomeSectionHeaderProps) => {
   const { t } = useTranslation();
 
   const titles: Record<SectionKey, string> = {
@@ -33,8 +34,12 @@ const HomeSectionHeader = ({ section, handlers }: HomeSectionHeaderProps) => {
     ],
   };
 
+  const rowClassName = isFirst
+    ? 'min-h-7 flex-row items-center justify-between'
+    : 'mt-8 min-h-7 flex-row items-center justify-between';
+
   return (
-    <View className="mt-8 min-h-7 flex-row items-center justify-between">
+    <View className={rowClassName}>
       <Text variant="section" accessibilityRole="header">
         {titles[section]}
       </Text>
@@ -45,7 +50,7 @@ const HomeSectionHeader = ({ section, handlers }: HomeSectionHeaderProps) => {
             accessibilityRole="button"
             accessibilityLabel={action.label}
             onPress={action.onPress}
-            className="min-h-touch justify-center px-1 active:opacity-60"
+            className="-my-2 min-h-touch justify-center px-1 active:opacity-60"
           >
             <Text variant="label" tone="soft">
               {action.label}

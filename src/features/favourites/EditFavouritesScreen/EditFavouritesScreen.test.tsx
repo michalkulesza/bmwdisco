@@ -4,7 +4,7 @@ import '@/i18n';
 import { useFavouritesStore } from '@/stores/favourites';
 import { SEED_PRESETS, usePresetsStore } from '@/stores/presets';
 import { fakeCar, resetSession, sessionState } from '@/test-utils/mock-session';
-import { renderScreen, reorderable, resetRouter, routerMock } from '@/test-utils/mock-ui';
+import { renderScreen, reorderable, resetRouter } from '@/test-utils/mock-ui';
 
 import EditFavouritesScreen from '.';
 
@@ -75,13 +75,5 @@ describe('EditFavouritesScreen', () => {
 
     expect(orderedIds()).toContain('seed-fog-strobe');
     expect(screen.queryByRole('button', { name: 'Add Fog strobe to favourites' })).toBeNull();
-  });
-
-  it('closes with Done', async () => {
-    await renderScreen(<EditFavouritesScreen />);
-
-    await fireEvent.press(screen.getByRole('button', { name: 'Done' }));
-
-    expect(routerMock.back).toHaveBeenCalledTimes(1);
   });
 });

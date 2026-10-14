@@ -81,14 +81,15 @@ interface HomeRowViewProps {
   row: HomeRow;
   width: number;
   handlers: HomeHandlers;
+  isFirst: boolean;
 }
 
-const HomeRowView = ({ row, width, handlers }: HomeRowViewProps) => {
+const HomeRowView = ({ row, width, handlers, isFirst }: HomeRowViewProps) => {
   switch (row.type) {
     case 'notice':
       return <NoticeBanner onConnect={handlers.onConnect} />;
     case 'header':
-      return <HomeSectionHeader section={row.section} handlers={handlers} />;
+      return <HomeSectionHeader section={row.section} handlers={handlers} isFirst={isFirst} />;
     case 'empty':
       return <HomeEmptyCard section={row.section} onNewPreset={handlers.onNewPreset} />;
     case 'carousel':

@@ -1,6 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react-native';
 
 import '@/i18n';
+import { useReportStore } from '@/features/report/store';
 import { useFavouritesStore } from '@/stores/favourites';
 import { SEED_PRESETS, usePresetsStore } from '@/stores/presets';
 import { fakeCar, resetSession, sessionActions, sessionState } from '@/test-utils/mock-session';
@@ -11,6 +12,13 @@ import HomeScreen from '.';
 jest.mock('@/session', () => jest.requireActual('@/test-utils/mock-session').sessionModule);
 jest.mock('expo-router', () => jest.requireActual('@/test-utils/mock-ui').routerModule);
 jest.mock('@/ui/Toast', () => jest.requireActual('@/test-utils/mock-ui').toastModule);
+
+jest.mock('react-native/Libraries/Lists/FlatList', () => {
+  const Actual = jest.requireActual('react-native/Libraries/Lists/FlatList').default;
+  const WideFlatList = (props: object) => <Actual initialNumToRender={50} {...props} />;
+
+  return { __esModule: true, default: WideFlatList };
+});
 
 const showEmptyFavourites = () => useFavouritesStore.setState({ ids: [] });
 
@@ -133,5 +141,14 @@ describe('HomeScreen', () => {
     await renderScreen(<HomeScreen />);
 
     expect(screen.getAllByRole('switch', { name: 'Hazard lights, Off' })).toHaveLength(2);
+  });
+
+  it('opens the problem report from the header bug button', async () => {
+    useReportStore.setState({ open: false });
+    await renderScreen(<HomeScreen />);
+
+    await fireEvent.press(screen.getByRole('button', { name: 'Report a problem' }));
+
+    expect(useReportStore.getState().open).toBe(true);
   });
 });
