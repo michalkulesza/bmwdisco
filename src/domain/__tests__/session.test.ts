@@ -1,5 +1,6 @@
 import { loadModule } from '@/data/generated';
 import type { Effect } from '@/data/types';
+import type { AdapterConfig } from '@/domain/adapter/create-link';
 import { PresetRunner } from '@/domain/runner/runner';
 import { LOG_CAPACITY } from '@/domain/session/helpers';
 import type { RunInput } from '@/domain/session/types';
@@ -1002,5 +1003,48 @@ describe('unexpected runner failures', () => {
     await rig.waitFor('disconnected');
 
     expect(rig.context().lightsMayBeOn).toBe(true);
+  });
+});
+
+describe('resolved ENET host', () => {
+  it('pins the discovered host for reconnects', async () => {
+    const configs: AdapterConfig[] = [];
+    const vehicle = makeVehicle('F20', undefined, 1, false);
+    const rig = createRig(vehicle, {
+      createLink: async (config) => {
+        configs.push(config);
+        const link = new SimLink(vehicle);
+        Object.defineProperty(link, 'host', { value: '169.254.7.7' });
+
+        return link;
+      },
+    });
+
+    rig.actor.send({ type: 'CONNECT', config: { adapter: 'enet' } });
+    await rig.waitFor('ready');
+    expect(rig.context().config).toEqual({ adapter: 'enet', preferredHost: '169.254.7.7' });
+
+    await rig.context().link!.close();
+    await rig.waitFor('reconnecting');
+    await rig.waitFor('ready');
+
+    expect(configs.at(-1)).toEqual({ adapter: 'enet', host: '169.254.7.7' });
+  });
+
+  it('keeps a manual host unchanged', async () => {
+    const vehicle = makeVehicle('F20', undefined, 1, false);
+    const rig = createRig(vehicle, {
+      createLink: async () => {
+        const link = new SimLink(vehicle);
+        Object.defineProperty(link, 'host', { value: '169.254.1.1' });
+
+        return link;
+      },
+    });
+
+    rig.actor.send({ type: 'CONNECT', config: { adapter: 'enet', host: '169.254.1.1' } });
+    await rig.waitFor('ready');
+
+    expect(rig.context().config).toEqual({ adapter: 'enet', host: '169.254.1.1' });
   });
 });

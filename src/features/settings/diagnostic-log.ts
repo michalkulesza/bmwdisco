@@ -1,4 +1,15 @@
 import type { SessionContext, SessionPhase } from '@/domain';
+import { useSettingsStore } from '@/stores/settings';
+
+const HOST_PLACEHOLDER = '[host omitted]';
+
+const knownHosts = (context: SessionContext): string[] => {
+  const { enetHost, lastEnetHost } = useSettingsStore.getState();
+
+  return [enetHost, lastEnetHost, context.link?.host ?? '']
+    .map((host) => host.trim())
+    .filter(Boolean);
+};
 
 export const formatDiagnosticLog = (context: SessionContext, phase: SessionPhase): string => {
   const lines = [
@@ -14,6 +25,10 @@ export const formatDiagnosticLog = (context: SessionContext, phase: SessionPhase
     '',
     ...context.log.map((entry) => `${new Date(entry.at).toISOString()} ${entry.message}`),
   ];
-  const text = lines.join('\n');
+  const text = knownHosts(context).reduce(
+    (result, host) => result.replaceAll(host, HOST_PLACEHOLDER),
+    lines.join('\n'),
+  );
+
   return context.car?.vin ? text.replaceAll(context.car.vin, '[VIN omitted]') : text;
 };

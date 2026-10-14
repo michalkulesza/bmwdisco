@@ -125,6 +125,7 @@
     "fields": {
       "enetHost": "Adres bramy (opcjonalnie)",
       "enetHostPlaceholder": "Wykryj automatycznie",
+      "enetHostPlaceholderLast": "Wykryj automatycznie (ostatnio: {{host}})",
       "thorHost": "Adres adaptera",
       "thorPort": "Port",
       "hostInvalid": "Podaj prywatny adres IPv4, na przykład 192.168.0.10.",

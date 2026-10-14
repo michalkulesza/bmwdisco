@@ -16,6 +16,7 @@ import {
 const base: AdapterSettings = {
   adapter: 'enet',
   enetHost: '',
+  lastEnetHost: '',
   thorHost: '192.168.0.10',
   thorPort: '23',
   icarDevice: null,
@@ -25,6 +26,11 @@ const base: AdapterSettings = {
 describe('toAdapterConfig', () => {
   it('lets ENET discover the gateway when no host is set', () => {
     expect(toAdapterConfig(base)).toEqual({ adapter: 'enet' });
+    expect(toAdapterConfig({ ...base, lastEnetHost: ' 169.254.2.2 ' })).toEqual({
+      adapter: 'enet',
+      preferredHost: '169.254.2.2',
+    });
+    expect(toAdapterConfig({ ...base, lastEnetHost: '8.8.8.8' })).toEqual({ adapter: 'enet' });
   });
 
   it('uses a valid manual ENET host and rejects public ones', () => {
@@ -33,6 +39,12 @@ describe('toAdapterConfig', () => {
       host: '169.254.1.1',
     });
     expect(toAdapterConfig({ ...base, enetHost: '8.8.8.8' })).toBeUndefined();
+    expect(
+      toAdapterConfig({ ...base, enetHost: '169.254.1.1', lastEnetHost: '169.254.2.2' }),
+    ).toEqual({
+      adapter: 'enet',
+      host: '169.254.1.1',
+    });
   });
 
   it('builds the Thor config with defaults and validates host and port', () => {

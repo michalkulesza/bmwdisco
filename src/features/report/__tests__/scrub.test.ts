@@ -5,7 +5,9 @@ import { scrubBreadcrumb, scrubEvent, scrubText } from '../scrub';
 import type { ErrorEvent } from '@sentry/react-native';
 
 describe('scrubText', () => {
-  afterEach(() => useSettingsStore.setState({ enetHost: '', thorHost: '192.168.0.10' }));
+  afterEach(() =>
+    useSettingsStore.setState({ enetHost: '', lastEnetHost: '', thorHost: '192.168.0.10' }),
+  );
 
   it('removes 17-character VINs', () => {
     expect(scrubText('vin WBA3A5C50DF123456 read')).toBe('vin [VIN omitted] read');
@@ -25,6 +27,12 @@ describe('scrubText', () => {
 
   it('removes configured adapter hostnames', () => {
     useSettingsStore.setState({ enetHost: 'gateway.local' });
+
+    expect(scrubText('lookup gateway.local timed out')).toBe('lookup [host omitted] timed out');
+  });
+
+  it('removes the last working ENET host', () => {
+    useSettingsStore.setState({ lastEnetHost: 'gateway.local' });
 
     expect(scrubText('lookup gateway.local timed out')).toBe('lookup [host omitted] timed out');
   });

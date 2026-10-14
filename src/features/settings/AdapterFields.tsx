@@ -12,13 +12,17 @@ import FieldInput from './FieldInput';
 const EnetFields = () => {
   const { t } = useTranslation();
   const host = useSettingsStore((state) => state.enetHost);
+  const lastHost = useSettingsStore((state) => state.lastEnetHost);
   const setHost = useSettingsStore((state) => state.setEnetHost);
   const error = isHostValid(host.trim()) ? undefined : t('settings.fields.hostInvalid');
+  const placeholder = lastHost
+    ? t('settings.fields.enetHostPlaceholderLast', { host: lastHost })
+    : t('settings.fields.enetHostPlaceholder');
 
   return (
     <FieldInput
       label={t('settings.fields.enetHost')}
-      placeholder={t('settings.fields.enetHostPlaceholder')}
+      placeholder={placeholder}
       value={host}
       onChangeText={setHost}
       keyboardType="numbers-and-punctuation"

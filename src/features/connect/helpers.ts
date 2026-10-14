@@ -58,7 +58,13 @@ export const toAdapterConfig = (settings: AdapterSettings): AdapterConfig | unde
       const host = settings.enetHost.trim();
       if (!isHostValid(host)) return undefined;
 
-      return host ? { adapter: 'enet', host } : { adapter: 'enet' };
+      if (host) return { adapter: 'enet', host };
+
+      const preferredHost = settings.lastEnetHost.trim();
+
+      return isAllowedHost(preferredHost)
+        ? { adapter: 'enet', preferredHost }
+        : { adapter: 'enet' };
     }
     case 'thor': {
       const host = settings.thorHost.trim() || DEFAULT_THOR_HOST;

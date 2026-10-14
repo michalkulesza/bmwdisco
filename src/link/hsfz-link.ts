@@ -6,6 +6,7 @@ import {
   HsfzType,
   TESTER_ADDRESS,
 } from '@/protocol/hsfz';
+import type { Transport } from '@/transport/types';
 
 import { FramedLink, type IncomingFrame } from './framed-link';
 
@@ -21,6 +22,13 @@ const isErrorType = (type: number): boolean =>
 export class HsfzLink extends FramedLink {
   protected readonly testerAddress = TESTER_ADDRESS;
   private readonly parser = new HsfzParser();
+
+  constructor(
+    transport: Transport,
+    readonly host?: string,
+  ) {
+    super(transport);
+  }
 
   protected encodeRequest(ecu: number, payload: Uint8Array): Uint8Array {
     return encodeHsfzDiagnostic(payload, ecu, this.testerAddress);

@@ -11,7 +11,7 @@ import { assertAllowedHost } from '@/transport/host';
 import type { Transport } from '@/transport/types';
 
 export type AdapterConfig =
-  | { adapter: 'enet'; host?: string }
+  | { adapter: 'enet'; host?: string; preferredHost?: string }
   | { adapter: 'thor'; host: string; port?: number }
   | { adapter: 'icar'; deviceId: string }
   | { adapter: 'demo'; chassis: string; faults?: FaultOptions; seed?: number };
@@ -64,7 +64,7 @@ export const createLink = async (
       const host = await resolveEnetHost(config.host, deps, signal);
       assertHost(host);
 
-      return new HsfzLink(deps.createTcpTransport(host, ENET_PORT));
+      return new HsfzLink(deps.createTcpTransport(host, ENET_PORT), host);
     }
     case 'thor': {
       assertHost(config.host);

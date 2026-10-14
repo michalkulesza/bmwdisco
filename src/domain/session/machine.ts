@@ -15,6 +15,7 @@ import {
   keepaliveActor,
   linkWatcherActor,
   openLinkActor,
+  pinResolvedHost,
   reconnectActor,
   restoreActor,
   runItemActor,
@@ -202,6 +203,7 @@ export const sessionMachine = setup({
 
       return {
         link: output.link,
+        config: context.config && pinResolvedHost(context.config, output.link),
         car: output.car,
         runner: makeRunner(context, output, (runnerEvent) => self.send(runnerEvent)),
         measuredRttMs: output.link.measuredRttMs,
