@@ -10,6 +10,7 @@
     "ios:release": "expo run:ios --configuration Release --device",
     "android": "SENTRY_DISABLE_AUTO_UPLOAD=true expo run:android",
     "android:release": "expo run:android --variant release",
+    "android:apk": "cd android && ANDROID_HOME=${ANDROID_HOME:-$HOME/Library/Android/sdk} SENTRY_DISABLE_AUTO_UPLOAD=true ./gradlew assembleRelease && echo \"APK: android/app/build/outputs/apk/release/app-release.apk\"",
     "prebuild": "expo prebuild --clean",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
