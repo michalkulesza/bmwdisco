@@ -3,7 +3,8 @@ import * as Clipboard from 'expo-clipboard';
 import { Pressable, Text } from 'react-native';
 
 import { SimLink } from '@/link/sim-link';
-import { useSessionActions, useSessionPhase } from '@/session';
+import { NegativeResponseError } from '@/protocol/errors';
+import { useSessionActions, useSessionPhase, useSessionSelector } from '@/session';
 import { SimulatedVehicle } from '@/simulator/simulated-vehicle';
 import { DEMO_CONFIG, makeDeps, renderWithSession } from '@/test-utils/session-ui';
 
@@ -15,13 +16,20 @@ jest.mock('expo-router', () => ({ router: { push: jest.fn() } }));
 
 const Harness = () => {
   const phase = useSessionPhase();
-  const { connect } = useSessionActions();
+  const { connect, run } = useSessionActions();
+  const indicator = useSessionSelector((snapshot) =>
+    snapshot.context.car?.effects.find((effect) => effect.id === 'flash.indicatorLeft'),
+  );
+  const tile = useSessionSelector((snapshot) => snapshot.context.tiles['flash.indicatorLeft']);
 
   const handleConnectPress = () => connect(DEMO_CONFIG);
+  const handleRunPress = () => indicator && run(indicator);
 
   return (
     <>
       <Text>{`phase:${phase}`}</Text>
+      <Text>{`tile:${tile?.state ?? 'none'}`}</Text>
+      <Pressable accessibilityLabel="run" onPress={handleRunPress} />
       <Pressable accessibilityLabel="connect" onPress={handleConnectPress} />
       <ConnectionLostOverlay />
     </>
@@ -88,5 +96,34 @@ describe('ConnectionLostOverlay', () => {
     await fireEvent.press(screen.getByRole('button', { name: 'Disconnect' }));
 
     await waitFor(() => expect(screen.queryByText('Reconnect & restore')).toBeNull());
+  });
+
+  it('never shows the overlay when the ECU refuses the command and the restore, and stays usable', async () => {
+    const vehicle = new SimulatedVehicle({ profile: 'F32', seed: 1 });
+    const deps = makeDeps({
+      createLink: async () => {
+        const link = new SimLink(vehicle);
+        const request = link.request.bind(link);
+        link.request = async (ecu, payload, options) => {
+          if (payload[0] === 0x2e || payload[0] === 0x2f) {
+            throw new NegativeResponseError(payload[0], 0x31);
+          }
+
+          return request(ecu, payload, options);
+        };
+
+        return link;
+      },
+      reconnectBaseDelayMs: 60_000,
+    });
+    await renderWithSession(<Harness />, deps);
+    await fireEvent.press(screen.getByLabelText('connect'));
+    await waitFor(() => expect(screen.getByText('phase:ready')).toBeTruthy());
+
+    await fireEvent.press(screen.getByLabelText('run'));
+    await waitFor(() => expect(screen.getByText('tile:error')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('phase:ready')).toBeTruthy());
+
+    expect(screen.queryByText('Reconnect & restore')).toBeNull();
   });
 });

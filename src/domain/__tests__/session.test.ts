@@ -977,6 +977,156 @@ describe('link loss and reconnecting', () => {
   });
 });
 
+describe('ECU refusals during light commands', () => {
+  const D542_INDICATOR_LEFT = 0x06;
+  const refusals: Record<string, (payload: Uint8Array) => boolean> = {
+    'only the activation (0x2E, NRC 0x31)': (p) =>
+      p[0] === 0x2e && p[4] === D542_INDICATOR_LEFT && p[6] === 0x64,
+    'the activation and the element off (0x2E)': (p) => p[0] === 0x2e && p[1] === 0xd5,
+    'every actuation incl. return control (0x2E/0x2F/0x31)': (p) =>
+      p[0] === 0x2e || p[0] === 0x2f || p[0] === 0x31,
+  };
+
+  const refusingRig = (refuses: (payload: Uint8Array) => boolean, nrc: number) => {
+    const vehicle = makeVehicle('F32');
+    const rig = createRig(vehicle, {
+      debug: true,
+      createLink: async () => {
+        const link = new SimLink(vehicle);
+        const request = link.request.bind(link);
+        link.request = async (ecu, payload, options) => {
+          if (refuses(payload)) throw new NegativeResponseError(payload[0]!, nrc);
+
+          return request(ecu, payload, options);
+        };
+
+        return link;
+      },
+    });
+
+    return rig;
+  };
+
+  it.each(Object.entries(refusals))(
+    'ends in ready with a tile error and a confirmed restore when the ECU refuses %s',
+    async (_name, refuses) => {
+      const rig = refusingRig(refuses, 0x31);
+      await connect(rig);
+      const phases: string[] = [];
+      rig.actor.subscribe(() => {
+        if (phases[phases.length - 1] !== rig.phase()) phases.push(rig.phase());
+      });
+
+      run(rig, effectOf(rig, 'flash.indicatorLeft'));
+      await rig.waitFor('ready');
+
+      expect(phases).toEqual(['running', 'restoring', 'ready']);
+      expect(rig.context().tiles['flash.indicatorLeft']).toEqual({
+        state: 'error',
+        reason: 'rejected',
+      });
+      expect(rig.context().ledger.hasPending).toBe(false);
+      expect(rig.context().lightsMayBeOn).toBe(false);
+      expect(rig.context().restoreFailures).toBe(0);
+      expect(
+        rig
+          .context()
+          .log.some((entry) => entry.message.includes('command failed FEM_20 indicatorLeftAll')),
+      ).toBe(true);
+      expect(wireLog(rig.vehicle).at(-1)).toMatch(/^[0-9a-f]+:1001$/);
+    },
+  );
+
+  it('can run hazards right after the refused indicator', async () => {
+    const rig = refusingRig(refusals['only the activation (0x2E, NRC 0x31)']!, 0x31);
+    await connect(rig);
+    run(rig, effectOf(rig, 'flash.indicatorLeft'));
+    await rig.waitFor('ready');
+    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: true });
+    await rig.waitFor('ready');
+
+    expect(litIds(rig.vehicle)).toContain('FEM_20:hazard');
+  });
+
+  it('reports conditionsNotCorrect (0x22) on the tile and returns to ready', async () => {
+    const rig = refusingRig((p) => p[0] === 0x2e && p[6] === 0x64, 0x22);
+    await connect(rig);
+    run(rig, effectOf(rig, 'flash.indicatorRight'));
+    await rig.waitFor('ready');
+
+    expect(rig.context().tiles['flash.indicatorRight']).toEqual({
+      state: 'error',
+      reason: 'conditionsNotCorrect',
+    });
+  });
+
+  it('does not reconnect or retry when only refusals are reported by the restore', async () => {
+    const rig = refusingRig(
+      refusals['every actuation incl. return control (0x2E/0x2F/0x31)']!,
+      0x31,
+    );
+    await connect(rig);
+    const linksBefore = rig.links.length;
+    run(rig, effectOf(rig, 'flash.indicatorLeft'));
+    await rig.waitFor('ready');
+    await jest.advanceTimersByTimeAsync(10_000);
+
+    expect(rig.phase()).toBe('ready');
+    expect(rig.links.length).toBe(linksBefore);
+  });
+
+  it('still bounds the recovery when the link drops after the refusal', async () => {
+    const vehicle = makeVehicle('F32');
+    const rig = createRig(vehicle, {
+      createLink: async () => {
+        const link = new SimLink(vehicle);
+        const request = link.request.bind(link);
+        link.request = async (ecu, payload, options) => {
+          if (payload[0] === 0x2e && payload[6] === 0x64) {
+            setTimeout(() => void link.close(), 0);
+            throw new NegativeResponseError(0x2e, 0x31);
+          }
+
+          return request(ecu, payload, options);
+        };
+
+        return link;
+      },
+    });
+    await connect(rig);
+    run(rig, effectOf(rig, 'flash.indicatorLeft'));
+    await rig.waitFor(['ready', 'error']);
+    await jest.advanceTimersByTimeAsync(30_000);
+
+    expect(['ready', 'error']).toContain(rig.phase());
+    expect(rig.context().restoreFailures).toBeLessThanOrEqual(3);
+  });
+
+  it('keeps a transport failure on an element off unconfirmed', async () => {
+    const vehicle = makeVehicle('F32');
+    const rig = createRig(vehicle, {
+      createLink: async () => {
+        const link = new SimLink(vehicle);
+        const request = link.request.bind(link);
+        link.request = async (ecu, payload, options) => {
+          if (payload[0] === 0x2e && payload[6] === 0x00 && payload[4] === D542_INDICATOR_LEFT) {
+            await link.close();
+          }
+
+          return request(ecu, payload, options);
+        };
+
+        return link;
+      },
+    });
+    await connect(rig);
+    run(rig, effectOf(rig, 'flash.indicatorLeft'));
+    await rig.waitFor(['error']);
+
+    expect(rig.context().lightsMayBeOn).toBe(true);
+  });
+});
+
 describe('application state', () => {
   it('does nothing on background when nothing is forced', async () => {
     const rig = await startReady();

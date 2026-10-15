@@ -29,6 +29,14 @@ export class ControlLedger {
     this.entryFor(module).elements.add(element);
   }
 
+  isTouched(module: Module, element: ElementId): boolean {
+    return this.entries.get(module.sgbd)?.elements.has(element) ?? false;
+  }
+
+  untouch(module: Module, element: ElementId): void {
+    this.entries.get(module.sgbd)?.elements.delete(element);
+  }
+
   silence(module: Module): void {
     this.entryFor(module).silenced = true;
   }

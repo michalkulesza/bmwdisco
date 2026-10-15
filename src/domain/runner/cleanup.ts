@@ -1,6 +1,6 @@
 import type { ElementId } from '@/data/elements';
 import type { DiagnosticLink } from '@/link/types';
-import { toError, LinkClosedError } from '@/protocol/errors';
+import { toError, LinkClosedError, NegativeResponseError } from '@/protocol/errors';
 
 import type { ControlLedger } from './ledger';
 import type { CleanupFailure, CleanupReport, CleanupStep } from './types';
@@ -66,10 +66,13 @@ export const restoreControl = async (
     ecu: number,
     payload: Uint8Array,
     element?: ElementId,
+    tolerateRefusal = false,
   ) => {
     try {
       await send(ecu, payload);
     } catch (error) {
+      if (tolerateRefusal && error instanceof NegativeResponseError) return;
+
       failures.push({ sgbd, step, element, error: toError(error) });
     }
   };
@@ -85,9 +88,17 @@ export const restoreControl = async (
       await attempt(module.sgbd, 'elementOff', module.address, off, element);
     }
   }
-  for (const { module } of entries) {
+  for (const { module, elements } of entries) {
     for (const payload of module.returnControl) {
-      await attempt(module.sgbd, 'returnControl', module.address, Uint8Array.from(payload));
+      const nothingForced = elements.size === 0;
+      await attempt(
+        module.sgbd,
+        'returnControl',
+        module.address,
+        Uint8Array.from(payload),
+        undefined,
+        nothingForced,
+      );
     }
   }
   for (const { module, silenced } of entries) {
