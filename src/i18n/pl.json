@@ -538,7 +538,7 @@
   },
   "effects": {
     "sections": {
-      "all": "Wszystkie światła",
+      "allRear": "Wszystkie tylne światła",
       "beams": "Wiązki świateł",
       "bothSides": "Obie strony",
       "brake": "Stop",

@@ -135,7 +135,7 @@ describe('effect to preset', () => {
   });
 
   it('turns a toggle into on, hold, off', () => {
-    const toggle = effects.find((candidate) => candidate.kind === 'toggle')!;
+    const toggle = effects.find((candidate) => candidate.kind === 'toggle' && candidate.offSteps)!;
 
     const converted = effectToPreset(toggle, appearance);
 
@@ -144,7 +144,7 @@ describe('effect to preset', () => {
   });
 
   it('keeps a toggle without off steps as its on steps', () => {
-    const toggle = effects.find((candidate) => candidate.kind === 'toggle')!;
+    const toggle = effects.find((candidate) => candidate.kind === 'toggle' && candidate.offSteps)!;
 
     const steps = effectToSteps({ ...toggle, offSteps: undefined });
 

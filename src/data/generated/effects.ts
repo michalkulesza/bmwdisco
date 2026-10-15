@@ -2523,8 +2523,8 @@ export const EFFECTS: readonly Effect[] = Object.freeze([
     id: 'ghost.fullOFF',
     pack: 'ghost',
     nameKey: 'effects.ghost.fullOFF',
-    sectionKey: 'effects.sections.all',
-    kind: 'oneShot',
+    sectionKey: 'effects.sections.allRear',
+    kind: 'toggle',
     steps: [
       { element: 'allOutputs', on: false },
       { element: 'daytimeAll', on: false },
