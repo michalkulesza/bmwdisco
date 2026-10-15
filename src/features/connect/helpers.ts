@@ -39,6 +39,9 @@ export const adapterChoiceOf = (adapter: AdapterId | undefined): AdapterChoice |
 
 export const isOnlinePhase = (phase: SessionPhase): boolean => ONLINE_PHASES.includes(phase);
 
+export const isConnectablePhase = (phase: SessionPhase): boolean =>
+  phase === 'idle' || phase === 'disconnected' || phase === 'error';
+
 export const toErrorReason = (reason: string | undefined): ConnectErrorReason =>
   ERROR_REASONS.find((candidate) => candidate === reason) ?? 'adapterUnreachable';
 

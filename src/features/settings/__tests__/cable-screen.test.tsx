@@ -1,35 +1,27 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { fireEvent, screen } from '@testing-library/react-native';
 
 import '@/i18n';
 import { useSettingsStore } from '@/stores/settings';
+import { resetSession, sessionActions, sessionState } from '@/test-utils/mock-session';
+import { renderScreen, resetRouter, routerMock } from '@/test-utils/mock-ui';
 
 import CableScreen from '../CableScreen';
 
-const mockRouter = { push: jest.fn() };
-
+jest.mock('@/session', () => jest.requireActual('@/test-utils/mock-session').sessionModule);
 jest.mock('expo-router', () => ({
-  get router() {
-    return mockRouter;
-  },
+  ...jest.requireActual('@/test-utils/mock-ui').routerModule,
+  router: jest.requireActual('@/test-utils/mock-ui').routerMock,
 }));
 
 jest.mock('@/ui/haptics', () => ({ selectionHaptic: jest.fn() }));
 
-const METRICS = {
-  frame: { x: 0, y: 0, width: 390, height: 844 },
-  insets: { top: 47, left: 0, right: 0, bottom: 34 },
-};
-
-const renderCable = () =>
-  render(
-    <SafeAreaProvider initialMetrics={METRICS}>
-      <CableScreen />
-    </SafeAreaProvider>,
-  );
+const renderCable = () => renderScreen(<CableScreen />);
 
 beforeEach(() => {
   jest.clearAllMocks();
+  resetSession();
+  resetRouter();
+  sessionState.phase = 'idle';
   useSettingsStore.setState({
     adapter: 'enet',
     enetHost: '',
@@ -118,7 +110,7 @@ describe('CableScreen', () => {
     expect(screen.getByText('My iCar')).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: 'Adapter' }));
 
-    expect(mockRouter.push).toHaveBeenCalledWith('/settings/ble-devices');
+    expect(routerMock.push).toHaveBeenCalledWith('/settings/ble-devices');
   });
 
   it('links the Demo row to the chassis picker', async () => {
@@ -127,6 +119,40 @@ describe('CableScreen', () => {
 
     await fireEvent.press(screen.getByRole('button', { name: 'Car' }));
 
-    expect(mockRouter.push).toHaveBeenCalledWith('/settings/demo-chassis');
+    expect(routerMock.push).toHaveBeenCalledWith('/settings/demo-chassis');
+  });
+
+  describe('Connect header button', () => {
+    it('is shown when offline and starts the connection, then returns to the root', async () => {
+      useSettingsStore.setState({ adapter: 'demo' });
+      await renderCable();
+
+      await fireEvent.press(screen.getByRole('button', { name: 'Connect' }));
+
+      expect(sessionActions.connect).toHaveBeenCalledWith(
+        expect.objectContaining({ adapter: 'demo' }),
+      );
+      expect(routerMock.dismissAll).toHaveBeenCalled();
+    });
+
+    it.each(['ready', 'connecting', 'reconnecting'] as const)(
+      'is hidden while %s',
+      async (phase) => {
+        sessionState.phase = phase;
+        await renderCable();
+
+        expect(screen.queryByRole('button', { name: 'Connect' })).toBeNull();
+      },
+    );
+
+    it('is disabled when the settings cannot form a config', async () => {
+      useSettingsStore.setState({ adapter: 'vgate', icarDevice: null });
+      await renderCable();
+
+      await fireEvent.press(screen.getByRole('button', { name: 'Connect' }));
+
+      expect(sessionActions.connect).not.toHaveBeenCalled();
+      expect(routerMock.dismissAll).not.toHaveBeenCalled();
+    });
   });
 });

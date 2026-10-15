@@ -5,7 +5,7 @@ appId: com.michalkulesza.bimmerdisco
     visible: Settings
     timeout: 30000
 - tapOn: Settings
-- tapOn: Cable
+- tapOn: Adapter
 - tapOn: Demo
 - tapOn: Car
 - tapOn: "F32.*"

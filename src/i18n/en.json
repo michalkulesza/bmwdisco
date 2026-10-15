@@ -19,7 +19,7 @@
     "settings": "Settings",
     "appName": "BimmerDisco",
     "connect": "Connect",
-    "cable": "Cable:",
+    "cable": "Adapter:",
     "connecting": "Connecting",
     "done": "Connected",
     "progress": "Connection progress",
@@ -96,7 +96,7 @@
   "settings": {
     "title": "Settings",
     "connection": "Connection",
-    "cable": "Cable",
+    "cable": "Adapter",
     "appearance": "Appearance",
     "theme": "Theme",
     "themeOptions": {
@@ -137,7 +137,7 @@
     }
   },
   "cable": {
-    "title": "Cable",
+    "title": "Adapter",
     "description": "Choose the adapter between your phone and the car's OBD port.",
     "demoBadge": "No car",
     "adapters": {
