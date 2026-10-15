@@ -2,6 +2,7 @@ import { loadModule } from '@/data/generated';
 import type { Effect } from '@/data/types';
 import type { AdapterConfig } from '@/domain/adapter/create-link';
 import { PresetRunner } from '@/domain/runner/runner';
+import { itemIdOf } from '@/domain/runner/types';
 import { LOG_CAPACITY } from '@/domain/session/helpers';
 import type { RunInput } from '@/domain/session/types';
 import { SimLink } from '@/link/sim-link';
@@ -49,6 +50,9 @@ const startReady = async (
 
 const effectOf = (rig: SessionRig, id: string): Effect =>
   rig.context().car!.effects.find((effect) => effect.id === id)!;
+
+const oneShotOf = (rig: SessionRig): Effect =>
+  rig.context().car!.effects.find((effect) => effect.kind === 'oneShot')!;
 
 const run = (rig: SessionRig, item: RunInput) => rig.actor.send({ type: 'RUN', item });
 
@@ -318,19 +322,6 @@ describe('running items', () => {
     });
   });
 
-  it('ignores RUN and TOGGLE while a run is active', async () => {
-    const rig = await startReady();
-    await startHold(rig);
-
-    run(rig, holdPreset(100, 'second'));
-    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: true });
-
-    expect(rig.context().tiles.second).toBeUndefined();
-    expect(rig.context().runningItemId).toBe('hold');
-    rig.actor.send({ type: 'STOP' });
-    await rig.waitFor('ready');
-  });
-
   it('records a capped debug log only when debug is on', async () => {
     const quiet = await startReady();
     run(quiet, holdPreset(100));
@@ -353,21 +344,267 @@ describe('running items', () => {
   });
 });
 
+describe('one active item at a time', () => {
+  const toggleOn = (rig: SessionRig, effectId: string) =>
+    rig.actor.send({ type: 'TOGGLE', effectId, on: true });
+
+  const holdToggle = async (rig: SessionRig, effectId: string) => {
+    toggleOn(rig, effectId);
+    await rig.waitFor('ready');
+  };
+
+  const loopPreset = (id: string) => {
+    const base = holdPreset(100, id);
+
+    return { ...base, steps: [...base.steps, { type: 'loop' as const }] };
+  };
+
+  it('starts a preset after restoring the held toggle', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+
+    run(rig, holdPreset(60_000));
+    expect(rig.phase()).toBe('restoring');
+    expect(rig.context().tiles.hold).toEqual({ state: 'running' });
+
+    await rig.waitFor('running');
+
+    expect(rig.context().activeToggleId).toBeUndefined();
+    expect(rig.context().runningItemId).toBe('hold');
+    await advanceUntil(() => litIds(rig.vehicle).length > 0);
+    expect(litIds(rig.vehicle).every((id) => id.endsWith(':lowBeamLeft'))).toBe(true);
+
+    rig.actor.send({ type: 'STOP' });
+    await rig.waitFor('ready');
+    expect(rig.vehicle.getLitElements()).toEqual([]);
+  });
+
+  it('starts a toggle after stopping a Hold preset', async () => {
+    const rig = await startReady();
+    await startHold(rig);
+
+    toggleOn(rig, 'toggle.hazard');
+    expect(rig.context().tiles.hold).toEqual({ state: 'running' });
+    expect(rig.context().tiles['toggle.hazard']).toEqual({ state: 'running' });
+
+    await advanceUntil(() => rig.context().activeToggleId === 'toggle.hazard');
+    await rig.waitFor('ready');
+
+    expect(rig.context().tiles).toEqual({});
+    expect(litIds(rig.vehicle).some((id) => id.endsWith(':lowBeamLeft'))).toBe(false);
+  });
+
+  it('starts a toggle after stopping a Loop preset', async () => {
+    const rig = await startReady();
+    run(rig, loopPreset('loop'));
+    await advanceUntil(() => rig.phase() === 'running' && litIds(rig.vehicle).length > 0);
+    await jest.advanceTimersByTimeAsync(500);
+    expect(rig.phase()).toBe('running');
+
+    toggleOn(rig, 'toggle.hazard');
+    await advanceUntil(() => rig.context().activeToggleId === 'toggle.hazard');
+    await rig.waitFor('ready');
+
+    expect(rig.context().tiles).toEqual({});
+    expect(rig.context().runningItemId).toBeUndefined();
+  });
+
+  it('replaces a running one-shot with another tile', async () => {
+    const rig = await startReady();
+    const effect = oneShotOf(rig);
+    run(rig, effect);
+    expect(rig.phase()).toBe('running');
+
+    run(rig, holdPreset(60_000));
+    expect(rig.context().tiles[effect.id]).toEqual({ state: 'running' });
+    expect(rig.context().tiles.hold).toEqual({ state: 'running' });
+
+    await advanceUntil(() => rig.context().runningItemId === 'hold');
+
+    expect(rig.context().tiles[effect.id]).toBeUndefined();
+    expect(rig.context().tiles.hold).toEqual({ state: 'running' });
+    rig.actor.send({ type: 'STOP' });
+    await rig.waitFor('ready');
+  });
+
+  it('ignores turning off a toggle that is not the active one', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+
+    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.brakeForce', on: false });
+
+    expect(rig.phase()).toBe('ready');
+    expect(rig.context().activeToggleId).toBe('toggle.hazard');
+  });
+
+  it('turns the active toggle off with one more tap and restores', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+
+    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: false });
+    await rig.waitFor('ready');
+
+    expect(rig.context().activeToggleId).toBeUndefined();
+    expect(rig.context().ledger.hasPending).toBe(false);
+    expect(rig.vehicle.getLitElements()).toEqual([]);
+  });
+
+  it('keeps only the first queued tile when two taps arrive while switching', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+
+    toggleOn(rig, 'toggle.brakeForce');
+    toggleOn(rig, 'toggle.welcomeLight');
+    run(rig, holdPreset(60_000, 'late'));
+
+    expect(rig.context().queuedItem && itemIdOf(rig.context().queuedItem!)).toBe(
+      'toggle.brakeForce',
+    );
+    expect(rig.context().tiles['toggle.welcomeLight']).toBeUndefined();
+    expect(rig.context().tiles.late).toBeUndefined();
+
+    await advanceUntil(() => rig.context().activeToggleId === 'toggle.brakeForce');
+    await rig.waitFor('ready');
+
+    expect(rig.context().activeToggleId).toBe('toggle.brakeForce');
+  });
+
+  it('ignores a second tile while a run is being replaced, and the same running tile', async () => {
+    const rig = await startReady();
+    await startHold(rig);
+
+    run(rig, holdPreset(60_000));
+    expect(rig.context().queuedItem).toBeUndefined();
+
+    toggleOn(rig, 'toggle.hazard');
+    toggleOn(rig, 'toggle.brakeForce');
+    run(rig, holdPreset(60_000, 'third'));
+
+    expect(rig.context().queuedItem && itemIdOf(rig.context().queuedItem!)).toBe('toggle.hazard');
+    expect(rig.context().tiles.third).toBeUndefined();
+    await advanceUntil(() => rig.context().activeToggleId === 'toggle.hazard');
+    await rig.waitFor('ready');
+  });
+
+  it('queues a tile tapped while the previous toggle is still restoring', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+
+    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: false });
+    await advanceUntil(() => rig.phase() === 'restoring');
+    toggleOn(rig, 'toggle.brakeForce');
+    await advanceUntil(() => rig.context().activeToggleId === 'toggle.brakeForce');
+    await rig.waitFor('ready');
+
+    expect(rig.context().activeToggleId).toBe('toggle.brakeForce');
+    expect(rig.context().tiles).toEqual({});
+  });
+
+  it('cancels the queued tile when STOP arrives during the switch', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+
+    toggleOn(rig, 'toggle.brakeForce');
+    rig.actor.send({ type: 'STOP' });
+    await rig.waitFor('ready');
+    await jest.advanceTimersByTimeAsync(500);
+
+    expect(rig.context().queuedItem).toBeUndefined();
+    expect(rig.context().tiles).toEqual({});
+    expect(rig.context().activeToggleId).toBeUndefined();
+    expect(rig.vehicle.getLitElements()).toEqual([]);
+  });
+
+  it('cancels the queued tile when the app is backgrounded mid-switch', async () => {
+    const rig = await startReady();
+    await startHold(rig);
+
+    toggleOn(rig, 'toggle.hazard');
+    rig.appState.emit('background');
+    await rig.waitFor('ready');
+    await jest.advanceTimersByTimeAsync(500);
+
+    expect(rig.context().activeToggleId).toBeUndefined();
+    expect(rig.context().tiles).toEqual({});
+    expect(rig.vehicle.getLitElements()).toEqual([]);
+  });
+
+  it('does not start the new tile when the restore of the old one is unconfirmed', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+    jest
+      .spyOn(rig.context().runner!, 'restore')
+      .mockResolvedValue({ restored: false, failures: [] });
+
+    run(rig, holdPreset(60_000));
+    await rig.waitFor('reconnecting');
+
+    expect(rig.context().queuedItem).toBeUndefined();
+    expect(rig.context().tiles.hold).toBeUndefined();
+    expect(rig.context().runningItemId).toBeUndefined();
+    expect(rig.context().lightsMayBeOn).toBe(true);
+    expect(rig.context().lastError).toMatchObject({ reason: 'connectionLost', whileRunning: true });
+    expect(rig.vehicle.getLitElements().every((lit) => lit.element !== 'lowBeamLeft')).toBe(true);
+  });
+
+  it('does not start the new tile when the restore rejects', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+    jest.spyOn(rig.context().runner!, 'restore').mockRejectedValue(new Error('bug'));
+
+    toggleOn(rig, 'toggle.brakeForce');
+    await rig.waitFor('reconnecting');
+
+    expect(rig.context().queuedItem).toBeUndefined();
+    expect(rig.context().tiles['toggle.brakeForce']).toBeUndefined();
+    expect(rig.context().activeToggleId).toBe('toggle.hazard');
+  });
+
+  it('drops the queued tile when the link is lost mid-switch', async () => {
+    const rig = await startReady();
+    await startHold(rig);
+
+    toggleOn(rig, 'toggle.hazard');
+    rig.actor.send({ type: 'LINK_LOST' });
+
+    expect(rig.context().queuedItem).toBeUndefined();
+    expect(rig.context().tiles['toggle.hazard']).toBeUndefined();
+    rig.actor.send({ type: 'DISCONNECT' });
+    await rig.waitFor('disconnected');
+  });
+
+  it('keeps the Test commands gate: blocked with a toggle held, open after switching it off', async () => {
+    const rig = await startReady();
+    await holdToggle(rig, 'toggle.hazard');
+    rig.actor.send({ type: 'TEST_BEGIN' });
+    expect(rig.context().testActive).toBe(false);
+
+    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: false });
+    await rig.waitFor('ready');
+    rig.actor.send({ type: 'TEST_BEGIN' });
+
+    expect(rig.context().testActive).toBe(true);
+    toggleOn(rig, 'toggle.brakeForce');
+    run(rig, holdPreset(100));
+    expect(rig.phase()).toBe('ready');
+  });
+});
+
 describe('toggles', () => {
-  it('holds a toggle on and releases it, restoring when the last one goes off', async () => {
+  it('holds a toggle on and releases it, restoring control', async () => {
     const rig = await startReady();
 
     rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: true });
     await rig.waitFor('ready');
 
-    expect(rig.context().activeToggles).toEqual(['toggle.hazard']);
+    expect(rig.context().activeToggleId).toBe('toggle.hazard');
     expect(rig.context().lightsMayBeOn).toBe(true);
     expect(rig.vehicle.getLitElements().length).toBeGreaterThan(0);
 
     rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: false });
     await rig.waitFor('ready');
 
-    expect(rig.context().activeToggles).toEqual([]);
+    expect(rig.context().activeToggleId).toBeUndefined();
     expect(rig.vehicle.getLitElements()).toEqual([]);
     expect(rig.context().lightsMayBeOn).toBe(false);
   });
@@ -385,7 +622,7 @@ describe('toggles', () => {
     rig.actor.send({ type: 'TOGGLE', effectId: ghost.id, on: true });
     await rig.waitFor('ready');
 
-    expect(rig.context().activeToggles).toEqual([ghost.id]);
+    expect(rig.context().activeToggleId).toBe(ghost.id);
     expect(rig.context().ledger.hasPending).toBe(true);
     expect(rig.context().lightsMayBeOn).toBe(true);
     expect(rig.context().tiles[ghost.id]).toBeUndefined();
@@ -394,26 +631,34 @@ describe('toggles', () => {
     rig.actor.send({ type: 'TOGGLE', effectId: ghost.id, on: false });
     await rig.waitFor('ready');
 
-    expect(rig.context().activeToggles).toEqual([]);
+    expect(rig.context().activeToggleId).toBeUndefined();
     expect(rig.context().ledger.hasPending).toBe(false);
     expect(rig.context().lightsMayBeOn).toBe(false);
     expect(rig.context().lastError).toBeUndefined();
     expect(defaultSessionsSent()).toBeGreaterThan(0);
   });
 
-  it('keeps the remaining toggle when one of two is switched off', async () => {
+  it('switches from one held toggle to another by restoring the first', async () => {
     const rig = await startReady();
-    for (const effectId of ['toggle.hazard', 'toggle.brakeForce']) {
-      rig.actor.send({ type: 'TOGGLE', effectId, on: true });
-      await rig.waitFor('ready');
-    }
+    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: true });
+    await rig.waitFor('ready');
+    const hazardLit = litIds(rig.vehicle);
 
-    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.hazard', on: false });
-    await advanceUntil(() => rig.context().activeToggles.length === 1);
+    rig.actor.send({ type: 'TOGGLE', effectId: 'toggle.brakeForce', on: true });
+
+    expect(rig.phase()).toBe('restoring');
+    expect(rig.context().tiles['toggle.brakeForce']).toEqual({ state: 'running' });
+    await advanceUntil(() => rig.context().activeToggleId === 'toggle.brakeForce');
     await rig.waitFor('ready');
 
-    expect(rig.context().activeToggles).toEqual(['toggle.brakeForce']);
-    expect(rig.context().lightsMayBeOn).toBe(true);
+    expect(rig.context().activeToggleId).toBe('toggle.brakeForce');
+    expect(rig.context().queuedItem).toBeUndefined();
+    expect(rig.context().tiles).toEqual({});
+    const leftover = litIds(rig.vehicle).filter(
+      (id) => hazardLit.includes(id) && !id.endsWith(':clusterFeedback'),
+    );
+    expect(leftover).toEqual([]);
+    expect(litIds(rig.vehicle).length).toBeGreaterThan(0);
   });
 
   it('ignores unknown toggle ids', async () => {

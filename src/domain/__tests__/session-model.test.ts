@@ -11,7 +11,7 @@ const ALLOWED_TRANSITIONS: Record<SessionPhase, readonly SessionPhase[]> = {
   identifying: ['ready', 'restoring', 'error', 'idle'],
   ready: ['running', 'restoring', 'reconnecting', 'disconnecting'],
   running: ['ready', 'restoring', 'reconnecting', 'disconnecting'],
-  restoring: ['ready', 'reconnecting', 'disconnecting', 'error'],
+  restoring: ['ready', 'running', 'reconnecting', 'disconnecting', 'error'],
   disconnecting: ['disconnected'],
   reconnecting: ['connecting', 'restoring', 'ready', 'error', 'disconnected'],
   disconnected: ['connecting'],
@@ -153,6 +153,10 @@ const walk = async (seed: number): Promise<void> => {
   };
 
   const checkSafe = () => {
+    const { tiles, queuedItem } = rig.context();
+    const busyTiles = Object.values(tiles).filter((tile) => tile.state === 'running').length;
+    if (rig.phase() === 'ready' && busyTiles > 0) fail('a tile is running while ready');
+    if (busyTiles > (queuedItem ? 2 : 1)) fail('more than one tile active');
     if (lit(rig) > 0 && !rig.context().lightsMayBeOn) {
       fail(`lights lit (${lit(rig)}) but lightsMayBeOn is false in ${rig.phase()}`);
     }
@@ -171,8 +175,8 @@ const walk = async (seed: number): Promise<void> => {
 
     if (STOPPING_ACTIONS.includes(name)) {
       await jest.advanceTimersByTimeAsync(STOP_SETTLE_MS);
-      const { activeToggles } = rig.context();
-      if (rig.phase() === 'ready' && (lit(rig) > 0 || activeToggles.length > 0)) {
+      const { activeToggleId } = rig.context();
+      if (rig.phase() === 'ready' && (lit(rig) > 0 || activeToggleId !== undefined)) {
         fail('still forcing lights after stop/background');
       }
     }

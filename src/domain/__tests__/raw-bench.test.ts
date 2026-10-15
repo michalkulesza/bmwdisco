@@ -401,7 +401,7 @@ describe('gating against effects and toggles', () => {
     await rig.waitFor('ready');
     const result = await bench.runGroup(identityGroup);
 
-    expect(rig.context().activeToggles).toContain(toggle.id);
+    expect(rig.context().activeToggleId).toBe(toggle.id);
     expect(result).toEqual({ status: 'blocked', reason: 'toggleActive' });
   });
 
@@ -429,7 +429,7 @@ describe('gating against effects and toggles', () => {
     expect(rig.context().lastError).toBeUndefined();
     await settle(pending);
     expect(rig.context().testActive).toBe(false);
-    expect(rig.context().activeToggles).toEqual([]);
+    expect(rig.context().activeToggleId).toBeUndefined();
 
     rig.actor.send({ type: 'RUN', item: effect });
     expect(rig.phase()).toBe('running');
