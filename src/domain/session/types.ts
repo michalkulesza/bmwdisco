@@ -72,6 +72,7 @@ export interface SessionContext {
   notices: RunnerNotice[];
   log: LogEntry[];
   diagnosticsEnabled: boolean;
+  testActive: boolean;
 }
 
 export type RunInput = Preset | Effect;
@@ -87,5 +88,7 @@ export type SessionEvent =
   | { type: 'TOGGLE'; effectId: string; on: boolean }
   | { type: 'APP_BACKGROUND' }
   | { type: 'APP_FOREGROUND' }
+  | { type: 'TEST_BEGIN' }
+  | { type: 'TEST_END' }
   | { type: 'LINK_LOST' }
   | { type: 'RUNNER_EVENT'; event: RunnerEvent };

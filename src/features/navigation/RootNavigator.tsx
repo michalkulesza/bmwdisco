@@ -42,6 +42,7 @@ const RootNavigator = () => {
           name="settings/demo-chassis"
           options={{ title: t('settings.demoChassis'), headerLargeTitle: true }}
         />
+        <Stack.Screen name="settings/test-commands" options={{ title: t('testCommands.title') }} />
         <Stack.Screen
           name="home"
           options={{ title: t('home.title'), headerLargeTitle: true, headerBackVisible: false }}

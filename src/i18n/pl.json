@@ -721,7 +721,8 @@
     "emptyTitle": "Brak dziennika diagnostycznego",
     "emptyHint": "Włącz zapis dziennika diagnostycznego w Ustawieniach, a następnie połącz się i ponownie uruchom akcję.",
     "copied": "Skopiowano dziennik diagnostyczny",
-    "copyFailed": "Nie udało się skopiować dziennika diagnostycznego"
+    "copyFailed": "Nie udało się skopiować dziennika diagnostycznego",
+    "testCommands": "Polecenia testowe"
   },
   "report": {
     "title": "Zgłoś problem",
@@ -733,5 +734,145 @@
     "sentBody": "Dziękujemy, to pomaga nam to naprawić.",
     "errorNotConfigured": "Zgłaszanie nie jest skonfigurowane w tej wersji aplikacji.",
     "errorFailed": "Nie udało się wysłać zgłoszenia. Sprawdź połączenie i spróbuj ponownie."
+  },
+  "testCommands": {
+    "title": "Polecenia testowe",
+    "notReadyTitle": "Najpierw połącz się z autem",
+    "notReadyHint": "Polecenia testowe działają na aktywnym połączeniu. Połącz się z autem i wróć tutaj.",
+    "safety": "Zaparkuj auto z włączonym zapłonem i wyłączonym silnikiem. Awaryjne i światła wyłączone, dźwignia w pozycji neutralnej. Każdy test cofa to, co wymusił, gdy się kończy.",
+    "blocked": {
+      "effectRunning": "Trwa efekt. Zatrzymaj go przed rozpoczęciem testu.",
+      "toggleActive": "Włączony jest przełącznik podtrzymywany, np. Awaryjne lub Tryb ducha. Wyłącz go przed rozpoczęciem testu.",
+      "controlPending": "Coś nadal jest pod wymuszonym sterowaniem. Poczekaj na zakończenie przywracania.",
+      "notReady": "Sesja nie jest gotowa na testy.",
+      "busy": "Inny test już trwa."
+    },
+    "held": "Otwarta jest sesja surowa. Presety i efekty pozostają zablokowane, dopóki nie uruchomisz Wyczyść wszystko lub nie opuścisz tego ekranu.",
+    "run": "Uruchom",
+    "groups": {
+      "identity": {
+        "title": "Identyfikacja",
+        "description": "Odczytuje identyfikator z FEM, obu modułów reflektorów, zegarów i REM, a potem stan świateł FEM. Tylko odczyt.",
+        "run": "Identyfikacja"
+      },
+      "hazard": {
+        "title": "Test świateł awaryjnych",
+        "description": "Sprawdzony test: włącza światła awaryjne na kilka sekund przez FEM, a potem je wyłącza.",
+        "run": "Światła awaryjne"
+      },
+      "d542": {
+        "title": "Kierunkowskaz przez funkcję świateł FEM",
+        "description": "Próbuje włączyć lewy lub prawy kierunkowskaz w FEM i zapisuje odpowiedź, a potem odczytuje stan świateł.",
+        "left": "Lewy kierunkowskaz",
+        "right": "Prawy kierunkowskaz"
+      },
+      "fem": {
+        "title": "Kierunkowskazy FEM po jednej lampie",
+        "description": "Steruje jednym wyjściem FEM naraz przez kilka sekund, a potem zwraca sterowanie. Patrz na lampę.",
+        "channel10": "Powtarzacz boczny lewy (0x10)",
+        "channel11": "Powtarzacz boczny prawy (0x11)",
+        "channel0d": "Przód lewy (0x0D)",
+        "channel0e": "Przód prawy (0x0E)"
+      },
+      "rem": {
+        "title": "Tylne kierunkowskazy REM",
+        "description": "Włącza jeden tylny kierunkowskaz w REM na kilka sekund, a potem go wyłącza.",
+        "left": "Tył lewy (0x20)",
+        "right": "Tył prawy (0x21)"
+      },
+      "lhm2Read": {
+        "title": "Odczyt LHM2",
+        "description": "Odczytuje 14-bajtowy rekord kanałów obu modułów reflektorów. Tylko odczyt. Zapisz migawkę w każdym stanie lampy, aby zobaczyć, który kanał odpowiada za którą funkcję.",
+        "read": "Odczytaj teraz",
+        "latest": "Ostatni odczyt",
+        "none": "Brak odczytu.",
+        "pwm": "PWM {{channel}}",
+        "current": "Prąd {{channel}}",
+        "labelTitle": "Etykieta migawki",
+        "custom": "Własna etykieta (opcjonalnie)",
+        "save": "Zapisz migawkę",
+        "saved": "Zapisano migawkę",
+        "clear": "Wyczyść migawki",
+        "diffTitle": "Porównanie migawek",
+        "diffHint": "Podświetlone wiersze zmieniły się między migawkami.",
+        "sideLeft": "Lewy (0x43)",
+        "sideRight": "Prawy (0x44)",
+        "labels": {
+          "lightsOff": "Światła wyłączone",
+          "stalkLeft": "Dźwignia w lewo",
+          "stalkRight": "Dźwignia w prawo",
+          "lowBeam": "Mijania",
+          "highBeam": "Drogowe",
+          "drl": "Światła dzienne"
+        }
+      },
+      "lhm2Write": {
+        "title": "Zapis jednego kanału LHM2",
+        "description": "Chronione. Odczytuje bieżący rekord, zapala jeden kanał PWM na krótko, a potem zapisuje z powrotem oryginalny rekord.",
+        "side": "Moduł",
+        "channel": "Kanał",
+        "duration": "Czas włączenia (ms)",
+        "run": "Uruchom zapis",
+        "confirmTitle": "Zapisać do modułu reflektora?",
+        "confirmMessage": "To zapali kanał {{channel}} modułu {{ecu}} na {{ms}} ms, a potem przywróci odczytane wartości. Jeśli połączenie zostanie przerwane, lampa może pozostać zapalona do przełączenia zapłonu.",
+        "confirmRun": "Zapisz"
+      },
+      "cleanup": {
+        "title": "Wyczyść wszystko",
+        "description": "Zwraca sterowanie w FEM, włącza ponownie komunikację tam, gdzie była wyłączona, i resetuje sesję każdego sterownika użytego tutaj.",
+        "run": "Wyczyść wszystko"
+      },
+      "raw": {
+        "title": "Surowe polecenie",
+        "description": "Wysyła jedno żądanie do sterownika. Odczyty, tester present i sesja domyślna idą od razu; reszta pyta o potwierdzenie.",
+        "ecu": "Adres sterownika (hex)",
+        "payload": "Dane (hex)",
+        "send": "Wyślij",
+        "ecuChoice": "Użyj {{name}} {{address}}",
+        "errors": {
+          "ecu": "Podaj jedno- lub dwucyfrowy adres szesnastkowy.",
+          "empty": "Podaj dane.",
+          "invalid": "Użyj pełnych bajtów szesnastkowych, np. 22 F1 50.",
+          "tooLong": "Dane są zbyt długie."
+        },
+        "confirmTitle": "Wysłać to polecenie?",
+        "confirmMessage": "{{request}} do {{ecu}} może zmienić stan auta. Sterownik zostaje w tej sesji, dopóki nie uruchomisz Wyczyść wszystko lub nie opuścisz tego ekranu.",
+        "confirmSend": "Wyślij",
+        "ecuPicker": "Wykryte moduły"
+      }
+    },
+    "results": {
+      "title": "Wyniki",
+      "empty": "Na razie nic. Uruchom test.",
+      "copy": "Kopiuj wyniki",
+      "clear": "Wyczyść",
+      "abort": "Przerwij",
+      "copied": "Skopiowano wyniki",
+      "copyFailed": "Nie udało się skopiować wyników",
+      "truncated": "Pokazano ostatnie {{shown}} z {{total}} wierszy. Kopia zawiera wszystko.",
+      "cleanupTag": "czyszczenie",
+      "snapshotsTitle": "Migawki LHM2"
+    },
+    "result": {
+      "positive": "pozytywna",
+      "nrc": "NRC {{code}} {{name}}",
+      "timeout": "brak odpowiedzi",
+      "error": "błąd: {{message}}"
+    },
+    "notes": {
+      "started": "Start: {{name}}",
+      "completed": "Zakończono: {{name}}",
+      "failed": "Zatrzymano na pierwszym nieudanym kroku: {{name}}",
+      "failedWith": "Niepowodzenie: {{name}} ({{reason}})",
+      "aborted": "Przerwano: {{name}}",
+      "blocked": "Nie uruchomiono: {{reason}}",
+      "cleanupFailed": "Czyszczenie nie zostało ukończone. Przełącz zapłon, jeśli lampa zostanie zapalona.",
+      "cleanupDone": "Czyszczenie zakończone",
+      "reasons": {
+        "invalidBaseline": "nie udało się odczytać poprawnego rekordu LHM2",
+        "invalidChannel": "nieprawidłowy kanał",
+        "unexpected": "nieoczekiwany błąd"
+      }
+    }
   }
 }

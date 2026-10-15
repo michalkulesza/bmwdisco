@@ -11,6 +11,13 @@ import { DEMO_CONFIG, renderWithSession } from '@/test-utils/session-ui';
 import { formatDiagnosticLog } from '../diagnostic-log';
 import DiagnosticsSection from '../DiagnosticsSection';
 
+const mockRouter = { push: jest.fn() };
+
+jest.mock('expo-router', () => ({
+  get router() {
+    return mockRouter;
+  },
+}));
 jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn() }));
 const copy = jest.mocked(Clipboard.setStringAsync);
 const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => undefined);
@@ -94,4 +101,10 @@ it('records a run, copies commands and replies, reports copy failures, and clear
   copy.mockClear();
   await fireEvent.press(screen.getByRole('button', { name: 'Copy diagnostic log' }));
   expect(copy).not.toHaveBeenCalled();
+});
+
+it('opens the test commands screen', async () => {
+  await renderWithSession(<Harness />);
+  await fireEvent.press(screen.getByRole('button', { name: 'Test commands' }));
+  expect(mockRouter.push).toHaveBeenCalledWith('/settings/test-commands');
 });

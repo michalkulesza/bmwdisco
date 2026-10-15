@@ -721,7 +721,8 @@
     "emptyTitle": "No diagnostic log yet",
     "emptyHint": "Turn on Record diagnostic log in Settings, then connect and run the action again.",
     "copied": "Diagnostic log copied",
-    "copyFailed": "Could not copy the diagnostic log"
+    "copyFailed": "Could not copy the diagnostic log",
+    "testCommands": "Test commands"
   },
   "report": {
     "title": "Report a problem",
@@ -733,5 +734,145 @@
     "sentBody": "Thanks, this helps us fix it.",
     "errorNotConfigured": "Reporting is not set up in this build.",
     "errorFailed": "Could not send the report. Check your connection and try again."
+  },
+  "testCommands": {
+    "title": "Test commands",
+    "notReadyTitle": "Connect to the car first",
+    "notReadyHint": "Test commands run on a live connection. Connect to the car, then come back.",
+    "safety": "Park the car with the ignition on and the engine off. Hazards and lights off, stalk centered. Every test undoes what it forced when it ends.",
+    "blocked": {
+      "effectRunning": "An effect is running. Stop it before starting a test.",
+      "toggleActive": "A held toggle such as Hazard or Ghost Mode is on. Turn it off before starting a test.",
+      "controlPending": "Something is still under forced control. Wait for the restore to finish.",
+      "notReady": "The session is not ready for tests.",
+      "busy": "Another test is already running."
+    },
+    "held": "A raw session is open. Presets and effects stay locked until you run Cleanup all or leave this screen.",
+    "run": "Run",
+    "groups": {
+      "identity": {
+        "title": "Identity",
+        "description": "Reads the identity from the FEM, both headlight modules, the cluster and the REM, then the FEM light status. Read only.",
+        "run": "Identity"
+      },
+      "hazard": {
+        "title": "Hazard sanity",
+        "description": "Known-good check: turns the hazard lights on for a few seconds through the FEM, then off.",
+        "run": "Hazard lights"
+      },
+      "d542": {
+        "title": "Indicator through the FEM light function",
+        "description": "Tries the left or right indicator on the FEM and records the response, then reads the light status.",
+        "left": "Left indicator",
+        "right": "Right indicator"
+      },
+      "fem": {
+        "title": "FEM per-lamp indicators",
+        "description": "Drives one FEM output at a time for a few seconds, then returns control. Look at the lamp.",
+        "channel10": "Side repeater left (0x10)",
+        "channel11": "Side repeater right (0x11)",
+        "channel0d": "Front left (0x0D)",
+        "channel0e": "Front right (0x0E)"
+      },
+      "rem": {
+        "title": "REM rear indicators",
+        "description": "Switches one rear indicator channel on the REM for a few seconds, then off.",
+        "left": "Rear left (0x20)",
+        "right": "Rear right (0x21)"
+      },
+      "lhm2Read": {
+        "title": "LHM2 read-back",
+        "description": "Reads the 14-byte channel record of both headlight modules. Read only. Save a snapshot in each lamp state to see which channel serves which function.",
+        "read": "Read now",
+        "latest": "Latest reading",
+        "none": "No reading yet.",
+        "pwm": "PWM {{channel}}",
+        "current": "Current {{channel}}",
+        "labelTitle": "Snapshot label",
+        "custom": "Custom label (optional)",
+        "save": "Save snapshot",
+        "saved": "Snapshot saved",
+        "clear": "Clear snapshots",
+        "diffTitle": "Snapshot comparison",
+        "diffHint": "Highlighted rows changed between snapshots.",
+        "sideLeft": "Left (0x43)",
+        "sideRight": "Right (0x44)",
+        "labels": {
+          "lightsOff": "Lights off",
+          "stalkLeft": "Stalk left",
+          "stalkRight": "Stalk right",
+          "lowBeam": "Low beam",
+          "highBeam": "High beam",
+          "drl": "DRL"
+        }
+      },
+      "lhm2Write": {
+        "title": "LHM2 single-channel write",
+        "description": "Guarded. Reads the current record, lights one PWM channel for a short time, then writes the original record back.",
+        "side": "Module",
+        "channel": "Channel",
+        "duration": "On time (ms)",
+        "run": "Run write",
+        "confirmTitle": "Write to the headlight module?",
+        "confirmMessage": "This lights channel {{channel}} of {{ecu}} for {{ms}} ms and then restores the values it read. If the connection drops, the lamp may stay lit until the ignition is cycled.",
+        "confirmRun": "Write"
+      },
+      "cleanup": {
+        "title": "Cleanup all",
+        "description": "Returns control on the FEM, re-enables communication where it was disabled, and resets the session of every ECU touched here.",
+        "run": "Cleanup all"
+      },
+      "raw": {
+        "title": "Raw command",
+        "description": "Sends one request to an ECU. Reads, tester present and default session are sent directly; anything else asks first.",
+        "ecu": "ECU address (hex)",
+        "payload": "Payload (hex)",
+        "send": "Send",
+        "ecuChoice": "Use {{name}} {{address}}",
+        "errors": {
+          "ecu": "Enter a one or two digit hex address.",
+          "empty": "Enter a payload.",
+          "invalid": "Use whole hex bytes, for example 22 F1 50.",
+          "tooLong": "The payload is too long."
+        },
+        "confirmTitle": "Send this command?",
+        "confirmMessage": "{{request}} to {{ecu}} can change the state of the car. The ECU stays in this session until you run Cleanup all or leave this screen.",
+        "confirmSend": "Send",
+        "ecuPicker": "Detected modules"
+      }
+    },
+    "results": {
+      "title": "Results",
+      "empty": "Nothing yet. Run a test.",
+      "copy": "Copy results",
+      "clear": "Clear",
+      "abort": "Abort",
+      "copied": "Results copied",
+      "copyFailed": "Could not copy the results",
+      "truncated": "Showing the last {{shown}} of {{total}} lines. Copy includes everything.",
+      "cleanupTag": "cleanup",
+      "snapshotsTitle": "LHM2 snapshots"
+    },
+    "result": {
+      "positive": "positive",
+      "nrc": "NRC {{code}} {{name}}",
+      "timeout": "timeout",
+      "error": "error: {{message}}"
+    },
+    "notes": {
+      "started": "Started: {{name}}",
+      "completed": "Finished: {{name}}",
+      "failed": "Stopped at the first failing step: {{name}}",
+      "failedWith": "Failed: {{name}} ({{reason}})",
+      "aborted": "Aborted: {{name}}",
+      "blocked": "Not started: {{reason}}",
+      "cleanupFailed": "Cleanup did not finish. Cycle the ignition if a lamp stays on.",
+      "cleanupDone": "Cleanup finished",
+      "reasons": {
+        "invalidBaseline": "could not read a valid LHM2 record",
+        "invalidChannel": "invalid channel",
+        "unexpected": "unexpected error"
+      }
+    }
   }
 }

@@ -8,7 +8,13 @@ export type RunnableItem =
 export type RunStatus = 'completed' | 'aborted' | 'failed' | 'timeout';
 
 export type CleanupStep =
-  'extendedSession' | 'elementOff' | 'returnControl' | 'communication' | 'defaultSession' | 'link';
+  | 'extendedSession'
+  | 'elementOff'
+  | 'returnControl'
+  | 'communication'
+  | 'defaultSession'
+  | 'rawUndo'
+  | 'link';
 
 export interface CleanupFailure {
   sgbd: string;
