@@ -7,7 +7,7 @@ appId: com.michalkulesza.bimmerdisco
 - takeScreenshot: 01-not-connected
 
 - tapOn: Settings
-- tapOn: Cable
+- tapOn: Adapter
 - extendedWaitUntil:
     visible: Demo
 - takeScreenshot: 02-cable
@@ -25,7 +25,7 @@ appId: com.michalkulesza.bimmerdisco
 - tapOn: Back
 
 - tapOn: Settings
-- tapOn: Cable
+- tapOn: Adapter
 - tapOn: Demo
 - runFlow: subflows/back.yaml
 - runFlow: subflows/back.yaml

@@ -24,6 +24,18 @@ export const useConnect = () => {
   }, [connect, settings]);
 };
 
+export const useConnectNow = () => {
+  const settings = useSettingsStore(useShallow(selectAdapterSettings));
+  const { connect } = useSessionActions();
+  const config = toAdapterConfig(settings);
+
+  const connectNow = useCallback(() => {
+    if (config) connect(config);
+  }, [connect, config]);
+
+  return { canConnect: config !== undefined, connectNow };
+};
+
 export const useReconnect = () => {
   const settings = useSettingsStore(useShallow(selectAdapterSettings));
   const sessionConfig = useSessionSelector((snapshot) => snapshot.context.config);

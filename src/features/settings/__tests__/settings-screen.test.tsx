@@ -44,7 +44,7 @@ describe('SettingsScreen', () => {
     expect(screen.getByText('ENET')).toBeTruthy();
     expect(screen.queryByText('Disconnect')).toBeNull();
 
-    await fireEvent.press(screen.getByRole('button', { name: 'Cable' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Adapter' }));
     expect(mockRouter.push).toHaveBeenCalledWith('/settings/cable');
 
     await fireEvent.press(screen.getByRole('button', { name: 'App language' }));
@@ -70,7 +70,7 @@ describe('SettingsScreen', () => {
     expect(screen.getByText(/^VIN •+/)).toBeTruthy();
     expect(screen.getByText('FEM_20')).toBeTruthy();
     expect(screen.getByText('Front electronics module')).toBeTruthy();
-    expect(screen.queryByRole('button', { name: 'Cable' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Adapter' })).toBeNull();
   });
 
   it('asks for confirmation before disconnecting', async () => {

@@ -18,6 +18,7 @@ export const routerMock = {
   back: jest.fn(),
   replace: jest.fn(),
   navigate: jest.fn(),
+  dismissAll: jest.fn(),
 };
 
 export const searchParams: Record<string, string | undefined> = {};

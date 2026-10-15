@@ -19,7 +19,7 @@
     "settings": "Ustawienia",
     "appName": "BimmerDisco",
     "connect": "Połącz",
-    "cable": "Kabel:",
+    "cable": "Adapter:",
     "connecting": "Łączenie",
     "done": "Połączono",
     "progress": "Postęp łączenia",
@@ -96,7 +96,7 @@
   "settings": {
     "title": "Ustawienia",
     "connection": "Połączenie",
-    "cable": "Kabel",
+    "cable": "Adapter",
     "appearance": "Wygląd",
     "theme": "Motyw",
     "themeOptions": {
@@ -137,7 +137,7 @@
     }
   },
   "cable": {
-    "title": "Kabel",
+    "title": "Adapter",
     "description": "Wybierz adapter między telefonem a gniazdem OBD w samochodzie.",
     "demoBadge": "Bez auta",
     "adapters": {
