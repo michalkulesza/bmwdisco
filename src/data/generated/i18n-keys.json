@@ -109,7 +109,7 @@
     "packs.toggle"
   ],
   "sections": [
-    "effects.sections.all",
+    "effects.sections.allRear",
     "effects.sections.beams",
     "effects.sections.bothSides",
     "effects.sections.brake",

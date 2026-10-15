@@ -372,6 +372,35 @@ describe('toggles', () => {
     expect(rig.context().lightsMayBeOn).toBe(false);
   });
 
+  it('holds Ghost Mode forced off until toggled off, then returns control', async () => {
+    const rig = await startReady();
+    const ghost = effectOf(rig, 'ghost.fullOFF');
+    const defaultSessionsSent = () =>
+      rig.vehicle.requestLog.filter(
+        (entry) => entry.request[0] === 0x10 && entry.request[1] === 0x01,
+      ).length;
+
+    expect(ghost.kind).toBe('toggle');
+
+    rig.actor.send({ type: 'TOGGLE', effectId: ghost.id, on: true });
+    await rig.waitFor('ready');
+
+    expect(rig.context().activeToggles).toEqual([ghost.id]);
+    expect(rig.context().ledger.hasPending).toBe(true);
+    expect(rig.context().lightsMayBeOn).toBe(true);
+    expect(rig.context().tiles[ghost.id]).toBeUndefined();
+    expect(defaultSessionsSent()).toBe(0);
+
+    rig.actor.send({ type: 'TOGGLE', effectId: ghost.id, on: false });
+    await rig.waitFor('ready');
+
+    expect(rig.context().activeToggles).toEqual([]);
+    expect(rig.context().ledger.hasPending).toBe(false);
+    expect(rig.context().lightsMayBeOn).toBe(false);
+    expect(rig.context().lastError).toBeUndefined();
+    expect(defaultSessionsSent()).toBeGreaterThan(0);
+  });
+
   it('keeps the remaining toggle when one of two is switched off', async () => {
     const rig = await startReady();
     for (const effectId of ['toggle.hazard', 'toggle.brakeForce']) {

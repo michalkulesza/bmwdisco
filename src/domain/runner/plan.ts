@@ -59,6 +59,12 @@ export const planInputOf = (item: RunnableItem): PlanInput => {
   };
 };
 
+export const isReleaseOnly = (item: RunnableItem): boolean =>
+  item.kind === 'effect' &&
+  item.effect.kind === 'toggle' &&
+  item.on === false &&
+  (item.effect.offSteps ?? []).length === 0;
+
 const unique = <T>(values: readonly T[]): T[] => [...new Set(values)];
 
 const sendsFor = (step: PresetStep, car: DetectedCar, skipped: Set<ElementId>): PlannedSend[] => {

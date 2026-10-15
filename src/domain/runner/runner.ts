@@ -6,7 +6,7 @@ import { RunLimitError } from '../errors';
 import { MAX_RUN_MS, PRESET_LIMITS } from '../preset/limits';
 
 import { createCleanupSend, restoreControl, type RestoreOptions } from './cleanup';
-import { buildPlan, planInputOf, type PlannedSend, type RunPlan } from './plan';
+import { buildPlan, isReleaseOnly, planInputOf, type PlannedSend, type RunPlan } from './plan';
 import {
   itemIdOf,
   type CleanupReport,
@@ -84,6 +84,12 @@ export class PresetRunner {
     this.tooFastReported = false;
 
     try {
+      if (isReleaseOnly(item)) {
+        this.emit({ type: 'started', itemId: itemIdOf(item) });
+
+        return { status: this.statusOf(limit.signal), skipped };
+      }
+
       const plan = buildPlan(planInputOf(item), this.deps.car);
       skipped.push(...plan.skipped);
       this.emit({ type: 'started', itemId: itemIdOf(item) });

@@ -41,9 +41,10 @@ describe('effects', () => {
     expect(i18nKeys.effects).toEqual(effects.map((effect) => effect.nameKey).sort());
   });
 
-  it('only pairs toggles with off steps', () => {
+  it('pairs toggles with off steps, except Ghost Mode which holds lights forced off', () => {
     for (const effect of effects) {
-      expect(effect.kind === 'toggle').toBe(effect.offSteps !== undefined);
+      const holdsOff = effect.id === 'ghost.fullOFF';
+      expect(effect.kind === 'toggle').toBe(effect.offSteps !== undefined || holdsOff);
       expect(effect.steps.length).toBeGreaterThan(0);
     }
   });
@@ -57,6 +58,8 @@ describe('effects', () => {
     expect(
       effects.find((effect) => effect.id === 'ghost.fullOFF')?.steps.every((step) => !step.on),
     ).toBe(true);
+    expect(effects.find((effect) => effect.id === 'ghost.fullOFF')?.kind).toBe('toggle');
+    expect(effects.find((effect) => effect.id === 'ghost.daytimeOFF')?.kind).toBe('oneShot');
     expect(ids).not.toContain('flash.bixenonLeft');
     expect(ids.some((id) => id.startsWith('taillight_flash.'))).toBe(false);
     expect(ids).not.toContain('toggle.followMeHome');

@@ -538,7 +538,7 @@
   },
   "effects": {
     "sections": {
-      "all": "All lights",
+      "allRear": "All rear lights",
       "beams": "Beams",
       "bothSides": "Both sides",
       "brake": "Brake",

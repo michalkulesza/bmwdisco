@@ -34,6 +34,8 @@ interface ParsedAction {
 
 const TOGGLE_SUFFIX = /\s+(ON|OFF)$/;
 
+const isHeldOffEffect = (pack: string, title: string) => pack === 'ghost' && title === 'Full OFF';
+
 export const camelCase = (text: string) =>
   text
     .replace(/[^A-Za-z0-9]+/g, ' ')
@@ -112,6 +114,12 @@ const dropReasonOf = (parsed: ParsedAction): DroppedEffect['reason'] | null => {
   return null;
 };
 
+const sectionKeyOf = (pack: string, action: PackAction) => {
+  if (isHeldOffEffect(pack, action.title)) return 'effects.sections.allRear';
+
+  return action.section ? `effects.sections.${camelCase(action.section)}` : undefined;
+};
+
 const buildEffect = (
   pack: string,
   action: PackAction,
@@ -123,12 +131,13 @@ const buildEffect = (
   const slug = camelCase(title);
   const packKey = camelCase(pack);
   const allSteps = [...parsed.steps, ...(extra.offSteps ?? [])];
+  const sectionKey = sectionKeyOf(pack, action);
 
   return {
     id: `${pack}.${slug}`,
     pack,
     nameKey: `effects.${packKey}.${slug}`,
-    ...(action.section ? { sectionKey: `effects.sections.${camelCase(action.section)}` } : {}),
+    ...(sectionKey ? { sectionKey } : {}),
     kind: extra.kind,
     steps: parsed.steps,
     ...(extra.offSteps ? { offSteps: extra.offSteps } : {}),
@@ -196,12 +205,8 @@ const buildOneShotEffects = (
   for (const action of file.actions) {
     const parsed = parseAction(action, provided);
     // Full OFF spans legacy ECUs too; retain the supported F-series light commands.
-    const reason =
-      pack === 'ghost' && action.title === 'Full OFF'
-        ? parsed.steps.length === 0
-          ? 'empty'
-          : null
-        : dropReasonOf(parsed);
+    const heldOff = isHeldOffEffect(pack, action.title);
+    const reason = heldOff ? (parsed.steps.length === 0 ? 'empty' : null) : dropReasonOf(parsed);
 
     if (reason) {
       const commands = [...new Set(parsed.missing.map((item) => item.command))];
@@ -209,7 +214,8 @@ const buildOneShotEffects = (
       continue;
     }
 
-    effects.push(buildEffect(pack, action, action.title, parsed, modules, { kind: 'oneShot' }));
+    const kind = heldOff ? 'toggle' : 'oneShot';
+    effects.push(buildEffect(pack, action, action.title, parsed, modules, { kind }));
     report.kept += 1;
   }
 
