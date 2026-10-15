@@ -1,5 +1,5 @@
 import type { DiagnosticLink } from '@/link/types';
-import { toError } from '@/protocol/errors';
+import { NegativeResponseError, toError } from '@/protocol/errors';
 
 import { systemClock } from '../clock';
 import { RunLimitError } from '../errors';
@@ -223,6 +223,7 @@ export class PresetRunner {
       ledger.touch(module.module, 'clusterFeedback');
       await this.send(module, Uint8Array.from(module.module.elements.clusterFeedback!.on));
     } catch (error) {
+      if (error instanceof NegativeResponseError) ledger.untouch(module.module, 'clusterFeedback');
       this.emit({ type: 'clusterFeedbackFailed', error: toError(error) });
     }
   }
@@ -258,10 +259,14 @@ export class PresetRunner {
   }
 
   private async sendPlanned({ module, element, payload }: PlannedSend): Promise<void> {
-    this.deps.ledger.touch(module.module, element);
+    const { ledger } = this.deps;
+    const wasTouched = ledger.isTouched(module.module, element);
+    ledger.touch(module.module, element);
     try {
       await this.send(module, payload);
     } catch (error) {
+      if (error instanceof NegativeResponseError && !wasTouched)
+        ledger.untouch(module.module, element);
       this.emit({ type: 'commandFailed', sgbd: module.sgbd, element, error: toError(error) });
       throw error;
     }

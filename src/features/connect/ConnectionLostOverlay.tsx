@@ -68,12 +68,13 @@ const ConnectionLostOverlay = () => {
   const lightsMayBeOn = useSessionSelector((snapshot) => snapshot.context.lightsMayBeOn);
   const whileRunning = useSessionSelector((snapshot) => snapshot.context.lastError?.whileRunning);
   const reconnectAttempt = useSessionSelector((snapshot) => snapshot.context.reconnectAttempt);
+  const restoreFailures = useSessionSelector((snapshot) => snapshot.context.restoreFailures);
   const { disconnect } = useSessionActions();
   const reconnect = useReconnect();
   const copyDiagnosticLog = useCopyDiagnosticLog();
   const [dismissed, setDismissed] = useState(false);
 
-  const reconnecting = phase === 'reconnecting';
+  const reconnecting = phase === 'reconnecting' || (phase === 'restoring' && restoreFailures > 0);
   const stranded = lightsMayBeOn && (phase === 'error' || phase === 'disconnected');
   const visible = (reconnecting || stranded) && !dismissed;
   const attempt = Math.min(Math.max(reconnectAttempt, 1), MAX_RECONNECT_ATTEMPTS);
