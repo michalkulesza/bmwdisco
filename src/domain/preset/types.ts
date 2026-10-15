@@ -12,11 +12,9 @@ export interface WaitStep {
   ms: number;
 }
 
-export interface LoopStep {
-  type: 'loop';
-}
+export type PresetStep = SetStep | WaitStep;
 
-export type PresetStep = SetStep | WaitStep | LoopStep;
+export type PresetPlayback = 'once' | 'loop' | 'hold';
 
 export interface Preset {
   id: string;
@@ -24,5 +22,5 @@ export interface Preset {
   color: string;
   icon: string;
   steps: PresetStep[];
-  playback?: 'once' | 'hold';
+  playback?: PresetPlayback;
 }

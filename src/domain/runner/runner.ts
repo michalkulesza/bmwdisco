@@ -70,12 +70,7 @@ export class PresetRunner {
   async execute(item: RunnableItem, signal?: AbortSignal): Promise<ExecutionResult> {
     const limit = new AbortController();
     const forwardAbort = () => limit.abort(signal?.reason);
-    const playback =
-      item.kind === 'preset'
-        ? item.preset.steps.some((step) => step.type === 'loop')
-          ? 'loop'
-          : (item.preset.playback ?? 'once')
-        : 'once';
+    const playback = item.kind === 'preset' ? (item.preset.playback ?? 'once') : 'once';
     let timer = this.clock.setTimeout(() => limit.abort(new RunLimitError(MAX_RUN_MS)), MAX_RUN_MS);
     if (signal?.aborted) forwardAbort();
     else signal?.addEventListener('abort', forwardAbort, { once: true });

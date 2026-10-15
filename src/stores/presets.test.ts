@@ -125,4 +125,17 @@ describe('presets store', () => {
     expect(ids).toContain('kept');
     expect(ids).not.toContain('broken');
   });
+
+  it('migrates persisted v1 presets with a trailing loop step to loop playback', async () => {
+    const legacy = {
+      ...makePreset('legacy'),
+      steps: [...makePreset('legacy').steps, { type: 'loop' }],
+    };
+    Storage.setItemSync('presets', JSON.stringify({ state: { presets: [legacy] }, version: 1 }));
+    await usePresetsStore.persist.rehydrate();
+
+    const migrated = state().presets.find((preset) => preset.id === 'legacy');
+    expect(migrated?.playback).toBe('loop');
+    expect(migrated?.steps.some((step) => (step.type as string) === 'loop')).toBe(false);
+  });
 });

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Alert, View } from 'react-native';
 import ReorderableList, { type ReorderableListReorderEvent } from 'react-native-reorderable-list';
 
-import { presetSchema, PRESET_LIMITS } from '@/domain';
+import { presetSchema, PRESET_LIMITS, type PresetPlayback } from '@/domain';
 import { headerLeftOptions, headerRightOptions } from '@/features/navigation/headerItems';
 import { useSessionActions, useSessionSelector } from '@/session';
 import { createPresetId, usePresetsStore } from '@/stores/presets';
@@ -22,7 +22,6 @@ import {
   draftTotalMs,
   ISSUE_PARAMS,
   moveItem,
-  newStepKey,
   validateDraft,
   type DraftIssue,
   type EditorStep,
@@ -67,7 +66,6 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
   const setColor = useDraftStore((state) => state.setColor);
   const setSteps = useDraftStore((state) => state.setSteps);
   const updateStep = useDraftStore((state) => state.updateStep);
-  const addStep = useDraftStore((state) => state.addStep);
   const removeStep = useDraftStore((state) => state.removeStep);
   const dirty = useDraftStore(isDraftDirty);
   const [submitted, setSubmitted] = useState(false);
@@ -165,17 +163,24 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
     () => router.push({ pathname: '/preset/add-step', params: { type: 'wait' } }),
     [router],
   );
-  const appendLoop = useCallback(() => addStep({ key: newStepKey(), type: 'loop' }), [addStep]);
-  const handleAddLoop = useCallback(() => {
-    if (steps.at(-1)?.type === 'wait') {
-      appendLoop();
-      return;
-    }
-    Alert.alert(t('preset.loop.warningTitle'), t('preset.loop.warningMessage'), [
-      { text: t('preset.loop.goBack'), style: 'cancel' },
-      { text: t('preset.loop.addAnyway'), onPress: appendLoop },
-    ]);
-  }, [appendLoop, steps, t]);
+  const handleLoopConfirm = useCallback(() => setPlayback('loop'), [setPlayback]);
+
+  const handlePlaybackChange = useCallback(
+    (next: PresetPlayback) => {
+      const hasWait = steps.some((step) => step.type === 'wait');
+      if (next !== 'loop' || hasWait) {
+        setPlayback(next);
+
+        return;
+      }
+
+      Alert.alert(t('preset.playback.loopWarningTitle'), t('preset.playback.loopWarningMessage'), [
+        { text: t('preset.playback.goBack'), style: 'cancel' },
+        { text: t('preset.playback.useAnyway'), onPress: handleLoopConfirm },
+      ]);
+    },
+    [handleLoopConfirm, setPlayback, steps, t],
+  );
 
   const handleReorder = useCallback(
     ({ from, to }: ReorderableListReorderEvent) => {
@@ -228,25 +233,24 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
         onChangeName={setName}
       />
       <AppearanceCard color={color} icon={icon} onChangeColor={setColor} />
-      {!steps.some((step) => step.type === 'loop') ? (
-        <View className="gap-2">
-          <Text variant="meta" tone="muted">
-            {t('preset.playback.label')}
-          </Text>
-          <SegmentedControl
-            value={playback}
-            onChange={setPlayback}
-            accessibilityLabel={t('preset.playback.label')}
-            options={[
-              { value: 'once', label: t('preset.playback.once') },
-              { value: 'hold', label: t('preset.playback.hold') },
-            ]}
-          />
-          <Text variant="small" tone="muted">
-            {t(`preset.playback.${playback}Hint`)}
-          </Text>
-        </View>
-      ) : null}
+      <View className="gap-2">
+        <Text variant="meta" tone="muted">
+          {t('preset.playback.label')}
+        </Text>
+        <SegmentedControl
+          value={playback}
+          onChange={handlePlaybackChange}
+          accessibilityLabel={t('preset.playback.label')}
+          options={[
+            { value: 'once', label: t('preset.playback.once') },
+            { value: 'loop', label: t('preset.playback.loop') },
+            { value: 'hold', label: t('preset.playback.hold') },
+          ]}
+        />
+        <Text variant="small" tone="muted">
+          {t(`preset.playback.${playback}Hint`)}
+        </Text>
+      </View>
       <View className="gap-1">
         <View className="flex-row items-baseline justify-between">
           <Text variant="section" accessibilityRole="header">
@@ -292,16 +296,10 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
         count={steps.length}
         totalMs={draftTotalMs(steps)}
         canAddStep={steps.length < PRESET_LIMITS.maxSteps}
-        canAddLoop={
-          steps.length > 0 &&
-          steps.length < PRESET_LIMITS.maxSteps &&
-          !steps.some((step) => step.type === 'loop')
-        }
         canTest
         testing={testing}
         onAction={handleAddAction}
         onWait={handleAddWait}
-        onLoop={handleAddLoop}
         onTest={handleTestPress}
       />
     </View>

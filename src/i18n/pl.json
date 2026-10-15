@@ -236,8 +236,7 @@
       "stepTooShort": "Minimum to {{min}} ms",
       "tooLong": "Łączny czas może wynosić maksymalnie {{max}} ms",
       "saveFailed": "Nie udało się zapisać presetu",
-      "limit": "Osiągnięto limit {{max}} presetów.",
-      "loopPosition": "Umieść Pętlę na końcu, po co najmniej jednej akcji."
+      "limit": "Osiągnięto limit {{max}} presetów."
     },
     "step": {
       "type": "Typ kroku",
@@ -270,17 +269,15 @@
     "playback": {
       "label": "Odtwarzanie",
       "once": "Jeden raz",
+      "loop": "Pętla",
       "hold": "Zachowaj stan",
       "onceHint": "Wykonaj bloki jeden raz, a następnie przywróć światła.",
-      "holdHint": "Wykonaj raz i zachowaj końcowy stan świateł do zatrzymania. Opuszczenie aplikacji lub utrata połączenia przywraca sterowanie."
-    },
-    "loop": {
-      "label": "Pętla",
-      "hint": "Wróć do pierwszego bloku. Powtarzaj do zatrzymania.",
-      "warningTitle": "Pętla bez przerwy?",
-      "warningMessage": "Dodaj blok Czekaj przed Pętlą, aby zrobić przerwę między powtórzeniami. Bez niego preset rozpocznie się ponownie zaraz po ostatniej akcji.",
+      "loopHint": "Wracaj do pierwszego bloku do zatrzymania. Opuszczenie aplikacji lub utrata połączenia przywraca sterowanie.",
+      "holdHint": "Wykonaj raz i zachowaj końcowy stan świateł do zatrzymania. Opuszczenie aplikacji lub utrata połączenia przywraca sterowanie.",
+      "loopWarningTitle": "Pętla bez przerwy?",
+      "loopWarningMessage": "Dodaj blok Czekaj, aby zrobić przerwę między powtórzeniami. Bez niego preset rozpocznie się ponownie zaraz po ostatniej akcji.",
       "goBack": "Wróć",
-      "addAnyway": "Dodaj Pętlę mimo to"
+      "useAnyway": "Użyj Pętli mimo to"
     },
     "previewName": "Podgląd presetu"
   },

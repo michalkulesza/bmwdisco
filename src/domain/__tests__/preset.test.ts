@@ -40,19 +40,31 @@ describe('preset validation', () => {
     expect(isValidPreset(preset())).toBe(true);
   });
 
-  it('round-trips loop blocks and hold playback through export/import', () => {
-    const looping = parsePreset(preset({ steps: [...preset().steps, { type: 'loop' }] }));
+  it('round-trips loop and hold playback through export/import', () => {
+    const looping = parsePreset(preset({ playback: 'loop' }));
     const held = parsePreset(preset({ id: 'held', playback: 'hold' }));
     expect(importPresets(exportPresets([looping, held]))).toEqual([looping, held]);
   });
 
+  it('converts a legacy trailing loop step into loop playback', () => {
+    const legacy = preset({ steps: [...preset().steps, { type: 'loop' }] });
+
+    expect(parsePreset(legacy)).toEqual(preset({ playback: 'loop' }));
+    expect(parsePreset({ ...legacy, playback: 'hold' }).playback).toBe('loop');
+    expect(importPresets(fileOf([legacy]))).toEqual([parsePreset(preset({ playback: 'loop' }))]);
+  });
+
   it.each([
-    ['loop alone', preset({ steps: [{ type: 'loop' }] })],
-    ['blocks after loop', preset({ steps: [{ type: 'loop' }, { type: 'wait', ms: 100 }] })],
+    ['legacy loop alone', preset({ steps: [{ type: 'loop' }] })],
     [
-      'multiple loops',
+      'legacy loop before other blocks',
+      preset({ steps: [{ type: 'loop' }, { type: 'wait', ms: 100 }] }),
+    ],
+    [
+      'multiple legacy loops',
       preset({ steps: [{ type: 'wait', ms: 100 }, { type: 'loop' }, { type: 'loop' }] }),
     ],
+    ['unknown playback', preset({ playback: 'repeat' })],
     ['unknown top-level key', preset({ extra: 1 })],
     ['unknown step key', preset({ steps: [{ type: 'wait', ms: 100, note: 'x' }] })],
     ['unknown element', preset({ steps: [{ type: 'set', elements: ['nope'], state: 'on' }] })],

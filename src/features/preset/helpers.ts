@@ -9,7 +9,7 @@ import {
 export type EditorStep = PresetStep & { key: string };
 
 export type DraftIssueCode =
-  'nameRequired' | 'noSteps' | 'tooManySteps' | 'stepTooShort' | 'tooLong' | 'loopPosition';
+  'nameRequired' | 'noSteps' | 'tooManySteps' | 'stepTooShort' | 'tooLong';
 
 export interface DraftIssue {
   scope: 'name' | 'steps' | 'step';
@@ -54,7 +54,6 @@ export const draftTotalMs = (steps: readonly EditorStep[]): number =>
 const stepIsTooShort = (step: EditorStep): boolean => {
   if (step.type === 'wait') return step.ms < PRESET_LIMITS.minStepMs;
 
-  if (step.type === 'loop') return false;
   return step.durationMs !== undefined && step.durationMs < PRESET_LIMITS.minStepMs;
 };
 
@@ -71,12 +70,6 @@ export const validateDraft = (draft: DraftContent): DraftIssue[] => {
     issues.push({ scope: 'step', code: 'stepTooShort', stepKey: step.key });
   });
 
-  draft.steps.forEach((step, index) => {
-    if (step.type === 'loop' && (index !== draft.steps.length - 1 || index === 0)) {
-      issues.push({ scope: 'step', code: 'loopPosition', stepKey: step.key });
-    }
-  });
-
   const total = draft.steps.reduce((sum, step) => sum + stepDurationMs(step), 0);
   if (total > PRESET_LIMITS.maxTotalMs) issues.push({ scope: 'steps', code: 'tooLong' });
 
@@ -89,7 +82,6 @@ export const ISSUE_PARAMS: Record<DraftIssueCode, Record<string, number>> = {
   tooManySteps: { max: PRESET_LIMITS.maxSteps },
   stepTooShort: { min: PRESET_LIMITS.minStepMs },
   tooLong: { max: PRESET_LIMITS.maxTotalMs },
-  loopPosition: {},
 };
 
 export const parseMs = (text: string): number | undefined => {

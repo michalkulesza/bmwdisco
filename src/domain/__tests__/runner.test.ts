@@ -368,11 +368,8 @@ describe('PresetRunner failures', () => {
         name: 'Continuous',
         color: 'blue',
         icon: 'Car',
-        ...(playback === 'hold' ? { playback } : {}),
-        steps: [
-          { type: 'set', elements: ['lowBeamLeft'], state: 'on', durationMs: 60_000 },
-          ...(playback === 'loop' ? [{ type: 'loop' }] : []),
-        ],
+        playback,
+        steps: [{ type: 'set', elements: ['lowBeamLeft'], state: 'on', durationMs: 60_000 }],
       });
       let finished = false;
       const pending = runner.run({ kind: 'preset', preset }, controller.signal).then((result) => {
@@ -403,7 +400,8 @@ describe('PresetRunner failures', () => {
       name: 'Immediate loop',
       color: 'blue',
       icon: 'Car',
-      steps: [{ type: 'set', elements: ['lowBeamLeft'], state: 'on' }, { type: 'loop' }],
+      playback: 'loop',
+      steps: [{ type: 'set', elements: ['lowBeamLeft'], state: 'on' }],
     });
     const pending = runner.run({ kind: 'preset', preset }, controller.signal);
     await jest.advanceTimersByTimeAsync(200);
