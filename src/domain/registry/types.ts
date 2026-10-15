@@ -17,6 +17,7 @@ export interface ElementTarget {
 export interface DetectedCar {
   vin?: string;
   chassis?: string;
+  model?: string;
   chassisCandidates: readonly string[];
   modules: readonly DetectedModule[];
   elementSources: ReadonlyMap<ElementId, readonly DetectedModule[]>;

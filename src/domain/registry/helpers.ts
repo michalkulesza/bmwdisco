@@ -1,6 +1,12 @@
 import { categoryOf, ELEMENT_IDS, type ElementId } from '@/data/elements';
-import { loadModule, type ModuleSgbd, IDENTIFICATION, SERIES_HINTS } from '@/data/generated';
-import type { Effect, IdentificationEntry } from '@/data/types';
+import {
+  loadModule,
+  loadTypeCodes,
+  type ModuleSgbd,
+  IDENTIFICATION,
+  SERIES_HINTS,
+} from '@/data/generated';
+import type { Effect, IdentificationEntry, TypeCodeEntry } from '@/data/types';
 import { bytesToAscii, hex } from '@/protocol/bytes';
 
 import type { DetectedModule } from './types';
@@ -8,6 +14,8 @@ import type { DetectedModule } from './types';
 const IDENTITY_DID_LENGTH = 3;
 const IDENTITY_BYTES = 3;
 const VIN_LENGTH = 17;
+const TYPE_CODE_START = 3;
+const TYPE_CODE_END = 7;
 const VIN_PATTERN = /^[A-HJ-NPR-Z0-9]{17}$/;
 
 export const probeAddresses = (): number[] => [
@@ -40,6 +48,11 @@ export const parseVin = (response: Uint8Array): string | undefined => {
 
   return VIN_PATTERN.test(vin) ? vin : undefined;
 };
+
+export const typeCodeOf = (vin: string): string => vin.slice(TYPE_CODE_START, TYPE_CODE_END);
+
+export const lookupVinType = (vin: string): TypeCodeEntry | undefined =>
+  loadTypeCodes()[typeCodeOf(vin)];
 
 export const rankChassis = (modules: readonly DetectedModule[]): string[] => {
   const sgbds = modules.map((module) => module.sgbd);

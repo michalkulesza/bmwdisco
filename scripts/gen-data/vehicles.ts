@@ -31,3 +31,25 @@ export const buildVehicles = (rows: readonly ChassisRow[]): SeriesVehicles[] => 
 
   return [...bySeries.values()].sort((a, b) => a.series.localeCompare(b.series));
 };
+
+export interface TypeCodeEntry {
+  code: string;
+  model: string;
+}
+
+export const buildTypeCodes = (rows: readonly ChassisRow[]): Record<string, TypeCodeEntry> => {
+  const byTypeCode = new Map<string, TypeCodeEntry>();
+
+  for (const row of rows) {
+    const code = chassisCodeOf(row.series);
+    if (!code) continue;
+
+    const known = byTypeCode.get(row.chassis);
+    if (known && known.code !== code) {
+      throw new Error(`Type code ${row.chassis} maps to both ${known.code} and ${code}`);
+    }
+    if (!known) byTypeCode.set(row.chassis, { code, model: row.name });
+  }
+
+  return Object.fromEntries([...byTypeCode].sort(([a], [b]) => a.localeCompare(b)));
+};

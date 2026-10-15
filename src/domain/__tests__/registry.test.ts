@@ -1,6 +1,7 @@
-import { IDENTIFICATION } from '@/data/generated';
+import { IDENTIFICATION, loadTypeCodes } from '@/data/generated';
 import { CarNotRespondingError, UnsupportedVehicleError } from '@/domain/errors';
 import { createLinkProvider, detectCar, ModuleRegistry } from '@/domain/registry/detect-car';
+import { lookupVinType, typeCodeOf } from '@/domain/registry/helpers';
 import type { DiagnosticLink } from '@/link/types';
 import { createProfile, knownChassis } from '@/simulator/profiles';
 import { detectOnSim, makeVehicle, openSimLink, PROBE_TIMEOUT_MS } from '@/test-utils/domain-sim';
@@ -58,6 +59,7 @@ describe('detectCar', () => {
     const expected = [...createProfile(chassis).modules].sort();
     expect(car.modules.map((module) => module.sgbd).sort()).toEqual(expected);
     expect(car.vin).toBe(vehicle.vin);
+    expect(car.chassis).toBe(chassis);
     expect(car.chassis).toBeDefined();
     expect(car.selectableElements.length).toBeGreaterThan(0);
   });
@@ -77,9 +79,9 @@ describe('detectCar', () => {
     }
   });
 
-  it('guesses F20 for the F20 module set and F01 for the FRM set', async () => {
+  it('resolves the chassis from the VIN type code of the simulated car', async () => {
     expect((await detectOnSim(makeVehicle('F20'))).car.chassis).toBe('F20');
-    expect((await detectOnSim(makeVehicle('F10'))).car.chassis).toBe('F01');
+    expect((await detectOnSim(makeVehicle('F10'))).car.chassis).toBe('F10');
   });
 
   it('identifies the F10 profile over simulated enet latency without reopening the link', async () => {
@@ -221,5 +223,55 @@ describe('detectCar', () => {
     });
 
     await expect(detectCar(provider, { addresses: [0x41, 0x40] })).rejects.toThrow('adapter gone');
+  });
+});
+
+describe('VIN type code', () => {
+  const addressOf = (sgbd: string) => IDENTIFICATION.find((entry) => entry.sgbd === sgbd)!.adrIndex;
+  const bodyAddresses = [addressOf('FEM_20'), addressOf('REM_20')];
+  const vinReply = (vin: string) => Uint8Array.from([0x62, 0xf1, 0x90, ...Buffer.from(vin)]);
+
+  const detectBodyModules = (vin: string | undefined) =>
+    detectOnStub(
+      stubLink((address, payload) => {
+        if (payload[2] === 0x90) return vin ? vinReply(vin) : undefined;
+
+        return identityOf(address, address === bodyAddresses[0] ? 'FEM_20' : 'REM_20');
+      }),
+      bodyAddresses,
+    );
+
+  it('extracts characters 4 to 7 as the type code', () => {
+    expect(typeCodeOf('WBA4W33000G123456')).toBe('4W33');
+  });
+
+  it('maps known type codes to chassis and model, and ignores unknown ones', () => {
+    expect(lookupVinType('WBA4W33000G123456')).toEqual({ code: 'F32', model: '430i' });
+    expect(lookupVinType('WBAZZZZ00G0123456')).toBeUndefined();
+    expect(loadTypeCodes()['4W33']).toEqual({ code: 'F32', model: '430i' });
+  });
+
+  it('puts the VIN chassis ahead of the shared FEM_20 / REM_20 label', async () => {
+    const car = await detectBodyModules('WBA4W33000G123456');
+
+    expect(car.chassis).toBe('F32');
+    expect(car.model).toBe('430i');
+    expect(car.chassisCandidates[0]).toBe('F32');
+    expect(car.chassisCandidates).toContain('F20');
+    expect(new Set(car.chassisCandidates).size).toBe(car.chassisCandidates.length);
+  });
+
+  it('falls back to module ranking without a VIN', async () => {
+    const car = await detectBodyModules(undefined);
+
+    expect(car.chassis).toBe('F20');
+    expect(car.model).toBeUndefined();
+  });
+
+  it('falls back to module ranking for an unknown type code', async () => {
+    const car = await detectBodyModules('WBAZZZZ00G0123456');
+
+    expect(car.chassis).toBe('F20');
+    expect(car.model).toBeUndefined();
   });
 });
