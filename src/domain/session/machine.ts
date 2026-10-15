@@ -3,6 +3,7 @@ import { assign, setup, type ActorRefFrom } from 'xstate';
 import { toError } from '@/protocol/errors';
 
 import { isValidPreset } from '../preset/schema';
+import { testBlockReason } from '../raw/gate';
 import { classifySessionError } from '../runner/classify';
 import { ControlLedger } from '../runner/ledger';
 import { PresetRunner } from '../runner/runner';
@@ -58,6 +59,7 @@ const initialContext = ({ input }: { input: SessionDeps }): SessionContext => ({
   notices: [],
   log: [],
   diagnosticsEnabled: input.debug ?? false,
+  testActive: false,
 });
 
 const errorOf = (error: unknown, whileRunning = false): SessionError => {
@@ -138,6 +140,14 @@ export const sessionMachine = setup({
     canToggle: ({ context, event }) =>
       event.type === 'TOGGLE' && findToggle(context.car, event.effectId) !== undefined,
     hasPendingControl: ({ context }) => context.ledger.hasPending,
+    testEngaged: ({ context }) => context.testActive,
+    canBeginTest: ({ context }) =>
+      testBlockReason({
+        phase: 'ready',
+        activeToggles: context.activeToggles,
+        hasPending: context.ledger.hasPending,
+        testActive: context.testActive,
+      }) === undefined,
     linkIsDown: ({ context }) => context.link !== undefined && context.link.state !== 'open',
     holdsToggle: ({ context, event }) => {
       const output = (event as unknown as { output: ExecutionResult }).output;
@@ -162,6 +172,11 @@ export const sessionMachine = setup({
       return { diagnosticsEnabled: event.enabled };
     }),
     clearDiagnostics: assign({ log: [] }),
+    beginTest: assign({ testActive: true }),
+    endTest: assign(({ context }) => ({
+      testActive: false,
+      lightsMayBeOn: context.ledger.hasPending,
+    })),
     logEvent: assign({
       log: ({ context, event }) =>
         event.type === 'RUNNER_EVENT'
@@ -325,6 +340,7 @@ export const sessionMachine = setup({
         abort: undefined,
         activeToggles: [],
         tiles: {},
+        testActive: false,
         lightsMayBeOn: stillForced,
         disconnectRequested: false,
         restoreRequested: false,
@@ -335,6 +351,7 @@ export const sessionMachine = setup({
 
       return {
         reconnectAttempt: 0,
+        testActive: false,
         lightsMayBeOn: context.ledger.hasPending,
         lastError: connectionLostError(context.ledger.hasPending),
         runningItemId: undefined,
@@ -348,6 +365,7 @@ export const sessionMachine = setup({
       lastError: connectionLostError(context.ledger.hasPending),
       link: undefined,
       runner: undefined,
+      testActive: false,
       lightsMayBeOn: context.ledger.hasPending,
     })),
     clearJustRan: assign({ tiles: ({ context }) => clearJustRan(context.tiles) }),
@@ -358,6 +376,7 @@ export const sessionMachine = setup({
   initial: 'idle',
   invoke: { src: 'appState', input: ({ context }) => ({ source: context.deps.appState }) },
   on: {
+    TEST_END: { actions: 'endTest' },
     RUNNER_EVENT: { actions: 'logEvent' },
     SET_DIAGNOSTICS: { actions: 'setDiagnostics' },
     CLEAR_DIAGNOSTICS: { actions: 'clearDiagnostics' },
@@ -413,10 +432,19 @@ export const sessionMachine = setup({
       after: { justRanTtl: { actions: 'clearJustRan' } },
       on: {
         RUN: [
+          { guard: 'testEngaged' },
           { guard: 'canRun', target: 'running', actions: 'startRun' },
           { actions: 'rejectInvalidItem' },
         ],
-        TOGGLE: { guard: 'canToggle', target: 'running', actions: 'startRun' },
+        TOGGLE: [
+          { guard: 'testEngaged' },
+          { guard: 'canToggle', target: 'running', actions: 'startRun' },
+        ],
+        TEST_BEGIN: { guard: 'canBeginTest', actions: 'beginTest' },
+        TEST_END: [
+          { guard: 'hasPendingControl', target: 'restoring', actions: 'endTest' },
+          { actions: 'endTest' },
+        ],
         STOP: { guard: 'hasPendingControl', target: 'restoring' },
         APP_BACKGROUND: { guard: 'hasPendingControl', target: 'restoring' },
         APP_FOREGROUND: { guard: 'linkIsDown', target: 'reconnecting' },

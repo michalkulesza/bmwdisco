@@ -1,4 +1,5 @@
 import type { ElementId, Module } from '@/data/types';
+import { hex } from '@/protocol/bytes';
 
 export interface LedgerEntry {
   module: Module;
@@ -6,11 +7,39 @@ export interface LedgerEntry {
   silenced: boolean;
 }
 
+export interface RawLedgerEntry {
+  ecu: number;
+  undo: Uint8Array[];
+  silenced: boolean;
+}
+
 export class ControlLedger {
   private readonly entries = new Map<string, LedgerEntry>();
+  private readonly rawEntries = new Map<number, RawLedgerEntry>();
 
   get hasPending(): boolean {
-    return this.entries.size > 0;
+    return this.entries.size > 0 || this.rawEntries.size > 0;
+  }
+
+  get rawTouched(): readonly RawLedgerEntry[] {
+    return [...this.rawEntries.values()];
+  }
+
+  hasRawSession(ecu: number): boolean {
+    return this.rawEntries.has(ecu);
+  }
+
+  armRaw(ecu: number, undo: readonly Uint8Array[] = []): void {
+    const entry = this.rawEntryFor(ecu);
+    for (const payload of undo) {
+      if (!entry.undo.some((existing) => hex(existing) === hex(payload))) {
+        entry.undo.push(payload.slice());
+      }
+    }
+  }
+
+  silenceRaw(ecu: number): void {
+    this.rawEntryFor(ecu).silenced = true;
   }
 
   get touched(): readonly LedgerEntry[] {
@@ -43,6 +72,17 @@ export class ControlLedger {
 
   clear(): void {
     this.entries.clear();
+    this.rawEntries.clear();
+  }
+
+  private rawEntryFor(ecu: number): RawLedgerEntry {
+    const existing = this.rawEntries.get(ecu);
+    if (existing) return existing;
+
+    const created: RawLedgerEntry = { ecu, undo: [], silenced: false };
+    this.rawEntries.set(ecu, created);
+
+    return created;
   }
 
   private entryFor(module: Module): LedgerEntry {

@@ -183,7 +183,8 @@ export const keepaliveActor = fromCallback<SessionEvent, KeepaliveInput>(({ inpu
         intervalMs,
         isBusy: () => link.busy,
         send: async () => {
-          if (!ledger.hasSession(module.sgbd) || link.state !== 'open') return;
+          const armed = ledger.hasSession(module.sgbd) || ledger.hasRawSession(address);
+          if (!armed || link.state !== 'open') return;
 
           await link.request(address, Uint8Array.from(module.keepalive), {
             priority: 'high',

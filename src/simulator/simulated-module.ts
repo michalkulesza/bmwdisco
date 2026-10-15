@@ -23,6 +23,11 @@ const ECHOED_BYTES: Record<number, number> = {
 };
 const DID_IDENTITY = [0xf1, 0x50];
 const DID_VIN = [0xf1, 0x90];
+const DID_LIGHT_STATUS = [0xd5, 0x42];
+const DID_LED_CHANNELS = [0x60, 0x60];
+const LED_RECORD_BYTES = 14;
+const LED_BASELINE = [0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 20, 20, 20, 20];
+const LIGHT_STATUS_BYTES = [0, 0, 0, 0];
 const KNOWN_SERVICES: readonly number[] = [...Object.values(SID), COMMUNICATION_CONTROL];
 const SESSIONED_SERVICES: readonly number[] = [
   SID.WriteDataByIdentifier,
@@ -65,6 +70,7 @@ export class SimulatedModule {
   private session: Session = 'default';
   private readonly lit = new Set<ElementId>();
   private readonly actions: Map<string, Action>;
+  private ledChannels = Uint8Array.from(LED_BASELINE);
 
   constructor(
     readonly module: Module,
@@ -74,6 +80,14 @@ export class SimulatedModule {
     private readonly deadOutputs: ReadonlySet<ElementId> = new Set(),
   ) {
     this.actions = buildActions(module);
+  }
+
+  private get hasLedChannels(): boolean {
+    return this.module.sgbd.startsWith('LHM2');
+  }
+
+  private get hasLightStatus(): boolean {
+    return [...this.actions.keys()].some((payload) => payload.startsWith('2E D5 42'));
   }
 
   get litElements(): ElementId[] {
@@ -105,7 +119,34 @@ export class SimulatedModule {
       return Uint8Array.of(SID.ReadDataByIdentifier + POSITIVE_OFFSET, ...DID_VIN, ...this.vin);
     }
 
+    if (this.hasLightStatus && startsWith(request.subarray(1), DID_LIGHT_STATUS)) {
+      return Uint8Array.of(
+        SID.ReadDataByIdentifier + POSITIVE_OFFSET,
+        ...DID_LIGHT_STATUS,
+        ...LIGHT_STATUS_BYTES,
+      );
+    }
+    if (this.hasLedChannels && startsWith(request.subarray(1), DID_LED_CHANNELS)) {
+      return Uint8Array.of(
+        SID.ReadDataByIdentifier + POSITIVE_OFFSET,
+        ...DID_LED_CHANNELS,
+        ...this.ledChannels,
+      );
+    }
+
     return negative(SID.ReadDataByIdentifier, Nrc.RequestOutOfRange);
+  }
+
+  private writeLedChannels(request: Uint8Array): Uint8Array {
+    const service = SID.WriteDataByIdentifier;
+    if (this.session !== 'extended')
+      return negative(service, Nrc.ServiceNotSupportedInActiveSession);
+    if (request.length !== 3 + LED_RECORD_BYTES)
+      return negative(service, Nrc.IncorrectMessageLength);
+
+    this.ledChannels = request.slice(3);
+
+    return this.positiveResponse(request);
   }
 
   private controlSession(request: Uint8Array): Uint8Array {
@@ -117,7 +158,10 @@ export class SimulatedModule {
     }
 
     this.session = subFunction === 0x03 ? 'extended' : 'default';
-    if (this.session === 'default') this.clearForcedState();
+    if (this.session === 'default') {
+      this.clearForcedState();
+      this.ledChannels = Uint8Array.from(LED_BASELINE);
+    }
 
     return Uint8Array.of(SID.SessionControl + POSITIVE_OFFSET, subFunction, ...SESSION_TIMING);
   }
@@ -134,6 +178,14 @@ export class SimulatedModule {
 
   private actuate(request: Uint8Array): Uint8Array {
     const service = request[0]!;
+    if (
+      this.hasLedChannels &&
+      service === SID.WriteDataByIdentifier &&
+      startsWith(request.subarray(1), DID_LED_CHANNELS)
+    ) {
+      return this.writeLedChannels(request);
+    }
+
     const action = this.actions.get(key(request));
 
     if (!action) {

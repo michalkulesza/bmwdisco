@@ -136,16 +136,20 @@ export class PresetRunner {
       this.deps.link,
       (ecu, payload) => {
         if (this.tracing) this.emit({ type: 'request', ecu, payload });
+        options.observer?.request?.(ecu, payload);
       },
       (ecu, payload) => {
         if (this.tracing) this.emit({ type: 'response', ecu, payload });
+        options.observer?.response?.(ecu, payload);
       },
       (ecu, error) => {
         if (this.tracing) this.emit({ type: 'requestFailed', ecu, error });
+        options.observer?.failure?.(ecu, error);
       },
     );
     const pending = restoreControl(this.deps.link, this.deps.ledger, send, {
       reenterSession: options.reenterSession || this.previousRestoreFailed,
+      observer: options.observer,
     })
       .then((report) => {
         this.previousRestoreFailed = !report.restored;

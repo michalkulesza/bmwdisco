@@ -11,9 +11,18 @@ const EXTENDED_SESSION = Uint8Array.of(0x10, 0x03);
 const DEFAULT_SESSION = Uint8Array.of(0x10, 0x01);
 const COMMUNICATION_ON = Uint8Array.of(0x28, 0x00, 0x03);
 
+export interface CleanupObserver {
+  request?: (ecu: number, payload: Uint8Array) => void;
+  response?: (ecu: number, payload: Uint8Array) => void;
+  failure?: (ecu: number, error: Error) => void;
+}
+
 export interface RestoreOptions {
   reenterSession?: boolean;
+  observer?: CleanupObserver;
 }
+
+const rawName = (ecu: number): string => `0x${ecu.toString(16).toUpperCase().padStart(2, '0')}`;
 
 export type CleanupSend = (ecu: number, payload: Uint8Array) => Promise<unknown>;
 
@@ -50,12 +59,17 @@ export const restoreControl = async (
   if (!ledger.hasPending) return { restored: true, failures: [] };
 
   const entries = ledger.touched;
+  const rawEntries = ledger.rawTouched;
   if (link.state !== 'open') {
     const error = new LinkClosedError();
+    const names = [
+      ...entries.map((entry) => entry.module.sgbd),
+      ...rawEntries.map((entry) => rawName(entry.ecu)),
+    ];
 
     return {
       restored: false,
-      failures: entries.map((entry) => ({ sgbd: entry.module.sgbd, step: 'link', error })),
+      failures: names.map((sgbd) => ({ sgbd, step: 'link' as const, error })),
     };
   }
 
@@ -106,6 +120,23 @@ export const restoreControl = async (
   }
   for (const { module } of entries) {
     await attempt(module.sgbd, 'defaultSession', module.address, DEFAULT_SESSION);
+  }
+
+  if (options.reenterSession) {
+    for (const { ecu } of rawEntries) {
+      await attempt(rawName(ecu), 'extendedSession', ecu, EXTENDED_SESSION);
+    }
+  }
+  for (const { ecu, undo } of rawEntries) {
+    for (const payload of undo) {
+      await attempt(rawName(ecu), 'rawUndo', ecu, payload, undefined, true);
+    }
+  }
+  for (const { ecu, silenced } of rawEntries) {
+    if (silenced) await attempt(rawName(ecu), 'communication', ecu, COMMUNICATION_ON);
+  }
+  for (const { ecu } of rawEntries) {
+    await attempt(rawName(ecu), 'defaultSession', ecu, DEFAULT_SESSION);
   }
 
   if (failures.length === 0) ledger.clear();
