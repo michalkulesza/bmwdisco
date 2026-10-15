@@ -12,10 +12,8 @@ export const presetSummary = (preset: Preset, t: TFunction): string => {
   const steps = t('tile.steps', { count: preset.steps.length });
   const duration = t('tile.duration', { value: formatSeconds(totalDurationMs(preset.steps)) });
 
-  const looping = preset.steps.some((step) => step.type === 'loop');
-  const mode = looping
-    ? ` · ${t('preset.loop.label')}`
-    : preset.playback && preset.playback !== 'once'
+  const mode =
+    preset.playback && preset.playback !== 'once'
       ? ` · ${t(`preset.playback.${preset.playback}`)}`
       : '';
   return `${steps} · ${duration}${mode}`;

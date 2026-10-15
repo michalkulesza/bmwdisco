@@ -236,8 +236,7 @@
       "stepTooShort": "Minimum is {{min}} ms",
       "tooLong": "Total duration can be at most {{max}} ms",
       "saveFailed": "Could not save the preset",
-      "limit": "You have reached the limit of {{max}} presets.",
-      "loopPosition": "Place Loop at the end, after at least one action."
+      "limit": "You have reached the limit of {{max}} presets."
     },
     "step": {
       "type": "Step type",
@@ -270,17 +269,15 @@
     "playback": {
       "label": "Playback",
       "once": "Run once",
+      "loop": "Loop",
       "hold": "Hold final state",
       "onceHint": "Run the blocks once, then restore the lights.",
-      "holdHint": "Run once and keep the final light states until Stop. Leaving the app or losing the connection restores control."
-    },
-    "loop": {
-      "label": "Loop",
-      "hint": "Restart from the first block. Repeats until Stop.",
-      "warningTitle": "Loop without a pause?",
-      "warningMessage": "Add a Wait block before Loop to pause between repeats. Without one, the preset restarts as soon as the last action finishes.",
+      "loopHint": "Restart from the first block until Stop. Leaving the app or losing the connection restores control.",
+      "holdHint": "Run once and keep the final light states until Stop. Leaving the app or losing the connection restores control.",
+      "loopWarningTitle": "Loop without a pause?",
+      "loopWarningMessage": "Add a Wait block to pause between repeats. Without one, the preset restarts as soon as the last action finishes.",
       "goBack": "Go back",
-      "addAnyway": "Add Loop anyway"
+      "useAnyway": "Use Loop anyway"
     },
     "previewName": "Preset preview"
   },

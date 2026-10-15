@@ -354,9 +354,7 @@ describe('one active item at a time', () => {
   };
 
   const loopPreset = (id: string) => {
-    const base = holdPreset(100, id);
-
-    return { ...base, steps: [...base.steps, { type: 'loop' as const }] };
+    return { ...holdPreset(100, id), playback: 'loop' as const };
   };
 
   it('starts a preset after restoring the held toggle', async () => {
@@ -724,11 +722,8 @@ describe('continuous preset safety', () => {
       const rig = await startReady();
       run(rig, {
         ...holdPreset(),
-        ...(playback === 'hold' ? { playback } : {}),
-        steps: [
-          { type: 'set', elements: ['lowBeamLeft'], state: 'on', durationMs: 100 },
-          ...(playback === 'loop' ? [{ type: 'loop' as const }] : []),
-        ],
+        playback,
+        steps: [{ type: 'set', elements: ['lowBeamLeft'], state: 'on', durationMs: 100 }],
       });
       await advanceUntil(() => rig.vehicle.getLitElements().length > 0);
       await jest.advanceTimersByTimeAsync(6000);

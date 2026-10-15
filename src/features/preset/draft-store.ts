@@ -63,13 +63,7 @@ export const useDraftStore = create<DraftState>()((set) => ({
   setIcon: (icon) => set({ icon }),
   setPlayback: (playback) => set({ playback }),
   setSteps: (steps) => set({ steps }),
-  addStep: (step) =>
-    set((state) => ({
-      steps:
-        state.steps.at(-1)?.type === 'loop' && step.type !== 'loop'
-          ? [...state.steps.slice(0, -1), step, state.steps.at(-1)!]
-          : [...state.steps, step],
-    })),
+  addStep: (step) => set((state) => ({ steps: [...state.steps, step] })),
   updateStep: (key, step) =>
     set((state) => ({
       steps: state.steps.map((existing) => (existing.key === key ? step : existing)),

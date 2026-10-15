@@ -1,7 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { describeIssues, isValidPreset, presetSchema, PRESET_LIMITS, type Preset } from '@/domain';
+import {
+  describeIssues,
+  isValidPreset,
+  migrateLegacyLoop,
+  presetSchema,
+  PRESET_LIMITS,
+  type Preset,
+} from '@/domain';
 
 import { kvStorage } from './kv-storage';
 
@@ -113,7 +120,12 @@ export const usePresetsStore = create<PresetsState>()(
     }),
     {
       name: 'presets',
-      version: 1,
+      version: 2,
+      migrate: (persisted) => {
+        const stored = (persisted as Partial<PresetsState> | undefined)?.presets;
+
+        return { presets: Array.isArray(stored) ? stored.map(migrateLegacyLoop) : [] };
+      },
       storage: kvStorage,
       partialize: ({ presets }) => ({ presets }),
       merge: (persisted, current) => {

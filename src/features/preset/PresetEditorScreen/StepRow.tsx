@@ -1,4 +1,3 @@
-import { ArrowClockwiseIcon } from 'phosphor-react-native/src/icons/ArrowClockwise';
 import { CaretDownIcon } from 'phosphor-react-native/src/icons/CaretDown';
 import { TimerIcon } from 'phosphor-react-native/src/icons/Timer';
 import { memo, useCallback, useMemo } from 'react';
@@ -89,7 +88,6 @@ const ElementHeader = ({ step, onChange }: ElementHeaderProps) => {
 
 const StepRow = ({ step, number, issue, onChange, onRemove }: StepRowProps) => {
   const { t } = useTranslation();
-  const loopColor = useColorToken('primary');
   const stateOptions: SegmentedOption<StepState>[] = useMemo(
     () => [
       { value: 'on', label: t('preset.on') },
@@ -102,26 +100,6 @@ const StepRow = ({ step, number, issue, onChange, onRemove }: StepRowProps) => {
     : undefined;
 
   const handleRemove = useCallback(() => onRemove(step.key), [onRemove, step.key]);
-
-  if (step.type === 'loop') {
-    return (
-      <StepCard
-        number={number}
-        errorText={errorText}
-        onRemove={handleRemove}
-        header={
-          <View className="flex-row items-center gap-2">
-            <ArrowClockwiseIcon size={20} color={loopColor} />
-            <Text variant="bodyMedium">{t('preset.loop.label')}</Text>
-          </View>
-        }
-      >
-        <Text variant="small" tone="muted" className="flex-1">
-          {t('preset.loop.hint')}
-        </Text>
-      </StepCard>
-    );
-  }
 
   if (step.type === 'wait') {
     return (
