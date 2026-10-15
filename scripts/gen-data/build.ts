@@ -5,7 +5,7 @@ import { buildIdentification } from './identification';
 import { buildModule, type ModuleReport } from './modules';
 import { MODULE_SGBDS } from './paths';
 import { fileWith, literal } from './render';
-import { buildVehicles } from './vehicles';
+import { buildTypeCodes, buildVehicles } from './vehicles';
 
 import type { RawData } from './raw';
 import type { Effect, Module } from '../../src/data/types';
@@ -29,7 +29,7 @@ const renderModule = (module: Module) =>
 
 const renderIndex = () =>
   fileWith(
-    "import type { Effect, Module, VehicleSeries } from '../types';",
+    "import type { Effect, Module, TypeCodeEntry, VehicleSeries } from '../types';",
     '',
     "export { IDENTIFICATION, SERIES_HINTS } from './identification';",
     '',
@@ -46,6 +46,9 @@ const renderIndex = () =>
     "export const loadEffects = (): readonly Effect[] => require('./effects').EFFECTS;",
     '',
     "export const loadVehicles = (): readonly VehicleSeries[] => require('./vehicles').VEHICLES;",
+    '',
+    'export const loadTypeCodes = (): Readonly<Record<string, TypeCodeEntry>> =>',
+    "  require('./vehicles').TYPE_CODES;",
   );
 
 const buildI18nKeys = (modules: readonly Module[], effects: readonly Effect[]) => {
@@ -79,6 +82,7 @@ export const buildAll = (raw: RawData): BuildResult => {
   const effects = buildEffects(raw.packs, modules);
   const identification = buildIdentification(raw.ecuModules, MODULE_SGBDS);
   const vehicles = buildVehicles(raw.chassis);
+  const typeCodes = buildTypeCodes(raw.chassis);
 
   const files: Record<string, string> = {
     'index.ts': renderIndex(),
@@ -95,9 +99,11 @@ export const buildAll = (raw: RawData): BuildResult => {
       `export const SERIES_HINTS: Readonly<Record<string, readonly string[]>> = Object.freeze(${literal(identification.seriesHints)});`,
     ),
     'vehicles.ts': fileWith(
-      "import type { VehicleSeries } from '../types';",
+      "import type { TypeCodeEntry, VehicleSeries } from '../types';",
       '',
       `export const VEHICLES: readonly VehicleSeries[] = Object.freeze(${literal(vehicles)});`,
+      '',
+      `export const TYPE_CODES: Readonly<Record<string, TypeCodeEntry>> = Object.freeze(${literal(typeCodes)});`,
     ),
   };
 

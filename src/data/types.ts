@@ -65,3 +65,8 @@ export interface VehicleSeries {
   readonly code: string;
   readonly models: readonly VehicleModel[];
 }
+
+export interface TypeCodeEntry {
+  readonly code: string;
+  readonly model: string;
+}

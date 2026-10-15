@@ -1,3 +1,5 @@
+import { loadTypeCodes } from '@/data/generated';
+
 import { createRng, hashText } from './rng';
 
 const VIN_ALPHABET = 'ABCDEFGHJKLMNPRSTUVWXYZ0123456789';
@@ -40,12 +42,17 @@ const checkDigit = (vin: string): string => {
   return remainder === 10 ? 'X' : String(remainder);
 };
 
+const typeCodeFor = (chassis: string): string | undefined =>
+  Object.entries(loadTypeCodes()).find(([, entry]) => entry.code === chassis)?.[0];
+
 export const makeVin = (chassis: string): string => {
   const rng = createRng(hashText(chassis));
   const pick = (alphabet: string) => alphabet[Math.floor(rng() * alphabet.length)]!;
   const digits = (count: number) =>
     Array.from({ length: count }, () => pick('0123456789')).join('');
-  const descriptor = Array.from({ length: 5 }, () => pick(VIN_ALPHABET)).join('');
+  const typeCode =
+    typeCodeFor(chassis) ?? Array.from({ length: 4 }, () => pick(VIN_ALPHABET)).join('');
+  const descriptor = `${typeCode}${pick(VIN_ALPHABET)}`;
   const body = `WBA${descriptor}0G${pick('ABCDEFGHJKLMN')}${digits(6)}`;
 
   return `${body.slice(0, 8)}${checkDigit(body)}${body.slice(9)}`;

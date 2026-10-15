@@ -7,6 +7,7 @@ import { CarNotRespondingError, UnsupportedVehicleError } from '../errors';
 
 import {
   isEffectAvailable,
+  lookupVinType,
   matchIdentity,
   parseVin,
   probeAddresses,
@@ -88,7 +89,11 @@ export const detectCar = async (
   const vin = await readVin(provider, modules[0]!, probeTimeoutMs);
   await ensureOpen(provider);
 
-  const chassisCandidates = rankChassis(modules);
+  const vinType = vin ? lookupVinType(vin) : undefined;
+  const moduleCandidates = rankChassis(modules);
+  const chassisCandidates = vinType
+    ? [vinType.code, ...moduleCandidates.filter((chassis) => chassis !== vinType.code)]
+    : moduleCandidates;
   const effects = loadEffects()
     .map((effect) =>
       effect.id === 'ghost.fullOFF'
@@ -99,6 +104,7 @@ export const detectCar = async (
 
   return {
     vin,
+    model: vinType?.model,
     chassis: chassisCandidates[0],
     chassisCandidates,
     modules,
