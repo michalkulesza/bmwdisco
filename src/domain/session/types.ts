@@ -60,7 +60,8 @@ export interface SessionContext {
   runningItemId?: string;
   abort?: AbortController;
   tiles: Record<string, TileStatus>;
-  activeToggles: string[];
+  activeToggleId?: string;
+  queuedItem?: RunnableItem;
   lastError?: SessionError;
   measuredRttMs: number | null;
   lightsMayBeOn: boolean;

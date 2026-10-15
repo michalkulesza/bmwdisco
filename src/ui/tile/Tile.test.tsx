@@ -89,7 +89,7 @@ describe('Tile', () => {
   });
 
   it('reflects an active toggle', async () => {
-    sessionState.activeToggles = ['toggle.hazard'];
+    sessionState.activeToggleId = 'toggle.hazard';
     await renderTile(effectItem(effect('toggle.hazard'), t, sessionState.car));
 
     const tile = screen.getByRole('switch', { name: 'Hazard lights, On' });

@@ -16,7 +16,7 @@ import {
   isEffect,
   noticeOf,
   tileForResult,
-  togglesAfter,
+  activeToggleAfter,
 } from '@/domain/session/helpers';
 import type { SessionDeps } from '@/domain/session/types';
 import { SimLink } from '@/link/sim-link';
@@ -133,10 +133,10 @@ describe('session helpers', () => {
       }),
     ).toEqual({ state: 'error', reason: 'timeout' });
 
-    expect(togglesAfter(['x'], toggle, done)).toEqual(['x', toggle.effect.id]);
-    expect(togglesAfter(['x', toggle.effect.id], { ...toggle, on: false }, done)).toEqual(['x']);
-    expect(togglesAfter(['x'], toggle, { status: 'failed', skipped: [] })).toEqual(['x']);
-    expect(togglesAfter(['x'], oneShot, done)).toEqual(['x']);
+    expect(activeToggleAfter(undefined, toggle, done)).toBe(toggle.effect.id);
+    expect(activeToggleAfter(toggle.effect.id, { ...toggle, on: false }, done)).toBeUndefined();
+    expect(activeToggleAfter('x', toggle, { status: 'failed', skipped: [] })).toBe('x');
+    expect(activeToggleAfter('x', oneShot, done)).toBe('x');
   });
 });
 

@@ -9,9 +9,7 @@ import type { TileItem, TileVisual } from './types';
 
 export const useTileView = (item: TileItem) => {
   const status = useSessionSelector((snapshot) => snapshot.context.tiles[item.id]);
-  const toggledOn = useSessionSelector((snapshot) =>
-    snapshot.context.activeToggles.includes(item.id),
-  );
+  const toggledOn = useSessionSelector((snapshot) => snapshot.context.activeToggleId === item.id);
   const visual = deriveVisual(item.availability, status, toggledOn);
 
   return { status, toggledOn, visual };

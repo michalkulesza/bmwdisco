@@ -128,13 +128,18 @@ describe('LHM2 records', () => {
 });
 
 describe('testBlockReason', () => {
-  const base = { phase: 'ready', activeToggles: [], hasPending: false, testActive: false } as const;
+  const base = {
+    phase: 'ready',
+    activeToggleId: undefined,
+    hasPending: false,
+    testActive: false,
+  } as const;
 
   it('allows a test only on an idle, ready session', () => {
     expect(testBlockReason(base)).toBeUndefined();
     expect(testBlockReason({ ...base, phase: 'running' })).toBe('effectRunning');
     expect(testBlockReason({ ...base, phase: 'reconnecting' })).toBe('notReady');
-    expect(testBlockReason({ ...base, activeToggles: ['toggle.hazard'] })).toBe('toggleActive');
+    expect(testBlockReason({ ...base, activeToggleId: 'toggle.hazard' })).toBe('toggleActive');
     expect(testBlockReason({ ...base, hasPending: true })).toBe('controlPending');
     expect(testBlockReason({ ...base, hasPending: true, testActive: true })).toBeUndefined();
   });

@@ -7,7 +7,7 @@ import type { DetectedCar, SessionPhase, TileStatus } from '@/domain';
 interface MockSessionState {
   phase: SessionPhase;
   tiles: Record<string, TileStatus>;
-  activeToggles: string[];
+  activeToggleId: string | undefined;
   runningItemId: string | undefined;
   car: DetectedCar | undefined;
 }
@@ -15,7 +15,7 @@ interface MockSessionState {
 const initialState = (): MockSessionState => ({
   phase: 'ready',
   tiles: {},
-  activeToggles: [],
+  activeToggleId: undefined,
   runningItemId: undefined,
   car: undefined,
 });

@@ -127,7 +127,7 @@ export class TestBench {
     const { context } = snapshot;
     const reason = testBlockReason({
       phase: phaseOf(snapshot),
-      activeToggles: context.activeToggles,
+      activeToggleId: context.activeToggleId,
       hasPending: context.ledger.hasPending,
       testActive: context.testActive,
     });

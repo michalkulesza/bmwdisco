@@ -34,7 +34,7 @@ export const useTestCommands = () => {
   const blockReason = useSessionSelector((snapshot) =>
     testBlockReason({
       phase,
-      activeToggles: snapshot.context.activeToggles,
+      activeToggleId: snapshot.context.activeToggleId,
       hasPending: snapshot.context.ledger.hasPending,
       testActive: snapshot.context.testActive,
     }),

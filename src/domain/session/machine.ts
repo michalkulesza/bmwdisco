@@ -1,4 +1,4 @@
-import { assign, setup, type ActorRefFrom } from 'xstate';
+import { and, assign, setup, type ActorRefFrom } from 'xstate';
 
 import { toError } from '@/protocol/errors';
 
@@ -23,20 +23,20 @@ import {
   type IdentifyOutput,
 } from './actors';
 import {
+  activeToggleAfter,
   appendLog,
   backoffMs,
   clearJustRan,
   describeRunnerEvent,
-  findToggle,
   isEffect,
   isToggleItem,
   JUST_RAN_MS,
   MAX_RECONNECT_ATTEMPTS,
   MAX_RESTORE_FAILURES,
   noticeOf,
+  runnableOf,
   tileForResult,
-  togglesAfter,
-  toRunnable,
+  withoutQueued,
   withTile,
 } from './helpers';
 
@@ -48,7 +48,6 @@ const initialContext = ({ input }: { input: SessionDeps }): SessionContext => ({
   deps: input,
   ledger: new ControlLedger(),
   tiles: {},
-  activeToggles: [],
   measuredRttMs: null,
   lightsMayBeOn: false,
   freshLink: false,
@@ -88,10 +87,45 @@ const makeRunner = (
     onEvent: (event) => onEvent({ type: 'RUNNER_EVENT', event }),
   });
 
-const lostTiles = (context: SessionContext): SessionContext['tiles'] =>
-  context.runningItemId
-    ? withTile(context.tiles, context.runningItemId, { state: 'error', reason: 'connectionLost' })
-    : context.tiles;
+const lostTiles = (context: SessionContext): SessionContext['tiles'] => {
+  const { tiles } = withoutQueued(context) as Pick<SessionContext, 'tiles'>;
+
+  return context.runningItemId
+    ? withTile(tiles, context.runningItemId, { state: 'error', reason: 'connectionLost' })
+    : tiles;
+};
+
+const isRunnableEvent = (event: SessionEvent): boolean => {
+  if (event.type !== 'RUN') return false;
+  const { item } = event;
+
+  return isEffect(item) ? item.kind === 'oneShot' : isValidPreset(item);
+};
+
+const isToggleEvent = (
+  context: SessionContext,
+  event: SessionEvent,
+): event is Extract<SessionEvent, { type: 'TOGGLE' }> =>
+  event.type === 'TOGGLE' && runnableOf(context.car, event) !== undefined;
+
+const runnableId = (context: SessionContext, event: SessionEvent): string | undefined => {
+  const item = runnableOf(context.car, event);
+
+  return item && itemIdOf(item);
+};
+
+const beginItem = (context: SessionContext, item: RunnableItem): Partial<SessionContext> => ({
+  currentItem: item,
+  runningItemId: itemIdOf(item),
+  queuedItem: undefined,
+  abort: new AbortController(),
+  tiles: withTile(context.tiles, itemIdOf(item), { state: 'running' }),
+  lightsMayBeOn: true,
+  restoreRequested: false,
+  disconnectRequested: false,
+  notices: [],
+  lastError: undefined,
+});
 
 const closeLinkOf = (context: SessionContext): void => {
   void context.link?.close().catch(() => undefined);
@@ -131,20 +165,27 @@ export const sessionMachine = setup({
     justRanTtl: JUST_RAN_MS,
   },
   guards: {
-    canRun: ({ context, event }) => {
-      if (event.type !== 'RUN') return false;
-      const { item } = event;
+    canRun: ({ event }) => isRunnableEvent(event),
+    canToggle: ({ context, event }) => isToggleEvent(context, event),
+    turnsOn: ({ event }) => event.type === 'TOGGLE' && event.on,
+    hasActiveToggle: ({ context }) => context.activeToggleId !== undefined,
+    togglesOther: ({ context, event }) =>
+      context.activeToggleId !== undefined &&
+      event.type === 'TOGGLE' &&
+      event.effectId !== context.activeToggleId,
+    hasQueued: ({ context }) => context.queuedItem !== undefined,
+    canQueue: ({ context, event }) => {
+      if (context.queuedItem || context.disconnectRequested) return false;
+      if (!isRunnableEvent(event) && !(isToggleEvent(context, event) && event.on)) return false;
 
-      return isEffect(item) ? item.kind === 'oneShot' : isValidPreset(item);
+      return runnableId(context, event) !== context.runningItemId;
     },
-    canToggle: ({ context, event }) =>
-      event.type === 'TOGGLE' && findToggle(context.car, event.effectId) !== undefined,
     hasPendingControl: ({ context }) => context.ledger.hasPending,
     testEngaged: ({ context }) => context.testActive,
     canBeginTest: ({ context }) =>
       testBlockReason({
         phase: 'ready',
-        activeToggles: context.activeToggles,
+        activeToggleId: context.activeToggleId,
         hasPending: context.ledger.hasPending,
         testActive: context.testActive,
       }) === undefined,
@@ -155,9 +196,7 @@ export const sessionMachine = setup({
       if (!isToggleItem(item) || output.status !== 'completed') return false;
       if (context.restoreRequested || context.disconnectRequested) return false;
 
-      const remaining = togglesAfter(context.activeToggles, item, output);
-
-      return (item.on ?? true) || remaining.length > 0;
+      return item.on ?? true;
     },
     disconnectWanted: ({ context }) => context.disconnectRequested,
     restoreSucceeded: ({ event }) =>
@@ -241,24 +280,32 @@ export const sessionMachine = setup({
     }),
     closeLink: ({ context }) => closeLinkOf(context),
     startRun: assign(({ context, event }) => {
-      let item: RunnableItem;
-      if (event.type === 'RUN') item = toRunnable(event.item);
-      else if (event.type === 'TOGGLE') {
-        item = { kind: 'effect', effect: findToggle(context.car, event.effectId)!, on: event.on };
-      } else return {};
+      const item = runnableOf(context.car, event);
+
+      return item ? beginItem(context, item) : {};
+    }),
+    startQueued: assign(({ context }) =>
+      context.queuedItem ? beginItem(context, context.queuedItem) : {},
+    ),
+    queueItem: assign(({ context, event }) => {
+      const item = runnableOf(context.car, event)!;
 
       return {
-        currentItem: item,
-        runningItemId: itemIdOf(item),
-        abort: new AbortController(),
+        queuedItem: item,
         tiles: withTile(context.tiles, itemIdOf(item), { state: 'running' }),
-        lightsMayBeOn: true,
-        restoreRequested: false,
-        disconnectRequested: false,
-        notices: [],
-        lastError: undefined,
       };
     }),
+    queueAndStop: assign(({ context, event }) => {
+      abortRun(context);
+      const item = runnableOf(context.car, event)!;
+
+      return {
+        queuedItem: item,
+        restoreRequested: true,
+        tiles: withTile(context.tiles, itemIdOf(item), { state: 'running' }),
+      };
+    }),
+    cancelQueued: assign(({ context }) => withoutQueued(context)),
     rejectInvalidItem: assign(({ context, event }) => {
       if (event.type !== 'RUN') return {};
       const id = event.item.id;
@@ -274,12 +321,12 @@ export const sessionMachine = setup({
     requestRestore: assign(({ context }) => {
       abortRun(context);
 
-      return { restoreRequested: true };
+      return { ...withoutQueued(context), restoreRequested: true };
     }),
     requestDisconnect: assign(({ context }) => {
       abortRun(context);
 
-      return { disconnectRequested: true };
+      return { ...withoutQueued(context), disconnectRequested: true };
     }),
     applyRunResult: assign(({ context, event }) => {
       const result = (event as unknown as { output: ExecutionResult }).output;
@@ -290,7 +337,7 @@ export const sessionMachine = setup({
 
       return {
         tiles: withTile(context.tiles, id, tile),
-        activeToggles: togglesAfter(context.activeToggles, item, result),
+        activeToggleId: activeToggleAfter(context.activeToggleId, item, result),
         runningItemId: undefined,
         abort: undefined,
         measuredRttMs: context.link?.measuredRttMs ?? context.measuredRttMs,
@@ -315,7 +362,7 @@ export const sessionMachine = setup({
       };
     }),
     markRestored: assign(({ context }) => ({
-      activeToggles: [],
+      activeToggleId: undefined,
       lightsMayBeOn: context.ledger.hasPending,
       freshLink: false,
       restoreFailures: 0,
@@ -324,6 +371,7 @@ export const sessionMachine = setup({
       lastError: context.lastError?.whileRunning ? undefined : context.lastError,
     })),
     markRestoreFailed: assign(({ context }) => ({
+      ...withoutQueued(context),
       restoreFailures: context.restoreFailures + 1,
       lightsMayBeOn: true,
       lastError: connectionLostError(true),
@@ -338,7 +386,8 @@ export const sessionMachine = setup({
         runner: undefined,
         runningItemId: undefined,
         abort: undefined,
-        activeToggles: [],
+        activeToggleId: undefined,
+        queuedItem: undefined,
         tiles: {},
         testActive: false,
         lightsMayBeOn: stillForced,
@@ -354,6 +403,7 @@ export const sessionMachine = setup({
         testActive: false,
         lightsMayBeOn: context.ledger.hasPending,
         lastError: connectionLostError(context.ledger.hasPending),
+        queuedItem: undefined,
         runningItemId: undefined,
         abort: undefined,
         tiles: lostTiles(context),
@@ -433,11 +483,22 @@ export const sessionMachine = setup({
       on: {
         RUN: [
           { guard: 'testEngaged' },
+          {
+            guard: and(['canRun', 'hasActiveToggle']),
+            target: 'restoring',
+            actions: 'queueItem',
+          },
           { guard: 'canRun', target: 'running', actions: 'startRun' },
           { actions: 'rejectInvalidItem' },
         ],
         TOGGLE: [
           { guard: 'testEngaged' },
+          {
+            guard: and(['canToggle', 'togglesOther', 'turnsOn']),
+            target: 'restoring',
+            actions: 'queueItem',
+          },
+          { guard: and(['canToggle', 'togglesOther']) },
           { guard: 'canToggle', target: 'running', actions: 'startRun' },
         ],
         TEST_BEGIN: { guard: 'canBeginTest', actions: 'beginTest' },
@@ -483,6 +544,8 @@ export const sessionMachine = setup({
         },
       ],
       on: {
+        RUN: { guard: 'canQueue', actions: 'queueAndStop' },
+        TOGGLE: { guard: 'canQueue', actions: 'queueAndStop' },
         STOP: { actions: 'requestRestore' },
         APP_BACKGROUND: { actions: 'requestRestore' },
         DISCONNECT: { actions: 'requestDisconnect' },
@@ -505,6 +568,11 @@ export const sessionMachine = setup({
           src: 'restore',
           input: ({ context }) => ({ runner: context.runner!, freshLink: context.freshLink }),
           onDone: [
+            {
+              guard: and(['restoreSucceeded', 'hasQueued']),
+              target: 'running',
+              actions: ['markRestored', 'startQueued'],
+            },
             { guard: 'restoreSucceeded', target: 'ready', actions: 'markRestored' },
             {
               guard: 'canRetryRestore',
@@ -524,6 +592,10 @@ export const sessionMachine = setup({
         },
       ],
       on: {
+        RUN: { guard: 'canQueue', actions: 'queueItem' },
+        TOGGLE: { guard: 'canQueue', actions: 'queueItem' },
+        STOP: { actions: 'cancelQueued' },
+        APP_BACKGROUND: { actions: 'cancelQueued' },
         LINK_LOST: [
           { guard: 'canRetryRestore', target: 'reconnecting', actions: 'markRestoreFailed' },
           { target: 'error', actions: ['markRestoreFailed', 'closeLink'] },

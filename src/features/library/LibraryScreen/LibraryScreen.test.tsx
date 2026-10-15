@@ -53,7 +53,7 @@ describe('LibraryScreen', () => {
   });
 
   it('shows On and Off for toggle lights', async () => {
-    sessionState.activeToggles = ['toggle.hazard'];
+    sessionState.activeToggleId = 'toggle.hazard';
     await renderScreen(<LibraryScreen />);
 
     await fireEvent.changeText(screen.getByLabelText('Search lights'), 'hazard');

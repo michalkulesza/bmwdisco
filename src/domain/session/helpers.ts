@@ -9,7 +9,14 @@ import {
   type RunnerEvent,
 } from '../runner/types';
 
-import type { LogEntry, RunInput, RunnerNotice, SessionContext, TileStatus } from './types';
+import type {
+  LogEntry,
+  RunInput,
+  RunnerNotice,
+  SessionContext,
+  SessionEvent,
+  TileStatus,
+} from './types';
 import type { DetectedCar } from '../registry/types';
 
 export const MAX_RECONNECT_ATTEMPTS = 3;
@@ -115,15 +122,31 @@ export const tileForResult = (
   return { state: 'error', reason: classifyRunError(result.error) };
 };
 
-export const togglesAfter = (
-  active: readonly string[],
+export const activeToggleAfter = (
+  active: string | undefined,
   item: RunnableItem,
   result: ExecutionResult,
-): string[] => {
-  if (!isToggleItem(item) || result.status !== 'completed') return [...active];
+): string | undefined => {
+  if (!isToggleItem(item) || result.status !== 'completed') return active;
 
-  const id = itemIdOf(item);
-  const without = active.filter((candidate) => candidate !== id);
-
-  return (item.on ?? true) ? [...without, id] : without;
+  return (item.on ?? true) ? itemIdOf(item) : undefined;
 };
+
+export const runnableOf = (
+  car: DetectedCar | undefined,
+  event: SessionEvent,
+): RunnableItem | undefined => {
+  if (event.type === 'RUN') return toRunnable(event.item);
+  if (event.type !== 'TOGGLE') return undefined;
+
+  const effect = findToggle(car, event.effectId);
+
+  return effect && { kind: 'effect', effect, on: event.on };
+};
+
+export const withoutQueued = (context: SessionContext): Partial<SessionContext> => ({
+  queuedItem: undefined,
+  tiles: context.queuedItem
+    ? withTile(context.tiles, itemIdOf(context.queuedItem), undefined)
+    : context.tiles,
+});
