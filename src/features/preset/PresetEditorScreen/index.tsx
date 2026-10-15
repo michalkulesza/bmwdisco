@@ -6,7 +6,7 @@ import { Alert, View } from 'react-native';
 import ReorderableList, { type ReorderableListReorderEvent } from 'react-native-reorderable-list';
 
 import { presetSchema, PRESET_LIMITS } from '@/domain';
-import { toHeaderItems } from '@/features/navigation/headerItems';
+import { headerLeftOptions, headerRightOptions } from '@/features/navigation/headerItems';
 import { useSessionActions, useSessionSelector } from '@/session';
 import { createPresetId, usePresetsStore } from '@/stores/presets';
 import EmptyState from '@/ui/EmptyState';
@@ -202,14 +202,18 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
     [handleStepChange, removeStep, stepIssues],
   );
 
-  const cancelHeaderItems = useMemo(
+  const cancelHeaderOptions = useMemo(
     () =>
-      toHeaderItems(<HeaderTextButton label={t('common.cancel')} onPress={handleCancelPress} />),
+      headerLeftOptions(
+        <HeaderTextButton label={t('common.cancel')} onPress={handleCancelPress} />,
+      ),
     [handleCancelPress, t],
   );
-  const saveHeaderItems = useMemo(
+  const saveHeaderOptions = useMemo(
     () =>
-      toHeaderItems(<HeaderTextButton label={t('common.save')} onPress={handleSavePress} strong />),
+      headerRightOptions(
+        <HeaderTextButton label={t('common.save')} onPress={handleSavePress} strong />,
+      ),
     [handleSavePress, t],
   );
 
@@ -269,8 +273,8 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
           headerBackVisible: false,
           gestureEnabled: !dirty,
           headerStyle: { backgroundColor: pageColor },
-          unstable_headerLeftItems: cancelHeaderItems,
-          unstable_headerRightItems: saveHeaderItems,
+          ...cancelHeaderOptions,
+          ...saveHeaderOptions,
         }}
       />
       <ReorderableList
