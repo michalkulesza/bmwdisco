@@ -35,12 +35,16 @@ interface CustomHeaderItem {
 interface StackScreenOptions {
   unstable_headerLeftItems?: () => CustomHeaderItem[];
   unstable_headerRightItems?: () => CustomHeaderItem[];
+  headerLeft?: () => ReactNode;
+  headerRight?: () => ReactNode;
 }
 
 const StackScreen = ({ options }: { options?: StackScreenOptions }) => (
   <>
     {options?.unstable_headerLeftItems?.().map((item) => item.element)}
     {options?.unstable_headerRightItems?.().map((item) => item.element)}
+    {options?.headerLeft?.()}
+    {options?.headerRight?.()}
   </>
 );
 
