@@ -106,20 +106,24 @@ Session machine: `idle → connecting → identifying → ready ⇄ running → 
 
 Status: ☐ todo · ◐ in progress · ☑ done
 
-| #   | Milestone                                                                                                                                | Status                                                                          |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `Claude.md/AGENTS.md` overrides, this plan  | ☑                                                                               |
-| M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☑                                                                               |
-| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☑ (Android BTOOL mode 2 + Classic/Wi-Fi/USB added; hardware validation pending) |
-| M3  | Simulator + Demo link with fault injection                                                                                               | ☑                                                                               |
-| M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☑                                                                               |
-| M5  | Design canvas: connecting, error, empty states, Library, Cable list → **user checkpoint**                                                | ☑                                                                               |
-| M6  | UI foundation: gluestack + NativeWind theme from E4 tokens, Geist, Phosphor, i18n EN/PL, navigation skeleton                             | ☑                                                                               |
-| M7  | Screens: Connect, Settings, Cable, Home, Library, tile menu, favourites edit, preset editor, add step, icon picker → **user checkpoint** | ◐ (Android adapter choices added; vGate explicitly labelled BLE in EN/PL)       |
-| M8  | Motion: Skia tiles, sweep, wiggle, reorder, haptics, reduced motion                                                                      | ☐                                                                               |
-| M9  | Hardening: Maestro E2E, coverage gate, security review, code review, performance pass                                                    | ☐                                                                               |
+| #   | Milestone                                                                                                                                | Status                                                                                                                              |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| M0  | Ignore `PROTO/`, scaffold Expo at root, tooling (ESLint, Prettier, Jest, Husky, CI), project `Claude.md/AGENTS.md` overrides, this plan  | ☑                                                                                                                                   |
+| M1  | Data pipeline: F-series data → `data/ecu/`, zod schemas, codegen, byte-snapshot tests                                                    | ☑                                                                                                                                   |
+| M2  | Protocol + links: UDS codec, HSFZ/ENET (+UDP discovery), Thor, ELM/ISO-TP, command queue, keepalive                                      | ☑ (Android BTOOL mode 2 + Classic/Wi-Fi/USB added; local module sources tracked, build output ignored; hardware validation pending) |
+| M3  | Simulator + Demo link with fault injection                                                                                               | ☑                                                                                                                                   |
+| M4  | Domain: XState session, ModuleRegistry, PresetRunner, model-based tests → **user car test**                                              | ☑                                                                                                                                   |
+| M5  | Design canvas: connecting, error, empty states, Library, Cable list → **user checkpoint**                                                | ☑                                                                                                                                   |
+| M6  | UI foundation: gluestack + NativeWind theme from E4 tokens, Geist, Phosphor, i18n EN/PL, navigation skeleton                             | ☑                                                                                                                                   |
+| M7  | Screens: Connect, Settings, Cable, Home, Library, tile menu, favourites edit, preset editor, add step, icon picker → **user checkpoint** | ◐ (Android adapter choices added; vGate explicitly labelled BLE in EN/PL)                                                           |
+| M8  | Motion: Skia tiles, sweep, wiggle, reorder, haptics, reduced motion                                                                      | ☐                                                                                                                                   |
+| M9  | Hardening: Maestro E2E, coverage gate, security review, code review, performance pass                                                    | ☐                                                                                                                                   |
 
 ### Log
+
+- 2026-10-16 — Reapplied scoped Android build/cache ignores after `.gitignore` cleanup. Module sources remain trackable without an allowlist; M2 status unchanged. Verified build output is ignored and native sources are not.
+
+- 2026-10-16 — Audited `modules/`: `bimmerdisco-udp` and `bimmerdisco-adapters` are custom native source modules and already tracked. Added scoped ignores for their Android build output and Gradle caches; verified generated output is ignored while native sources remain tracked.
 
 - 2026-10-13 — Grill session complete; plan written. M0 started.
 - 2026-10-13 — M0 done: Expo SDK 57 (expo 57.0.28, RN 0.86.3, React 19.2.3, expo-router 57.0.26, TypeScript 6.0.3) scaffolded at repo root with `app/` routes and `src/` skeleton; ESLint 9 + eslint-config-expo + react-hooks + import/order, Prettier 3, jest-expo 57 (Jest 29) with per-dir 90% coverage thresholds activated once `src/protocol|link|domain` contain sources, Husky 9 + lint-staged, GitHub Actions CI, project `Claude.md/AGENTS.md`. `expo-doctor` 21/21.
