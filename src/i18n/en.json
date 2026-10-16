@@ -27,9 +27,9 @@
     "adapterShort": {
       "enet": "USB-C Ethernet",
       "thor": "Wi-Fi",
-      "vgate": "Bluetooth LE (BLE)",
-      "elmBluetooth": "Bluetooth Classic",
-      "elmWifi": "Wi-Fi ELM327",
+      "vgate": "ELM327 BLE",
+      "elmBluetooth": "ELM327 Bluetooth Classic",
+      "elmWifi": "ELM327 Wi-Fi",
       "usb": "USB",
       "demo": "Simulated"
     },
@@ -58,7 +58,7 @@
       },
       "bluetoothOff": {
         "title": "Bluetooth is off",
-        "description": "BimmerDisco needs Bluetooth to reach your Vgate iCar adapter. Turn it on, or allow access, in Settings."
+        "description": "BimmerDisco needs Bluetooth to reach your ELM327 adapter. Turn it on, or allow access, in Settings."
       },
       "bluetoothDenied": {
         "title": "Bluetooth access denied",
@@ -90,7 +90,7 @@
     },
     "devices": {
       "title": "Bluetooth adapter",
-      "description": "Choose your Vgate iCar adapter. Plug it into the OBD port first.",
+      "description": "Choose your ELM327 BLE adapter. Plug it into the OBD port first.",
       "scanning": "Searching for adapters…",
       "found": "Choose an adapter",
       "unknown": "Unnamed adapter"
@@ -112,7 +112,7 @@
     "appearance": "Appearance",
     "theme": "Theme",
     "themeOptions": {
-      "system": "System",
+      "system": "Auto",
       "light": "Light",
       "dark": "Dark"
     },
@@ -156,8 +156,8 @@
     "demoBadge": "No car",
     "adapters": {
       "elmBluetooth": {
-        "name": "ELM327 Bluetooth",
-        "description": "Bluetooth Classic OBD adapter. Pair it in Android settings first."
+        "name": "ELM327 Bluetooth Classic",
+        "description": "Vgate iCar BT3.0 and compatible Bluetooth Classic adapters. Pair in Android settings first."
       },
       "elmWifi": {
         "name": "ELM327 Wi-Fi",
@@ -172,12 +172,12 @@
         "description": "USB-C Ethernet adapter"
       },
       "thor": {
-        "name": "Thor",
+        "name": "THOR",
         "description": "Wi-Fi OBD adapter. Join its Wi-Fi network first."
       },
       "vgate": {
-        "name": "Vgate iCar (BLE)",
-        "description": "Bluetooth OBD adapter"
+        "name": "ELM327 BLE",
+        "description": "Bluetooth Low Energy adapter, such as Vgate iCar BLE."
       },
       "demo": {
         "name": "Demo",
