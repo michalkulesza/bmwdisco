@@ -1,3 +1,4 @@
+import { ANDROID_ELM_INIT, androidEcuCommands } from '@/protocol/android-elm';
 import {
   ecuAddressCommands,
   ELM_INIT_COMMANDS,
@@ -19,6 +20,8 @@ export interface ElmTimings {
   handshakeMs: number;
 }
 
+export type ElmProfile = 'legacy' | 'android-mode2';
+
 const DEFAULT_TIMINGS: ElmTimings = { settleMs: 50, monitorMs: 1000, handshakeMs: 4000 };
 const BANNER_PATTERN = /elm|stn|obdlink|vgate|vlinker/i;
 
@@ -29,8 +32,13 @@ export class ElmIsoTpLink extends BaseLink {
   private readonly port: ElmPort;
   private readonly timings: ElmTimings;
   private currentEcu?: number;
+  private automaticFormatting = true;
 
-  constructor(transport: Transport, timings: Partial<ElmTimings> = {}) {
+  constructor(
+    transport: Transport,
+    timings: Partial<ElmTimings> = {},
+    private readonly profile: ElmProfile = 'legacy',
+  ) {
     super(transport);
     this.timings = { ...DEFAULT_TIMINGS, ...timings };
     this.port = new ElmPort((data) => transport.write(data));
@@ -47,6 +55,20 @@ export class ElmIsoTpLink extends BaseLink {
 
   protected async handshake(signal?: AbortSignal): Promise<void> {
     const options = { timeoutMs: this.timings.handshakeMs, signal };
+
+    if (this.profile === 'android-mode2') {
+      // The first ATI wakes/drains the adapter; the second must identify it.
+      await this.port.command('ATI', options);
+      const identity = await this.port.command('ATI', options);
+      if (!identity.length || identity.some((line) => parseElmLine(line).kind === 'error')) {
+        throw new AdapterError('not-elm', 'Adapter did not answer ATI');
+      }
+      for (const command of ANDROID_ELM_INIT) {
+        this.assertAccepted(command, await this.port.command(command, options));
+      }
+      this.automaticFormatting = true;
+      return;
+    }
 
     const banner = await this.port.command('ATZ', options).catch((error: unknown) => {
       if (error instanceof TimeoutError)
@@ -78,7 +100,25 @@ export class ElmIsoTpLink extends BaseLink {
     }
 
     const exchange = new ElmExchange(ecu, payload);
-    await this.sendFrames(encodeIsoTp(ecu, payload), exchange, run);
+    const encoded = encodeIsoTp(ecu, payload);
+    if (this.profile === 'android-mode2') {
+      const automatic = payload.length <= 6;
+      if (automatic !== this.automaticFormatting) {
+        const command = automatic ? 'ATCAF1' : 'ATCAF0';
+        this.assertAccepted(command, await run(command));
+        this.automaticFormatting = automatic;
+      }
+      // Never duplicate the address byte inserted by ATCEA.
+      if (automatic) exchange.ingest(await run(frameToCommand(payload)));
+      else {
+        const frames = encoded.map((frame) => frame.slice(1));
+        const usedInLast = (payload.length - 5) % 6 || 6;
+        frames[frames.length - 1]!.fill(0, 1 + usedInLast);
+        await this.sendFrames(frames, exchange, run);
+      }
+    } else {
+      await this.sendFrames(encoded, exchange, run);
+    }
     if (options.expectResponse === false) return new Uint8Array();
 
     for (;;) {
@@ -102,7 +142,9 @@ export class ElmIsoTpLink extends BaseLink {
 
   private async selectEcu(ecu: number, run: (text: string) => Promise<string[]>): Promise<void> {
     this.currentEcu = undefined;
-    for (const text of ecuAddressCommands(ecu)) this.assertAccepted(text, await run(text));
+    const commands =
+      this.profile === 'android-mode2' ? androidEcuCommands(ecu) : ecuAddressCommands(ecu);
+    for (const text of commands) this.assertAccepted(text, await run(text));
 
     await sleep(this.timings.settleMs);
     this.currentEcu = ecu;
@@ -120,7 +162,7 @@ export class ElmIsoTpLink extends BaseLink {
     let sentInBlock = 0;
 
     for (let index = 1; index < frames.length; index++) {
-      await sleep(stMinMs(flow.stMin));
+      await sleep(Math.max(this.profile === 'android-mode2' ? 50 : 0, stMinMs(flow.stMin)));
       exchange.ingest(await run(frameToCommand(frames[index]!)));
       sentInBlock++;
 
@@ -134,6 +176,9 @@ export class ElmIsoTpLink extends BaseLink {
 
   private assertAccepted(text: string, lines: string[]): void {
     const rejected = lines.some((line) => parseElmLine(line).kind === 'error');
-    if (rejected) throw new AdapterError('adapter-rejected', `Adapter rejected ${text}`);
+    const missingAck =
+      this.profile === 'android-mode2' && !lines.some((line) => line.trim() === 'OK');
+    if (rejected || missingAck)
+      throw new AdapterError('adapter-rejected', `Adapter rejected ${text}`);
   }
 }

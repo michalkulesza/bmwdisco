@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 import { ECU_DATA_DIR, MODULE_SGBDS, PACKS } from '../gen-data/paths';
@@ -49,7 +50,7 @@ describe('raw ECU data', () => {
   });
 
   it('fails loudly on a malformed file', () => {
-    const dir = fs.mkdtempSync(path.join(process.env.TMPDIR ?? '/tmp', 'ecu-'));
+    const dir = fs.mkdtempSync(path.join(tmpdir(), 'ecu-'));
     fs.cpSync(ECU_DATA_DIR, dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'FEM_20.json'), JSON.stringify([{ sgbd: 'FEM_20' }]));
 

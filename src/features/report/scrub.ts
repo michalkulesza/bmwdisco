@@ -9,8 +9,10 @@ const VIN_PLACEHOLDER = '[VIN omitted]';
 const HOST_PLACEHOLDER = '[host omitted]';
 
 const configuredHosts = () => {
-  const { enetHost, lastEnetHost, thorHost } = useSettingsStore.getState();
-  return [enetHost, lastEnetHost, thorHost].map((host) => host.trim()).filter(Boolean);
+  const { enetHost, lastEnetHost, thorHost, elmWifiHost } = useSettingsStore.getState();
+  return [enetHost, lastEnetHost, thorHost, elmWifiHost ?? '']
+    .map((host) => host.trim())
+    .filter(Boolean);
 };
 
 export const scrubText = (text: string): string =>

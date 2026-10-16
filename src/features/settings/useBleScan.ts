@@ -28,6 +28,7 @@ export const useBleScan = () => {
   const [devices, setDevices] = useState<BleAdvert[]>([]);
   const [error, setError] = useState<ConnectErrorReason>();
   const [attempt, setAttempt] = useState(0);
+  const [scanning, setScanning] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -35,9 +36,13 @@ export const useBleScan = () => {
     loadScanner()({
       signal: controller.signal,
       onFound: (advert) => setDevices((current) => upsert(current, advert)),
-    }).catch((scanError: unknown) => {
-      if (!controller.signal.aborted) setError(reasonOf(scanError));
-    });
+    })
+      .catch((scanError: unknown) => {
+        if (!controller.signal.aborted) setError(reasonOf(scanError));
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setScanning(false);
+      });
 
     return () => controller.abort();
   }, [attempt]);
@@ -45,8 +50,9 @@ export const useBleScan = () => {
   const rescan = useCallback(() => {
     setDevices([]);
     setError(undefined);
+    setScanning(true);
     setAttempt((current) => current + 1);
   }, []);
 
-  return { devices, error, rescan };
+  return { devices, error, rescan, scanning };
 };

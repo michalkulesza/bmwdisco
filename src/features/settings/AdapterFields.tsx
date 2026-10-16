@@ -4,8 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 import { chassisLabel, isHostValid, parsePort } from '@/features/connect/helpers';
-import { DEFAULT_THOR_HOST, useSettingsStore, type AdapterChoice } from '@/stores/settings';
+import {
+  DEFAULT_ELM_WIFI_HOST,
+  DEFAULT_ELM_WIFI_PORT,
+  DEFAULT_THOR_HOST,
+  useSettingsStore,
+  type AdapterChoice,
+} from '@/stores/settings';
 import ListRow from '@/ui/ListRow';
+import Text from '@/ui/Text';
 
 import FieldInput from './FieldInput';
 
@@ -95,12 +102,73 @@ const DemoFields = () => {
   );
 };
 
+const ElmWifiFields = () => {
+  const { t } = useTranslation();
+  const host = useSettingsStore((state) => state.elmWifiHost ?? DEFAULT_ELM_WIFI_HOST);
+  const port = useSettingsStore((state) => state.elmWifiPort ?? DEFAULT_ELM_WIFI_PORT);
+  const setHost = useSettingsStore((state) => state.setElmWifiHost);
+  const setPort = useSettingsStore((state) => state.setElmWifiPort);
+
+  return (
+    <View className="gap-3">
+      <TextWifiHint />
+      <FieldInput
+        label={t('settings.fields.elmWifiHost')}
+        value={host}
+        onChangeText={setHost}
+        placeholder={DEFAULT_ELM_WIFI_HOST}
+        keyboardType="numbers-and-punctuation"
+        error={isHostValid(host) ? undefined : t('settings.fields.hostInvalid')}
+      />
+      <FieldInput
+        label={t('settings.fields.elmWifiPort')}
+        value={port}
+        onChangeText={setPort}
+        keyboardType="number-pad"
+        error={parsePort(port) === undefined ? t('settings.fields.portInvalid') : undefined}
+      />
+    </View>
+  );
+};
+
+const TextWifiHint = () => {
+  const { t } = useTranslation();
+  return (
+    <Text variant="meta" tone="muted">
+      {t('connect.serialDevices.wifiHint')}
+    </Text>
+  );
+};
+
+const SerialFields = ({ choice }: { choice: 'elmBluetooth' | 'usb' }) => {
+  const { t } = useTranslation();
+  const device = useSettingsStore((state) =>
+    choice === 'usb' ? state.usbDevice : state.elmBluetoothDevice,
+  );
+  const handlePress = useCallback(
+    () =>
+      router.push({
+        pathname: '/settings/serial-devices',
+        params: { kind: choice === 'usb' ? 'usb' : 'bluetooth' },
+      }),
+    [choice],
+  );
+  return (
+    <ListRow
+      label={t('settings.fields.device')}
+      value={device ? (device.name ?? device.id) : t('settings.fields.deviceNone')}
+      chevron
+      onPress={handlePress}
+    />
+  );
+};
+
 interface AdapterFieldsProps {
   choice: AdapterChoice;
 }
 
 const AdapterFields = ({ choice }: AdapterFieldsProps) => {
-  const isInputGroup = choice === 'enet' || choice === 'thor';
+  const isInputGroup = choice === 'enet' || choice === 'thor' || choice === 'elmWifi';
 
   return (
     <View className={`border-t border-card-border ${isInputGroup ? 'p-4' : ''}`}>
@@ -108,6 +176,8 @@ const AdapterFields = ({ choice }: AdapterFieldsProps) => {
       {choice === 'thor' ? <ThorFields /> : null}
       {choice === 'vgate' ? <IcarFields /> : null}
       {choice === 'demo' ? <DemoFields /> : null}
+      {choice === 'elmWifi' ? <ElmWifiFields /> : null}
+      {choice === 'elmBluetooth' || choice === 'usb' ? <SerialFields choice={choice} /> : null}
     </View>
   );
 };

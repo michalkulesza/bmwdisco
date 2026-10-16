@@ -1,4 +1,6 @@
-import type { AdapterSettings } from '@/stores/settings';
+import { Platform } from 'react-native';
+
+import { adapterChoicesForPlatform, type AdapterSettings } from '@/stores/settings';
 
 import {
   adapterChoiceOf,
@@ -24,6 +26,51 @@ const base: AdapterSettings = {
 };
 
 describe('toAdapterConfig', () => {
+  it('preserves iOS choices and blocks stored Android-only adapters', () => {
+    expect(adapterChoicesForPlatform('ios')).toEqual(['enet', 'thor', 'vgate', 'demo']);
+    const platform = jest.replaceProperty(Platform, 'OS', 'ios');
+    expect(toAdapterConfig({ ...base, adapter: 'elmWifi' })).toBeUndefined();
+    expect(
+      toAdapterConfig({ ...base, adapter: 'usb', usbDevice: { id: '1', name: null } }),
+    ).toBeUndefined();
+    platform.restore();
+  });
+
+  it('configures Android ELM Wi-Fi independently from Thor', () => {
+    const platform = jest.replaceProperty(Platform, 'OS', 'android');
+    expect(toAdapterConfig({ ...base, adapter: 'elmWifi' })).toEqual({
+      adapter: 'elm-wifi',
+      host: '192.168.0.10',
+      port: 35000,
+    });
+    expect(
+      toAdapterConfig({ ...base, adapter: 'elmWifi', elmWifiHost: '8.8.8.8' }),
+    ).toBeUndefined();
+    expect(toAdapterConfig({ ...base, adapter: 'elmWifi', elmWifiPort: '0' })).toBeUndefined();
+    expect(toAdapterConfig({ ...base, adapter: 'thor' })).toEqual({
+      adapter: 'thor',
+      host: '192.168.0.10',
+      port: 23,
+    });
+    platform.restore();
+  });
+
+  it('requires independent selected devices for Android Classic and USB', () => {
+    const platform = jest.replaceProperty(Platform, 'OS', 'android');
+    expect(toAdapterConfig({ ...base, adapter: 'elmBluetooth' })).toBeUndefined();
+    expect(toAdapterConfig({ ...base, adapter: 'usb' })).toBeUndefined();
+    expect(
+      toAdapterConfig({
+        ...base,
+        adapter: 'elmBluetooth',
+        elmBluetoothDevice: { id: 'AA:BB', name: 'ELM' },
+      }),
+    ).toEqual({ adapter: 'elm-bluetooth', deviceId: 'AA:BB' });
+    expect(
+      toAdapterConfig({ ...base, adapter: 'usb', usbDevice: { id: '12', name: 'USB' } }),
+    ).toEqual({ adapter: 'usb', deviceId: '12' });
+    platform.restore();
+  });
   it('lets ENET discover the gateway when no host is set', () => {
     expect(toAdapterConfig(base)).toEqual({ adapter: 'enet' });
     expect(toAdapterConfig({ ...base, lastEnetHost: ' 169.254.2.2 ' })).toEqual({
