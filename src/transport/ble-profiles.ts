@@ -96,6 +96,11 @@ export const selectProfile = (
 ): BleSelection | undefined => {
   for (const profile of profiles) {
     for (const service of services) {
+      if (
+        !profile.serviceUuids.some((uuid) => normalizeUuid(uuid) === normalizeUuid(service.uuid))
+      ) {
+        continue;
+      }
       const found = service.characteristics.map((item) => ({
         ...item,
         uuid: normalizeUuid(item.uuid),

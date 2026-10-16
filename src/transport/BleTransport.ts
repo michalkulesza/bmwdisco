@@ -24,7 +24,6 @@ export interface BleTransportOptions {
 }
 
 const DEFAULT_CONNECT_TIMEOUT_MS = 8000;
-const ANDROID_REQUESTED_MTU = 185;
 
 const toBase64 = (data: Uint8Array): string => Buffer.from(data).toString('base64');
 
@@ -51,6 +50,7 @@ export class BleTransport implements Transport {
 
     try {
       const connected = await ble.connectToDevice(deviceId, { timeout: connectTimeoutMs });
+      if (signal?.aborted || this.ended) throw new TransportError('cancelled');
       this.subscriptions.push(
         connected.onDisconnected((error) => {
           this.finish(
@@ -60,6 +60,7 @@ export class BleTransport implements Transport {
       );
 
       await this.attach(await this.prepare(connected));
+      if (signal?.aborted || this.ended) throw new TransportError('cancelled');
     } catch (error) {
       await this.close();
       throw signal?.aborted ? new TransportError('cancelled') : this.mapOpenError(error);
@@ -74,8 +75,12 @@ export class BleTransport implements Transport {
 
     try {
       await writeChunked(data, this.writeSize, async (chunk) => {
-        if (writer.isWritableWithoutResponse) await writer.writeWithoutResponse(toBase64(chunk));
-        else await writer.writeWithResponse(toBase64(chunk));
+        const withResponse =
+          Platform.OS === 'android'
+            ? writer.isWritableWithResponse
+            : !writer.isWritableWithoutResponse;
+        if (withResponse) await writer.writeWithResponse(toBase64(chunk));
+        else await writer.writeWithoutResponse(toBase64(chunk));
       });
     } catch (error) {
       throw new TransportError('write-failed', 'Bluetooth write failed', { cause: error });
@@ -104,12 +109,11 @@ export class BleTransport implements Transport {
   }
 
   private async prepare(connected: Device): Promise<Device> {
-    const sized =
+    const discovered = await connected.discoverAllServicesAndCharacteristics();
+    this.writeSize =
       Platform.OS === 'android'
-        ? await connected.requestMTU(ANDROID_REQUESTED_MTU).catch(() => connected)
-        : connected;
-    const discovered = await sized.discoverAllServicesAndCharacteristics();
-    this.writeSize = writeSizeForMtu(Math.max(sized.mtu, discovered.mtu));
+        ? MIN_WRITE_SIZE
+        : writeSizeForMtu(Math.max(connected.mtu, discovered.mtu));
 
     return discovered;
   }

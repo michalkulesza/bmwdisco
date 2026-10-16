@@ -27,7 +27,10 @@
     "adapterShort": {
       "enet": "Ethernet USB-C",
       "thor": "Wi-Fi",
-      "vgate": "Bluetooth",
+      "vgate": "Bluetooth LE (BLE)",
+      "elmBluetooth": "Bluetooth Classic",
+      "elmWifi": "Wi-Fi ELM327",
+      "usb": "USB",
       "demo": "Symulacja"
     },
     "steps": {
@@ -89,8 +92,17 @@
       "title": "Adapter Bluetooth",
       "description": "Wybierz swój adapter Vgate iCar. Najpierw podłącz go do gniazda OBD.",
       "scanning": "Wyszukiwanie adapterów…",
-      "found": "Wyszukiwanie…",
+      "found": "Wybierz adapter",
       "unknown": "Adapter bez nazwy"
+    },
+    "serialDevices": {
+      "bluetoothTitle": "Adapter Bluetooth Classic",
+      "usbTitle": "Adapter USB",
+      "bluetoothHint": "Najpierw sparuj adapter OBD w ustawieniach Bluetooth Androida, a następnie wybierz go tutaj.",
+      "usbHint": "Podłącz adapter K+DCAN USB kablem USB OTG, a następnie wybierz go tutaj. Zezwól na dostęp USB podczas łączenia.",
+      "wifiHint": "Najpierw połącz się z siecią Wi-Fi adaptera ELM327 w ustawieniach Androida.",
+      "failed": "Nie można wyświetlić adapterów. Sprawdź Bluetooth lub połączenie USB i spróbuj ponownie.",
+      "empty": "Nie znaleziono adapterów. Sprawdź połączenie i spróbuj ponownie."
     }
   },
   "settings": {
@@ -129,6 +141,8 @@
       "enetHostPlaceholderLast": "Wykryj automatycznie (ostatnio: {{host}})",
       "thorHost": "Adres adaptera",
       "thorPort": "Port",
+      "elmWifiHost": "Adres adaptera ELM327",
+      "elmWifiPort": "Port",
       "hostInvalid": "Podaj prywatny adres IPv4, na przykład 192.168.0.10.",
       "portInvalid": "Podaj port od 1 do 65535.",
       "device": "Adapter",
@@ -141,6 +155,18 @@
     "description": "Wybierz adapter między telefonem a gniazdem OBD w samochodzie.",
     "demoBadge": "Bez auta",
     "adapters": {
+      "elmBluetooth": {
+        "name": "ELM327 Bluetooth",
+        "description": "Adapter OBD Bluetooth Classic. Najpierw sparuj go w ustawieniach Androida."
+      },
+      "elmWifi": {
+        "name": "ELM327 Wi-Fi",
+        "description": "Adapter ELM327 Wi-Fi. Najpierw połącz się z jego siecią Wi-Fi."
+      },
+      "usb": {
+        "name": "K+DCAN USB",
+        "description": "Adapter szeregowy OBD USB podłączony kablem USB OTG."
+      },
       "enet": {
         "name": "ENET",
         "description": "Adapter Ethernet USB-C"
@@ -150,7 +176,7 @@
         "description": "Adapter OBD Wi-Fi. Najpierw dołącz do jego sieci Wi-Fi."
       },
       "vgate": {
-        "name": "Vgate iCar",
+        "name": "Vgate iCar (BLE)",
         "description": "Adapter OBD Bluetooth"
       },
       "demo": {

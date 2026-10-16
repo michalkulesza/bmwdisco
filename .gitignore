@@ -2,6 +2,7 @@ __pycache__/
 *.pyc
 
 PROTO/
+btool-apk/
 .DS_Store
 
 node_modules/
@@ -25,4 +26,6 @@ npm-debug.*
 e2e/output/
 
 .env
-/modules
+/modules/*
+!/modules/bimmerdisco-udp/
+!/modules/bimmerdisco-adapters/

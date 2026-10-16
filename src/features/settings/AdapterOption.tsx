@@ -23,6 +23,9 @@ const ADAPTER_ICONS: Record<AdapterChoice, Icon> = {
   thor: WifiHigh,
   vgate: BluetoothConnected,
   demo: PlayCircle,
+  elmBluetooth: BluetoothConnected,
+  elmWifi: WifiHigh,
+  usb: Network,
 };
 
 const Radio = ({ selected }: { selected: boolean }) => {

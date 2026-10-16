@@ -29,7 +29,7 @@ const listFiles = (dir: string, base = dir): string[] =>
         .flatMap((entry) =>
           entry.isDirectory()
             ? listFiles(path.join(dir, entry.name), base)
-            : [path.relative(base, path.join(dir, entry.name))],
+            : [path.relative(base, path.join(dir, entry.name)).split(path.sep).join('/')],
         )
     : [];
 
@@ -51,7 +51,9 @@ const findDrift = (dir: string, files: Record<string, string>) => {
   const stale = committed.filter((file) => !expected.includes(file));
   const changed = expected.filter(
     (file) =>
-      committed.includes(file) && fs.readFileSync(path.join(dir, file), 'utf8') !== files[file],
+      committed.includes(file) &&
+      fs.readFileSync(path.join(dir, file), 'utf8').replace(/\r\n/g, '\n') !==
+        files[file]?.replace(/\r\n/g, '\n'),
   );
 
   return [

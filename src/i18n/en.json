@@ -27,7 +27,10 @@
     "adapterShort": {
       "enet": "USB-C Ethernet",
       "thor": "Wi-Fi",
-      "vgate": "Bluetooth",
+      "vgate": "Bluetooth LE (BLE)",
+      "elmBluetooth": "Bluetooth Classic",
+      "elmWifi": "Wi-Fi ELM327",
+      "usb": "USB",
       "demo": "Simulated"
     },
     "steps": {
@@ -89,8 +92,17 @@
       "title": "Bluetooth adapter",
       "description": "Choose your Vgate iCar adapter. Plug it into the OBD port first.",
       "scanning": "Searching for adapters…",
-      "found": "Searching…",
+      "found": "Choose an adapter",
       "unknown": "Unnamed adapter"
+    },
+    "serialDevices": {
+      "bluetoothTitle": "Bluetooth Classic adapter",
+      "usbTitle": "USB adapter",
+      "bluetoothHint": "Pair the OBD adapter in Android Bluetooth settings first, then select it here.",
+      "usbHint": "Attach your K+DCAN USB adapter using a USB OTG cable, then select it here. Allow USB access when connecting.",
+      "wifiHint": "Join the ELM327 adapter's Wi-Fi network in Android settings first.",
+      "failed": "Could not list adapters. Check Bluetooth or the USB connection and try again.",
+      "empty": "No adapters found. Check the connection and try again."
     }
   },
   "settings": {
@@ -129,6 +141,8 @@
       "enetHostPlaceholderLast": "Detect automatically (last: {{host}})",
       "thorHost": "Adapter address",
       "thorPort": "Port",
+      "elmWifiHost": "ELM327 adapter address",
+      "elmWifiPort": "Port",
       "hostInvalid": "Enter a private IPv4 address, for example 192.168.0.10.",
       "portInvalid": "Enter a port between 1 and 65535.",
       "device": "Adapter",
@@ -141,6 +155,18 @@
     "description": "Choose the adapter between your phone and the car's OBD port.",
     "demoBadge": "No car",
     "adapters": {
+      "elmBluetooth": {
+        "name": "ELM327 Bluetooth",
+        "description": "Bluetooth Classic OBD adapter. Pair it in Android settings first."
+      },
+      "elmWifi": {
+        "name": "ELM327 Wi-Fi",
+        "description": "Wi-Fi ELM327 adapter. Join its Wi-Fi network first."
+      },
+      "usb": {
+        "name": "K+DCAN USB",
+        "description": "USB serial OBD adapter connected with a USB OTG cable."
+      },
       "enet": {
         "name": "ENET",
         "description": "USB-C Ethernet adapter"
@@ -150,7 +176,7 @@
         "description": "Wi-Fi OBD adapter. Join its Wi-Fi network first."
       },
       "vgate": {
-        "name": "Vgate iCar",
+        "name": "Vgate iCar (BLE)",
         "description": "Bluetooth OBD adapter"
       },
       "demo": {

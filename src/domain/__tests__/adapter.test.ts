@@ -121,6 +121,42 @@ describe('createLink', () => {
     expect(ble).toEqual(['AA:BB']);
   });
 
+  it('builds Android Classic ELM and USB BMW-FAST links with independent transports', async () => {
+    const createSerialTransport = jest.fn(() => new FakeTransport());
+    const { deps } = makeDeps({ createSerialTransport });
+    expect(await createLink({ adapter: 'elm-bluetooth', deviceId: 'paired' }, deps)).toBeInstanceOf(
+      ElmIsoTpLink,
+    );
+    expect(await createLink({ adapter: 'usb', deviceId: '1:0' }, deps)).toBeInstanceOf(ThorLink);
+    expect(createSerialTransport.mock.calls).toEqual([
+      ['bluetooth', 'paired'],
+      ['usb', '1:0'],
+    ]);
+  });
+
+  it.each(['elm-bluetooth', 'usb'] as const)(
+    'rejects unavailable Android serial transport %s',
+    async (adapter) => {
+      await expect(
+        createLink({ adapter, deviceId: 'device' }, makeDeps().deps),
+      ).rejects.toMatchObject({ code: 'no-adapter' });
+    },
+  );
+
+  it('builds ELM Wi-Fi separately from the Thor binary protocol', async () => {
+    const { deps, tcp } = makeDeps();
+    expect(
+      await createLink({ adapter: 'elm-wifi', host: '192.168.0.10', port: 35000 }, deps),
+    ).toBeInstanceOf(ElmIsoTpLink);
+    expect(tcp).toEqual([['192.168.0.10', 35000]]);
+    await expect(
+      createLink({ adapter: 'elm-wifi', host: '8.8.8.8', port: 35000 }, deps),
+    ).rejects.toMatchObject({ code: 'invalid-host' });
+    await expect(
+      createLink({ adapter: 'elm-wifi', host: '192.168.0.10', port: 65536 }, deps),
+    ).rejects.toMatchObject({ code: 'no-adapter' });
+  });
+
   it('builds a simulated link with faults applied', async () => {
     const vehicle = makeVehicle('F20');
     const createVehicle = jest.fn(() => vehicle);

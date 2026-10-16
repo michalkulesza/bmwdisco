@@ -75,6 +75,13 @@ describe('selectProfile', () => {
     expect(selectProfile([service('ffe0', ['ffe1', true, false])])).toBeUndefined();
     expect(selectProfile([service('1234', ['5678', true, true])])).toBeUndefined();
   });
+
+  it('rejects known serial characteristics under an unknown service', () => {
+    expect(
+      selectProfile([service('180f', ['fff1', false, true], ['fff2', true, false])]),
+    ).toBeUndefined();
+    expect(selectProfile([service('180f', [VGATE, true, true])])).toBeUndefined();
+  });
 });
 
 describe('writes', () => {

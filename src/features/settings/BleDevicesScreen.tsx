@@ -38,12 +38,12 @@ const DeviceRow = ({ advert }: { advert: BleAdvert }) => {
   );
 };
 
-const ScanStatus = ({ empty }: { empty: boolean }) => {
+const ScanStatus = ({ empty, scanning }: { empty: boolean; scanning: boolean }) => {
   const { t } = useTranslation();
 
   return (
     <View className="flex-row items-center gap-3 px-1" accessibilityLiveRegion="polite">
-      <ActivityIndicator size="small" />
+      {scanning ? <ActivityIndicator size="small" /> : null}
       <Text variant="meta" tone="muted">
         {empty ? t('connect.devices.scanning') : t('connect.devices.found')}
       </Text>
@@ -53,7 +53,7 @@ const ScanStatus = ({ empty }: { empty: boolean }) => {
 
 const BleDevicesScreen = () => {
   const { t } = useTranslation();
-  const { devices, error, rescan } = useBleScan();
+  const { devices, error, rescan, scanning } = useBleScan();
 
   const handleBackPress = useCallback(() => router.back(), []);
 
@@ -67,7 +67,7 @@ const BleDevicesScreen = () => {
       <Text variant="meta" tone="muted">
         {t('connect.devices.description')}
       </Text>
-      <ScanStatus empty={devices.length === 0} />
+      <ScanStatus empty={devices.length === 0} scanning={scanning} />
       {devices.length > 0 ? (
         <ListGroup>
           {devices.map((advert) => (

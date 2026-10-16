@@ -1,6 +1,15 @@
+import { Platform } from 'react-native';
+
 import { loadVehicles } from '@/data/generated';
 import type { AdapterConfig, AdapterId, SessionErrorReason, SessionPhase } from '@/domain';
-import { DEFAULT_THOR_HOST, type AdapterChoice, type AdapterSettings } from '@/stores/settings';
+import {
+  adapterChoicesForPlatform,
+  DEFAULT_ELM_WIFI_HOST,
+  DEFAULT_ELM_WIFI_PORT,
+  DEFAULT_THOR_HOST,
+  type AdapterChoice,
+  type AdapterSettings,
+} from '@/stores/settings';
 import { isAllowedHost } from '@/transport/host';
 
 export type StepState = 'pending' | 'active' | 'done';
@@ -32,6 +41,9 @@ export const ADAPTER_IDS: Record<AdapterChoice, AdapterId> = {
   thor: 'thor',
   vgate: 'icar',
   demo: 'demo',
+  elmBluetooth: 'elm-bluetooth',
+  elmWifi: 'elm-wifi',
+  usb: 'usb',
 };
 
 export const adapterChoiceOf = (adapter: AdapterId | undefined): AdapterChoice | undefined =>
@@ -56,6 +68,7 @@ export const parsePort = (port: string): number | undefined => {
 };
 
 export const toAdapterConfig = (settings: AdapterSettings): AdapterConfig | undefined => {
+  if (!adapterChoicesForPlatform(Platform.OS).includes(settings.adapter)) return undefined;
   switch (settings.adapter) {
     case 'enet': {
       const host = settings.enetHost.trim();
@@ -80,6 +93,19 @@ export const toAdapterConfig = (settings: AdapterSettings): AdapterConfig | unde
       return settings.icarDevice
         ? { adapter: 'icar', deviceId: settings.icarDevice.id }
         : undefined;
+    case 'elmBluetooth':
+      return settings.elmBluetoothDevice
+        ? { adapter: 'elm-bluetooth', deviceId: settings.elmBluetoothDevice.id }
+        : undefined;
+    case 'usb':
+      return settings.usbDevice ? { adapter: 'usb', deviceId: settings.usbDevice.id } : undefined;
+    case 'elmWifi': {
+      const host = settings.elmWifiHost?.trim() || DEFAULT_ELM_WIFI_HOST;
+      const port = parsePort(settings.elmWifiPort ?? DEFAULT_ELM_WIFI_PORT);
+      return isAllowedHost(host) && port !== undefined
+        ? { adapter: 'elm-wifi', host, port }
+        : undefined;
+    }
     case 'demo':
       return { adapter: 'demo', chassis: settings.demoChassis };
   }
