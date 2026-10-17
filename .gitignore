@@ -26,6 +26,7 @@ npm-debug.*
 e2e/output/
 
 .env
-/modules/*
-!/modules/bimmerdisco-udp/
-!/modules/bimmerdisco-adapters/
+
+# Local native module build output
+/modules/*/android/build/
+/modules/*/android/.gradle/
