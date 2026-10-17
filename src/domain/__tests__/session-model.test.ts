@@ -197,8 +197,15 @@ const walk = async (seed: number): Promise<void> => {
     trace.push('recover');
     rig.actor.send({ type: 'CONNECT', config: DEMO_CONFIG });
     await jest.advanceTimersByTimeAsync(30_000);
-    if (rig.phase() !== 'ready') fail(`could not recover, phase ${rig.phase()}`);
-    if (lit(rig) > 0 || rig.context().lightsMayBeOn) fail('recovery did not restore control');
+    if (!rig.context().cleanupCar?.vin && rig.context().ledger.hasPending) {
+      // A failed VIN read before actuation prevents identifying the owner of a retained
+      // ledger on a new link. Fail closed rather than restoring a possible replacement.
+      if (rig.phase() !== 'error' || !rig.context().lightsMayBeOn)
+        fail('unidentified cleanup owner did not retain a blocked safety warning');
+    } else {
+      if (rig.phase() !== 'ready') fail(`could not recover, phase ${rig.phase()}`);
+      if (lit(rig) > 0 || rig.context().lightsMayBeOn) fail('recovery did not restore control');
+    }
   }
   checkSafe();
 

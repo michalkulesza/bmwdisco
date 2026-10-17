@@ -1,4 +1,5 @@
 import { createLink, type LinkFactoryDeps, type SessionDeps } from '@/domain';
+import { useVehicleFactsStore } from '@/stores/vehicle-facts';
 
 import { reactNativeAppState } from './app-state-source';
 
@@ -9,6 +10,10 @@ const loadNativeLinkDeps = (): LinkFactoryDeps =>
     .nativeLinkDeps;
 
 export const createSessionDeps = (): SessionDeps => ({
+  beginVehicleSession: () => useVehicleFactsStore.getState().clearSessionProfile(),
+  loadVehicleFacts: (car, demo) => useVehicleFactsStore.getState().getProfile(car, demo),
+  saveVehicleFacts: (car, facts, validations, demo) =>
+    useVehicleFactsStore.getState().recordReadyFacts(car, facts, validations, demo),
   createLink: (config, signal) => createLink(config, loadNativeLinkDeps(), signal),
   appState: reactNativeAppState,
   debug: __DEV__,

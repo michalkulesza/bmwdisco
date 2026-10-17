@@ -12,6 +12,7 @@ import SectionHeader from '@/ui/SectionHeader';
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
 
+import EquipmentSection from './EquipmentSection';
 import InfoRow from './InfoRow';
 
 type ModuleSgbd = DetectedCar['modules'][number]['sgbd'];
@@ -128,10 +129,13 @@ const ConnectedSections = () => {
         </ListGroup>
       </View>
       {car ? (
-        <View className="gap-3">
-          <SectionHeader title={t('car.title')} />
-          <CarCard car={car} />
-        </View>
+        <>
+          <View className="gap-3">
+            <SectionHeader title={t('car.title')} />
+            <CarCard car={car} />
+          </View>
+          <EquipmentSection car={car} />
+        </>
       ) : null}
     </>
   );

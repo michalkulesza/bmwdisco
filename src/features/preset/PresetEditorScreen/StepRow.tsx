@@ -4,7 +4,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 
-import { categoryOf, type ElementId } from '@/data/elements';
+import { categoryOf } from '@/data/elements';
 import { type PopoverTriggerProps } from '@/ui/Popover';
 import SegmentedControl, { type SegmentedOption } from '@/ui/SegmentedControl';
 import Text from '@/ui/Text';
@@ -18,6 +18,8 @@ import LightPicker from '../LightPicker';
 import MsInput from '../MsInput';
 
 import StepCard from './StepCard';
+
+import type { LightSelection } from '../light-selection';
 
 type StepState = 'on' | 'off';
 
@@ -41,26 +43,51 @@ const WaitHeader = () => {
   );
 };
 
-type SetStep = Extract<EditorStep, { type: 'set' }>;
+type LightStep = Extract<EditorStep, { type: 'set' | 'action' }>;
 
 interface ElementHeaderProps {
-  step: SetStep;
+  step: LightStep;
   onChange: (step: EditorStep) => void;
 }
 
 const ElementHeader = ({ step, onChange }: ElementHeaderProps) => {
   const { t } = useTranslation();
   const muted = useColorToken('text-muted');
-  const [first, ...rest] = step.elements;
+  const first = step.type === 'set' ? step.elements[0] : undefined;
+  const actions = step.type === 'action' ? step.actions : [];
+  const action = actions[0];
   const { icon: IconComponent, hue } = categoryAppearance(first ? categoryOf(first) : 'other');
   const color = useColorToken(hue);
-  const elementName = first ? translateKey(t, `elements.${first}`) : '';
-  const label = rest.length
-    ? t('preset.moreElements', { name: elementName, count: rest.length })
+  const elementName = action
+    ? translateKey(t, `actions.names.${action}`)
+    : first
+      ? translateKey(t, `elements.${first}`)
+      : '';
+  const restCount =
+    step.type === 'set' ? Math.max(step.elements.length - 1, 0) : Math.max(actions.length - 1, 0);
+  const label = restCount
+    ? t('preset.moreElements', { name: elementName, count: restCount })
     : elementName;
 
   const handleSelect = useCallback(
-    (id: ElementId) => onChange({ ...step, elements: [id] }),
+    (selection: LightSelection) =>
+      onChange(
+        selection.kind === 'legacy'
+          ? {
+              key: step.key,
+              type: 'set',
+              elements: [selection.id],
+              state: step.state,
+              ...(step.durationMs === undefined ? {} : { durationMs: step.durationMs }),
+            }
+          : {
+              key: step.key,
+              type: 'action',
+              actions: [selection.id],
+              state: step.state,
+              ...(step.durationMs === undefined ? {} : { durationMs: step.durationMs }),
+            },
+      ),
     [onChange, step],
   );
   const renderTrigger = useCallback(
@@ -76,14 +103,19 @@ const ElementHeader = ({ step, onChange }: ElementHeaderProps) => {
         <Text variant="bodyMedium" numberOfLines={1} className="shrink">
           {label}
         </Text>
-        <ElementWarning elements={step.elements} />
+        {step.type === 'set' ? <ElementWarning elements={step.elements} /> : null}
         <CaretDownIcon size={14} color={muted} />
       </Pressable>
     ),
-    [IconComponent, color, label, muted, step.elements, t],
+    [IconComponent, color, label, muted, step, t],
   );
 
-  return <LightPicker value={first} onSelect={handleSelect} trigger={renderTrigger} />;
+  const value: LightSelection | undefined = first
+    ? { kind: 'legacy', id: first }
+    : action
+      ? { kind: 'action', id: action }
+      : undefined;
+  return <LightPicker value={value} onSelect={handleSelect} trigger={renderTrigger} />;
 };
 
 const StepRow = ({ step, number, issue, onChange, onRemove }: StepRowProps) => {

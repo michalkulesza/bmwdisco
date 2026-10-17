@@ -242,7 +242,6 @@ describe('PresetEditorScreen', () => {
     });
     expect(routerMock.push).toHaveBeenCalledWith({
       pathname: '/preset/add-step',
-      params: { type: 'set' },
     });
   });
 
@@ -333,7 +332,7 @@ describe('PresetEditorScreen', () => {
     expect(routerMock.back).toHaveBeenCalledTimes(1);
   });
 
-  it('tests the preset on the car', async () => {
+  it('tests the semantic seed through the shared runnable assessment', async () => {
     await openEditor('seed-double-flash');
 
     await fireEvent.press(screen.getByRole('button', { name: 'Test' }));

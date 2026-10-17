@@ -6,6 +6,7 @@ import { Alert, View } from 'react-native';
 import ReorderableList, { type ReorderableListReorderEvent } from 'react-native-reorderable-list';
 
 import { presetSchema, PRESET_LIMITS, type PresetPlayback } from '@/domain';
+import { assessRunnable, contextOf } from '@/domain/actions';
 import { headerLeftOptions, headerRightOptions } from '@/features/navigation/headerItems';
 import { useSessionActions, useSessionSelector } from '@/session';
 import { createPresetId, usePresetsStore } from '@/stores/presets';
@@ -152,11 +153,24 @@ const PresetEditorContent = ({ presetId }: PresetEditorContentProps) => {
       return;
     }
 
+    const assessment = assessRunnable(contextOf(car), { kind: 'preset', preset: parsed.data });
+    if (assessment.status !== 'runnable') {
+      const reason = assessment.missing[0];
+      const reasonKey =
+        reason?.status === 'unknown'
+          ? reason.reason
+          : reason?.status === 'unsupported'
+            ? reason.reason
+            : 'noSemanticMapping';
+      toast.show({ title: translateKey(t, `actions.reasons.${reasonKey}`), tone: 'error' });
+      return;
+    }
+
     run(parsed.data);
   }, [car, draft, run, stop, t, testId, testing, toast]);
 
   const handleAddAction = useCallback(
-    () => router.push({ pathname: '/preset/add-step', params: { type: 'set' } }),
+    () => router.push({ pathname: '/preset/add-step' }),
     [router],
   );
   const handleAddWait = useCallback(

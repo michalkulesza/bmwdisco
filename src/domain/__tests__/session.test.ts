@@ -304,8 +304,9 @@ describe('running items', () => {
     expect(rig.vehicle.getLitElements()).toEqual([]);
   });
 
-  it('collects notices about skipped elements', async () => {
+  it('rejects a preset with missing outputs before starting instead of silently skipping', async () => {
     const rig = await startReady(undefined, 'F10');
+    rig.vehicle.clearLog();
 
     run(rig, {
       ...holdPreset(100),
@@ -316,10 +317,10 @@ describe('running items', () => {
     });
     await rig.waitFor('ready');
 
-    expect(rig.context().notices).toContainEqual({
-      type: 'elementSkipped',
-      element: 'corneringLeft',
-    });
+    expect(rig.context().notices).toEqual([]);
+    expect(rig.context().lastError?.reason).toBe('missingOutput');
+    expect(rig.context().ledger.hasPending).toBe(false);
+    expect(rig.vehicle.requestLog).toEqual([]);
   });
 
   it('records a capped debug log only when debug is on', async () => {

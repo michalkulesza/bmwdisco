@@ -1,12 +1,11 @@
-import { loadEffects } from '@/data/generated';
 import type { DiagnosticLink } from '@/link/types';
 import { fromHex } from '@/protocol/bytes';
 import { abortReason } from '@/protocol/errors';
 
 import { CarNotRespondingError, UnsupportedVehicleError } from '../errors';
 
+import { deriveCapabilities } from './capabilities';
 import {
-  isEffectAvailable,
   lookupVinType,
   matchIdentity,
   parseVin,
@@ -94,15 +93,7 @@ export const detectCar = async (
   const chassisCandidates = vinType
     ? [vinType.code, ...moduleCandidates.filter((chassis) => chassis !== vinType.code)]
     : moduleCandidates;
-  const effects = loadEffects()
-    .map((effect) =>
-      effect.id === 'ghost.fullOFF'
-        ? { ...effect, steps: effect.steps.filter((step) => elementSources.has(step.element)) }
-        : effect,
-    )
-    .filter((effect) => isEffectAvailable(effect, modules, elementSources));
-
-  return {
+  return deriveCapabilities({
     vin,
     model: vinType?.model,
     chassis: chassisCandidates[0],
@@ -111,8 +102,8 @@ export const detectCar = async (
     elementSources,
     elementTargets,
     selectableElements,
-    effects,
-  };
+    effects: [],
+  });
 };
 
 export const createLinkProvider = (

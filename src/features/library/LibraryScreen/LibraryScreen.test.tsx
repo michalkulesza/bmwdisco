@@ -44,12 +44,14 @@ describe('LibraryScreen', () => {
     await renderScreen(<LibraryScreen />);
     await fireEvent.changeText(screen.getByLabelText('Search lights'), 'front fog lights');
 
-    const dimmed = screen.getByRole('button', { name: /^Flash front fog lights, Not on your car/ });
+    const dimmed = screen.getByRole('button', {
+      name: /^Flash front fog lights, One or more required light outputs/,
+    });
     await fireEvent.press(dimmed);
 
     expect(dimmed.props.accessibilityState).toMatchObject({ disabled: true });
     expect(sessionActions.run).not.toHaveBeenCalled();
-    expect(screen.getByText(/Lights marked/)).toBeTruthy();
+    expect(screen.getByText(/Unavailable lights/)).toBeTruthy();
   });
 
   it('shows On and Off for toggle lights', async () => {

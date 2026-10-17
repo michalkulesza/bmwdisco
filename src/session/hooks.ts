@@ -7,6 +7,7 @@ import {
   type SessionMachine,
   type SessionPhase,
 } from '@/domain';
+import type { MappingValidation, VehicleFacts } from '@/domain/vehicle/types';
 
 import { SessionContext } from './SessionProvider';
 
@@ -26,6 +27,8 @@ export const useSessionActions = () => {
 
   return useMemo(
     () => ({
+      setVehicleFacts: (facts: VehicleFacts, validations?: readonly MappingValidation[]) =>
+        actor.send({ type: 'SET_VEHICLE_FACTS', facts, validations }),
       setDiagnostics: (enabled: boolean) => actor.send({ type: 'SET_DIAGNOSTICS', enabled }),
       clearDiagnostics: () => actor.send({ type: 'CLEAR_DIAGNOSTICS' }),
       connect: (config: AdapterConfig) => actor.send({ type: 'CONNECT', config }),

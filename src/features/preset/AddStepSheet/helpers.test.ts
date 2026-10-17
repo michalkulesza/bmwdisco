@@ -81,4 +81,54 @@ describe('add step helpers', () => {
       durationMs: 100,
     });
   });
+
+  it('defaults to the first semantic action and inherits the latest non-wait step across kinds', () => {
+    expect(initialForm(undefined, [], ['hazard'])).toMatchObject({
+      type: 'action',
+      action: 'indicatorsLeft',
+      state: 'on',
+      durationMs: 100,
+    });
+
+    const mixed = [
+      {
+        key: 'legacy',
+        type: 'set' as const,
+        elements: ['hazard' as const],
+        state: 'off' as const,
+        durationMs: 250,
+      },
+      { key: 'wait', type: 'wait' as const, ms: 100 },
+      {
+        key: 'semantic',
+        type: 'action' as const,
+        actions: ['brakesAll' as const],
+        state: 'on' as const,
+        durationMs: 500,
+      },
+    ];
+    expect(initialForm(undefined, mixed, ['hazard'])).toMatchObject({
+      type: 'action',
+      action: 'brakesAll',
+      state: 'on',
+      durationMs: 500,
+    });
+
+    const latestLegacy = [
+      ...mixed,
+      {
+        key: 'legacy-latest',
+        type: 'set' as const,
+        elements: ['hazard' as const],
+        state: 'off' as const,
+        durationMs: 350,
+      },
+    ];
+    expect(initialForm(undefined, latestLegacy, ['hazard'])).toMatchObject({
+      type: 'set',
+      element: 'hazard',
+      state: 'off',
+      durationMs: 350,
+    });
+  });
 });

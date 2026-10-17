@@ -69,7 +69,18 @@ export interface IdentifyInput {
   config: AdapterConfig;
   link: DiagnosticLink;
   addresses?: readonly number[];
+  cleanupCar?: DetectedCar;
 }
+
+export const sameVehicle = (previous: DetectedCar, next: DetectedCar): boolean => {
+  if (previous.vin !== next.vin) return false;
+  const identities = (car: DetectedCar) =>
+    car.modules
+      .map((module) => `${module.sgbd}:${module.address}:${module.identity ?? 'unknown'}`)
+      .sort()
+      .join(',');
+  return identities(previous) === identities(next);
+};
 
 export interface IdentifyOutput {
   link: DiagnosticLink;
@@ -77,7 +88,7 @@ export interface IdentifyOutput {
 }
 
 export const identifyCar = async (
-  { deps, config, link, addresses }: IdentifyInput,
+  { deps, config, link, addresses, cleanupCar }: IdentifyInput,
   signal: AbortSignal,
 ): Promise<IdentifyOutput> => {
   const provider = createLinkProvider(link, () =>
@@ -91,6 +102,9 @@ export const identifyCar = async (
       signal,
     });
     if (signal.aborted) throw new CarNotRespondingError();
+    // Never redirect a retained ledger to another car or unidentified replacement.
+    if (cleanupCar && (!cleanupCar.vin || !sameVehicle(cleanupCar, car)))
+      throw new CarNotRespondingError();
 
     return { link: provider.link, car };
   } catch (error) {
@@ -112,6 +126,7 @@ export interface ReconnectInput {
   deps: SessionDeps;
   config: AdapterConfig;
   car: DetectedCar;
+  cleanupCar?: DetectedCar;
 }
 
 export const reconnectActor = fromPromise<IdentifyOutput, ReconnectInput>(
@@ -119,12 +134,12 @@ export const reconnectActor = fromPromise<IdentifyOutput, ReconnectInput>(
     const { deps, config, car } = input;
     const link = await openNewLink(deps, config, signal);
     const addresses = [...new Set(car.modules.map((module) => module.address))];
-    const result = await identifyCar({ deps, config, link, addresses }, signal);
+    const result = await identifyCar(
+      { deps, config, link, addresses, cleanupCar: input.cleanupCar },
+      signal,
+    );
 
-    const known = new Set(car.modules.map((module) => module.sgbd));
-    const found = new Set(result.car.modules.map((module) => module.sgbd));
-    const sameCar = known.size === found.size && [...known].every((sgbd) => found.has(sgbd));
-    if (!sameCar) {
+    if (!sameVehicle(car, result.car)) {
       await closeQuietly(result.link);
       throw new CarNotRespondingError();
     }

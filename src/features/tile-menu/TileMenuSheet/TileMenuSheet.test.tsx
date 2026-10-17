@@ -107,8 +107,8 @@ describe('TileMenuSheet', () => {
     const copy = usePresetsStore.getState().presets.at(-1)!;
     expect(copy.name).toBe('Flash high beams');
     expect(copy.steps).toEqual([
-      { type: 'set', elements: ['highBeamAll'], state: 'on', durationMs: 100 },
-      { type: 'set', elements: ['highBeamAll'], state: 'off' },
+      { type: 'action', actions: ['bothHighBeams'], state: 'on', durationMs: 100 },
+      { type: 'action', actions: ['bothHighBeams'], state: 'off' },
     ]);
   });
 

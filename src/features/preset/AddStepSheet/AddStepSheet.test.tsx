@@ -40,6 +40,18 @@ describe('AddStepSheet', () => {
     expect(routerMock.back).toHaveBeenCalledTimes(1);
   });
 
+  it('authors a semantic action step without storing it as a legacy element', async () => {
+    await renderScreen(<AddStepSheet />);
+
+    await fireEvent.press(screen.getByRole('button', { name: 'Light' }));
+    await fireEvent.press(screen.getByRole('radio', { name: 'Both high beams' }));
+    await fireEvent.press(screen.getByRole('button', { name: 'Add to preset' }));
+
+    expect(steps()).toEqual([
+      { type: 'action', actions: ['bothHighBeams'], state: 'on', durationMs: 100 },
+    ]);
+  });
+
   it('continues from the previous light after a wait and can switch it off directly', async () => {
     useDraftStore.getState().setSteps([
       { key: 'light', type: 'set', elements: ['tailLeft'], state: 'on', durationMs: 250 },

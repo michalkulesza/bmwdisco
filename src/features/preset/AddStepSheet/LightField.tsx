@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 
-import { categoryOf, type ElementId } from '@/data/elements';
+import { categoryOf } from '@/data/elements';
 import { type PopoverTriggerProps } from '@/ui/Popover';
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
@@ -13,20 +13,25 @@ import { categoryAppearance } from '../category-appearance';
 import ElementWarning from '../ElementWarning';
 import LightPicker from '../LightPicker';
 
+import type { LightSelection } from '../light-selection';
+
 interface LightFieldProps {
-  selected: ElementId | undefined;
-  onSelect: (id: ElementId) => void;
+  selected: LightSelection | undefined;
+  onSelect: (selection: LightSelection) => void;
 }
 
 const LightField = ({ selected, onSelect }: LightFieldProps) => {
   const { t } = useTranslation();
   const muted = useColorToken('text-muted');
-  const selectedCategory = selected ? categoryOf(selected) : 'other';
+  const selectedCategory = selected?.kind === 'legacy' ? categoryOf(selected.id) : 'other';
   const { icon: IconComponent, hue } = categoryAppearance(selectedCategory);
   const hueColor = useColorToken(hue);
-  const triggerLabel = selected
-    ? translateKey(t, `elements.${selected}`)
-    : t('preset.step.chooseLight');
+  const triggerLabel =
+    selected?.kind === 'action'
+      ? translateKey(t, `actions.names.${selected.id}`)
+      : selected?.kind === 'legacy'
+        ? translateKey(t, `elements.${selected.id}`)
+        : t('preset.step.chooseLight');
 
   const renderTrigger = useCallback(
     (triggerProps: PopoverTriggerProps, { open }: { open: boolean }) => (
@@ -43,13 +48,13 @@ const LightField = ({ selected, onSelect }: LightFieldProps) => {
           <Text variant="bodyMedium" numberOfLines={1}>
             {triggerLabel}
           </Text>
-          {selected ? (
+          {selected?.kind === 'legacy' ? (
             <Text variant="small" tone="muted">
               {translateKey(t, `categories.${selectedCategory}`)}
             </Text>
           ) : null}
         </View>
-        <ElementWarning elements={selected ? [selected] : []} />
+        <ElementWarning elements={selected?.kind === 'legacy' ? [selected.id] : []} />
         <CaretDownIcon size={16} color={muted} />
       </Pressable>
     ),

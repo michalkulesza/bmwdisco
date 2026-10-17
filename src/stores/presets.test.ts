@@ -22,6 +22,7 @@ describe('presets store', () => {
   it('seeds valid Double flash and Fog strobe presets', () => {
     expect(state().presets.map((preset) => preset.name)).toEqual(['Double flash', 'Fog strobe']);
     state().presets.forEach((preset) => expect(() => parsePreset(preset)).not.toThrow());
+    expect(SEED_PRESETS[0]?.steps.every((step) => step.type === 'action')).toBe(true);
   });
 
   it('adds a valid preset', () => {
@@ -126,16 +127,32 @@ describe('presets store', () => {
     expect(ids).not.toContain('broken');
   });
 
-  it('migrates persisted v1 presets with a trailing loop step to loop playback', async () => {
-    const legacy = {
-      ...makePreset('legacy'),
-      steps: [...makePreset('legacy').steps, { type: 'loop' }],
+  it.each([1, 2])(
+    'migrates persisted v%s presets with a trailing loop step to loop playback',
+    async (version) => {
+      const legacy = {
+        ...makePreset('legacy'),
+        steps: [...makePreset('legacy').steps, { type: 'loop' }],
+      };
+      Storage.setItemSync('presets', JSON.stringify({ state: { presets: [legacy] }, version }));
+      await usePresetsStore.persist.rehydrate();
+
+      const migrated = state().presets.find((preset) => preset.id === 'legacy');
+      expect(migrated?.playback).toBe('loop');
+      expect(migrated?.steps.some((step) => (step.type as string) === 'loop')).toBe(false);
+    },
+  );
+
+  it('preserves persisted legacy seed steps and user edits during v2 to v3 migration', async () => {
+    const edited = {
+      ...SEED_PRESETS[0]!,
+      name: 'My flash',
+      steps: makePreset('seed-double-flash').steps,
     };
-    Storage.setItemSync('presets', JSON.stringify({ state: { presets: [legacy] }, version: 1 }));
+    Storage.setItemSync('presets', JSON.stringify({ state: { presets: [edited] }, version: 2 }));
     await usePresetsStore.persist.rehydrate();
 
-    const migrated = state().presets.find((preset) => preset.id === 'legacy');
-    expect(migrated?.playback).toBe('loop');
-    expect(migrated?.steps.some((step) => (step.type as string) === 'loop')).toBe(false);
+    expect(state().presets).toEqual([edited]);
+    expect(state().presets[0]?.steps[0]?.type).toBe('set');
   });
 });

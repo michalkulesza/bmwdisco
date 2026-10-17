@@ -6,7 +6,7 @@ import {
   IDENTIFICATION,
   SERIES_HINTS,
 } from '@/data/generated';
-import type { Effect, IdentificationEntry, TypeCodeEntry } from '@/data/types';
+import type { IdentificationEntry, TypeCodeEntry } from '@/data/types';
 import { bytesToAscii, hex } from '@/protocol/bytes';
 
 import type { DetectedModule } from './types';
@@ -38,7 +38,13 @@ export const matchIdentity = (
 export const toDetectedModule = (entry: IdentificationEntry): DetectedModule => {
   const sgbd = entry.sgbd as ModuleSgbd;
 
-  return { sgbd, address: entry.adrIndex, module: loadModule(sgbd), chassis: entry.chassis };
+  return {
+    sgbd,
+    identity: entry.sgbdHex,
+    address: entry.adrIndex,
+    module: loadModule(sgbd),
+    chassis: entry.chassis,
+  };
 };
 
 export const parseVin = (response: Uint8Array): string | undefined => {
@@ -74,21 +80,3 @@ export const rankChassis = (modules: readonly DetectedModule[]): string[] => {
 
 export const selectableElementsOf = (sources: ReadonlyMap<ElementId, unknown>): ElementId[] =>
   ELEMENT_IDS.filter((element) => sources.has(element) && categoryOf(element) !== 'cluster');
-
-export const isEffectAvailable = (
-  effect: Effect,
-  modules: readonly DetectedModule[],
-  sources: ReadonlyMap<ElementId, unknown>,
-): boolean => {
-  const hasModule = effect.requiredModules.some((sgbd) =>
-    modules.some((module) => module.sgbd === sgbd),
-  );
-  const steps = [...effect.steps, ...(effect.offSteps ?? [])];
-
-  return (
-    hasModule &&
-    (effect.id === 'ghost.fullOFF'
-      ? steps.some((step) => sources.has(step.element))
-      : steps.every((step) => sources.has(step.element)))
-  );
-};

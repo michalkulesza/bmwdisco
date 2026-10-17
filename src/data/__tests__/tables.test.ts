@@ -78,7 +78,10 @@ describe('bundle hygiene', () => {
     for (const file of files) {
       expect({
         file,
-        imports: /data\/ecu/.test(fs.readFileSync(file, 'utf8')),
+        // Evidence metadata may name a source file; inspect module specifiers instead.
+        imports: /(?:\bfrom\s*|\b(?:import|require)\s*\(?\s*)['"][^'"]*data\/ecu/.test(
+          fs.readFileSync(file, 'utf8'),
+        ),
       }).toEqual({
         file,
         imports: false,

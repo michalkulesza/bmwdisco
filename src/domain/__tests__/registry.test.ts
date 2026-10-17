@@ -1,4 +1,5 @@
 import { IDENTIFICATION, loadTypeCodes } from '@/data/generated';
+import { assessRunnable, contextOf } from '@/domain/actions';
 import { CarNotRespondingError, UnsupportedVehicleError } from '@/domain/errors';
 import { createLinkProvider, detectCar, ModuleRegistry } from '@/domain/registry/detect-car';
 import { lookupVinType, typeCodeOf } from '@/domain/registry/helpers';
@@ -75,7 +76,9 @@ describe('detectCar', () => {
     expect(car.selectableElements).not.toContain('clusterFeedback');
     expect(car.effects.length).toBeGreaterThan(0);
     for (const effect of car.effects) {
-      for (const step of effect.steps) expect(car.elementSources.has(step.element)).toBe(true);
+      const assessment = assessRunnable(contextOf(car), { kind: 'effect', effect });
+      expect(['runnable', 'partial']).toContain(assessment.status);
+      if (effect.id !== 'ghost.fullOFF') expect(assessment.missing).toEqual([]);
     }
   });
 

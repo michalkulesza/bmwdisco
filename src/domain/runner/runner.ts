@@ -1,8 +1,9 @@
 import type { DiagnosticLink } from '@/link/types';
 import { NegativeResponseError, toError } from '@/protocol/errors';
 
+import { assessRunnable, contextOf } from '../actions/availability';
 import { systemClock } from '../clock';
-import { RunLimitError } from '../errors';
+import { ActionUnavailableError, NothingToRunError, RunLimitError } from '../errors';
 import { MAX_RUN_MS, PRESET_LIMITS } from '../preset/limits';
 
 import { createCleanupSend, restoreControl, type RestoreOptions } from './cleanup';
@@ -85,6 +86,14 @@ export class PresetRunner {
         return { status: this.statusOf(limit.signal), skipped };
       }
 
+      const assessment = assessRunnable(contextOf(this.deps.car), item);
+      if (assessment.status !== 'runnable' && assessment.status !== 'partial') {
+        const failure = assessment.missing[0];
+        if (failure && failure.status !== 'supported' && failure.status === 'unknown')
+          throw new ActionUnavailableError(failure.reason);
+        if (assessment.steps.length === 0) throw new NothingToRunError();
+        throw new ActionUnavailableError('missingOutput');
+      }
       const plan = buildPlan(planInputOf(item), this.deps.car);
       skipped.push(...plan.skipped);
       this.emit({ type: 'started', itemId: itemIdOf(item) });

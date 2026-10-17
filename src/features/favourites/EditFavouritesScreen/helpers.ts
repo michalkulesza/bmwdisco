@@ -23,7 +23,7 @@ export const buildCandidates = ({
   const taken = new Set(favouriteIds);
   const presetItems = presets
     .filter((preset) => !taken.has(preset.id))
-    .map((preset) => presetItem(preset, t, car !== undefined));
+    .map((preset) => presetItem(preset, t, car));
   const effectItems = predefined
     .filter((effect) => !taken.has(effect.id))
     .map((effect) => effectItem(effect, t, car));

@@ -1,4 +1,47 @@
 {
+  "actions": {
+    "seeds": { "doubleFlash": "Double flash", "fogStrobe": "Fog strobe" },
+    "logical": "Light actions",
+    "legacy": "Individual outputs",
+    "names": {
+      "indicatorsLeft": "Left front and rear indicators",
+      "indicatorsRight": "Right front and rear indicators",
+      "bothHighBeams": "Both high beams",
+      "highBeamLeft": "Left high beam",
+      "highBeamRight": "Right high beam",
+      "lowBeamLeft": "Left low beam",
+      "lowBeamRight": "Right low beam",
+      "bothLowBeams": "Both low beams",
+      "corneringLeft": "Left cornering light",
+      "corneringRight": "Right cornering light",
+      "brakesAll": "All brake lights",
+      "biXenonShutterBoth": "Both bi-xenon shutters"
+    },
+    "reasons": {
+      "equipmentUnknown": "Choose the headlight equipment in Settings. This action also needs a confirmed lamp test.",
+      "equipmentConflict": "Headlight equipment information conflicts. Confirm the actual equipment before using this action.",
+      "confirmationRequired": "The lamps and their release must be visibly verified for this car before this action can run.",
+      "missingModule": "The required light module is missing.",
+      "missingOutput": "One or more required light outputs are unavailable on this car.",
+      "noSemanticMapping": "No verified output is available for this light action.",
+      "commandRejected": "The car rejected this light command. Check the diagnostic results before retrying."
+    }
+  },
+  "equipment": {
+    "resolveConflict": "Confirm fitted equipment",
+    "confirmTitle": "Confirm fitted headlights",
+    "confirmMessage": "Confirm that this car is currently fitted with {{type}} headlights, including any retrofit. This clears the equipment conflict and requires affected light mappings to be tested again.",
+    "confirmSelection": "Use this equipment",
+    "title": "Lighting equipment",
+    "headlightType": "Headlight type",
+    "unknown": "Unknown",
+    "halogen": "Halogen",
+    "xenon": "Xenon",
+    "led": "LED",
+    "explanation": "Select the equipment actually fitted to this car. Selection alone does not verify a light command; new mappings require a visible lamp and release test.",
+    "conflict": "Equipment information conflicts. Confirm the fitted equipment and repeat the lamp test before enabling dependent actions.",
+    "readyRequired": "Stop light control and finish restoration before changing equipment."
+  },
   "common": {
     "back": "Back",
     "cancel": "Cancel",
@@ -208,7 +251,7 @@
     "title": "Library",
     "search": "Search lights",
     "empty": "No lights found",
-    "notOnCarNote": "Lights marked “Not on your car” cannot run on this vehicle."
+    "notOnCarNote": "Unavailable lights show the missing output or confirmation they need. Open their menu for the full explanation."
   },
   "preset": {
     "editTitle": "Edit preset",

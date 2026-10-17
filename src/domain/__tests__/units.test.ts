@@ -1,5 +1,6 @@
 import { loadEffects } from '@/data/generated';
 import {
+  ActionUnavailableError,
   CarNotRespondingError,
   InvalidPresetError,
   NothingToRunError,
@@ -30,7 +31,16 @@ import {
 import { detectOnSim, makeVehicle } from '@/test-utils/domain-sim';
 
 describe('classifyRunError', () => {
-  it.each([
+  it.each<[unknown, string]>([
+    ...[
+      'equipmentUnknown',
+      'equipmentConflict',
+      'confirmationRequired',
+      'commandRejected',
+      'missingModule',
+      'noSemanticMapping',
+    ].map<[unknown, string]>((reason) => [new ActionUnavailableError(reason), reason]),
+    [new ActionUnavailableError('unrecognized-reason'), 'missingOutput'],
     [new NegativeResponseError(0x2f, 0x22), 'conditionsNotCorrect'],
     [new NegativeResponseError(0x2f, 0x31), 'rejected'],
     [new TimeoutError('response'), 'timeout'],

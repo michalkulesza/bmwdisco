@@ -2,8 +2,11 @@ import { and, assign, setup, type ActorRefFrom } from 'xstate';
 
 import { toError } from '@/protocol/errors';
 
+import { assessRunnable, contextOf } from '../actions/availability';
 import { isValidPreset } from '../preset/schema';
 import { testBlockReason } from '../raw/gate';
+import { deriveCapabilities } from '../registry/capabilities';
+import { selectableElementsOf } from '../registry/helpers';
 import { classifySessionError } from '../runner/classify';
 import { ControlLedger } from '../runner/ledger';
 import { PresetRunner } from '../runner/runner';
@@ -108,6 +111,18 @@ const isToggleEvent = (
 ): event is Extract<SessionEvent, { type: 'TOGGLE' }> =>
   event.type === 'TOGGLE' && runnableOf(context.car, event) !== undefined;
 
+const canExecute = (context: SessionContext, event: SessionEvent): boolean => {
+  if (!context.car) return false;
+  const item = runnableOf(context.car, event);
+  if (!item) return false;
+  // An OFF with no explicit steps releases the existing physical ledger.
+  if (item.kind === 'effect' && item.on === false && !item.effect.offSteps?.length) return true;
+  const result = assessRunnable(contextOf(context.car), item);
+  return result.status === 'runnable' || result.status === 'partial';
+};
+
+let sessionBinding = 0;
+
 const runnableId = (context: SessionContext, event: SessionEvent): string | undefined => {
   const item = runnableOf(context.car, event);
 
@@ -115,6 +130,7 @@ const runnableId = (context: SessionContext, event: SessionEvent): string | unde
 };
 
 const beginItem = (context: SessionContext, item: RunnableItem): Partial<SessionContext> => ({
+  cleanupCar: context.car,
   currentItem: item,
   runningItemId: itemIdOf(item),
   queuedItem: undefined,
@@ -165,8 +181,17 @@ export const sessionMachine = setup({
     justRanTtl: JUST_RAN_MS,
   },
   guards: {
-    canRun: ({ event }) => isRunnableEvent(event),
-    canToggle: ({ context, event }) => isToggleEvent(context, event),
+    canRun: ({ context, event }) => isRunnableEvent(event) && canExecute(context, event),
+    canToggle: ({ context, event }) => isToggleEvent(context, event) && canExecute(context, event),
+    canChangeFacts: ({ context, event }) =>
+      event.type === 'SET_VEHICLE_FACTS' &&
+      context.car !== undefined &&
+      !context.ledger.hasPending &&
+      !context.activeToggleId &&
+      !context.testActive &&
+      !context.lightsMayBeOn &&
+      !context.restoreRequested &&
+      event.facts.vehicleBinding === context.car.actionContext?.facts.vehicleBinding,
     turnsOn: ({ event }) => event.type === 'TOGGLE' && event.on,
     hasActiveToggle: ({ context }) => context.activeToggleId !== undefined,
     togglesOther: ({ context, event }) =>
@@ -177,6 +202,7 @@ export const sessionMachine = setup({
     canQueue: ({ context, event }) => {
       if (context.queuedItem || context.disconnectRequested) return false;
       if (!isRunnableEvent(event) && !(isToggleEvent(context, event) && event.on)) return false;
+      if (!canExecute(context, event)) return false;
 
       return runnableId(context, event) !== context.runningItemId;
     },
@@ -205,13 +231,30 @@ export const sessionMachine = setup({
     canRetryReconnect: ({ context }) => context.reconnectAttempt < MAX_RECONNECT_ATTEMPTS,
   },
   actions: {
+    setVehicleFacts: assign(({ context, event, self }) => {
+      if (event.type !== 'SET_VEHICLE_FACTS' || !context.car) return {};
+      const previous = context.car.actionContext;
+      const revision = (previous?.revision ?? 0) + 1;
+      const facts = { ...event.facts, revision };
+      const validations = event.validations ?? previous?.validations ?? [];
+      const car = deriveCapabilities({
+        ...context.car,
+        selectableElements: selectableElementsOf(context.car.elementTargets),
+        actionContext: { facts, validations, revision, demo: context.adapter === 'demo' },
+      });
+      context.deps.saveVehicleFacts?.(car, facts, validations, context.adapter === 'demo');
+      return {
+        car,
+        runner: makeRunner(context, { car, link: context.link! }, (ev) => self.send(ev)),
+      };
+    }),
     setDiagnostics: assign(({ context, event }) => {
       if (event.type !== 'SET_DIAGNOSTICS') return {};
       context.runner?.setTrace(event.enabled);
       return { diagnosticsEnabled: event.enabled };
     }),
     clearDiagnostics: assign({ log: [] }),
-    beginTest: assign({ testActive: true }),
+    beginTest: assign(({ context }) => ({ testActive: true, cleanupCar: context.car })),
     endTest: assign(({ context }) => ({
       testActive: false,
       lightsMayBeOn: context.ledger.hasPending,
@@ -230,6 +273,7 @@ export const sessionMachine = setup({
     }),
     startConnect: assign(({ context, event }) => {
       if (event.type !== 'CONNECT') return {};
+      context.deps.beginVehicleSession?.();
 
       return {
         config: event.config,
@@ -254,12 +298,32 @@ export const sessionMachine = setup({
     storeCar: assign(({ context, event, self }) => {
       const output = (event as unknown as { output: IdentifyOutput }).output;
       const forced = context.ledger.hasPending;
+      const demo = context.adapter === 'demo';
+      const profile = context.deps.loadVehicleFacts?.(output.car, demo);
+      const binding =
+        profile?.facts.vehicleBinding ??
+        (demo
+          ? `demo:${output.car.vin ?? ++sessionBinding}`
+          : (output.car.vin ?? `session:${++sessionBinding}`));
+      const facts = {
+        ...(profile?.facts ?? { headlightType: 'unknown' as const }),
+        vehicleBinding: binding,
+      };
+      const car = deriveCapabilities({
+        ...output.car,
+        actionContext: {
+          facts,
+          validations: profile?.validations ?? [],
+          revision: facts.revision ?? 0,
+          demo,
+        },
+      });
 
       return {
         link: output.link,
         config: context.config && pinResolvedHost(context.config, output.link),
-        car: output.car,
-        runner: makeRunner(context, output, (runnerEvent) => self.send(runnerEvent)),
+        car,
+        runner: makeRunner(context, { ...output, car }, (runnerEvent) => self.send(runnerEvent)),
         measuredRttMs: output.link.measuredRttMs,
         freshLink: forced,
         lastError: forced ? context.lastError : undefined,
@@ -309,12 +373,23 @@ export const sessionMachine = setup({
     rejectInvalidItem: assign(({ context, event }) => {
       if (event.type !== 'RUN') return {};
       const id = event.item.id;
-      const lastError = { reason: INVALID_INPUT_REASON, message: 'Invalid item', itemId: id };
+      const item = runnableOf(context.car, event);
+      const assessment =
+        context.car && item && isRunnableEvent(event)
+          ? assessRunnable(contextOf(context.car), item)
+          : undefined;
+      const failure = assessment?.missing.find((entry) => entry.status !== 'supported');
+      const reason = failure
+        ? failure.reason
+        : assessment
+          ? ('missingOutput' as const)
+          : INVALID_INPUT_REASON;
+      const lastError = { reason, message: reason, itemId: id };
       if (typeof id !== 'string') return { lastError };
 
       return {
         lastError,
-        tiles: withTile(context.tiles, id, { state: 'error', reason: INVALID_INPUT_REASON }),
+        tiles: withTile(context.tiles, id, { state: 'error', reason }),
       };
     }),
     requestStop: ({ context }) => abortRun(context),
@@ -362,6 +437,7 @@ export const sessionMachine = setup({
       };
     }),
     markRestored: assign(({ context }) => ({
+      cleanupCar: context.ledger.hasPending ? context.cleanupCar : undefined,
       activeToggleId: undefined,
       lightsMayBeOn: context.ledger.hasPending,
       freshLink: false,
@@ -454,6 +530,7 @@ export const sessionMachine = setup({
           deps: context.deps,
           config: context.config!,
           link: context.link!,
+          cleanupCar: context.ledger.hasPending ? context.cleanupCar : undefined,
         }),
         onDone: [
           { guard: 'hasPendingControl', target: 'restoring', actions: 'storeCar' },
@@ -481,6 +558,7 @@ export const sessionMachine = setup({
       ],
       after: { justRanTtl: { actions: 'clearJustRan' } },
       on: {
+        SET_VEHICLE_FACTS: { guard: 'canChangeFacts', actions: 'setVehicleFacts' },
         RUN: [
           { guard: 'testEngaged' },
           {
@@ -629,6 +707,7 @@ export const sessionMachine = setup({
               deps: context.deps,
               config: context.config!,
               car: context.car!,
+              cleanupCar: context.ledger.hasPending ? context.cleanupCar : undefined,
             }),
             onDone: [
               { guard: 'hasPendingControl', target: '#session.restoring', actions: 'storeCar' },

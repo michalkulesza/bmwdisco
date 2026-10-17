@@ -169,6 +169,20 @@ describe('import and export', () => {
 
   it('round-trips presets', () => {
     expect(importPresets(exportPresets(presets))).toEqual(presets);
+    expect(JSON.parse(exportPresets(presets)).version).toBe(2);
+  });
+
+  it('accepts semantic actions only in v2 files and preserves them on round-trip', () => {
+    const semantic = parsePreset({
+      ...preset(),
+      steps: [{ type: 'action', actions: ['bothHighBeams'], state: 'on', durationMs: 100 }],
+    });
+    expect(
+      importPresets(
+        JSON.stringify({ format: 'bimmerdisco.presets', version: 2, presets: [semantic] }),
+      ),
+    ).toEqual([semantic]);
+    expect(importFailure(fileOf([semantic])).code).toBe('invalidPreset');
   });
 
   it('rejects files over 1 MB, counted in UTF-8 bytes', () => {
@@ -186,7 +200,7 @@ describe('import and export', () => {
 
   it.each([
     ['wrong format', fileOf([], { format: 'other' })],
-    ['wrong version', fileOf([], { version: 2 })],
+    ['wrong version', fileOf([], { version: 3 })],
     ['unknown file key', fileOf([], { extra: true })],
     ['not an object', '[]'],
   ])('rejects %s', (_, text) => {
@@ -211,6 +225,29 @@ describe('import and export', () => {
     expect(
       importFailure(fileOf([preset({ steps: [{ type: 'set', elements: ['nope'], state: 'on' }] })]))
         .code,
+    ).toBe('invalidPreset');
+  });
+
+  it('rejects unknown logical action IDs and extra action fields', () => {
+    const action = { type: 'action', actions: ['missingAction'], state: 'on' };
+    const extra = { type: 'action', actions: ['bothHighBeams'], state: 'on', raw: '2f' };
+    expect(
+      importFailure(
+        JSON.stringify({
+          format: 'bimmerdisco.presets',
+          version: 2,
+          presets: [preset({ steps: [action] })],
+        }),
+      ).code,
+    ).toBe('invalidPreset');
+    expect(
+      importFailure(
+        JSON.stringify({
+          format: 'bimmerdisco.presets',
+          version: 2,
+          presets: [preset({ steps: [extra] })],
+        }),
+      ).code,
     ).toBe('invalidPreset');
   });
 

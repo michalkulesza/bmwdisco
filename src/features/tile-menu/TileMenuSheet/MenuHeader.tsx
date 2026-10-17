@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
+import { translateKey } from '@/ui/tile/helpers';
 import type { TileItem } from '@/ui/tile/types';
 
 interface MenuHeaderProps {
@@ -9,6 +11,7 @@ interface MenuHeaderProps {
 }
 
 const MenuHeader = ({ item }: MenuHeaderProps) => {
+  const { t } = useTranslation();
   const hue = useColorToken(item.hue);
   const IconComponent = item.icon;
 
@@ -27,6 +30,11 @@ const MenuHeader = ({ item }: MenuHeaderProps) => {
         <Text variant="small" style={{ color: hue }}>
           {item.tag}
         </Text>
+        {item.unavailableReason ? (
+          <Text variant="small" tone="muted">
+            {translateKey(t, `actions.reasons.${item.unavailableReason}`)}
+          </Text>
+        ) : null}
       </View>
     </View>
   );

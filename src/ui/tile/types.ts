@@ -19,4 +19,5 @@ export interface TileItem {
   toggle: boolean;
   run: RunInput;
   availability: TileAvailability;
+  unavailableReason?: string;
 }

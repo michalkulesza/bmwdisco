@@ -273,7 +273,7 @@ describe('PresetRunner timing', () => {
 });
 
 describe('PresetRunner element resolution', () => {
-  it('skips elements this car does not have and reports them', async () => {
+  it('blocks a mixed preset before sending when a required output is missing', async () => {
     const { runner, events, vehicle } = await harness('F10');
 
     const result = await settle(
@@ -285,10 +285,10 @@ describe('PresetRunner element resolution', () => {
       ),
     );
 
-    expect(result.status).toBe('completed');
-    expect(result.skipped).toEqual(['corneringLeft']);
-    expect(events).toContainEqual({ type: 'elementSkipped', element: 'corneringLeft' });
-    expect(wireLog(vehicle).every((entry) => entry.startsWith('72:'))).toBe(true);
+    expect(result.status).toBe('failed');
+    expect(result.skipped).toEqual([]);
+    expect(events.some((event) => event.type === 'elementSkipped')).toBe(false);
+    expect(wireLog(vehicle)).toEqual([]);
   });
 
   it('fails without touching the car when nothing is runnable', async () => {

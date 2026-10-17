@@ -1,0 +1,77 @@
+appId: com.michalkulesza.bimmerdisco
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: Settings
+    timeout: 30000
+- tapOn: Settings
+- tapOn: Adapter
+- tapOn: Demo
+- tapOn: Car
+- tapOn: 'F10.*'
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn: Connect
+- extendedWaitUntil:
+    visible: BimmerDisco
+    timeout: 20000
+
+# A simulated F10 has FRM3, but no equipment or physical mapping evidence.
+- scrollUntilVisible:
+    element: 'Double flash.*'
+- assertVisible: 'Double flash.*Choose the headlight equipment.*'
+
+# A user equipment selection changes the recorded fact only; it does not validate a lamp map.
+- tapOn: Settings
+- scrollUntilVisible:
+    element: 'Headlight type'
+- assertVisible: '.*Selection alone does not verify a light command.*'
+- tapOn: Halogen
+- assertVisible: '.*Selection alone does not verify a light command.*'
+- runFlow: subflows/back.yaml
+
+# The editor exposes semantic intent separately from legacy physical elements.
+- scrollUntilVisible:
+    element: New preset
+- tapOn: New preset
+- extendedWaitUntil:
+    visible: 'New preset'
+    timeout: 10000
+- tapOn: Action
+- extendedWaitUntil:
+    visible: 'Add step'
+    timeout: 10000
+- tapOn: Light
+- tapOn: 'Left front and rear indicators'
+- tapOn: 'Add to preset'
+- assertVisible: 'Left front and rear indicators'
+- tapOn: Test
+- assertVisible: 'The lamps and their release must be visibly verified.*'
+
+# Switch the drafted row to a simulator-supported legacy rear-fog output and hold it safely.
+- tapOn: 'Light: Left front and rear indicators'
+- scrollUntilVisible:
+    element: 'Rear fog light left'
+- tapOn: 'Rear fog light left'
+- tapOn: 'Hold final state'
+- tapOn: Test
+- extendedWaitUntil:
+    visible: Stop
+    timeout: 10000
+- tapOn: Stop
+- extendedWaitUntil:
+    visible: Test
+    timeout: 10000
+
+# Leave a disconnected start screen for the next flow.
+- tapOn: Cancel
+- tapOn: Discard
+- tapOn: Settings
+- scrollUntilVisible:
+    element: Disconnect
+- tapOn: Disconnect
+- tapOn: Disconnect
+- extendedWaitUntil:
+    visible: Connect
+    timeout: 10000

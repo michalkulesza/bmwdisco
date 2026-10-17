@@ -30,7 +30,7 @@ describe('Tile', () => {
   });
 
   it('runs a preset on press and shows its summary', async () => {
-    const item = presetItem(preset, t, true);
+    const item = presetItem(preset, t, sessionState.car);
     await renderTile(item);
 
     await fireEvent.press(screen.getByRole('button', { name: /Double flash, Steps: 4/ }));
@@ -40,7 +40,7 @@ describe('Tile', () => {
 
   it('shows Stop while running and stops on press', async () => {
     sessionState.tiles[preset.id] = { state: 'running' };
-    await renderTile(presetItem(preset, t, true));
+    await renderTile(presetItem(preset, t, sessionState.car));
 
     await fireEvent.press(screen.getByRole('button', { name: 'Stop Double flash' }));
 
@@ -51,14 +51,14 @@ describe('Tile', () => {
 
   it('shows the finished state after a run', async () => {
     sessionState.tiles[preset.id] = { state: 'justRan' };
-    await renderTile(presetItem(preset, t, true));
+    await renderTile(presetItem(preset, t, sessionState.car));
 
     expect(screen.getByRole('button', { name: 'Double flash, Done' })).toBeTruthy();
   });
 
   it('shows the translated reason on error', async () => {
     sessionState.tiles[preset.id] = { state: 'error', reason: 'conditionsNotCorrect' };
-    await renderTile(presetItem(preset, t, true));
+    await renderTile(presetItem(preset, t, sessionState.car));
 
     expect(screen.getByText('Stop the car or turn the ignition on')).toBeTruthy();
   });
@@ -67,7 +67,7 @@ describe('Tile', () => {
     sessionState.car = fakeCar(['flash.highBeam']);
     await renderTile(effectItem(effect('flash.fogFront'), t, sessionState.car));
 
-    const tile = screen.getByRole('button', { name: /Not on your car/ });
+    const tile = screen.getByRole('button', { name: /required light outputs are unavailable/ });
     await fireEvent.press(tile);
 
     expect(tile.props.accessibilityState).toMatchObject({ disabled: true });
@@ -100,7 +100,7 @@ describe('Tile', () => {
   });
 
   it('opens the menu from the options button and on long press', async () => {
-    const onMenuPress = await renderTile(presetItem(preset, t, true), 'small');
+    const onMenuPress = await renderTile(presetItem(preset, t, sessionState.car), 'small');
 
     await fireEvent.press(screen.getByRole('button', { name: 'More options for Double flash' }));
     await fireEvent(screen.getByRole('button', { name: /Double flash, Steps/ }), 'longPress');
@@ -109,7 +109,7 @@ describe('Tile', () => {
   });
 
   it.each(['small', 'square', 'large'] as const)('renders the %s size', async (size) => {
-    await renderTile(presetItem(preset, t, true), size);
+    await renderTile(presetItem(preset, t, sessionState.car), size);
 
     expect(screen.getByRole('button', { name: /^Double flash, Steps/ })).toBeTruthy();
   });

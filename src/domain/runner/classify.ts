@@ -7,6 +7,7 @@ import {
 import { Nrc } from '@/protocol/nrc';
 
 import {
+  ActionUnavailableError,
   CarNotRespondingError,
   InvalidPresetError,
   NothingToRunError,
@@ -15,6 +16,13 @@ import {
 } from '../errors';
 
 export type RunErrorReason =
+  | 'equipmentUnknown'
+  | 'equipmentConflict'
+  | 'confirmationRequired'
+  | 'missingOutput'
+  | 'missingModule'
+  | 'noSemanticMapping'
+  | 'commandRejected'
   | 'conditionsNotCorrect'
   | 'rejected'
   | 'timeout'
@@ -33,6 +41,19 @@ export type SessionErrorReason =
   | 'connectionLost';
 
 export const classifyRunError = (error: unknown): RunErrorReason => {
+  if (error instanceof ActionUnavailableError) {
+    switch (error.reason) {
+      case 'equipmentUnknown':
+      case 'equipmentConflict':
+      case 'confirmationRequired':
+      case 'commandRejected':
+      case 'missingModule':
+      case 'noSemanticMapping':
+        return error.reason;
+      default:
+        return 'missingOutput';
+    }
+  }
   if (error instanceof NegativeResponseError) {
     return error.nrc === Nrc.ConditionsNotCorrect ? 'conditionsNotCorrect' : 'rejected';
   }

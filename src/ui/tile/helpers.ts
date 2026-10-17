@@ -63,8 +63,23 @@ export const tileTag = (
   t: TFunction,
 ): string => {
   if (visual === 'running') return t('tile.running');
-  if (visual === 'error') return translateKey(t, `tile.error.${status?.reason ?? 'unknown'}`);
+  if (visual === 'error') {
+    const reason = status?.reason;
+    return reason &&
+      [
+        'equipmentUnknown',
+        'equipmentConflict',
+        'confirmationRequired',
+        'missingOutput',
+        'missingModule',
+        'noSemanticMapping',
+        'commandRejected',
+      ].includes(reason)
+      ? translateKey(t, `actions.reasons.${reason}`)
+      : translateKey(t, `tile.error.${reason ?? 'unknown'}`);
+  }
   if (visual === 'disabled') {
+    if (item.unavailableReason) return translateKey(t, `actions.reasons.${item.unavailableReason}`);
     return item.availability === 'unsupported' ? t('tile.notOnCar') : t('tile.notConnected');
   }
   if (visual === 'justRan') return t('tile.done');

@@ -53,7 +53,7 @@ const TileMenuContent = ({ subject }: TileMenuContentProps) => {
   const item: TileItem = useMemo(
     () =>
       subject.kind === 'preset'
-        ? presetItem(subject.preset, t, car !== undefined)
+        ? presetItem(subject.preset, t, car)
         : effectItem(subject.effect, t, car),
     [subject, t, car],
   );

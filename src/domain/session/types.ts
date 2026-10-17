@@ -9,6 +9,7 @@ import type { RunErrorReason, SessionErrorReason } from '../runner/classify';
 import type { ControlLedger } from '../runner/ledger';
 import type { PresetRunner } from '../runner/runner';
 import type { RunnableItem, RunnerEvent } from '../runner/types';
+import type { MappingValidation, VehicleFacts } from '../vehicle/types';
 
 export type AppStateStatus = 'active' | 'inactive' | 'background';
 
@@ -17,6 +18,22 @@ export interface AppStateSource {
 }
 
 export interface SessionDeps {
+  beginVehicleSession?(): void;
+  loadVehicleFacts?(
+    car: DetectedCar,
+    demo: boolean,
+  ):
+    | {
+        facts: VehicleFacts;
+        validations: readonly MappingValidation[];
+      }
+    | undefined;
+  saveVehicleFacts?(
+    car: DetectedCar,
+    facts: VehicleFacts,
+    validations: readonly MappingValidation[],
+    demo: boolean,
+  ): void;
   createLink(config: AdapterConfig, signal?: AbortSignal): Promise<DiagnosticLink>;
   appState: AppStateSource;
   clock?: Clock;
@@ -55,6 +72,8 @@ export interface SessionContext {
   adapter?: AdapterId;
   link?: DiagnosticLink;
   car?: DetectedCar;
+  /** Vehicle owning pending physical cleanup, retained even when the visible session resets. */
+  cleanupCar?: DetectedCar;
   runner?: PresetRunner;
   currentItem?: RunnableItem;
   runningItemId?: string;
@@ -79,6 +98,7 @@ export interface SessionContext {
 export type RunInput = Preset | Effect;
 
 export type SessionEvent =
+  | { type: 'SET_VEHICLE_FACTS'; facts: VehicleFacts; validations?: readonly MappingValidation[] }
   | { type: 'SET_DIAGNOSTICS'; enabled: boolean }
   | { type: 'CLEAR_DIAGNOSTICS' }
   | { type: 'CONNECT'; config: AdapterConfig }

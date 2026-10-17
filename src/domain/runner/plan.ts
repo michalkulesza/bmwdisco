@@ -1,9 +1,10 @@
-import { categoryOf, type ElementId } from '@/data/elements';
+import { categoryOf, isElementId, type ElementId } from '@/data/elements';
 
-import { NothingToRunError } from '../errors';
-import { effectToSteps, stepsOf } from '../preset/effect-preset';
+import { assessSteps, contextOf } from '../actions/availability';
+import { adaptEffectSteps } from '../actions/effect-actions';
+import { ActionUnavailableError, NothingToRunError } from '../errors';
+import { effectToSteps } from '../preset/effect-preset';
 import { EFFECT_TICK_MS } from '../preset/limits';
-import { stepDurationMs } from '../preset/schema';
 
 import type { RunnableItem } from './types';
 import type { PresetStep } from '../preset/types';
@@ -33,6 +34,7 @@ export interface PlanInput {
   steps: PresetStep[];
   clusterFeedback: boolean;
   silenceCommunication: boolean;
+  allowPartial?: boolean;
 }
 
 export const planInputOf = (item: RunnableItem): PlanInput => {
@@ -46,9 +48,10 @@ export const planInputOf = (item: RunnableItem): PlanInput => {
     const source = turningOn ? effect.steps : (effect.offSteps ?? []);
 
     return {
-      steps: stepsOf(source, EFFECT_TICK_MS),
+      steps: adaptEffectSteps(effect, source, EFFECT_TICK_MS),
       clusterFeedback: turningOn && effect.clusterFeedback,
       silenceCommunication: turningOn && effect.silenceCommunication,
+      allowPartial: effect.id === 'ghost.fullOFF',
     };
   }
 
@@ -56,6 +59,7 @@ export const planInputOf = (item: RunnableItem): PlanInput => {
     steps: effectToSteps(effect),
     clusterFeedback: effect.clusterFeedback,
     silenceCommunication: effect.silenceCommunication,
+    allowPartial: effect.id === 'ghost.fullOFF',
   };
 };
 
@@ -67,46 +71,27 @@ export const isReleaseOnly = (item: RunnableItem): boolean =>
 
 const unique = <T>(values: readonly T[]): T[] => [...new Set(values)];
 
-const sendsFor = (step: PresetStep, car: DetectedCar, skipped: Set<ElementId>): PlannedSend[] => {
-  if (step.type !== 'set') return [];
-
-  const sends = step.elements.flatMap((element) => {
-    const targets = car.elementTargets.get(element);
-    if (!targets) {
-      skipped.add(element);
-
-      return [];
-    }
-
-    return targets.map((target) => {
-      const commands = target.module.module.elements[target.element]!;
-
-      return {
-        module: target.module,
-        element: target.element,
-        payload: Uint8Array.from(step.state === 'on' ? commands.on : commands.off),
-      };
-    });
-  });
-
-  return sends.filter(
-    (send, index) =>
-      sends.findIndex((other) => other.module === send.module && other.element === send.element) ===
-      index,
-  );
-};
-
 export const buildPlan = (input: PlanInput, car: DetectedCar): RunPlan => {
-  const skipped = new Set<ElementId>();
-  const steps: PlannedStep[] = [];
-  let cursor = 0;
-
-  for (const step of input.steps) {
-    const sends = sendsFor(step, car, skipped);
-    if (sends.length > 0) steps.push({ atMs: cursor, sends });
-    cursor += stepDurationMs(step);
+  const assessment = assessSteps(contextOf(car), input.steps, { allowPartial: input.allowPartial });
+  if (assessment.status !== 'runnable' && assessment.status !== 'partial') {
+    const failure = assessment.missing.find((result) => result.status === 'unknown');
+    if (failure?.status === 'unknown') throw new ActionUnavailableError(failure.reason);
+    if (assessment.steps.length === 0) throw new NothingToRunError();
+    throw new ActionUnavailableError('missingOutput');
   }
-  if (steps.length === 0) throw new NothingToRunError();
+  const steps: PlannedStep[] = assessment.steps.map((step) => ({
+    atMs: step.atMs,
+    sends: step.targets.map((target) => ({
+      module: target.module,
+      element: target.element,
+      payload: Uint8Array.from(
+        target.module.module.elements[target.element]![step.state === 'on' ? 'on' : 'off'],
+      ),
+    })),
+  }));
+  const skipped = assessment.missing.flatMap((missing) =>
+    isElementId(missing.intent) ? [missing.intent] : [],
+  );
 
   const sends = steps.flatMap((step) => step.sends);
   const modules = unique(sends.map((send) => send.module));
@@ -125,5 +110,5 @@ export const buildPlan = (input: PlanInput, car: DetectedCar): RunPlan => {
     ? car.modules.filter((module) => module.module.elements.clusterFeedback)
     : [];
 
-  return { steps, endMs: cursor, modules, silence, cluster, skipped: [...skipped] };
+  return { steps, endMs: assessment.endMs, modules, silence, cluster, skipped };
 };

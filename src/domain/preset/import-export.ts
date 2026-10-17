@@ -1,7 +1,7 @@
 import { PresetImportError } from '../errors';
 
 import { PRESET_FILE_FORMAT, PRESET_FILE_VERSION, PRESET_LIMITS } from './limits';
-import { describeIssues, presetFileSchema, presetSchema } from './schema';
+import { describeIssues, importedPresetSchema, presetFileSchema } from './schema';
 
 import type { Preset } from './types';
 
@@ -41,11 +41,12 @@ export const importPresets = (text: string): Preset[] => {
     );
   }
 
+  const schema = importedPresetSchema(file.data.version);
   const presets: Preset[] = [];
   const issues: string[] = [];
 
   file.data.presets.forEach((candidate, index) => {
-    const result = presetSchema.safeParse(candidate);
+    const result = schema.safeParse(candidate);
     if (result.success) presets.push(result.data);
     else issues.push(...describeIssues(result.error).map((issue) => `#${index + 1} ${issue}`));
   });

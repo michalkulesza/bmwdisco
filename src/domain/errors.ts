@@ -26,6 +26,13 @@ export class NothingToRunError extends Error {
   }
 }
 
+export class ActionUnavailableError extends Error {
+  constructor(public readonly reason: string) {
+    super(`Action unavailable: ${reason}`);
+    this.name = 'ActionUnavailableError';
+  }
+}
+
 export class InvalidPresetError extends Error {
   constructor(public readonly issues: readonly string[]) {
     super(`Invalid preset: ${issues.join('; ')}`);

@@ -17,6 +17,7 @@ export * from './raw/test-bench';
 export * from './raw/test-session';
 export * from './raw/types';
 export * from './registry/detect-car';
+export * from './registry/capabilities';
 export * from './registry/types';
 export * from './runner/classify';
 export * from './runner/ledger';
@@ -33,3 +34,5 @@ export {
   MAX_RECONNECT_ATTEMPTS,
   RECONNECT_BASE_DELAY_MS,
 } from './session/helpers';
+export * from './actions';
+export * from './vehicle';

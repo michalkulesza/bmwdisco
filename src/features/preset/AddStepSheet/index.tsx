@@ -5,12 +5,13 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { ELEMENT_IDS, type ElementId } from '@/data/elements';
+import { ELEMENT_IDS } from '@/data/elements';
 import { useSessionSelector } from '@/session';
 import Button from '@/ui/Button';
 import SegmentedControl, { type SegmentedOption } from '@/ui/SegmentedControl';
 import Text from '@/ui/Text';
 import { useColorToken } from '@/ui/theme';
+import { translateKey } from '@/ui/tile/helpers';
 
 import { useDraftStore } from '../draft-store';
 import MsInput from '../MsInput';
@@ -26,6 +27,8 @@ import {
 } from './helpers';
 import LightField from './LightField';
 
+import type { LightSelection } from '../light-selection';
+
 type StepState = 'on' | 'off';
 
 const AddStepSheet = () => {
@@ -39,12 +42,13 @@ const AddStepSheet = () => {
     (snapshot) => snapshot.context.car?.selectableElements ?? ELEMENT_IDS,
   );
   const [form, setForm] = useState<StepFormValues>(() =>
-    initialForm(type === 'wait' ? 'wait' : 'set', useDraftStore.getState().steps, selectable),
+    initialForm(type, useDraftStore.getState().steps, selectable),
   );
 
   const typeOptions: SegmentedOption<StepType>[] = useMemo(
     () => [
-      { value: 'set', label: t('preset.step.lightAction') },
+      { value: 'action', label: translateKey(t, 'actions.logical') },
+      { value: 'set', label: translateKey(t, 'actions.legacy') },
       { value: 'wait', label: t('preset.step.wait') },
     ],
     [t],
@@ -58,7 +62,7 @@ const AddStepSheet = () => {
   );
 
   const handleTypeChange = useCallback((next: StepType) => {
-    setForm((current) => ({ ...current, type: next }));
+    setForm((current) => ({ ...current, type: next, element: undefined, action: undefined }));
   }, []);
   const handleStateChange = useCallback((state: StepState) => {
     setForm((current) => ({ ...current, state }));
@@ -66,8 +70,13 @@ const AddStepSheet = () => {
   const handleDurationChange = useCallback((durationMs: number | undefined) => {
     setForm((current) => ({ ...current, durationMs }));
   }, []);
-  const handleElementSelect = useCallback((element: ElementId) => {
-    setForm((current) => ({ ...current, element }));
+  const handleElementSelect = useCallback((selection: LightSelection) => {
+    setForm((current) => ({
+      ...current,
+      element: selection.kind === 'legacy' ? selection.id : undefined,
+      action: selection.kind === 'action' ? selection.id : undefined,
+      type: selection.kind === 'legacy' ? 'set' : 'action',
+    }));
   }, []);
   const handleClosePress = useCallback(() => router.back(), [router]);
 
@@ -104,9 +113,18 @@ const AddStepSheet = () => {
         onChange={handleTypeChange}
         accessibilityLabel={t('preset.step.type')}
       />
-      {form.type === 'set' ? (
+      {form.type !== 'wait' ? (
         <>
-          <LightField selected={form.element} onSelect={handleElementSelect} />
+          <LightField
+            selected={
+              form.type === 'action' && form.action
+                ? { kind: 'action', id: form.action }
+                : form.element
+                  ? { kind: 'legacy', id: form.element }
+                  : undefined
+            }
+            onSelect={handleElementSelect}
+          />
           <View className="gap-2">
             <Text variant="meta" tone="muted">
               {t('preset.state')}

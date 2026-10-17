@@ -1,5 +1,7 @@
 import type { Effect, EffectStep } from '@/data/types';
 
+import { adaptEffectSteps } from '../actions/effect-actions';
+
 import { EFFECT_TICK_MS, TOGGLE_PRESET_HOLD_MS } from './limits';
 import { parsePreset } from './schema';
 
@@ -21,13 +23,13 @@ export const stepsOf = (steps: readonly EffectStep[], tickMs: number): PresetSte
   }));
 
 export const effectToSteps = (effect: Effect, tickMs: number = EFFECT_TICK_MS): PresetStep[] => {
-  const onSteps = stepsOf(effect.steps, tickMs);
+  const onSteps = adaptEffectSteps(effect, effect.steps, tickMs);
   if (effect.kind !== 'toggle' || !effect.offSteps) return onSteps;
 
   return [
     ...onSteps,
     { type: 'wait', ms: TOGGLE_PRESET_HOLD_MS },
-    ...stepsOf(effect.offSteps, tickMs),
+    ...adaptEffectSteps(effect, effect.offSteps, tickMs),
   ];
 };
 

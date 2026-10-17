@@ -61,13 +61,12 @@ export const resolveFavourites = ({
   car,
   t,
 }: Omit<HomeSources, 'size'>): TileItem[] => {
-  const connected = car !== undefined;
   const items: TileItem[] = [];
 
   favouriteIds.forEach((id) => {
     const preset = presets.find((candidate) => candidate.id === id);
     const effect = effects.find((candidate) => candidate.id === id);
-    if (preset) items.push(presetItem(preset, t, connected));
+    if (preset) items.push(presetItem(preset, t, car));
     else if (effect) items.push(effectItem(effect, t, car));
   });
 
@@ -100,7 +99,7 @@ export const buildHomeRows = (sources: HomeSources): HomeRow[] => {
   const rows: HomeRow[] = [];
   const favourites = resolveFavourites(sources);
   const predefined = resolvePredefined(sources);
-  const presetItems = presets.map((preset) => presetItem(preset, t, car !== undefined));
+  const presetItems = presets.map((preset) => presetItem(preset, t, car));
 
   if (!car) rows.push({ type: 'notice', key: 'notice' });
 

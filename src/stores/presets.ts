@@ -23,10 +23,10 @@ export const SEED_PRESETS: readonly Preset[] = [
     color: 'rose',
     icon: 'Lightning',
     steps: [
-      { type: 'set', elements: ['highBeamAll'], state: 'on', durationMs: 100 },
-      { type: 'set', elements: ['highBeamAll'], state: 'off', durationMs: 100 },
-      { type: 'set', elements: ['highBeamAll'], state: 'on', durationMs: 100 },
-      { type: 'set', elements: ['highBeamAll'], state: 'off' },
+      { type: 'action', actions: ['bothHighBeams'], state: 'on', durationMs: 100 },
+      { type: 'action', actions: ['bothHighBeams'], state: 'off', durationMs: 100 },
+      { type: 'action', actions: ['bothHighBeams'], state: 'on', durationMs: 100 },
+      { type: 'action', actions: ['bothHighBeams'], state: 'off' },
     ],
   },
   {
@@ -120,7 +120,7 @@ export const usePresetsStore = create<PresetsState>()(
     }),
     {
       name: 'presets',
-      version: 2,
+      version: 3,
       migrate: (persisted) => {
         const stored = (persisted as Partial<PresetsState> | undefined)?.presets;
 

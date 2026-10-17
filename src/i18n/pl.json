@@ -1,4 +1,47 @@
 {
+  "actions": {
+    "seeds": { "doubleFlash": "Podwójny błysk", "fogStrobe": "Stroboskop przeciwmgielnych" },
+    "logical": "Działania świateł",
+    "legacy": "Poszczególne wyjścia",
+    "names": {
+      "indicatorsLeft": "Lewe kierunkowskazy z przodu i z tyłu",
+      "indicatorsRight": "Prawe kierunkowskazy z przodu i z tyłu",
+      "bothHighBeams": "Oba światła drogowe",
+      "highBeamLeft": "Lewe światło drogowe",
+      "highBeamRight": "Prawe światło drogowe",
+      "lowBeamLeft": "Lewe światło mijania",
+      "lowBeamRight": "Prawe światło mijania",
+      "bothLowBeams": "Oba światła mijania",
+      "corneringLeft": "Lewe światło doświetlania zakrętów",
+      "corneringRight": "Prawe światło doświetlania zakrętów",
+      "brakesAll": "Wszystkie światła stopu",
+      "biXenonShutterBoth": "Obie przesłony bi-ksenonowe"
+    },
+    "reasons": {
+      "equipmentUnknown": "Wybierz typ reflektorów w Ustawieniach. To działanie wymaga też potwierdzonego testu lamp.",
+      "equipmentConflict": "Informacje o reflektorach są sprzeczne. Przed użyciem działania potwierdź faktyczne wyposażenie.",
+      "confirmationRequired": "Przed użyciem działania trzeba wzrokowo potwierdzić pracę lamp i zwolnienie sterowania w tym aucie.",
+      "missingModule": "Brakuje wymaganego modułu świateł.",
+      "missingOutput": "Co najmniej jedno wymagane wyjście świateł jest niedostępne w tym aucie.",
+      "noSemanticMapping": "Brak zweryfikowanego wyjścia dla tego działania świateł.",
+      "commandRejected": "Auto odrzuciło polecenie świateł. Przed ponowną próbą sprawdź wyniki diagnostyki."
+    }
+  },
+  "equipment": {
+    "resolveConflict": "Potwierdź zamontowane reflektory",
+    "confirmTitle": "Potwierdź typ reflektorów",
+    "confirmMessage": "Potwierdź, że w aucie są obecnie zamontowane reflektory typu {{type}}, uwzględniając przeróbki. Usunie to konflikt wyposażenia i będzie wymagać ponownego testu zależnych mapowań świateł.",
+    "confirmSelection": "Użyj tego wyposażenia",
+    "title": "Wyposażenie oświetlenia",
+    "headlightType": "Typ reflektorów",
+    "unknown": "Nieznany",
+    "halogen": "Halogen",
+    "xenon": "Ksenon",
+    "led": "LED",
+    "explanation": "Wybierz wyposażenie faktycznie zamontowane w tym aucie. Sam wybór nie weryfikuje polecenia; nowe mapowania wymagają obserwacji lamp i zwolnienia sterowania.",
+    "conflict": "Informacje o wyposażeniu są sprzeczne. Potwierdź zamontowane reflektory i powtórz test lamp przed włączeniem zależnych działań.",
+    "readyRequired": "Zatrzymaj sterowanie światłami i zakończ przywracanie przed zmianą wyposażenia."
+  },
   "common": {
     "back": "Wstecz",
     "cancel": "Anuluj",
@@ -208,7 +251,7 @@
     "title": "Biblioteka",
     "search": "Szukaj świateł",
     "empty": "Nie znaleziono świateł",
-    "notOnCarNote": "Światła oznaczone „Nie w Twoim aucie” nie działają w tym pojeździe."
+    "notOnCarNote": "Niedostępne światła wskazują brakujące wyjście lub wymagane potwierdzenie. Pełne wyjaśnienie znajdziesz w ich menu."
   },
   "preset": {
     "editTitle": "Edytuj preset",

@@ -18,4 +18,4 @@ export const TOGGLE_PRESET_HOLD_MS = 1000;
 
 export const PRESET_FILE_FORMAT = 'bimmerdisco.presets';
 
-export const PRESET_FILE_VERSION = 1;
+export const PRESET_FILE_VERSION = 2;
