@@ -37,7 +37,7 @@ describe('CableScreen', () => {
   it('lists the four adapters with ENET selected', async () => {
     await renderCable();
 
-    for (const name of ['ENET', 'Thor', 'Vgate iCar', 'Demo']) {
+    for (const name of ['ENET', 'THOR', 'ELM327 BLE', 'Demo']) {
       expect(screen.getByRole('radio', { name })).toBeTruthy();
     }
     expect(screen.getByRole('radio', { name: 'ENET', checked: true })).toBeTruthy();
@@ -60,7 +60,7 @@ describe('CableScreen', () => {
   it('persists the selected adapter', async () => {
     await renderCable();
 
-    await fireEvent.press(screen.getByRole('radio', { name: 'Thor' }));
+    await fireEvent.press(screen.getByRole('radio', { name: 'THOR' }));
 
     expect(useSettingsStore.getState().adapter).toBe('thor');
   });
