@@ -117,9 +117,11 @@ Status: ☐ todo · ◐ in progress · ☑ done
 | M6  | UI foundation: gluestack + NativeWind theme from E4 tokens, Geist, Phosphor, i18n EN/PL, navigation skeleton                             | ☑                                                                                                                                                                 |
 | M7  | Screens: Connect, Settings, Cable, Home, Library, tile menu, favourites edit, preset editor, add step, icon picker → **user checkpoint** | ◐ (Logical-action foundation implemented and packaged for commit; F11 mapping validation and device/Maestro verification pending; prior Android/UI work retained) |
 | M8  | Motion: Skia tiles, sweep, wiggle, reorder, haptics, reduced motion                                                                      | ☐                                                                                                                                                                 |
-| M9  | Hardening: Maestro E2E, coverage gate, security review, code review, performance pass                                                    | In progress: public documentation cleanup complete; remaining hardening pending                                                                                   |
+| M9  | Hardening: Maestro E2E, coverage gate, security review, code review, performance pass                                                    | In progress: public documentation and history cleanup complete; remaining hardening pending                                                                       |
 
 ### Log
+
+- 2026-10-19 - Sanitized Git history for public sharing, removing historical private research artifacts and handoffs and scrubbing private references from retained files and commit messages. Verified all reachable file contents and paths, with the application tree identical before and after rewriting. A recovery bundle is stored locally outside the repository. Earlier validation: typecheck, lint, generated-data checks, and all 87 suites / 1,199 tests / 10 snapshots pass.
 
 - 2026-10-19 - Prepared tracked documentation for public sharing: removed legacy product references, private design links and machine-specific research details; added contributor setup guidance and strengthened local environment/build-artifact ignores. Optional data import now uses an explicit ECU_SOURCE_DIR; runtime code and generated ECU data unchanged. Historical commits and ignored local research are outside this cleanup.
 
