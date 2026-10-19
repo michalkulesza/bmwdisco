@@ -9,6 +9,7 @@ Hardware support and individual lighting mappings are still being validated. See
   <img src="docs/images/home.png" alt="Home screen with favourites, predefined actions and presets" width="200">
   <img src="docs/images/preset-editor.png" alt="Preset editor" width="200">
   <img src="docs/images/cable-picker.png" alt="Cable picker" width="200">
+  <img src="docs/images/cable-picker.png" alt="Cable picker" width="200">
 </p>
 
 ## Features
