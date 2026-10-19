@@ -1,16 +1,46 @@
-# BimmerDisco
+<div align="center">
 
-Expo app for iOS and Android that runs light shows and presets on BMW F-series cars by sending UDS diagnostic commands through an OBD adapter. It includes a built-in Demo vehicle, so you can try the app without a car or adapter.
+<img src="assets/logo/logo.svg" alt="BimmerDisco logo" width="120">
 
-Hardware support and individual lighting mappings are still being validated. See [docs/PLAN.md](docs/PLAN.md) for current status and known limitations.
+<h1>BimmerDisco</h1>
+
+<p><strong>Turn your BMW's lights into a light show.</strong></p>
+
+<p>An Expo app for iOS and Android that runs light shows and presets on BMW F-series cars<br>by sending UDS diagnostic commands through an OBD adapter. No car? Try the built-in Demo vehicle.</p>
 
 <p>
-  <img src="docs/images/not-connected.png" alt="Not connected screen" width="200">
-  <img src="docs/images/home.png" alt="Home screen with favourites, predefined actions and presets" width="200">
-  <img src="docs/images/preset-editor.png" alt="Preset editor" width="200">
-  <img src="docs/images/cable-picker.png" alt="Cable picker" width="200">
-  <img src="docs/images/cable-picker.png" alt="Cable picker" width="200">
+  <a href="https://github.com/michalkulesza/bmwdisco/actions/workflows/ci.yml"><img src="https://github.com/michalkulesza/bmwdisco/actions/workflows/ci.yml/badge.svg?branch=master" alt="CI"></a>
+  <img src="https://img.shields.io/badge/Expo-SDK%2057-000020?logo=expo&logoColor=white" alt="Expo SDK 57">
+  <img src="https://img.shields.io/badge/platform-iOS%20%7C%20Android-0A0B0D" alt="iOS and Android">
+  <img src="https://img.shields.io/badge/BMW-F--series-2F5FB3" alt="BMW F-series">
+  <img src="https://img.shields.io/badge/lang-EN%20%7C%20PL-6CB4EE" alt="English and Polish">
 </p>
+
+<p>
+  <a href="#installation">Get started</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="docs/PLAN.md">Project plan</a>
+</p>
+
+<br>
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/images/1.jpg" alt="Welcome screen with Connect and Settings" width="240"><br><sub><b>Connect</b></sub></td>
+    <td align="center"><img src="docs/images/2.jpg" alt="Cable picker listing ENET, Thor, Vgate iCar and Demo" width="240"><br><sub><b>Pick your adapter</b></sub></td>
+    <td align="center"><img src="docs/images/3.jpg" alt="Home screen with favourites and predefined light actions" width="240"><br><sub><b>Favourites and predefined shows</b></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/4.jpg" alt="Home screen with custom presets" width="240"><br><sub><b>Your own presets</b></sub></td>
+    <td align="center"><img src="docs/images/5.jpg" alt="Preset editor with colour and icon" width="240"><br><sub><b>Style a preset</b></sub></td>
+    <td align="center"><img src="docs/images/6.jpg" alt="Preset editor with reorderable steps" width="240"><br><sub><b>Build it step by step</b></sub></td>
+  </tr>
+</table>
+
+</div>
+
+> [!NOTE]
+> Hardware support and individual lighting mappings are still being validated. See [docs/PLAN.md](docs/PLAN.md) for current status and known limitations.
 
 ## Features
 
