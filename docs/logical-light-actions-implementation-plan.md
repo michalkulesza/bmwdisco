@@ -2,7 +2,7 @@
 
 Date: 2026-10-17. Status: software foundation implemented on 2026-10-17; hardware mapping gates remain pending. See PLAN.md for validation results and logical-actions-inventory.md for the current 140-effect source inventory (the original planning estimate below was 139). No ECU payload or generated module was changed.
 
-This plan implements [the handoff](logical-light-actions-handoff.md) and follows the safety policy in [PLAN.md](PLAN.md). Two Luna agents audited registry/runner safety and persistence/UI/generation; the orchestrator reviewed their findings against the source and chose the contracts and sequence below. Evidence from the packaged reference is bounded by [the F11 audit](f11-light-mapping-handoff.md); no new binary analysis is required to start this work.
+This plan follows the safety policy in [PLAN.md](PLAN.md) and records the implementation contracts, rollout sequence, and validation gates for logical lighting actions.
 
 ## 1. Scope and decisions
 
@@ -111,7 +111,7 @@ On reconnect, restore from the original physical ledger, never by resolving the 
 | Missing output or ambiguous providers       | None                                                                               | Unsupported missing output, or unknown provider choice. Never execute an incomplete composition.                                                                                                                                                  |
 | KOMB01 / exterior lamps                     | None                                                                               | Cluster feedback only; optional feedback failure must not supply or validate an exterior action.                                                                                                                                                  |
 
-For source traceability use `data/ecu/FRM3.json`, `src/data/generated/modules/{FRM3,FEM_20,REM_20,BDC,FLE02_L,FLE02_R}.ts`, `registry/rules.ts`, and the car-test Log in PLAN.md. Reference-app evidence is preserved in the tracked F11 audit, including `data/ecu/flash.json`, FRM3 descriptions, and Ghidra function addresses. Those artifacts do not establish a validated composition or automatic equipment selector.
+For source traceability use `data/ecu/FRM3.json`, `src/data/generated/modules/{FRM3,FEM_20,REM_20,BDC,FLE02_L,FLE02_R}.ts`, `registry/rules.ts`, and the car-test Log in PLAN.md. ECU descriptions and generated command candidates do not establish a validated physical composition or automatic equipment selector.
 
 ## 6. Preset schema and effect compatibility
 
@@ -219,6 +219,6 @@ Release gates:
 - **Software foundation:** unified assessment, strict schema compatibility, UI explanations, facts lifecycle and safety tests pass; no new FRM3 output enabled. Existing independent supported controls continue working. Double flash on this F11 may correctly remain unavailable with an equipment/validation explanation.
 - **FRM3 indicators:** visible front/rear coverage and OFF/session restoration documented for this vehicle; failure-path tests pass; mapping validation scope recorded. This does not validate every FRM3 vehicle or include untested repeaters.
 - **FRM3 halogen high beam:** equipment and visible FL behavior, serial timing and cleanup verified for the scoped configuration. Only then may Double flash use the composition, with measured timing warnings.
-- **FRM3 xenon/shutter:** separate validated prerequisite/undo design and visible tests. No release based solely on option 522, ECU ACK, or BimmerDisco static pack data.
+- **FRM3 xenon/shutter:** separate validated prerequisite/undo design and visible tests. No release based solely on factory equipment data or an ECU acknowledgement.
 
-Information needed from the user at the hardware stage: actual F11 headlight equipment/retrofits, which indicator control originally failed, and observed lamp/cleanup results from the worksheet. None of these blocks implementing the software foundation. No broader BimmerDisco reverse engineering is required as a prerequisite.
+Information needed from the user at the hardware stage: actual F11 headlight equipment/retrofits, which indicator control originally failed, and observed lamp/cleanup results from the worksheet. None of these blocks implementing the software foundation.

@@ -1,8 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { ECU_DATA_DIR, MODULE_SGBDS, PACKS, SOURCE_DIR } from './gen-data/paths';
+import { ECU_DATA_DIR, MODULE_SGBDS, PACKS } from './gen-data/paths';
 import { isFSeriesLabel } from './gen-data/vehicles';
+
+const sourceDirectory = process.env.ECU_SOURCE_DIR;
+if (!sourceDirectory) {
+  throw new Error('Set ECU_SOURCE_DIR to the directory containing ECU source JSON files.');
+}
+const SOURCE_DIR = path.resolve(sourceDirectory);
 
 const copyFile = (name: string) => {
   fs.copyFileSync(path.join(SOURCE_DIR, name), path.join(ECU_DATA_DIR, name));

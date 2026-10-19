@@ -3,7 +3,7 @@
 Car: real F32, adaptive LED headlights, modules FEM_20 (0x40), LHM2_L (0x43), LHM2_R (0x44), KOMB25 (0x60), REM_20 (0x72). No FLE02.
 Status: static analysis only. Everything below marked "inferred" or with a confidence level is unverified on the car.
 
-Path shorthand: `gen/` = `src/data/generated/modules/`, `ecu/` = `data/ecu/`, `PA/` = `data/ecu/` (identical copies of `ecu/` for the same file names).
+Path shorthand: `gen/` = `src/data/generated/modules/`, `ecu/` = `data/ecu/`
 
 ## 1. What the app sends today for headlights
 
@@ -40,31 +40,24 @@ Important correction to the premise: the "channel routine" is not a routine (ser
 
 Write frame, 17 bytes: `2E 60 60 <14 data bytes>`; positive response `6E 60 60`. Read: `22 60 60` -> `62 60 60 <14 bytes>`.
 
-| Offset (after `2E 60 60`) | Field                | Size   | Meaning                                                                                                                                                                                                                 |
-| ------------------------- | -------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0-6                       | KANAL1..7_HELLIGKEIT | 1 each | PWM / brightness of LED channel 1..7. Original app uses 250 (0xFA) as ON, 0 as OFF (`PROTO/analysis/command-findings.md:37`, `headlight_show.json` params `param_lhm2_pwm`). 0xFA hints the range is 0..250 (inferred). |
-| 7-13                      | KANAL1..7_STROM      | 1 each | LED current of channel 1..7. Schema scale tuple `[1,10,0]` on write, `[10,1,0]` on read (`ecu/LHM2_L.uds.json` fields after the PWM fields); unit is not stated, treat as opaque raw bytes (inferred: 0.1 A-like).      |
+| Offset (after `2E 60 60`) | Field                | Size   | Meaning                                                                                                                                                                                                            |
+| ------------------------- | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 0-6                       | KANAL1..7_HELLIGKEIT | 1 each | PWM / brightness of LED channel 1..7. A proposed 0xFA ON value is unverified; the ECU schema does not establish the safe operating range.                                                                          |
+| 7-13                      | KANAL1..7_STROM      | 1 each | LED current of channel 1..7. Schema scale tuple `[1,10,0]` on write, `[10,1,0]` on read (`ecu/LHM2_L.uds.json` fields after the PWM fields); unit is not stated, treat as opaque raw bytes (inferred: 0.1 A-like). |
 
 Read result names confirm the order: `STAT_LED_KANAL_1..7_PWM_WERT` then `STAT_LED_KANAL_1..7_STROM_WERT` (`ecu/LHM2_L.uds.json:158-...`).
 
-Field-to-light mapping: not in the data. The fields are generic driver channels ("Kanal 1..7", enum `TAB_KANAELE_LHM2` with channel 8 = fan "Lüfter", `ecu/LHM2_L.uds.json:1550`); no low beam / high beam / DRL / indicator naming appears anywhere in LHM2 files. Related read-only DIDs: D5DA equipment flags, one byte each for low beam, high beam, position, DRL, indicator, cornering, accent, side marker, "gezieltes Anleuchten" (`ecu/LHM2_L.uds.json:930`); D515 binning per channel; D514 operating hours per channel and fan (`ecu/LHM2_L.uds.json:646-658`); D5BF fan `2E D5 BF <LEISTUNG> <ZEIT>` (`:882-897`). D5DA says which functions exist, not which channel serves them. Compare FLE02, which has a labelled `TAB_LEUCHTMITTEL` (Low beam 1-3, High beam 1-3, DRL 1-3, Cornering 1-3, Side marker 1-3, Indicator 1, Accent 1-3; `ecu/FLE02_L.uds.json:1802`) but that is a different ECU and numbering; do not transfer it.
+Field-to-light mapping: not in the data. The fields are generic driver channels ("Kanal 1..7", enum `TAB_KANAELE_LHM2` with channel 8 = fan "LÃ¼fter", `ecu/LHM2_L.uds.json:1550`); no low beam / high beam / DRL / indicator naming appears anywhere in LHM2 files. Related read-only DIDs: D5DA equipment flags, one byte each for low beam, high beam, position, DRL, indicator, cornering, accent, side marker, "gezieltes Anleuchten" (`ecu/LHM2_L.uds.json:930`); D515 binning per channel; D514 operating hours per channel and fan (`ecu/LHM2_L.uds.json:646-658`); D5BF fan `2E D5 BF <LEISTUNG> <ZEIT>` (`:882-897`). D5DA says which functions exist, not which channel serves them. Compare FLE02, which has a labelled `TAB_LEUCHTMITTEL` (Low beam 1-3, High beam 1-3, DRL 1-3, Cornering 1-3, Side marker 1-3, Indicator 1, Accent 1-3; `ecu/FLE02_L.uds.json:1802`) but that is a different ECU and numbering; do not transfer it.
 
 Other LHM2 entries (`ecu/LHM2_L.uds.json:14` jobs):
 
-- `STEUERN_ROUTINE` base `31`; the only routine function in LHM2 is `A534 LEUCHTEN_FUNKTIONSTEST_LED_SCHEINWERFER` (`:603`), no arguments: `31 01 A5 34` would start the built-in LED headlight function test (inferred). There is no `31 02` stop for it in the mapping and it is not what the original app uses.
+- `STEUERN_ROUTINE` base `31`; the only routine function in LHM2 is `A534 LEUCHTEN_FUNKTIONSTEST_LED_SCHEINWERFER` (`:603`), no arguments: `31 01 A5 34` may start the built-in LED headlight function test (inferred). There is no `31 02` stop for it in the mapping.
 - `_STEUERN_FUSI_LED` 6068 (`:580`) and `_STEUERN_FUSI_CRC` 6067 are functional-safety test writes; do not touch.
 - `STEUERN_ROE_PERSISTENT_*`, `ENERGIESPARMODE`, `STEUERN_BETRIEBSMODE`, `STEUERGERAETE_RESET` (`11 01`) exist as jobs; irrelevant and risky.
 - Mapping rows: `LED_1..7_LEFT` -> `STEUERN ARG _LEUCHTEN_AUSSENLICHT_KANAELE KANALn_HELLIGKEIT {param_lhm2_pwm}` (`ecu/LHM2_L.json:5-11` onward), `DIAGNOSE_MODE_ON/OFF` -> `10 03`/`10 01` (`ecu/LHM2_L.json:97`), `COMMUNICATION_ON` `28 00 03`, `COMMUNICATION_OFF` `28 02 01` (`ecu/LHM2_L.json:127-128`), plus the twelve `CC_xx_yy` variants (`:205` etc.). There is no return-control row (no `2F`/`IO_RETURN_CONTROL`). FLE02 by contrast has `STOP_ROUTINE` (`ecu/FLE02_L.json:169`), a `31 02 A5 43 STPR` that LHM2 does not have.
-- Identification: `22 F1 50` -> `0F 1B 20` = LHM2_L (listed under chassis F01, `PA/ecu_modules.json:1851-1856`); chassis label is irrelevant, the module is what is on the car.
+- Identification: `22 F1 50` -> `0F 1B 20` = LHM2_L (listed under chassis F01, `data/ecu/README.md`); chassis label is irrelevant, the module is what is on the car.
 
-What the original app does with LHM groups (`PA/headlight_show.json`, same shape in headlight_flash, one_side, party_mode):
-
-1. `DIAGNOSE_MODE_ON` group LHM_L and LHM_R (`10 03`), then `COMMUNICATION_OFF` LHM_L/R (`28 02 01`) at the start of the sequence (`headlight_show.json:~95-112`, repeated at `:~470-485` before the OFF half).
-2. `LED_n_LEFT`/`LED_n_RIGHT` steps with `param_lhm2_pwm` 250 (on) or 0 (off), one channel per step (`headlight_show.json:114-440`). Only LED 1..7 exist on LHM2; FLE02 has 10.
-3. `disable` list (`headlight_show.json:457` onward): `DIAGNOSE_MODE_ON` L/R, all-off params, `COMMUNICATION_ON` L/R (`:653`, `:659`), `DIAGNOSE_MODE_OFF` L/R. So release is: PWM 0, `28 00 03`, `10 01`. No `2F` return-control for LHM.
-4. Same pack also runs KOMBI cluster feedback (`31 01 F0 12 01 FC 21` / `...00`).
-
-Missing piece, same as `command-findings.md:134`: how the original engine fills the other 13 bytes when only `KANALn_HELLIGKEIT` is named is not recoverable from the data (read-modify-write, zeros, or a retained register image). This is the one thing that cannot be settled statically.
+Static ECU data does not establish how a client should populate the other 13 bytes when changing one `KANALn_HELLIGKEIT` field. Read-modify-write, zero fill, and a retained register image remain possible; this cannot be settled from the schema alone.
 
 `28 02 01` semantics: UDS CommunicationControl, subfunction 02 = disable receive / keep transmit, communicationType 01 = normal application messages. Effect on LHM2 (inferred): it stops listening to FEM's cyclic light requests so FEM cannot overwrite the diagnostic PWM; it still transmits. `28 00 03` = enable Rx and Tx for normal and network-management messages (restores). Current app behaviour for FLE02: send `28 02 01` after `10 03` to modules serving a `headlightLeds` element, and `28 00 03` in cleanup (`src/domain/runner/plan.ts:113-123`, `runner.ts:210-213`, `cleanup.ts:92-95`).
 
@@ -74,7 +67,7 @@ Principle: write the whole 14-byte record every time, and never invent the 7 cur
 
 Session sequence per module (L = 0x43, R = 0x44):
 
-1. `10 03` (extended session). Required for the original app's flow; `2E` on a data DID normally needs it (inferred).
+1. `10 03` (extended session). `2E` on a data DID normally needs it (inferred).
 2. `28 02 01` so FEM's bus requests do not fight the write (inferred, medium). Needed if the write has no visible effect or is overwritten within a few hundred ms.
 3. `22 60 60` once, store `P1..P7` (current PWM, normal state) and `I1..I7`.
 4. ON/OFF writes (below).
@@ -130,7 +123,7 @@ Effects `flash.indicatorLeft` / `flash.indicatorRight` (`src/data/generated/effe
 | right ON / OFF      | FEM_20         | `2E D5 42 00 07 00 64` / `... 00 00` (`gen/FEM_20.ts:152-156`)                    |
 | cleanup             | FEM_20, KOMB25 | OFF, return control `2F 45 01 00 FE`, cluster off `31 01 F0 12 01 FC 00`, `10 01` |
 
-The original app does the same two-step ON then OFF (no inter-step delay in the data; `PA/flash.json:4354-4448`, mapping `ecu/FEM_20.json:480-505` = `STEUERN ARG LEUCHTEN_FUNKTION 0x06/0x07 {param_zeit}`, ZEIT 100 on, 0 off).
+The ECU mapping describes `STEUERN ARG LEUCHTEN_FUNKTION` elements 0x06/0x07 with a ZEIT parameter (`data/ecu/FEM_20.json:480-505`). The car-level request/reply and visible result for these indicator elements remain unverified.
 
 Hazard that works: `2E D5 42 00 12 00 64` (`gen/FEM_20.ts:202-206`, `ecu/FEM_20.json:620-632`) with the same `clusterFeedback: true` (`effects.ts:2589`). So framing, session, ZEIT size, KOMB25 feedback and FEM addressing are all proven by the hazard; only `ELEMENT 0x0006/0x0007` differs.
 
@@ -140,7 +133,7 @@ NRC: the real code was not captured (PLAN.md:150 "ECU cause remains unverified";
 | ------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | 0x22 conditionsNotCorrect | ignition/terminal state or turn-stalk source busy         | `docs/PLAN.md:66` already expects 0x22 for "ignition on" cases; direction indicators are driver-input functions |
 | 0x31 requestOutOfRange    | ELEMENT value 6/7 not accepted on this FEM variant/coding | hazard (0x12) accepted, so the value range check is per element                                                 |
-| 0x33 securityAccessDenied | indicator write guarded                                   | unlikely; no 27 service in the app                                                                              |
+| 0x33 securityAccessDenied | indicator write guarded                                   | unlikely; no 27 service is documented in the available command mappings                                         |
 | 0x7F `78` then drop       | response-pending then link loss                           | would explain "lost the connection"; also could be the app's cleanup path (`PLAN.md:150`)                       |
 
 Get the actual NRC first: the development log records module/element/error for failed light commands (PLAN.md:150). That one byte decides the path.
@@ -158,7 +151,7 @@ Common frame notes: `2F 45 01 03 <id> <state>` expects `6F 45 01 ...`; hold with
 | sideIndicatorLeft   | `2F 45 01 03 10 01` / `... 10 00` | FRA_Z_L (side repeater, "Zusatz") | medium     |
 | sideIndicatorRight  | `2F 45 01 03 11 01` / `... 11 00` | FRA_Z_R                           | medium     |
 
-Source: `gen/FEM_20.ts:72-91`, `PA/FEM_20.json:134-170`, `PROTO/analysis/REPORT.md:146-147`. This is exactly what the original reverse-engineered brief tested first (REPORT.md:140-190). Cleanup: `2F 45 01 00 FE` (`gen/FEM_20.ts:9`; mapping `ecu/FEM_20.json:704`), then `10 01`. The front pair is the same class as the lowBeam/highBeam per-side outputs that the car acknowledged but ignored, so on LED headlights FRA_V_L/R may be dead (the indicator is in the headlight and driven through LHM2). FRA_Z (fender/mirror repeaters) is a physical FEM output on cars that have them, so it is more likely real. Mirror indicators: no entry for mirror-integrated indicators in FEM_20's enum or REM_20's; none found.
+Source: `gen/FEM_20.ts:72-91`, `data/ecu/FEM_20.json:134-170`. Cleanup: `2F 45 01 00 FE` (`gen/FEM_20.ts:9`; mapping `ecu/FEM_20.json:704`), then `10 01`. The front pair is the same class as the lowBeam/highBeam per-side outputs that the car acknowledged but ignored, so on LED headlights FRA_V_L/R may be dead (the indicator is in the headlight and driven through LHM2). FRA_Z (fender/mirror repeaters) is a physical FEM output on cars that have them, so it is more likely real. Mirror indicators: no entry for mirror-integrated indicators in FEM_20's enum or REM_20's; none found.
 
 Rear indicators, per side, REM_20 (0x72), proven channel family on this car (REM brakeLeft/Right lit, `rules.ts:16`): template `2E 45 01 <id> <state>` (`ecu/REM_20.uds.json:4193-4195`, channels FRA_H_L = 0x20 at `:4269`):
 
@@ -206,6 +199,6 @@ Stop at the first unexpected NRC; after every group run cleanup (`2F 45 01 00 FE
 
 1. Actual NRC for D542 0x06/0x07.
 2. Whether FRA_V_L/R and FRA_Z_L/R light, or are dead outputs like the LED per-side outputs.
-3. LHM2 channel-to-function mapping (read-back) and whether the original engine writes zeros or reads first for the other 13 bytes.
+3. LHM2 channel-to-function mapping (read-back) and how the client populates the other 13 bytes.
 4. Whether `2E 60 60` needs `28 02 01` and `10 03`, and whether `10 01` alone releases the PWM.
 5. Which `3E` keepalive / S3 timeout LHM2 uses (not in the data).

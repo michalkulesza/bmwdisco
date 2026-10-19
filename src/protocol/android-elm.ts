@@ -1,6 +1,6 @@
 import { ecuHex } from './elm-at';
 
-// Android adapter's default ELM D-CAN mode 2. See docs/android-connection-notes.md.
+// ELM D-CAN mode 2. See docs/android-connection-notes.md.
 // ATCEA inserts the target byte; CAF1 inserts the single-frame PCI.
 export const ANDROID_ELM_INIT = [
   'ATD',

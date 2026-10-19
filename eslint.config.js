@@ -14,6 +14,7 @@ module.exports = defineConfig([
     'android/**',
     'src/data/generated/**',
     '.expo/**',
+    '.pnpm-store/**',
   ]),
   expo,
   reactHooks.configs.flat.recommended,

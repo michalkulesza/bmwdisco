@@ -16,7 +16,7 @@ const setup = (handler: ElmHandler = () => undefined) => {
   return { transport, elm, link: new ElmIsoTpLink(transport, { settleMs: 0 }, 'android-mode2') };
 };
 
-describe('Android Android adapter default ELM mode', () => {
+describe('Android default ELM mode', () => {
   it('wakes with ATI and configures extended addressing without resetting with ATZ', async () => {
     const { elm, link } = setup();
     await link.open();

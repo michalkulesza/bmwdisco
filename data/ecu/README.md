@@ -1,6 +1,6 @@
 # ECU source data
 
-source ECU source data for F-series lighting control (see `PROTO/analysis`, local only). Everything the app knows about payload bytes comes from these files; nothing in `src/` or `app/` imports them. Only `scripts/gen-data.ts` reads them.
+ECU source data for F-series lighting control. Everything the app knows about payload bytes comes from these files; nothing in `src/` or `app/` imports them. Only `scripts/gen-data.ts` reads them.
 
 ## Contents
 
@@ -12,10 +12,11 @@ source ECU source data for F-series lighting control (see `PROTO/analysis`, loca
 ## Regenerate
 
 ```
-npm run sync:data    # copy from data/ecu (needs the local PROTO folder)
-npm run gen:data     # validate with zod and emit src/data/generated
-npm run gen:data:check
+pnpm gen:data     # validate with zod and emit src/data/generated
+pnpm gen:data:check
 ```
+
+Optional data import: set `ECU_SOURCE_DIR` to a directory containing the source JSON files, then run `pnpm sync:data`. Normal builds use the tracked files and do not require this step.
 
 `gen:data:check` regenerates in memory and fails when `src/data/generated` differs; CI runs it after lint.
 

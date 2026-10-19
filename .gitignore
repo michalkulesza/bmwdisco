@@ -30,3 +30,12 @@ e2e/output/
 # Local native module build output
 /modules/*/android/build/
 /modules/*/android/.gradle/
+
+# Local environment files and downloaded/build artifacts
+.env.*
+!.env.example
+.pnpm-store/
+*.apk
+*.aab
+*.ipa
+*.keystore

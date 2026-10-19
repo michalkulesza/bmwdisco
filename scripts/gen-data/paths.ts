@@ -1,7 +1,6 @@
 import path from 'node:path';
 
 export const ROOT = path.resolve(__dirname, '..', '..');
-export const SOURCE_DIR = path.join(ROOT, 'PROTO', 'analysis', 'source');
 export const ECU_DATA_DIR = path.join(ROOT, 'data', 'ecu');
 export const GENERATED_DIR = path.join(ROOT, 'src', 'data', 'generated');
 

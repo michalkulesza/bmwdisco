@@ -80,7 +80,7 @@ class BimmerDiscoAdaptersModule : Module() {
                 } catch (first: Exception) {
                   connection.socket?.close()
                   if (connection.closed.get()) throw first
-                  // Android adapter retries RFCOMM channel 1 for adapters without a working SDP record.
+                  // Retry RFCOMM channel 1 for adapters without a working SDP record.
                   val socket = device.javaClass.getMethod("createRfcommSocket", Int::class.javaPrimitiveType)
                     .invoke(device, 1) as BluetoothSocket
                   installSocket(connection, socket)
