@@ -121,6 +121,8 @@ Status: ☐ todo · ◐ in progress · ☑ done
 
 ### Log
 
+- 2026-10-19 - Rewrote README.md: setup, configuration, development commands, architecture, how UDS requests are framed per adapter and how replies are matched, connection flow and safety. Added design screenshots (not connected, Home, preset editor, cable picker) exported from the design canvas to `docs/images/`.
+
 - 2026-10-19 - Fixed CI after the package-manager migration: the workflow still cached npm and required an absent npm lockfile, failing before checks ran. Set up pnpm 10.26.2 before Node caching, use the tracked pnpm lockfile with frozen installation, and run validation, coverage and production auditing through pnpm. Frozen install and generated-data checks pass locally; the production audit passes the critical gate (two high and three moderate advisories remain). GitHub workflow verification follows the push.
 
 - 2026-10-19 - Sanitized Git history for public sharing, removing historical private research artifacts and handoffs and scrubbing private references from retained files and commit messages. Verified all reachable file contents and paths, with the application tree identical before and after rewriting. A recovery bundle is stored locally outside the repository. Earlier validation: typecheck, lint, generated-data checks, and all 87 suites / 1,199 tests / 10 snapshots pass.
